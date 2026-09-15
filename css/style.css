@@ -11,6 +11,7 @@
 
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+/* fundo do site */
 .fundo-fixo {
   position: fixed;
   top: 0;
@@ -28,7 +29,7 @@
 .conteudo-site {
   position: relative;
   z-index: 1;
-  height: 2000px;
+  height: 3000px;
 }
 header{
   background-color: rgba(0, 0, 0, 0.26);
@@ -58,13 +59,13 @@ header{
   justify-content: center;
   width: 50%;
 }
-a{
+header a{
   color: wheat;
   transition: all ease-in-out 0.2s;
   text-decoration: none;
   font-weight: bolder;
 }
-a:hover{
+header a:hover{
   color:#dc8030;
 }
 .titulo{
@@ -76,16 +77,6 @@ a:hover{
   color:aliceblue;
   font-size:  20px;
   font-family:Georgia, 'Times New Roman', Times, serif;
-}
-.conteudoA{
- background-color: wheat;
- width: 100%;
- height: 300px;
-}
-.conteudoB{
- background-color: white;
- width: 100%;
- height: 300px;
 }
 .but-reservar{
   padding: 25px;
@@ -126,4 +117,150 @@ a:hover{
   
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
+}
+
+/* CONTEUDO A */
+
+.conteudoA{
+padding-top:50px;
+ background-color: white;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ color: #B73312;
+ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.conteudoA h1 {
+  position: relative;
+  display: inline-block; /* Mantém a largura do h1 ajustada ao texto */
+  font-size: 40px;
+  
+}
+.conteudoA p{
+  font-weight: bold;
+  color: #201009;
+}
+.conteudoA h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px; /* Substitui o text-underline-offset */
+
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 30%; /* Define o tamanho da linha em relação ao texto */
+  height: 2px; /* Espessura da linha */
+  background-color: var(--cor-3); /* Cor da linha */
+}
+.conteiner-imgs{
+  padding-top: 100px;
+  display: flex;
+  flex-direction: row;
+}
+.conteiner-imgs img{
+  width: 20%;
+}
+.conteiner-video{
+  margin: 70px;
+  padding-top: 70px;
+  display: flex;
+  flex-direction: row;
+}
+.conteiner-video img{
+  width: 25%;
+}
+
+.conteiner-video .texto{
+  margin-right: 50px;
+  align-content: center;
+}
+.conteiner-video .texto p{
+  color: #201009;
+}
+.conteiner-video .texto h2{
+  font-size: 30px;
+  max-width: 75%;
+}
+
+/* CONTEUDO B */
+
+.conteudoB {
+  background-color: rgb(220, 220, 220);
+  width: 100%; /* Alterado de 100vw para evitar rolagem horizontal */
+  color: #B73312;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o h1, p e a div .cards na horizontal */
+  text-align: center;
+}
+
+/* Adicionado: Necessário para o ::after posicionar-se em relação ao h1 */
+.conteudoB h1 {
+  position: relative;
+  display: inline-block;
+  margin-top: 0;
+  font-size: 40px;
+}
+
+.conteudoB p {
+  font-weight: bold;
+  color: #201009;
+}
+
+.conteudoB h1::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 2px;
+  background-color: var(--cor-3);
+}
+
+.conteudoB .cards {
+  width: 100%; /* Ocupa a largura total para alinhar os cards ao centro */
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Centraliza os 3 cards */
+  gap: 3.3%;
+  margin: 30px 0;
+  flex-shrink: 0; /* Removido o til (~) incorreto */
+}
+
+.cards > div {
+  background-image: url('../imagens/placeholder.png');
+  background-size: cover;
+  background-position: center;
+  height: 450px;
+  width: 30%;
+  position: relative;
+  transition: all ease-in-out 0.3s;
+}
+
+.cards > div > div {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+  /* Texto interno */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.cards > div > div:hover {
+  background-color: #b733129f;
+  color: #201009;
 }
