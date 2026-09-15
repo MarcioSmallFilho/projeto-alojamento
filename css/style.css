@@ -72,13 +72,18 @@ a:hover{
   flex-direction:column;
   align-items: center;
   justify-content: center;
-  height: 480px;
+  height: 400px;
   color:aliceblue;
   font-size:  20px;
   font-family:Georgia, 'Times New Roman', Times, serif;
 }
 .conteudoA{
  background-color: wheat;
+ width: 100%;
+ height: 300px;
+}
+.conteudoB{
+ background-color: white;
  width: 100%;
  height: 300px;
 }
@@ -90,7 +95,7 @@ a:hover{
   color: wheat;
   font-weight: bolder;
   font-size: large;
-  transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.4s;
 }
 
 .but-reservar:hover{
@@ -104,8 +109,8 @@ a:hover{
 }
 
 .conteudo-titulo{
-  height: 50%;
-  width: 60%;
+  height: 65%;
+  width: 65%;
   display: flex;
   flex-direction:column;
   align-items: center;
