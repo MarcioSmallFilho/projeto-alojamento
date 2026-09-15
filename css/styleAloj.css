@@ -72,7 +72,7 @@ a:hover{
   flex-direction:column;
   align-items: center;
   justify-content: center;
-  height: 400px;
+  height: 480px;
   color:aliceblue;
   font-size:  20px;
   font-family:Georgia, 'Times New Roman', Times, serif;
@@ -95,7 +95,7 @@ a:hover{
   color: wheat;
   font-weight: bolder;
   font-size: large;
-  transition: all ease-in-out 0.4s;
+  transition: all ease-in-out 0.2s;
 }
 
 .but-reservar:hover{
@@ -109,8 +109,8 @@ a:hover{
 }
 
 .conteudo-titulo{
-  height: 65%;
-  width: 65%;
+  height: 50%;
+  width: 60%;
   display: flex;
   flex-direction:column;
   align-items: center;
