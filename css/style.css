@@ -296,7 +296,11 @@ padding-top:50px;
   visibility: visible;
   transform: translateY(0); /* Sobe suavemente para a posição original */
 }
-
+.cards > div > div:hover .btn-card:active {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+}
 /* CONTEUDO C */
 
 .conteudoC{
