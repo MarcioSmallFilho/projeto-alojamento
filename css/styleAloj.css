@@ -11,6 +11,15 @@
 
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body{
+  padding: 0px;
+  margin: 0px;
+}
+
+h1{
+  margin: 0px;
+}
+
 .fundo-fixo {
   position: fixed;
   top: 0;
@@ -28,7 +37,6 @@
 .conteudo-site {
   position: relative;
   z-index: 1;
-  height: 2000px;
 }
 header{
   background-color: rgba(0, 0, 0, 0.26);
@@ -80,7 +88,8 @@ a:hover{
 .conteudoA{
  background-color: white;
  width: 100%;
- padding-top: 10px;
+ padding-top: 30px;
+ padding-bottom: 30px;
 }
 .conteudoA h1{
   color: var(--cor-3);
@@ -139,7 +148,7 @@ div.cartaQuarto {
   border-radius: 20px;
   width: 50%;
   padding: 10px;
-  transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.1s;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -164,11 +173,54 @@ div.cartaQuarto {
   padding-bottom: 80px;
 }
 
+.areaA {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.areaA > div{
+  width: 50%;
+  height: 350px;
+}
+
+.areaA > div > h1{
+  padding-top: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: left;
+}
+
+.areaA > div > p{
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.areaA img{
+  object-fit: cover;
+  padding: 5px;
+  width: 32%;
+  height: 350px;
+}
+
 .conteudoB{
  background-color: wheat;
+ padding-top: 30px;
+ padding-bottom: 30px;
  width: 100%;
- height: 300px;
 }
+.conteudoB h1{
+  color: var(--cor-3);
+  text-align: center;
+  font-weight: bolder;
+}
+.conteudoB p{
+  color: var(--cor-2);
+  font-weight: bolder;
+  text-align: center;
+  hyphens: auto;
+}
+
 .but-reservar{
   padding: 25px;
   border-radius: 15px;
@@ -189,6 +241,44 @@ div.cartaQuarto {
   transform: scale(0.95);
   background-color: #9F1209;
 }
+
+.areaReservar{
+  background: linear-gradient(47deg, var(--cor-3), var(--cor-5));
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.areaReservar > input{
+  width: 150px;
+  height: 50px;
+  border: solid 3px var(--cor-1);
+  border-radius: 150px;
+  font-weight: bolder;
+  font-size: large;
+  color: var(--cor-1);
+  background-color: transparent;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  mix-blend-mode: multiply;
+}
+
+.areaReservar > input:hover{
+  transform: scale(1.2);
+  background-color: var(--cor-1);
+  color: white;
+  mix-blend-mode: multiply;
+}
+
+.areaReservar > input:active{
+  transform: scale(0.95);
+  background-color: transparent;
+  color: var(--cor-1);
+}
+
+
 
 .conteudo-titulo{
   height: 50%;
