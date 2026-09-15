@@ -11,6 +11,10 @@
 
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+body{
+  padding: 0px;
+  margin: 0px;
+}
 /* fundo do site */
 .fundo-fixo {
   position: fixed;
@@ -29,7 +33,6 @@
 .conteudo-site {
   position: relative;
   z-index: 1;
-  height: 3000px;
 }
 header{
   background-color: rgba(0, 0, 0, 0.26);
@@ -66,7 +69,7 @@ header a{
   font-weight: bolder;
 }
 header a:hover{
-  color:#dc8030;
+  color:var(--cor-5);
 }
 .titulo{
   display: flex;
@@ -82,21 +85,22 @@ header a:hover{
   padding: 25px;
   border-radius: 15px;
   border:none;
-  background-color: #B73312;
+  background-color: var(--cor-4);
   color: wheat;
   font-weight: bolder;
   font-size: large;
   transition: all ease-in-out 0.4s;
+  cursor: pointer;
 }
 
 .but-reservar:hover{
   transform: scale(1.05);
-  background-color: #dc8030;
+  background-color: var(--cor-5);
 }
 
 .but-reservar:active{
   transform: scale(0.95);
-  background-color: #9F1209;
+  background-color: var(--cor-3);
 }
 
 .conteudo-titulo{
@@ -129,7 +133,7 @@ padding-top:50px;
  flex-direction: column;
  align-items: center;
  justify-content: center;
- color: #B73312;
+ color: var(--cor-4);
  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .conteudoA h1 {
@@ -178,7 +182,9 @@ padding-top:50px;
   align-content: center;
 }
 .conteiner-video .texto p{
-  color: #201009;
+  color: var(--cor-2);
+  text-align: justify; 
+  hyphens: auto;
 }
 .conteiner-video .texto h2{
   font-size: 30px;
@@ -190,7 +196,7 @@ padding-top:50px;
 .conteudoB {
   background-color: rgb(220, 220, 220);
   width: 100%; /* Alterado de 100vw para evitar rolagem horizontal */
-  color: #B73312;
+  color: var(--cor-4);
   padding-top: 50px;
   display: flex;
   flex-direction: column;
@@ -208,7 +214,7 @@ padding-top:50px;
 
 .conteudoB p {
   font-weight: bold;
-  color: #201009;
+  color: var(--cor-2);
 }
 
 .conteudoB h1::after {
@@ -233,13 +239,14 @@ padding-top:50px;
 }
 
 .cards > div {
-  background-image: url('../imagens/placeholder.png');
+  background-image: url('../imagens/placeholder2.png');
   background-size: cover;
   background-position: center;
-  height: 450px;
+  height: 410px;
   width: 30%;
   position: relative;
   transition: all ease-in-out 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.464);
 }
 
 .cards > div > div {
@@ -247,10 +254,11 @@ padding-top:50px;
   height: 100%;
   background-color: transparent;
   color: transparent;
+  font-weight: bolder;
   position: absolute;
   top: 0;
   left: 0;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out ;
 
   /* Texto interno */
   display: flex;
@@ -259,8 +267,112 @@ padding-top:50px;
   justify-content: center;
   font-size: 30px;
 }
+/* Estado inicial do botão (Invisível) */
+.cards > div > div .btn-card {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px); /* Começa ligeiramente abaixo */
+  transition: all 0.3s ease-in-out;
+  
+  /* Estilização básica do botão */
+  padding: 10px 20px;
+  background-color: wheat;
+  color: var(--cor-4);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
+/* Estado no HOVER do card (Visível) */
 .cards > div > div:hover {
   background-color: #b733129f;
-  color: #201009;
+  color: wheat;
+}
+
+/* Faz o botão aparecer quando o pai recebe o hover */
+.cards > div > div:hover .btn-card {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Sobe suavemente para a posição original */
+}
+
+/* CONTEUDO C */
+
+.conteudoC{
+ background-color: white;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ color: var(--cor-4);
+ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.conteudoC > div{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.conteudoC > div > div{
+  width: 50%;
+  overflow: hidden; /* Opcional: esconde o que passar das bordas */ 
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.conteudoC img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Recorta suavemente as sobras sem distorcer a imagem */
+  object-position: center; /* Centraliza o foco do corte na imagem */
+}
+.conteudoC h1{
+  font-size: 25px;
+  max-width: 80%;
+  text-align: justify;
+}
+.conteudoC p{
+  font-size: 20px;
+  max-width: 80%;
+  text-align: justify;
+  color: var(--cor-2);
+}
+
+/* Avaliação */
+.avaliacao {
+  background: linear-gradient(70deg, var(--cor-5), var(--cor-4));
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.estrelas{
+  margin-top:20px;
+  transition: all ease-in-out 0.2s;
+}
+.estrelas img:hover{
+  transform: scale(1.2);
+}
+footer{
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  color: wheat;
+  font-weight: bolder;
+}
+footer > div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  background: linear-gradient(0deg, var(--cor-1), var(--cor-2));
+  width: 33%;
+  height: 100%;
+  text-justify: justify;
+  font-size: 12px;
+  padding: 40px;
 }
