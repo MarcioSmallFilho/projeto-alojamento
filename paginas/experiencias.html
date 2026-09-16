@@ -24,7 +24,22 @@
                 <h1>SINTA, DESCUBRA E RELAXE</h1>
         </div>
     </div>
-    <div class="conteudoC">
+    <div class="icones">
+        <div onclick="godown('areaA')">
+            <img src="../imagens/Iconplaceholder.png" alt="">
+            <h4>Texto 1</h4>
+        </div>
+        <div onclick="godown('areaB')">
+            <img src="../imagens/Iconplaceholder.png" alt="">
+            <h4>Texto 2</h4>
+        </div>
+        <div onclick="godown('contactos')">
+            <img src="../imagens/Iconplaceholder.png" alt="">
+            <h4>Contactos</h4>
+        </div>
+    </div>
+    <!-- representa a tabela com imagens reutilizada do index-->    
+    <div class="conteudoC" id="areaA">
         <div>
             <div><img src="../imagens/placeholder2.png"></div>
             <div>
@@ -51,7 +66,8 @@
         <h1>Convencido? Faz a tua Reserva...</h1>
         <input type="button" value="Reservar" onclick='gotoAIRBNB()'>
     </div>
-    <div class="conteudoC">
+    <!-- representa a tabela com imagens reutilizada do index-->  
+    <div class="conteudoC" id="areaB">
         <div>
             <div><img src="../imagens/placeholder.png"></div>
             <div>
@@ -78,4 +94,38 @@
         <h1>Isso parece divertido? Veja as nossas acomodações.</h1>
         <input type="button" value="Reservar" onclick='gotoAIRBNB()'>
     </div>
+    <div class="contactos" id="contactos">
+        <div>
+            <div>TLM +351 000 000 000</div>
+            <div>E-Mail exemplo@gmail.cpm</div>
+            <div>Morada Rua da Estrada nº. 173</div>
+        </div>
+        <div>
+            <form action="">
+            <input type="text" placeholder="Nome" required>
+            <input type="email" placeholder="E-mail" required>
+            <textarea placeholder="Mensagem"></textarea required>
+            <input type="button" value="Enviar">
+            </form>
+        </div>
+    </div>
+    <footer>
+            <div>
+                <center><img src="../imagens/logo.png" class='logotipo' height="100px" width="100px" onclick="goto('index.html')"></center>
+                <p>+000 000 000</p> 
+                <p>exemplo@gmail.com</p> 
+                <p>Rua da Estrada n173 - viana do castelo</p> 
+                <p>Registro nº. 123497AL</p></div>
+            <div>
+                <b>Sobre o alojamento</b>
+                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.</p>
+            </div>
+            <div>
+                <h2>Alojamento</h2>
+                <a href="oalojamento.html">O Alojamento</a> 
+                <a href="experiencias.html">Experiências</a> 
+                <a href="contactos.html">Contactos</a>
+            </div>
+        </footer>
+
 </body>

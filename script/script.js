@@ -4,3 +4,6 @@ function goto(params) {
 function gotoAIRBNB() {
     window.location.href = 'https://airbnb.com'
 }
+function godown(id) {
+    window.location.hash = id
+}
