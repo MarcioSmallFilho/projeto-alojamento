@@ -1,3 +1,7 @@
+:root{
+  --cor-6: rgb(220, 220, 220)
+}
+
 h1{
   margin: 0px;
 }
@@ -62,20 +66,47 @@ a:hover{
   flex-direction:column;
   align-items: center;
   justify-content: center;
-  height: 480px;
+  height: 400px;
   color:aliceblue;
   font-size:  20px;
   font-family:Georgia, 'Times New Roman', Times, serif;
 }
+.but-reservar{
+  padding: 25px;
+  border-radius: 15px;
+  border:none;
+  background-color: var(--cor-4);
+  color: wheat;
+  font-weight: bolder;
+  font-size: large;
+  transition: all ease-in-out 0.4s;
+  cursor: pointer;
+}
+
+.but-reservar:hover{
+  transform: scale(1.05);
+  background-color: var(--cor-5);
+}
+
+.but-reservar:active{
+  transform: scale(0.95);
+  background-color: var(--cor-3);
+}
 .conteudoA{
  background-color: white;
  width: 100%;
- padding-top: 30px;
- padding-bottom: 30px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ color: var(--cor-4);
+ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .conteudoA h1{
   color: var(--cor-3);
-  text-align: center;
+  display: inline-block;
+  position: relative;
+  justify-content: center;
   font-weight: bolder;
 }
 .conteudoA p{
@@ -109,7 +140,7 @@ div.cartaQuarto {
   text-align: center;
   width: 100%;
   padding: 10px;
-  background-color: wheat;
+  background-color: var(--cor-6);
 }
 
 .cartaQuarto h3{
@@ -189,13 +220,19 @@ div.cartaQuarto {
 
 .conteudoB{
  background-color: rgb(220, 220, 220);
- padding-top: 30px;
- padding-bottom: 30px;
- width: 100%;
+  width: 100%; /* Alterado de 100vw para evitar rolagem horizontal */
+  color: var(--cor-4);
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o h1, p e a div .cards na horizontal */
+  text-align: center;
 }
 .conteudoB h1{
   color: var(--cor-3);
-  text-align: center;
+  display: inline-block;
+  position: relative;
+  justify-content: center;
   font-weight: bolder;
 }
 .conteudoB p{
@@ -203,27 +240,6 @@ div.cartaQuarto {
   font-weight: bolder;
   text-align: center;
   hyphens: auto;
-}
-
-.but-reservar{
-  padding: 25px;
-  border-radius: 15px;
-  border:none;
-  background-color: #B73312;
-  color: wheat;
-  font-weight: bolder;
-  font-size: large;
-  transition: all ease-in-out 0.2s;
-}
-
-.but-reservar:hover{
-  transform: scale(1.05);
-  background-color: #dc8030;
-}
-
-.but-reservar:active{
-  transform: scale(0.95);
-  background-color: #9F1209;
 }
 
 .areaReservar{
@@ -263,8 +279,8 @@ div.cartaQuarto {
 }
 
 .conteudo-titulo{
-  height: 50%;
-  width: 60%;
+  height: 65%;
+  width: 65%;
   display: flex;
   flex-direction:column;
   align-items: center;
@@ -280,4 +296,61 @@ div.cartaQuarto {
   
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
+}
+
+footer{
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  color: wheat;
+  font-weight: bolder;
+}
+footer > div{
+  display: flex;
+  flex-direction: column;
+  justify-content:baseline;
+  align-items: left;
+  background: linear-gradient(0deg, var(--cor-1), var(--cor-2));
+  width: 33%;
+  height: 100%;
+  text-justify: justify;
+  font-size: 12px;
+  padding: 40px;
+}
+footer > div > a{
+  color: wheat;
+  text-decoration: none;
+  padding-top: 20px;
+  transition: all ease-in-out 0.2s;
+}
+footer > div > a:hover{
+  color: rgb(158, 143, 117)
+}
+
+.conteudoA > h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px; /* Substitui o text-underline-offset */
+
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 30%; /* Define o tamanho da linha em relação ao texto */
+  height: 2px; /* Espessura da linha */
+  background-color: var(--cor-3); /* Cor da linha */
+}
+
+.conteudoB > h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px; /* Substitui o text-underline-offset */
+
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 30%; /* Define o tamanho da linha em relação ao texto */
+  height: 2px; /* Espessura da linha */
+  background-color: var(--cor-3); /* Cor da linha */
 }

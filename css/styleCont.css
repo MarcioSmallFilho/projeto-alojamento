@@ -72,10 +72,13 @@ a:hover{
  width: 100%;
  padding-top: 30px;
  padding-bottom: 30px;
+ text-align: center;
 }
 .conteudoA h1{
   color: var(--cor-3);
-  text-align: center;
+  display: inline-block;
+  position: relative;
+  justify-content: center;
   font-weight: bolder;
 }
 .conteudoA p{
@@ -88,10 +91,13 @@ a:hover{
  padding-top: 30px;
  padding-bottom: 30px;
  width: 100%;
+ text-align: center;
 }
 .conteudoB h1{
   color: var(--cor-3);
-  text-align: center;
+  display: inline-block;
+  position: relative;
+  justify-content: center;
   font-weight: bolder;
 }
 .conteudoB p{
@@ -182,25 +188,31 @@ a:hover{
 
 .areaA {
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.areaA > img{
-    height: 90px;
+    align-items: baseline;
+    justify-content: space-around;
+    flex: 1;
     margin: 25px;
 }
 
-.areaA > p{
+.areaA > div > img{
+    height: 90px;
+}
+
+.areaA > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-weight: bolder;
+    gap: 10px;
     font-size: 17px;
+    max-width: 100px;
 }
 
 .areaB {
     display: flex;
     flex: 1;
-    gap: 45px;
-    justify-content: center;
+    justify-content: space-around;
     padding: 45px;
 }
 
@@ -209,10 +221,11 @@ a:hover{
 }
 
 .areaB > div.grega1{
+    text-align: start;
     display: flex;
     font-weight: bolder;
     gap: 30px;
-    width: 33%;
+    width: fit-content;
     font-size: 17px;
     flex-direction: column;
 }
@@ -251,19 +264,18 @@ a:hover{
 .cartinha:hover::before { opacity: 0; }
 .cartinha:hover::after  { opacity: 1; }
 
-.areaB > .gregas{
+.areaB > form{
     padding: 35px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 25%;
-    background: linear-gradient(30deg, var(--cor-4), var(--cor-5));
     box-shadow:  0 4px 12px var(--cor-1);
     align-items: center;
 }
 
-.areaB > .gregas{
+.areaB > form{
   background: linear-gradient(30deg, var(--cor-5), var(--cor-4), #be2217);
   background-size: 300% 300%;
   animation: fluir 4s ease infinite;
@@ -275,7 +287,7 @@ a:hover{
 }
 
 
-.gregas > input{
+form > input{
     height: 15%;
     width: 100%;
     border-radius: 5px;
@@ -289,11 +301,11 @@ a:hover{
     mix-blend-mode: multiply;
 }
 
-.gregas > input{
-    opacity: 1;
+form > input::placeholder{
+    color: white;
 }
 
-.gregas > textarea{
+form > textarea{
     font-family: Arial, Helvetica, sans-serif;
     padding: 15px;
     height: 33%;
@@ -307,16 +319,20 @@ a:hover{
     transition: all ease-in-out 0.3s;
     background-color: var(--cor-2);
     color: white;
-    opacity: 1;
     mix-blend-mode: multiply;
 }
 
-.gregas > h1{
-    color: var(--cor-2);
-    font-size: 150%;
+form > textarea::placeholder{
+    color: white;
 }
 
-.gregas > .butaomsg {
+h1.tituloMsg{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--cor-2);
+    width:fit-content;
+}
+
+form > .butaomsg {
     border-radius: 45px;
     height: 10%;
     width: 90%;
@@ -328,15 +344,57 @@ a:hover{
     font-size: large;
 }
 
-.gregas > .butaomsg:hover{
+form > .butaomsg:hover{
     background-color: transparent;
     border: solid 2px var(--cor-2);
     color: var(--cor-2);
     mix-blend-mode: multiply;
 }
 
-.gregas > .butaomsg:active{
+form > .butaomsg:active{
     background-color: var(--cor-2);
     color: white;
     mix-blend-mode: multiply;
+}
+footer{
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  color: wheat;
+  font-weight: bolder;
+}
+footer > div{
+  display: flex;
+  flex-direction: column;
+  justify-content:baseline;
+  align-items: left;
+  background: linear-gradient(0deg, var(--cor-1), var(--cor-2));
+  width: 33%;
+  height: 100%;
+  text-justify: justify;
+  font-size: 12px;
+  padding: 40px;
+}
+footer > div > a{
+  color: wheat;
+  text-decoration: none;
+  padding-top: 20px;
+  transition: all ease-in-out 0.2s;
+}
+footer > div > a:hover{
+  color: rgb(158, 143, 117)
+}
+
+.conteudoA > h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px; /* Substitui o text-underline-offset */
+
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 30%; /* Define o tamanho da linha em relação ao texto */
+  height: 2px; /* Espessura da linha */
+  background-color: var(--cor-3); /* Cor da linha */
 }
