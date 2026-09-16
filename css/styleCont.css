@@ -142,7 +142,7 @@ a:hover{
 
 .areaReservar{
   background: linear-gradient(47deg, var(--cor-3), var(--cor-5));
-  height: 300px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,13 +200,13 @@ a:hover{
 
 .areaA {
     display: flex;
-    gap: 15px;
     align-items: center;
     justify-content: center;
 }
 
 .areaA > img{
     height: 90px;
+    margin: 25px;
 }
 
 .areaA > p{
@@ -216,29 +216,39 @@ a:hover{
 
 .areaB {
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding-left: 35px;
+    flex: 1;
+    gap: 45px;
+    justify-content: center;
+    padding: 45px;
 }
 
-.areaB > div > img{
+.areaB > div > div > img{
     height: 90px;
 }
 
-.areaB > div {
+.areaB > div.grega1{
+    display: flex;
+    font-weight: bolder;
+    gap: 30px;
+    width: 33%;
+    font-size: 17px;
+    flex-direction: column;
+}
+
+.cartinha {
     position: relative;
     z-index: 0;               /* <- isso resolve: cria um contexto de empilhamento */
     overflow: hidden;
     border-radius: 15px;
-    width: 33%;
     padding: 10px;
     display: flex;
     align-items: center;
     gap: 15px;
+    box-shadow:  0 4px 12px var(--cor-1);
 }
 
-.areaB > div::before,
-.areaB > div::after {
+.cartinha::before,
+.cartinha::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -246,15 +256,105 @@ a:hover{
     transition: opacity 0.6s ease;
 }
 
-.areaB > div::before {
-    background: linear-gradient(73deg, var(--cor-4), var(--cor-5));
+.cartinha::before {
+    background: linear-gradient(73deg, var(--cor-3), var(--cor-5));
     opacity: 1;
 }
 
-.areaB > div::after {
-    background: linear-gradient(73deg, var(--cor-5), var(--cor-4));
+.cartinha::after {
+    background: linear-gradient(73deg, var(--cor-5), var(--cor-3));
     opacity: 0;
 }
 
-.areaB > div:hover::before { opacity: 0; }
-.areaB > div:hover::after  { opacity: 1; }
+.cartinha:hover::before { opacity: 0; }
+.cartinha:hover::after  { opacity: 1; }
+
+.areaB > .gregas{
+    padding: 35px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 25%;
+    background: linear-gradient(30deg, var(--cor-4), var(--cor-5));
+    box-shadow:  0 4px 12px var(--cor-1);
+    align-items: center;
+}
+
+.areaB > .gregas{
+  background: linear-gradient(30deg, var(--cor-5), var(--cor-4), #be2217);
+  background-size: 300% 300%;
+  animation: fluir 4s ease infinite;
+}
+@keyframes fluir {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+.gregas > input{
+    height: 15%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-weight: bolder;
+    padding-left: 15px;
+    transition: all ease-in-out 0.3s;
+    background-color: var(--cor-2);
+    color: white;
+    mix-blend-mode: multiply;
+}
+
+.gregas > input{
+    opacity: 1;
+}
+
+.gregas > textarea{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px;
+    height: 33%;
+    height: 40%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-weight: bolder;
+    transition: all ease-in-out 0.3s;
+    background-color: var(--cor-2);
+    color: white;
+    opacity: 1;
+    mix-blend-mode: multiply;
+}
+
+.gregas > h1{
+    color: var(--cor-2);
+    font-size: 150%;
+}
+
+.gregas > .butaomsg {
+    border-radius: 45px;
+    height: 10%;
+    width: 90%;
+    background-color: var(--cor-2);
+    color: white;
+    mix-blend-mode: multiply;
+    transition: all ease-in-out 0.3s;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.gregas > .butaomsg:hover{
+    background-color: transparent;
+    border: solid 2px var(--cor-2);
+    color: var(--cor-2);
+    mix-blend-mode: multiply;
+}
+
+.gregas > .butaomsg:active{
+    background-color: var(--cor-2);
+    color: white;
+    mix-blend-mode: multiply;
+}

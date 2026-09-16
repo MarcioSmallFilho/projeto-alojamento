@@ -10,7 +10,7 @@
 <body>
     <div class="fundo-fixo"></div>
 
-    <div class="conteudo-site">
+    <div class="-site">
         <header>
             <div class="h-esq">
                 <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('Index.html')">
@@ -42,20 +42,37 @@
 
         <div class="conteudoB">
             <div class="areaB">
-                <div>
-                    <img src="../imagens/Iconplaceholder.png" alt="">
-                    <p>Telefone</p>
-                    <p>+000 000 000 000</p>
+                <div class="grega1">
+                    <div class="cartinha">
+                        <img src="../imagens/Iconplaceholder.png" alt="">
+                        <div><h3>Telefone</h3>
+                        <p>+000 000 000 000</p></div>
+                    </div>
+                    <div class="cartinha">
+                        <img src="../imagens/Iconplaceholder.png" alt="">
+                        <div><h3>Email</h3>
+                        <p>umserhumano69@hotmail.com</p></div>
+                    </div>
+                    <div class="cartinha">
+                        <img src="../imagens/Iconplaceholder.png" alt="">
+                        <div><h3>Morada</h3>
+                        <p>Rua da Estrada n173 - viana do castelo</p></div>
+                    </div>
                 </div>
-                <div>
-                    <img src="../imagens/Iconplaceholder.png" alt="">
-                    <p>Sabemo ler</p>
-                </div>
-                <div>
-                    <img src="../imagens/Iconplaceholder.png" alt="">
-                    <p>Atendemos o telefone</p>
+
+                <div class="gregas">
+                    <h1>Envie-nos uma mensagem</h1>
+                    <input type="text" placeholder="Nome">
+                    <input type="email" placeholder="Email">
+                    <textarea placeholder="Mensagem"></textarea>
+                    <input type="button" value="Enviar Mensagem" class="butaomsg">
                 </div>
             </div>
+        </div>
+
+        <div class="areaReservar">
+            <h1>Resolvido suas duvidas? ...</h1>
+            <input type="button" value="Reserve agora!" onclick="gotoAIRBNB()">
         </div>
     </div>
 </body>

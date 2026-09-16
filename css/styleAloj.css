@@ -228,7 +228,7 @@ div.cartaQuarto {
 
 .areaReservar{
   background: linear-gradient(47deg, var(--cor-3), var(--cor-5));
-  height: 300px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
