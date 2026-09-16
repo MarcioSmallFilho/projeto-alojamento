@@ -1,3 +1,21 @@
+:root {
+  --cor-1: #070607;
+
+  --cor-2: #201009;
+
+  --cor-3: #9F1209;
+
+  --cor-4: #B73312;
+
+  --cor-5: #dc8030;
+
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+  padding: 0px;
+  margin: 0px;
+}
+
 h1{
   margin: 0px;
 }
@@ -8,7 +26,7 @@ h1{
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('../imagens/banner3.png');
+  background-image: url('../imagens/banner4.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -83,110 +101,6 @@ a:hover{
   font-weight: bolder;
   text-align: center;
 }
-
-div.cartaQuarto {
-  display: flex;
-  flex-direction:column;
-  width: 30%;
-  border-radius: 5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.264);
-  overflow: hidden;
-  background-color: var(--cor-2);
-  font-family: sans-serif;
-  margin: 10px;
-  align-items: center;
-  justify-content: center;
-  
-}
-
-.cartaQuarto img{
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-}
-
-.cartaQuarto div{
-  text-align: center;
-  width: 100%;
-  padding: 10px;
-  background-color: wheat;
-}
-
-.cartaQuarto h3{
-  color: var(--cor-3);
-  font-weight: bolder;
-}
-
-.cartaQuarto p{
-  color: var(--cor-2);
-  font-weight: bolder;
-}
-
-.but-carta {
-  background-color: transparent;
-  font-weight: bolder;
-  color: var(--cor-3);
-  border: solid var(--cor-3);
-  border-radius: 20px;
-  width: 50%;
-  padding: 10px;
-  transition: all ease-in-out 0.1s;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  mix-blend-mode: multiply;
-}
-
-.but-carta:hover {
-  background-color: var(--cor-3);
-  color: white;
-  transform: scale(1.1);
-  box-shadow: 0 4px 10px #07060769;
-  mix-blend-mode: multiply;
-}
-
-.but-carta:active {
-  color: var(--cor-3);
-  background-color: transparent;
-  transform: scale(0.95);
-}
-
-.areaCartas {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 80px;
-}
-
-.areaA {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.areaA > div{
-  width: 50%;
-  height: 350px;
-}
-
-.areaA > div > h1{
-  padding-top: 50px;
-  padding-left: 40px;
-  padding-right: 40px;
-  text-align: left;
-}
-
-.areaA > div > p{
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
-.areaA img{
-  object-fit: cover;
-  padding: 5px;
-  width: 32%;
-  height: 350px;
-}
-
 .conteudoB{
  background-color: rgb(220, 220, 220);
  padding-top: 30px;
@@ -281,3 +195,66 @@ div.cartaQuarto {
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
+
+/* Areas */
+
+.areaA {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.areaA > img{
+    height: 90px;
+}
+
+.areaA > p{
+    font-weight: bolder;
+    font-size: 17px;
+}
+
+.areaB {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-left: 35px;
+}
+
+.areaB > div > img{
+    height: 90px;
+}
+
+.areaB > div {
+    position: relative;
+    z-index: 0;               /* <- isso resolve: cria um contexto de empilhamento */
+    overflow: hidden;
+    border-radius: 15px;
+    width: 33%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.areaB > div::before,
+.areaB > div::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transition: opacity 0.6s ease;
+}
+
+.areaB > div::before {
+    background: linear-gradient(73deg, var(--cor-4), var(--cor-5));
+    opacity: 1;
+}
+
+.areaB > div::after {
+    background: linear-gradient(73deg, var(--cor-5), var(--cor-4));
+    opacity: 0;
+}
+
+.areaB > div:hover::before { opacity: 0; }
+.areaB > div:hover::after  { opacity: 1; }
