@@ -155,8 +155,11 @@ padding-top:50px;
   display: flex;
   flex-direction: row;
 }
-.conteiner-video img{
+.conteiner-video img {
   width: 25%;
+  height: auto;     
+  object-fit: contain;   
+  align-self: flex-start; 
 }
 
 .conteiner-video .texto{
@@ -254,7 +257,7 @@ padding-top:50px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px); /* Começa ligeiramente abaixo */
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
   
   /* Estilização básica do botão */
   padding: 10px 20px;
