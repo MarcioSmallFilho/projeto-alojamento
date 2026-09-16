@@ -56,6 +56,36 @@ header a:hover{
     font-size: 30px;
     font-family:'Times New Roman', Times, serif;
 }
+.icones {
+  height: 300px;
+  display: flex;
+  flex-direction: row;  
+  background-color: rgb(220, 220, 220); 
+}
+
+.icones > div {
+  display: flex;
+  flex-direction: column;
+  width: 33.33%;
+  height: 100%;
+  
+  /* Centraliza o ícone e o h4 na horizontal e vertical */
+  align-items: center;
+  justify-content: center;
+}
+
+.icones > div > img {
+  /* Em vez de 100%, define o tamanho real desejado para o ícone */
+  max-height: 120px; 
+  width: auto;
+  
+  /* Garante que ele não distorce e se ajusta mantendo a proporção */
+  object-fit: contain; 
+}
+
+.icones > div > h4 {
+  margin-top: 15px; /* Espaço entre o ícone e o texto */
+}
 .conteudoC{
  background-color: white;
  width: 100%;
@@ -128,4 +158,115 @@ header a:hover{
     background-color: var(--cor-2);
     color: white; 
     mix-blend-mode: multiply;
+}
+.contactos{
+    width: 100%;
+    height: 450px;
+    display: flex;
+    flex-direction: row;  
+    background-color: white; 
+}
+.contactos > div{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 70px;
+}
+.contactos > div > div {
+    padding: 25px;
+    width: 70%;
+    background-color:var(--cor-5);
+    border-radius: 10px;
+    font-weight: bolder;
+    transition: all ease-in-out 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.464);
+}
+.contactos > div > div:hover {
+    transform: translateX(15);
+    background-color: #c4722a;
+}
+.contactos > div > form{
+    width: 70%;
+    background-color: var(--cor-5);
+    display: flex;
+    flex-direction: column;
+    outline: none;
+    border-radius: 15px;
+    gap: 25px;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.464);
+
+}
+.contactos > div > form > textarea, input[type='text'], input[type='email']{
+    outline: none;
+    resize: none;
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    border: 2px solid var(--cor-2);
+    color: var(--cor-2);
+    font-weight: bolder;
+    background-color: transparent;
+    transition: all ease-in-out 0.2s;
+    mix-blend-mode: multiply;
+}
+.contactos > div > form > textarea::placeholder, input[type='text']::placeholder, input[type='email']::placeholder{
+    color: var(--cor-2);
+    transition: all ease-in-out 0.2s;
+}
+.contactos > div > form > textarea:focus, input[type='text']:focus, input[type='email']:focus{
+    background-color: var(--cor-2);
+    color: white;
+    mix-blend-mode: multiply;
+}
+.contactos > div > form > textarea:focus::placeholder, input[type='text']:focus::placeholder, input[type='email']:focus::placeholder{
+    color: wheat;
+}
+.contactos > div > form > input[type='button']{
+    padding: 5px;
+    border-radius: 150px;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 2px solid var(--cor-2);
+    background-color: transparent;
+    mix-blend-mode: multiply;
+    transition: all ease-in-out 0.2s;
+}
+.contactos > div > form > input[type='button']:hover{
+    background-color: var(--cor-2);
+    color: white; 
+    mix-blend-mode: multiply;
+}
+footer{
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  color: wheat;
+  font-weight: bolder;
+}
+footer > div{
+  display: flex;
+  flex-direction: column;
+  justify-content:baseline;
+  align-items: left;
+  background: linear-gradient(0deg, var(--cor-1), var(--cor-2));
+  width: 33%;
+  height: 100%;
+  text-justify: justify;
+  font-size: 12px;
+  padding: 40px;
+}
+footer > div > a{
+  color: wheat;
+  text-decoration: none;
+  padding-top: 20px;
+  transition: all ease-in-out 0.2s;
+}
+footer > div > a:hover{
+  color: rgb(158, 143, 117)
 }

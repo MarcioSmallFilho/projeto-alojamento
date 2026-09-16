@@ -21,7 +21,6 @@ header{
   background-color: rgba(0, 0, 0, 0.26);
   display:flex;
   flex-direction: row;
-  border-radius: 200px;
   height: 120px;
 }
 .logotipo{
@@ -354,7 +353,7 @@ footer{
 footer > div{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content:baseline;
   align-items: left;
   background: linear-gradient(0deg, var(--cor-1), var(--cor-2));
   width: 33%;
@@ -362,4 +361,13 @@ footer > div{
   text-justify: justify;
   font-size: 12px;
   padding: 40px;
+}
+footer > div > a{
+  color: wheat;
+  text-decoration: none;
+  padding-top: 20px;
+  transition: all ease-in-out 0.2s;
+}
+footer > div > a:hover{
+  color: rgb(158, 143, 117)
 }
