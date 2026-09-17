@@ -286,8 +286,8 @@ padding-top:50px;
 }
 .cards > div > div:hover .btn-card:active {
   background-color: transparent;
-  border: 2px solid var(--cor-fundo-1);
-  color: var(--cor-fundo-1);
+  border: 2px solid var(--cor-0);
+  color: var(--cor-0);
 }
 /* CONTEUDO C */
 

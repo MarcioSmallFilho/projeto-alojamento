@@ -155,7 +155,7 @@ header a:hover{
 }
 .area-reservar > input:hover{
     background-color: var(--cor-2);
-    color: var(--cor-fundo-1); 
+    color: white; 
     mix-blend-mode: multiply;
 }
 .contactos{
@@ -220,7 +220,7 @@ header a:hover{
 }
 .contactos > div > form > textarea:focus, input[type='text']:focus, input[type='email']:focus{
     background-color: var(--cor-2);
-    color: var(--cor-fundo-1);
+    color: white;
     mix-blend-mode: multiply;
 }
 .contactos > div > form > textarea:focus::placeholder, input[type='text']:focus::placeholder, input[type='email']:focus::placeholder{
@@ -238,7 +238,7 @@ header a:hover{
 }
 .contactos > div > form > input[type='submit']:hover{
     background-color: var(--cor-2);
-    color: var(--cor-fundo-1); 
+    color: white; 
     mix-blend-mode: multiply;
 }
 footer{

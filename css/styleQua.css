@@ -48,13 +48,13 @@ header{
   width: 50%;
 }
 a{
-  color: wheat;
+  color: var(--cor-0);
   transition: all ease-in-out 0.2s;
   text-decoration: none;
   font-weight: bolder;
 }
 a:hover{
-  color:#dc8030;
+  color:var(--cor-5);
 }
 .titulo{
   display: flex;
@@ -62,12 +62,12 @@ a:hover{
   align-items: center;
   justify-content: center;
   height: 480px;
-  color:aliceblue;
+  color:var(--cor-0);
   font-size:  20px;
   font-family:Georgia, 'Times New Roman', Times, serif;
 }
 .conteudoA{
- background-color: white;
+ background-color: var(--cor-fundo-1);
  width: 100%;
  padding-top: 30px;
  padding-bottom: 30px;
@@ -92,7 +92,7 @@ a:hover{
   hyphens: auto;
 }
 .conteudoB{
- background-color: rgb(220, 220, 220);
+ background-color: var(--cor-fundo-2);
  width: 100%;
  padding-top: 30px;
  padding-bottom: 30px;
@@ -120,7 +120,7 @@ a:hover{
   border-radius: 15px;
   border:none;
   background-color: #B73312;
-  color: wheat;
+  color: var(--cor-0);
   font-weight: bolder;
   font-size: large;
   transition: all ease-in-out 0.2s;
@@ -196,7 +196,7 @@ footer{
   height: 300px;
   display: flex;
   flex-direction: row;
-  color: wheat;
+  color: var(--cor-0);
   font-weight: bolder;
 }
 footer > div{
@@ -212,13 +212,13 @@ footer > div{
   padding: 40px;
 }
 footer > div > a{
-  color: wheat;
+  color: var(--cor-0);
   text-decoration: none;
   padding-top: 20px;
   transition: all ease-in-out 0.2s;
 }
 footer > div > a:hover{
-  color: rgb(158, 143, 117)
+  color: color-mix(in srgb, var(--cor-0) 50%, black);
 }
 
 .conteudoA > h1::after {
@@ -254,7 +254,7 @@ footer > div > a:hover{
 .areaA {
   box-shadow:  0 0px 12px var(--cor-2);
   max-width: 100%;
-  background: linear-gradient(0deg, rgb(220, 220, 220), white);
+  background: linear-gradient(0deg, var(--cor-fundo-2), var(--cor-fundo-1));
   padding: 35px;
   display: flex;
   flex-wrap: wrap;
