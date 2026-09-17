@@ -95,7 +95,6 @@ header a:hover{
  align-items: center;
  justify-content: center;
  color: var(--cor-5);
- font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .conteudoC > div{
   display: flex;
@@ -143,7 +142,6 @@ header a:hover{
 }
 .area-reservar > input{
     width: 20%;
-    max-width: ;
     height: 10%;
     margin-left: 50px;
     padding: 20px;
@@ -214,6 +212,7 @@ header a:hover{
     background-color: transparent;
     transition: all ease-in-out 0.2s;
     mix-blend-mode: multiply;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .contactos > div > form > textarea::placeholder, input[type='text']::placeholder, input[type='email']::placeholder{
     color: var(--cor-2);

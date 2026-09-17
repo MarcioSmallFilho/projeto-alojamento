@@ -293,9 +293,9 @@ footer > div > a:hover{
 }
 
 .areaA div:hover{
-    box-shadow:  0 4px 6px var(--cor-2);
-    border: solid 1px transparent;
-    transform: scale(1.03);
+  box-shadow:  0 4px 6px var(--cor-2);
+  border: solid 1px transparent;
+  transform: scale(1.03) translatey(-4px);
 }
 .areaA div:hover img{
   transform: scale(1.03);

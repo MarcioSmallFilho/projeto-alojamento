@@ -115,7 +115,6 @@ padding-top:50px;
  align-items: center;
  justify-content: center;
  color: var(--cor-4);
- font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .conteudoA h1 {
   position: relative;
@@ -301,7 +300,6 @@ padding-top:50px;
  align-items: center;
  justify-content: center;
  color: var(--cor-4);
- font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .conteudoC > div{
   display: flex;
