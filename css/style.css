@@ -228,7 +228,6 @@ padding-top:50px;
 }
 
 .cards > div {
-  background-image: url('../imagens/placeholder2.png');
   background-size: cover;
   background-position: center;
   height: 410px;
@@ -456,12 +455,20 @@ footer > div > a:hover{
   }
   .conteiner-video{
     flex-direction: column;
+    padding-top: 0px;
   }
   .conteiner-video img{
     width: 100%;
   }
   .conteiner-video > .texto{
     width: 100%;
+  }
+  .conteiner-video > .texto > h2{
+    padding: 20px;
+    font-size: 5vw;
+  }
+  .conteiner-video > .texto > p{
+    font-size: 3vw;
   }
   .avaliacao{
     font-size: 3vi;
@@ -484,4 +491,12 @@ footer > div > a:hover{
     width: 95%;
     font-size: 3vw;
   }
+  .conteudoA h1{
+    font-size: 7vw;
+    margin: 0px;
+  }
+  .conteudoA p{
+    margin: 20px;
+  }
+  
 }
