@@ -44,7 +44,7 @@ header a:hover{
     background-position: center;
     background-repeat: no-repeat;
 
-    color: #ffffff;
+    color: var(--cor-0);
 }
 .titulo{
     display: flex;
@@ -211,7 +211,6 @@ header a:hover{
     font-weight: bolder;
     background-color: transparent;
     transition: all ease-in-out 0.2s;
-    mix-blend-mode: multiply;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .contactos > div > form > textarea::placeholder, input[type='text']::placeholder, input[type='email']::placeholder{
@@ -219,27 +218,24 @@ header a:hover{
     transition: all ease-in-out 0.2s;
 }
 .contactos > div > form > textarea:focus, input[type='text']:focus, input[type='email']:focus{
-    background-color: var(--cor-2);
-    color: white;
-    mix-blend-mode: multiply;
+    background-color: var(--cor-1);
+    color: var(--cor-5);
 }
 .contactos > div > form > textarea:focus::placeholder, input[type='text']:focus::placeholder, input[type='email']:focus::placeholder{
-    color: var(--cor-0);
+    color: var(--cor-5);
 }
 .contactos > div > form > input[type='submit']{
     padding: 5px;
     border-radius: 150px;
     font-size: 20px;
     font-weight: bolder;
-    border: 2px solid var(--cor-2);
+    border: 2px solid var(--cor-1);
     background-color: transparent;
-    mix-blend-mode: multiply;
     transition: all ease-in-out 0.2s;
 }
 .contactos > div > form > input[type='submit']:hover{
-    background-color: var(--cor-2);
-    color: white; 
-    mix-blend-mode: multiply;
+    background-color: var(--cor-1);
+    color: var(--cor-5); 
 }
 footer{
   width: 100%;

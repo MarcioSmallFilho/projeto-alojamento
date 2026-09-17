@@ -63,7 +63,7 @@ a:hover{
   align-items: center;
   justify-content: center;
   height: 400px;
-  color:aliceblue;
+  color:var(--cor-0);
   font-size:  20px;
   font-family:Georgia, 'Times New Roman', Times, serif;
 }
