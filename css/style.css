@@ -45,7 +45,7 @@ header{
   width: 50%;
 }
 header a{
-  color: wheat;
+  color: var(--cor-0);
   transition: all ease-in-out 0.2s;
   text-decoration: none;
   font-weight: bolder;
@@ -68,7 +68,7 @@ header a:hover{
   border-radius: 15px;
   border:none;
   background-color: var(--cor-4);
-  color: wheat;
+  color: var(--cor-0);
   font-weight: bolder;
   font-size: large;
   transition: all ease-in-out 0.4s;
@@ -108,7 +108,7 @@ header a:hover{
 
 .conteudoA{
 padding-top:50px;
- background-color: white;
+ background-color: var(--cor-fundo-1);
  width: 100%;
  display: flex;
  flex-direction: column;
@@ -124,7 +124,7 @@ padding-top:50px;
 }
 .conteudoA p{
   font-weight: bold;
-  color: #201009;
+  color: var(--cor-2);
 }
 .conteudoA h1::after {
   content: '';
@@ -140,7 +140,7 @@ padding-top:50px;
   background-color: var(--cor-3); 
 }
 .conteiner-imgs {
-  padding-top: 100px;
+  padding-top: 30;
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -155,7 +155,7 @@ padding-top:50px;
 }
 .conteiner-video{
   margin: 70px;
-  padding-top: 70px;
+  padding-top: 30px;
   display: flex;
   flex-direction: row;
 }
@@ -183,7 +183,7 @@ padding-top:50px;
 /* CONTEUDO B */
 
 .conteudoB {
-  background-color: rgb(220, 220, 220);
+  background-color: var(--cor-fundo-2);
   width: 100%; 
   color: var(--cor-4);
   padding-top: 50px;
@@ -264,9 +264,9 @@ padding-top:50px;
   
  
   padding: 10px 20px;
-  background-color: wheat;
+  background-color: var(--cor-0);
   color: var(--cor-4);
-  border: none;
+  border: 2px solid transparent;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
@@ -274,8 +274,8 @@ padding-top:50px;
 
 
 .cards > div > div:hover {
-  background-color: #b733129f;
-  color: wheat;
+  background-color: color-mix(in srgb, var(--cor-4) 62.5%, transparent);
+  color: var(--cor-0);
 }
 
 
@@ -286,13 +286,13 @@ padding-top:50px;
 }
 .cards > div > div:hover .btn-card:active {
   background-color: transparent;
-  border: 2px solid white;
-  color: white;
+  border: 2px solid var(--cor-fundo-1);
+  color: var(--cor-fundo-1);
 }
 /* CONTEUDO C */
 
 .conteudoC{
- background-color: white;
+ background-color: var(--cor-fundo-1);
  width: 100%;
  display: flex;
  flex-direction: column;
@@ -352,7 +352,7 @@ footer{
   height: 300px;
   display: flex;
   flex-direction: row;
-  color: wheat;
+  color: var(--cor-0);
   font-weight: bolder;
 }
 footer > div{
@@ -368,13 +368,13 @@ footer > div{
   padding: 40px;
 }
 footer > div > a{
-  color: wheat;
+  color: var(--cor-0);
   text-decoration: none;
   padding-top: 20px;
   transition: all ease-in-out 0.2s;
 }
 footer > div > a:hover{
-  color: rgb(158, 143, 117)
+  color: color-mix(in srgb, var(--cor-0) 50%, black);
 }
 @media (max-width: 768px) {
   footer{
@@ -438,8 +438,8 @@ footer > div > a:hover{
     width: 80%;
   }
   .cards > div > div {
-    background-color: #b733129f;
-    color: wheat;
+    background-color: color-mix(in srgb, var(--cor-4) 62.5%, transparent);
+    color: var(--cor-0);
   }
 
 
@@ -447,11 +447,12 @@ footer > div > a:hover{
     opacity: 1;
     visibility: visible;
     transform: translateY(0); 
+    border: 1px solid transparent;
   }
   .cards > div > div .btn-card:hover{
     background-color: transparent;
-    color: wheat;
-    border: 1px solid wheat;
+    color: var(--cor-0);
+    border: 1px solid var(--cor-0);
   }
   .conteiner-video{
     flex-direction: column;

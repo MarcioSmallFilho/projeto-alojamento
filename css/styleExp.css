@@ -2,7 +2,7 @@ header{
   display:flex;
   flex-direction: row;
   height: 120px;
-  border-bottom: 1px solid wheat; 
+  border-bottom: 1px solid var(--cor-0); 
 }
 .logotipo{
   transition: all ease-in-out 0.3s;
@@ -26,7 +26,7 @@ header{
   width: 50%;
 }
 header a{
-  color: wheat;
+  color: var(--cor-0);
   transition: all ease-in-out 0.2s;
   text-decoration: none;
   font-weight: bolder;
@@ -59,7 +59,7 @@ header a:hover{
   height: 300px;
   display: flex;
   flex-direction: row;  
-  background-color: rgb(220, 220, 220); 
+  background-color: var(--cor-fundo-2); 
 }
 
 .icones > div {
@@ -88,7 +88,7 @@ header a:hover{
   margin-top: 15px; 
 }
 .conteudoC{
- background-color: white;
+ background-color: var(--cor-fundo-1);
  width: 100%;
  display: flex;
  flex-direction: column;
@@ -155,7 +155,7 @@ header a:hover{
 }
 .area-reservar > input:hover{
     background-color: var(--cor-2);
-    color: white; 
+    color: var(--cor-fundo-1); 
     mix-blend-mode: multiply;
 }
 .contactos{
@@ -163,7 +163,7 @@ header a:hover{
     min-height: 450px;
     display: flex;
     flex-direction: row;  
-    background-color: white; 
+    background-color: var(--cor-fundo-1); 
 }
 .contactos > div{
     width: 50%;
@@ -186,7 +186,7 @@ header a:hover{
 }
 .contactos > div > div:hover {
     transform: translateX(15);
-    background-color: #c4722a;
+    background-color: color-mix(in srgb, var(--cor-5) 85%, black);
 }
 .contactos > div > form{
     width: 70%;
@@ -220,11 +220,11 @@ header a:hover{
 }
 .contactos > div > form > textarea:focus, input[type='text']:focus, input[type='email']:focus{
     background-color: var(--cor-2);
-    color: white;
+    color: var(--cor-fundo-1);
     mix-blend-mode: multiply;
 }
 .contactos > div > form > textarea:focus::placeholder, input[type='text']:focus::placeholder, input[type='email']:focus::placeholder{
-    color: wheat;
+    color: var(--cor-0);
 }
 .contactos > div > form > input[type='submit']{
     padding: 5px;
@@ -238,7 +238,7 @@ header a:hover{
 }
 .contactos > div > form > input[type='submit']:hover{
     background-color: var(--cor-2);
-    color: white; 
+    color: var(--cor-fundo-1); 
     mix-blend-mode: multiply;
 }
 footer{
@@ -246,7 +246,7 @@ footer{
   height: 300px;
   display: flex;
   flex-direction: row;
-  color: wheat;
+  color: var(--cor-0);
   font-weight: bolder;
 }
 footer > div{
@@ -263,13 +263,13 @@ footer > div{
   box-sizing: border-box
 }
 footer > div > a{
-  color: wheat;
+  color: var(--cor-0);
   text-decoration: none;
   padding-top: 20px;
   transition: all ease-in-out 0.2s;
 }
 footer > div > a:hover{
-  color: rgb(158, 143, 117)
+  color: color-mix(in srgb, var(--cor-0) 50%, black);
 }
 @media (max-width: 768px) {
   .area-reservar {
@@ -346,7 +346,10 @@ footer > div > a:hover{
     width: 70px;
     height: auto;
   }
-
+  .icones {
+    height: auto;
+    padding: 30px;
+  }
   .icones div img{
     width: 20vw;
   }
