@@ -252,8 +252,7 @@ footer > div > a:hover{
 /* Areas */
 
 .areaA {
-  box-shadow:  0 4px 12px var(--cor-2);
-  width: auto;
+  box-shadow:  0 0px 12px var(--cor-2);
   max-width: 100%;
   background: linear-gradient(0deg, rgb(220, 220, 220), white);
   padding: 35px;
@@ -265,12 +264,11 @@ footer > div > a:hover{
 }
 
 .areaA img{
-    width: 80px;
-    max-height: 80px;
-    height: 100%;
-    border-radius: 100%;
-    object-fit: cover;
-    transition: all ease-in-out .2s;
+  width: 80px;
+  height: 100%;
+  clip-path: circle(50%);
+  object-fit: cover;
+  transition: all ease-in-out .2s;
 }
 
 .areaA p{
@@ -281,10 +279,9 @@ footer > div > a:hover{
 
 .areaA div{
     display: flex;
-    max-width: 20%;
-    min-width: 10%;
+    max-width: min-content;
+    height: 80px;
     align-items: center;
-    max-height: 80px;
     gap: 15px;
     border-radius: 150px;
     padding-right: 15px;
@@ -299,19 +296,18 @@ footer > div > a:hover{
 }
 
 .areaImg {
-    padding: 35px;
-    display: flex;
-    flex-wrap: wrap;
-    flex: 2;
-    gap: 15px;
-    justify-content: center;
+  padding: 35px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 2;
+  gap: 15px;
+  justify-content: center;
 }
 
 .areaImg img{
     box-shadow:  0 4px 12px var(--cor-2);
-    min-width: 20%;
-    max-width: 30%;
-    width: auto;
+    width: 30%;
     object-fit: cover;
     transition: all ease-in-out .2s;
 }
@@ -336,23 +332,6 @@ footer > div > a:hover{
   scrollbar-width: none;
   -ms-overflow-style: none;
   }
-  .conteudoC > div{
-  flex-direction: column;
-  align-items: center;
-  }
-  .conteudoC > div > div{
-  width: 90%;
-  margin-bottom: 30px;
-  }
-  .conteudoC > div > div > p{
-    font-size: 15px;
-  }
-  .conteudoC > div > div > h2{
-    font-size: 3vw;
-  }
-  .conteudoC > div > div:has(img) {
-    order: 1;
-  }
   .conteudoC img {
     width: 100%;
     max-width: 500px;
@@ -372,59 +351,35 @@ footer > div > a:hover{
     
     
   }
-  .conteudoB .cards{
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    
-  }
   .conteudoB .cards > div{
     width: 80%;
   }
-  .cards > div > div {
-    background-color: #b733129f;
-    color: wheat;
-  }
-
-  /* Faz o botão aparecer quando o pai recebe o hover */
-  .cards > div > div .btn-card {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0); /* Sobe suavemente para a posição original */
-  }
-  .cards > div > div .btn-card:hover{
-    background-color: transparent;
-    color: wheat;
-    border: 1px solid wheat;
-  }
-  .conteiner-video{
-    flex-direction: column;
-  }
-  .conteiner-video img{
-    width: 100%;
-  }
-  .conteiner-video > .texto{
-    width: 100%;
-  }
-  .avaliacao{
+  .avaliacao, .areaReservar{
     font-size: 3vi;
-    padding: 10px;
+    padding: 15px;
+    flex-direction: column;
   }
   .avaliacao > h2{
     min-width: 90%;
   }
-  .conteiner-imgs{
+  .areaImg{
     flex-direction: column;
     width: 100%;
     gap: 10px;
     align-items: center;
   }
-  .conteiner-imgs > img{
+  .areaImg > img{
     width: 90%;
+    aspect-ratio: 2 / 1;
   }
   .conteudo-titulo{
     height: 95%;
     width: 95%;
     font-size: 3vw;
+  }
+
+  .areaA {
+    font-size: 3vi;
+    padding: 10px;
   }
 }

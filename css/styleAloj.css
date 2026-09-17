@@ -193,10 +193,12 @@ div.cartaQuarto {
   gap: 15px;
   padding: 7.5px;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .areaA img{
   object-fit:cover;
+  aspect-ratio: 1 / 1;
   width: 30%;
 }
 
@@ -385,43 +387,16 @@ footer > div > a:hover{
   }
   .conteudoB{
     box-sizing: border-box;
-    
-    
-  }
-  .conteudoB .cards{
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    
-  }
-  .conteudoB .cards > div{
-    width: 80%;
-  }
-  .cards > div > div {
-    background-color: #b733129f;
-    color: wheat;
   }
 
-  /* Faz o botão aparecer quando o pai recebe o hover */
-  .cards > div > div .btn-card {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0); /* Sobe suavemente para a posição original */
-  }
-  .cards > div > div .btn-card:hover{
-    background-color: transparent;
-    color: wheat;
-    border: 1px solid wheat;
-  }
-  .conteiner-video{
+  .areaCartas {
     flex-direction: column;
   }
-  .conteiner-video img{
-    width: 100%;
+
+  div.cartaQuarto {
+    width: 90%;
   }
-  .conteiner-video > .texto{
-    width: 100%;
-  }
+
   .avaliacao{
     font-size: 3vi;
     padding: 10px;
@@ -429,14 +404,22 @@ footer > div > a:hover{
   .avaliacao > h2{
     min-width: 90%;
   }
-  .conteiner-imgs{
-    flex-direction: column;
+  .areaA{
+    flex-wrap: wrap;
     width: 100%;
     gap: 10px;
     align-items: center;
   }
-  .conteiner-imgs > img{
+  .areaA img{
     width: 90%;
+    height: 30%;
+    aspect-ratio: 2 / 1;
+  }
+  .areaReservar {
+    font-size: 3vi;
+    flex-direction: column;
+    padding-bottom: 25px;
+    padding-top: 25px;
   }
   .conteudo-titulo{
     height: 95%;
