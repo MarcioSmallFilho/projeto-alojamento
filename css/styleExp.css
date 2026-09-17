@@ -82,6 +82,9 @@ header a:hover{
   /* Garante que ele não distorce e se ajusta mantendo a proporção */
   object-fit: contain; 
 }
+.icones > div > img:hover {
+  cursor: pointer;
+}
 
 .icones > div > h4 {
   margin-top: 15px; /* Espaço entre o ícone e o texto */
