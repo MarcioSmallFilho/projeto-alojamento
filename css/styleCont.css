@@ -109,23 +109,25 @@ a:hover{
 
 .but-reservar{
   padding: 25px;
+  box-sizing: content-box;
   border-radius: 15px;
   border:none;
-  background-color: #B73312;
+  background-color: var(--cor-4);
   color: wheat;
   font-weight: bolder;
   font-size: large;
-  transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.4s;
+  cursor: pointer;
 }
 
 .but-reservar:hover{
   transform: scale(1.05);
-  background-color: #dc8030;
+  background-color: var(--cor-5);
 }
 
 .but-reservar:active{
   transform: scale(0.95);
-  background-color: #9F1209;
+  background-color: var(--cor-3);
 }
 
 .areaReservar{
@@ -204,6 +206,7 @@ a:hover{
 
 .areaA > div{
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -214,6 +217,7 @@ a:hover{
 }
 
 .areaB {
+    box-sizing: border-box;
     display: flex;
     flex: 1;
     justify-content: space-around;
@@ -239,6 +243,7 @@ a:hover{
 }
 
 .cartinha {
+    box-sizing: border-box;
     position: relative;
     z-index: 0;               /* <- isso resolve: cria um contexto de empilhamento */
     overflow: hidden;
@@ -404,4 +409,121 @@ footer > div > a:hover{
   width: 30%; /* Define o tamanho da linha em relação ao texto */
   height: 2px; /* Espessura da linha */
   background-color: var(--cor-3); /* Cor da linha */
+}
+
+@media (max-width: 768px) {
+  footer{
+    flex-direction: column;
+  }
+  footer > div {
+    width: 100%;
+    background: linear-gradient(90deg, var(--cor-1), var(--cor-2));
+    box-sizing: border-box;
+  }
+  :root{
+    &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  }
+  .conteudoC > div{
+  flex-direction: column;
+  align-items: center;
+  }
+  .conteudoC > div > div{
+  width: 90%;
+  margin-bottom: 30px;
+  }
+  .conteudoC > div > div > p{
+    font-size: 15px;
+  }
+  .conteudoC > div > div > h2{
+    font-size: 3vw;
+  }
+  .conteudoC > div > div:has(img) {
+    order: 1;
+  }
+  .conteudoC img {
+    width: 100%;
+    max-width: 500px;
+    height: 250px; 
+    object-fit: cover; 
+  }
+  .h-dir{
+    flex-direction: column;
+    font-size: 12px;
+  }
+  .h-esq img{
+    width: 70px;
+    height: auto;
+  }
+  .conteudoB{
+    box-sizing: border-box;
+    
+    
+  }
+  .conteudoB .cards{
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    
+  }
+  .conteudoB .cards > div{
+    width: 80%;
+  }
+  .areaB{
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    font-size: 3vi;
+    padding: 10px;
+  }
+  .areaB > div.grega1{
+    max-width: 90%;
+    width: auto;
+  }
+
+  .grega1 > .cartinha{
+    font-size: 3.5vi;
+  }
+
+  .grega1 > .cartinha > img{
+    width: 16vi;
+    height: 16vi;
+  }
+
+  .areaB form{
+    width: fit-content;
+    height: 400px;
+  }
+
+  .areaA > div{
+    font-size: 3vi;
+  }
+  .areaA > div > img{
+    width: 20vi;
+    height: 20vi
+  }
+  .conteiner-imgs > img{
+    width: 90%;
+  }
+  .conteudo-titulo{
+    height: 95%;
+    width: 95%;
+    font-size: 3vw;
+  }
+  .areaReservar {
+    font-size: 3vi;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 25px;
+    padding-top: 25px;
+  }
+
+  .but-reservar {
+    padding: 40px;
+  }
+
 }
