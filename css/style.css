@@ -76,7 +76,6 @@ header a:hover{
 }
 
 .but-reservar:hover{
-  transform: scale(1.05);
   background-color: var(--cor-5);
 }
 
@@ -141,13 +140,19 @@ padding-top:50px;
   height: 2px; /* Espessura da linha */
   background-color: var(--cor-3); /* Cor da linha */
 }
-.conteiner-imgs{
+.conteiner-imgs {
   padding-top: 100px;
   display: flex;
   flex-direction: row;
+  gap: 10px;
+  width: 90%;
 }
-.conteiner-imgs img{
-  width: 20%;
+
+.conteiner-imgs img {
+  flex: 1;
+  min-width: 0; 
+  height: auto; 
+  object-fit: cover; 
 }
 .conteiner-video{
   margin: 70px;
@@ -159,7 +164,7 @@ padding-top:50px;
   width: 25%;
   height: auto;     
   object-fit: contain;   
-  align-self: flex-start; 
+  align-self:center; 
 }
 
 .conteiner-video .texto{
@@ -214,13 +219,13 @@ padding-top:50px;
 }
 
 .conteudoB .cards {
-  width: 100%; /* Ocupa a largura total para alinhar os cards ao centro */
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center; /* Centraliza os 3 cards */
+  justify-content: center;
   gap: 3.3%;
   margin: 30px 0;
-  flex-shrink: 0; /* Removido o til (~) incorreto */
+  flex-shrink: 0;
 }
 
 .cards > div {
@@ -373,4 +378,112 @@ footer > div > a{
 }
 footer > div > a:hover{
   color: rgb(158, 143, 117)
+}
+@media (max-width: 768px) {
+  footer{
+    flex-direction: column;
+  }
+  footer > div {
+    width: 100%;
+    background: linear-gradient(90deg, var(--cor-1), var(--cor-2));
+    box-sizing: border-box;
+  }
+  :root{
+    &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  }
+  .conteudoC > div{
+  flex-direction: column;
+  align-items: center;
+  }
+  .conteudoC > div > div{
+  width: 90%;
+  margin-bottom: 30px;
+  }
+  .conteudoC > div > div > p{
+    font-size: 15px;
+  }
+  .conteudoC > div > div > h2{
+    font-size: 3vw;
+  }
+  .conteudoC > div > div:has(img) {
+    order: 1;
+  }
+  .conteudoC img {
+    width: 100%;
+    max-width: 500px;
+    height: 250px; 
+    object-fit: cover; 
+  }
+  .h-dir{
+    flex-direction: column;
+    font-size: 12px;
+  }
+  .h-esq img{
+    width: 70px;
+    height: auto;
+  }
+  .conteudoB{
+    box-sizing: border-box;
+    
+    
+  }
+  .conteudoB .cards{
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    
+  }
+  .conteudoB .cards > div{
+    width: 80%;
+  }
+  .cards > div > div {
+    background-color: #b733129f;
+    color: wheat;
+  }
+
+  /* Faz o botão aparecer quando o pai recebe o hover */
+  .cards > div > div .btn-card {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Sobe suavemente para a posição original */
+  }
+  .cards > div > div .btn-card:hover{
+    background-color: transparent;
+    color: wheat;
+    border: 1px solid wheat;
+  }
+  .conteiner-video{
+    flex-direction: column;
+  }
+  .conteiner-video img{
+    width: 100%;
+  }
+  .conteiner-video > .texto{
+    width: 100%;
+  }
+  .avaliacao{
+    font-size: 3vi;
+    padding: 10px;
+  }
+  .avaliacao > h2{
+    min-width: 90%;
+  }
+  .conteiner-imgs{
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+  }
+  .conteiner-imgs > img{
+    width: 90%;
+  }
+  .conteudo-titulo{
+    height: 95%;
+    width: 95%;
+    font-size: 3vw;
+  }
 }
