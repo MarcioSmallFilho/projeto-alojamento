@@ -9,7 +9,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: -1; /* Coloca a imagem atrás de todo o conteúdo */
+  z-index: -1; 
 }
 
 /* Conteúdo que rola na frente */
@@ -119,7 +119,7 @@ padding-top:50px;
 }
 .conteudoA h1 {
   position: relative;
-  display: inline-block; /* Mantém a largura do h1 ajustada ao texto */
+  display: inline-block;
   font-size: 40px;
   
 }
@@ -131,14 +131,14 @@ padding-top:50px;
   content: '';
   position: absolute;
   left: 0;
-  bottom: -6px; /* Substitui o text-underline-offset */
+  bottom: -6px;
 
   left: 50%;
   transform: translateX(-50%);
   
-  width: 30%; /* Define o tamanho da linha em relação ao texto */
-  height: 2px; /* Espessura da linha */
-  background-color: var(--cor-3); /* Cor da linha */
+  width: 30%; 
+  height: 2px;
+  background-color: var(--cor-3); 
 }
 .conteiner-imgs {
   padding-top: 100px;
@@ -185,16 +185,16 @@ padding-top:50px;
 
 .conteudoB {
   background-color: rgb(220, 220, 220);
-  width: 100%; /* Alterado de 100vw para evitar rolagem horizontal */
+  width: 100%; 
   color: var(--cor-4);
   padding-top: 50px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza o h1, p e a div .cards na horizontal */
+  align-items: center; 
   text-align: center;
 }
 
-/* Adicionado: Necessário para o ::after posicionar-se em relação ao h1 */
+
 .conteudoB h1 {
   position: relative;
   display: inline-block;
@@ -257,14 +257,14 @@ padding-top:50px;
   justify-content: center;
   font-size: 30px;
 }
-/* Estado inicial do botão (Invisível) */
+
 .cards > div > div .btn-card {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px); /* Começa ligeiramente abaixo */
+  transform: translateY(10px);
   transition: all 0.1s ease-in-out;
   
-  /* Estilização básica do botão */
+ 
   padding: 10px 20px;
   background-color: wheat;
   color: var(--cor-4);
@@ -274,17 +274,17 @@ padding-top:50px;
   font-weight: bold;
 }
 
-/* Estado no HOVER do card (Visível) */
+
 .cards > div > div:hover {
   background-color: #b733129f;
   color: wheat;
 }
 
-/* Faz o botão aparecer quando o pai recebe o hover */
+
 .cards > div > div:hover .btn-card {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0); /* Sobe suavemente para a posição original */
+  transform: translateY(0); 
 }
 .cards > div > div:hover .btn-card:active {
   background-color: transparent;
@@ -310,7 +310,7 @@ padding-top:50px;
 }
 .conteudoC > div > div{
   width: 50%;
-  overflow: hidden; /* Opcional: esconde o que passar das bordas */ 
+  overflow: hidden; 
   position: relative;
   display: flex;
   flex-direction: column;
@@ -320,8 +320,8 @@ padding-top:50px;
 .conteudoC img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Recorta suavemente as sobras sem distorcer a imagem */
-  object-position: center; /* Centraliza o foco do corte na imagem */
+  object-fit: cover; 
+  object-position: center; 
 }
 .conteudoC h1{
   font-size: 25px;
@@ -445,11 +445,11 @@ footer > div > a:hover{
     color: wheat;
   }
 
-  /* Faz o botão aparecer quando o pai recebe o hover */
+
   .cards > div > div .btn-card {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0); /* Sobe suavemente para a posição original */
+    transform: translateY(0); 
   }
   .cards > div > div .btn-card:hover{
     background-color: transparent;
