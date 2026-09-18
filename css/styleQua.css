@@ -289,11 +289,13 @@ footer > div >.logotipo:hover{
 }
 
 .areaA img{
-  width: 80px;
+  max-width: 80px;
+  width: auto;
   height: 100%;
   clip-path: circle(50%);
   object-fit: cover;
   transition: all ease-in-out .2s;
+  aspect-ratio: 1 / 1;
 }
 
 .areaA p{
@@ -304,8 +306,7 @@ footer > div >.logotipo:hover{
 
 .areaA div{
     display: flex;
-    max-width: min-content;
-    height: 80px;
+    height: 40px;
     align-items: center;
     gap: 15px;
     border-radius: 150px;
@@ -333,12 +334,50 @@ footer > div >.logotipo:hover{
 .areaImg img{
     box-shadow:  0 4px 12px var(--cor-2);
     width: 30%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     transition: all ease-in-out .2s;
+    overflow: hidden;
 }
 
 .areaImg img:hover{
-    transform: scale(1.1);
+  cursor: pointer;
+}
+
+.modal-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+.modal-lightbox.aberto {
+    display: flex;
+}
+
+.modal-lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    animation: zoomInLightbox 0.25s ease;
+}
+
+@keyframes zoomInLightbox {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.fechar-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.2rem;
+    color: white;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
