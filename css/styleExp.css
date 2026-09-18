@@ -1,8 +1,28 @@
 header{
+  position: sticky;
+  top: -1px;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+
   display:flex;
   flex-direction: row;
   height: 120px;
   border-bottom: 1px solid var(--cor-6); 
+}
+header.is-sticky {
+  background-color: rgba(0, 0, 0, 0.950);
+  height: 80px;             
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(7px);
+}
+header > .h-esq >.logotipo{
+  transition: all ease-in-out 0.3s;
+  height:75%;
+  width: auto;
+}
+header > .h-esq > .logotipo:hover{
+  transform: scale(1.2) rotate(-10deg);
 }
 .logotipo{
   transition: all ease-in-out 0.3s;
@@ -35,7 +55,10 @@ header a:hover{
   color:var(--cor-5);
 }
 .topo {
-    height: 600px;
+    margin-top: -120px; 
+  
+    height: 720px;
+
     background-image: 
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
     url('../imagens/placeholder-viana.png');
@@ -185,7 +208,7 @@ header a:hover{
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.464);
 }
 .contactos > div > div:hover {
-    transform: translateX(15);
+    transform: translateX(05px);
     background-color: color-mix(in srgb, var(--cor-5) 85%, black);
 }
 .contactos > div > form{
@@ -267,6 +290,12 @@ footer > div > a{
 footer > div > a:hover{
   color: color-mix(in srgb, var(--cor-txt) 50%, black);
 }
+footer > div > .logotipo{
+  transition: all ease-in-out 0.3s;
+}
+footer > div >.logotipo:hover{
+  transform: scale(1.2) rotate(-10deg);
+}
 @media (max-width: 768px) {
   .area-reservar {
     flex-direction: column;
@@ -337,6 +366,7 @@ footer > div > a:hover{
   .h-dir{
     flex-direction: column;
     font-size: 12px;
+    gap: 5px;
   }
   .h-esq img{
     width: 70px;

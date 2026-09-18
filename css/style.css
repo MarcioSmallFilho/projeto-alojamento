@@ -39,11 +39,12 @@ header.is-sticky {
   backdrop-filter: blur(7px);
 }
 
-.logotipo{
+header > .h-esq >.logotipo{
   transition: all ease-in-out 0.3s;
   height:75% ;
+  width: auto;
 }
-.logotipo:hover{
+header > .h-esq > .logotipo:hover{
   transform: scale(1.2) rotate(-10deg);
 }
 .h-esq{
@@ -393,6 +394,12 @@ footer > div > a{
 footer > div > a:hover{
   color: color-mix(in srgb, var(--cor-txt) 50%, black);
 }
+footer > div > .logotipo{
+  transition: all ease-in-out 0.3s;
+}
+footer > div >.logotipo:hover{
+  transform: scale(1.2) rotate(-10deg);
+}
 @media (max-width: 768px) {
   footer{
     flex-direction: column;
@@ -435,6 +442,7 @@ footer > div > a:hover{
   .h-dir{
     flex-direction: column;
     font-size: 12px;
+    gap: 5px;
   }
   .h-esq img{
     width: 70px;
