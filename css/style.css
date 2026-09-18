@@ -17,14 +17,30 @@
   position: relative;
   z-index: 1;
 }
-header{
+
+header {
+  position: sticky;
+  top: -1px;
+  width: 100%;
+  z-index: 1000;
+
   background-color: rgba(0, 0, 0, 0.26);
-  display:flex;
+  display: flex;
   flex-direction: row;
   height: 120px;
+  
+  transition: all 0.3s ease-in-out;
 }
+
+header.is-sticky {
+  background-color: rgba(0, 0, 0, 0.950);
+  height: 80px;             
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 .logotipo{
   transition: all ease-in-out 0.3s;
+  height:75% ;
 }
 .logotipo:hover{
   transform: scale(1.2) rotate(-10deg);
