@@ -19,3 +19,22 @@ const header = document.querySelector('header');
   );
 
   observer.observe(header);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnMenu = document.getElementById('btn-menu');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (btnMenu && navMenu) {
+    btnMenu.addEventListener('click', () => {
+      navMenu.classList.toggle('aberto');
+      btnMenu.classList.toggle('ativo'); // Alterna o botão entre ☰ e X
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('aberto');
+        btnMenu.classList.remove('ativo');
+      });
+    });
+  }
+});
