@@ -68,6 +68,73 @@ header > .h-esq > .logotipo:hover{
   justify-content: center;
   width: 50%;
 }
+/* --- ESTILOS PADRÃO (DESKTOP) --- */
+.menu-mobile-btn {
+  display: none;
+  background-color: transparent;
+  border: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  
+  /* Ícone SVG de 3 barras inserido diretamente no CSS */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: transform 0.2s ease;
+}
+.menu-mobile-btn:hover {
+  transform: scale(1.1);
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+
+@media (max-width: 768px) {
+  .menu-mobile-btn {
+    display: block;
+  }
+
+  .nav-menu {
+    display: flex; 
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.26);
+    flex-direction: column;
+    align-items: center;
+    padding: 0; 
+    max-height: 0; 
+    gap: 10px;
+    border-bottom: 1px solid transparent;
+    
+    opacity: 0;
+    transform: translateY(-10px); 
+    pointer-events: none; 
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  header.is-sticky .nav-menu {
+  background-color: rgba(0, 0, 0, 0.950);
+  }
+  .nav-menu.aberto {
+    opacity: 1;
+    transform: translateY(0); 
+    pointer-events: auto; 
+    padding: 20px 0;
+    max-height: 300px; 
+    border-bottom-color: var(--cor-6);
+    border-top-color: var(--cor-6);
+  }
+  .menu-mobile-btn.ativo {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24L24 6'/%3E%3C/svg%3E");
+  }
+}
 a{
   color: var(--cor-txt);
   transition: all ease-in-out 0.2s;
@@ -289,11 +356,11 @@ footer > div >.logotipo:hover{
 }
 
 .areaA img{
-  width: 80px;
   height: 100%;
   clip-path: circle(50%);
   object-fit: cover;
   transition: all ease-in-out .2s;
+  aspect-ratio: 1/1;
 }
 
 .areaA p{
@@ -304,8 +371,7 @@ footer > div >.logotipo:hover{
 
 .areaA div{
     display: flex;
-    max-width: min-content;
-    height: 80px;
+    height: 40px;
     align-items: center;
     gap: 15px;
     border-radius: 150px;
