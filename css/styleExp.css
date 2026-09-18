@@ -182,7 +182,7 @@ header a:hover{
 }
 .contactos{
     width: 100%;
-    min-height: 450px;
+    min-height: 550px;
     display: flex;
     flex-direction: row;  
     background-color: var(--cor-fundo-1); 
@@ -191,18 +191,19 @@ header a:hover{
     width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
     padding: 70px;
 }
 .contactos > div > div {
-    padding: 25px;
-    width: 70%;
+    padding: 35px;
+    width: 80%;
     background-color:var(--cor-5);
     border-radius: 10px;
     font-weight: bolder;
+    font-size: 15px;
     transition: all ease-in-out 0.3s;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.464);
 }

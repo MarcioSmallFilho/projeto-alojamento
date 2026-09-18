@@ -357,9 +357,9 @@ padding-top:50px;
   align-items: center;
   text-align: center;
 }
-.estrelas{
+.estrelas > img{
   margin-top:20px;
-  transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.1s;
 }
 .estrelas img:hover{
   transform: scale(1.2);
