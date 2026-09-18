@@ -49,7 +49,7 @@ header{
   width: 50%;
 }
 a{
-  color: var(--cor-0);
+  color: var(--cor-txt);
   transition: all ease-in-out 0.2s;
   text-decoration: none;
   font-weight: bolder;
@@ -63,7 +63,7 @@ a:hover{
   align-items: center;
   justify-content: center;
   height: 480px;
-  color:var(--cor-0);
+  color:var(--cor-txt);
   font-size:  20px;
   font-family:Georgia, 'Times New Roman', Times, serif;
 }
@@ -113,7 +113,7 @@ a:hover{
   border-radius: 15px;
   border:none;
   background-color: var(--cor-4);
-  color: var(--cor-0);
+  color: var(--cor-txt);
   font-weight: bolder;
   font-size: large;
   transition: all ease-in-out 0.4s;
@@ -289,9 +289,9 @@ a:hover{
 }
 
 .areaB > form{
-  background: linear-gradient(30deg, var(--cor-5), var(--cor-4), var(--cor-3));
+  background: linear-gradient(115deg, var(--cor-6), var(--cor-5), var(--cor-4), var(--cor-5), var(--cor-6));
   background-size: 300% 300%;
-  animation: fluir 4s ease infinite;
+  animation: fluir 6s ease infinite;
 }
 @keyframes fluir {
   0%   { background-position: 0% 50%; }
@@ -372,7 +372,7 @@ footer{
   height: 300px;
   display: flex;
   flex-direction: row;
-  color: var(--cor-0);
+  color: var(--cor-txt);
   font-weight: bolder;
 }
 footer > div{
@@ -388,13 +388,13 @@ footer > div{
   padding: 40px;
 }
 footer > div > a{
-  color: var(--cor-0);
+  color: var(--cor-txt);
   text-decoration: none;
   padding-top: 20px;
   transition: all ease-in-out 0.2s;
 }
 footer > div > a:hover{
-  color: color-mix(in srgb, var(--cor-0) 50%, black);
+  color: color-mix(in srgb, var(--cor-txt) 50%, black);
 }
 
 .conteudoA > h1::after {

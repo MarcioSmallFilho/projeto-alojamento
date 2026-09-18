@@ -2,7 +2,7 @@ header{
   display:flex;
   flex-direction: row;
   height: 120px;
-  border-bottom: 1px solid var(--cor-0); 
+  border-bottom: 1px solid var(--cor-6); 
 }
 .logotipo{
   transition: all ease-in-out 0.3s;
@@ -26,7 +26,7 @@ header{
   width: 50%;
 }
 header a{
-  color: var(--cor-0);
+  color: var(--cor-txt);
   transition: all ease-in-out 0.2s;
   text-decoration: none;
   font-weight: bolder;
@@ -44,7 +44,7 @@ header a:hover{
     background-position: center;
     background-repeat: no-repeat;
 
-    color: var(--cor-0);
+    color: var(--cor-txt);
 }
 .titulo{
     display: flex;
@@ -242,7 +242,7 @@ footer{
   height: 300px;
   display: flex;
   flex-direction: row;
-  color: var(--cor-0);
+  color: var(--cor-txt);
   font-weight: bolder;
 }
 footer > div{
@@ -259,13 +259,13 @@ footer > div{
   box-sizing: border-box
 }
 footer > div > a{
-  color: var(--cor-0);
+  color: var(--cor-txt);
   text-decoration: none;
   padding-top: 20px;
   transition: all ease-in-out 0.2s;
 }
 footer > div > a:hover{
-  color: color-mix(in srgb, var(--cor-0) 50%, black);
+  color: color-mix(in srgb, var(--cor-txt) 50%, black);
 }
 @media (max-width: 768px) {
   .area-reservar {
