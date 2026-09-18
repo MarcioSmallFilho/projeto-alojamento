@@ -466,9 +466,8 @@ footer > div >.logotipo:hover{
     object-fit: cover; 
   }
   .h-dir{
-    flex-direction: column;
-    font-size: 12px;
-    gap: 5px;
+    justify-content: right;
+    padding-right: 50px;
   }
   .h-esq img{
     width: 70px;
