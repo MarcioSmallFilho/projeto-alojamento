@@ -193,7 +193,7 @@ padding-top:50px;
 }
 .conteiner-video .texto h2{
   font-size: 30px;
-  max-width: 75%;
+  max-width: 85%;
 }
 
 /* CONTEUDO B */
@@ -478,6 +478,7 @@ footer > div >.logotipo:hover{
     border: 1px solid var(--cor-6);
   }
   .conteiner-video{
+    margin: 20px;
     flex-direction: column;
     padding-top: 0px;
   }
@@ -489,10 +490,10 @@ footer > div >.logotipo:hover{
   }
   .conteiner-video > .texto > h2{
     padding: 20px;
-    font-size: 5vw;
+    font-size: 6vw;
   }
   .conteiner-video > .texto > p{
-    font-size: 3vw;
+    font-size: 4vw;
   }
   .avaliacao{
     font-size: 3vi;
