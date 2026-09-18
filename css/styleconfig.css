@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css2?family=WindSong:wght@400;500&display=swap);
+
 :root {
   --cor-fundo-1: white;
 
@@ -17,8 +19,13 @@
 
   --cor-6: wheat;
 
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.titulo{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
 body{
   padding: 0px;
   margin: 0px;
