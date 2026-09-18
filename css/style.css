@@ -45,7 +45,7 @@ header{
   width: 50%;
 }
 header a{
-  color: var(--cor-0);
+  color: var(--cor-txt);
   transition: all ease-in-out 0.2s;
   text-decoration: none;
   font-weight: bolder;
@@ -59,7 +59,7 @@ header a:hover{
   align-items: center;
   justify-content: center;
   height: 400px;
-  color:var(--cor-0);
+  color:var(--cor-txt);
   font-size:  20px;
   font-family:Georgia, 'Times New Roman', Times, serif;
 }
@@ -68,7 +68,7 @@ header a:hover{
   border-radius: 15px;
   border:none;
   background-color: var(--cor-4);
-  color: var(--cor-0);
+  color: var(--cor-txt);
   font-weight: bolder;
   font-size: large;
   transition: all ease-in-out 0.4s;
@@ -264,7 +264,7 @@ padding-top:50px;
   
  
   padding: 10px 20px;
-  background-color: var(--cor-0);
+  background-color: var(--cor-6);
   color: var(--cor-4);
   border: 2px solid transparent;
   border-radius: 5px;
@@ -275,7 +275,7 @@ padding-top:50px;
 
 .cards > div > div:hover {
   background-color: color-mix(in srgb, var(--cor-4) 62.5%, transparent);
-  color: var(--cor-0);
+  color: var(--cor-txt);
 }
 
 
@@ -286,8 +286,8 @@ padding-top:50px;
 }
 .cards > div > div:hover .btn-card:active {
   background-color: transparent;
-  border: 2px solid var(--cor-0);
-  color: var(--cor-0);
+  border: 2px solid var(--cor-6);
+  color: var(--cor-txt);
 }
 /* CONTEUDO C */
 
@@ -352,7 +352,7 @@ footer{
   height: 300px;
   display: flex;
   flex-direction: row;
-  color: var(--cor-0);
+  color: var(--cor-txt);
   font-weight: bolder;
 }
 footer > div{
@@ -368,13 +368,13 @@ footer > div{
   padding: 40px;
 }
 footer > div > a{
-  color: var(--cor-0);
+  color: var(--cor-txt);
   text-decoration: none;
   padding-top: 20px;
   transition: all ease-in-out 0.2s;
 }
 footer > div > a:hover{
-  color: color-mix(in srgb, var(--cor-0) 50%, black);
+  color: color-mix(in srgb, var(--cor-txt) 50%, black);
 }
 @media (max-width: 768px) {
   footer{
@@ -439,7 +439,7 @@ footer > div > a:hover{
   }
   .cards > div > div {
     background-color: color-mix(in srgb, var(--cor-4) 62.5%, transparent);
-    color: var(--cor-0);
+    color: var(--cor-txt);
   }
 
 
@@ -451,8 +451,8 @@ footer > div > a:hover{
   }
   .cards > div > div .btn-card:hover{
     background-color: transparent;
-    color: var(--cor-0);
-    border: 1px solid var(--cor-0);
+    color: var(--cor-txt);
+    border: 1px solid var(--cor-6);
   }
   .conteiner-video{
     flex-direction: column;
