@@ -602,3 +602,43 @@ footer > div >.logotipo:hover{
   }
   
 }
+
+.modal-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+.modal-lightbox.aberto {
+    display: flex;
+}
+
+.modal-lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    animation: zoomInLightbox 0.25s ease;
+}
+
+@keyframes zoomInLightbox {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.fechar-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.2rem;
+    color: white;
+    cursor: pointer;
+}
+
+.conteiner-imgs img:hover{
+  cursor: pointer;
+}
