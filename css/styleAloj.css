@@ -275,20 +275,28 @@ div.cartaQuarto {
   padding-bottom: 80px;
 }
 
-.areaA {
+.areaImg {
+  padding: 35px;
+  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  flex: 1;
+  flex: 2;
   gap: 15px;
-  padding: 7.5px;
   justify-content: center;
-  box-sizing: border-box;
 }
 
-.areaA img{
-  object-fit:cover;
-  aspect-ratio: 1 / 1;
-  width: 30%;
+.areaImg img{
+    width: 30%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: all ease-in-out .2s;
+    overflow: hidden;
+}
+
+.areaImg img:hover{
+  transform: translateY(-5px);
+  box-shadow:  0 4px 12px var(--cor-2);
+  cursor: pointer;
 }
 
 .conteudoB{
@@ -432,6 +440,42 @@ footer > div >.logotipo:hover{
   height: 2px; /* Espessura da linha */
   background-color: var(--cor-3); /* Cor da linha */
 }
+.modal-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+.modal-lightbox.aberto {
+    display: flex;
+}
+
+.modal-lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    animation: zoomInLightbox 0.25s ease;
+}
+
+@keyframes zoomInLightbox {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.fechar-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.2rem;
+    color: white;
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
   footer{
     flex-direction: column;

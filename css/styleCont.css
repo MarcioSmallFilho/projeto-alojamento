@@ -344,7 +344,6 @@ a:hover{
     display: flex;
     align-items: center;
     gap: 15px;
-    box-shadow:  0 4px 12px var(--cor-2);
     transition: all ease-in-out .3s;
 }
 
@@ -358,17 +357,21 @@ a:hover{
 }
 
 .cartinha::before {
-    background: linear-gradient(115deg, var(--cor-5), var(--cor-4));
+    background: var(--cor-5);
     opacity: 1;
 }
 
 .cartinha::after {
-    background: linear-gradient(115deg, var(--cor-4), var(--cor-5));
+    background: linear-gradient(115deg, var(--cor-5), var(--cor-4));
     opacity: 0;
 }
 
 .cartinha:hover::before { opacity: 1; }
 .cartinha:hover::after  { opacity: 1; }
+
+.cartinha:hover {
+    box-shadow:  0 4px 12px var(--cor-2);
+}
 
 .cartinha:hover {
   transform: translateY(-5px);
@@ -381,18 +384,19 @@ a:hover{
     flex-direction: column;
     gap: 20px;
     width: 25%;
-    box-shadow:  0 4px 12px var(--cor-1);
     align-items: center;
 }
 
 .areaB > form{
-  background: linear-gradient(115deg, var(--cor-6), var(--cor-5), var(--cor-4), var(--cor-5), var(--cor-6));
+  background: linear-gradient(115deg, var(--cor-4), var(--cor-5), var(--cor-5), var(--cor-5), var(--cor-4));
   background-size: 300% 300%;
   animation: fluir 6s ease infinite;
 }
 @keyframes fluir {
   0%   { background-position: 0% 50%; }
+  25%   { background-position: 50% 50%; }
   50%  { background-position: 100% 50%; }
+  75%   { background-position: 50% 50%; }
   100% { background-position: 0% 50%; }
 }
 
