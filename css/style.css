@@ -408,6 +408,7 @@ padding-top:50px;
   justify-content: center;
 }
 .conteudoC img {
+  aspect-ratio: 2/1;
   width: 100%;
   height: 100%;
   object-fit: cover; 
