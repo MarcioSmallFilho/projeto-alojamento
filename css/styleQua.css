@@ -411,6 +411,9 @@ footer > div >.logotipo:hover{
     object-fit: cover;
     transition: all ease-in-out .2s;
     overflow: hidden;
+    border: solid 1px color-mix(in srgb, var(--cor-fundo-2) 80%, black);
+    border-radius: 15px;
+    padding: 4px;
 }
 
 .areaImg img:hover{
