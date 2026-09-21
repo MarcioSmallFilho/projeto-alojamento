@@ -388,7 +388,7 @@ a:hover{
 }
 
 .areaB > form{
-  background: linear-gradient(115deg, var(--cor-6), var(--cor-5), var(--cor-5), var(--cor-5), var(--cor-6));
+  background: linear-gradient(115deg, var(--cor-4), var(--cor-5), var(--cor-5), var(--cor-5), var(--cor-4));
   background-size: 300% 300%;
   animation: fluir 6s ease infinite;
 }
