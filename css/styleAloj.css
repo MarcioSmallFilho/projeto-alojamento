@@ -276,7 +276,7 @@ div.cartaQuarto {
 }
 
 .areaImg {
-  padding: 35px;
+  padding: 15px;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
@@ -552,7 +552,7 @@ footer > div >.logotipo:hover{
     align-items: center;
   }
   .areaImg > img{
-    width: 90%;
+    width: 100%;
     aspect-ratio: 2 / 1;
   }
   .areaReservar {

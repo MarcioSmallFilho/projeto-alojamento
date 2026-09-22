@@ -396,7 +396,7 @@ footer > div >.logotipo:hover{
 }
 
 .areaImg {
-  padding: 35px;
+  padding: 15px;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
@@ -506,12 +506,14 @@ footer > div >.logotipo:hover{
   }
   .areaImg{
     flex-direction: column;
+    flex: 2;
+    height: 100%;
     width: 100%;
     gap: 10px;
     align-items: center;
   }
   .areaImg > img{
-    width: 90%;
+    width: 100%;
     aspect-ratio: 2 / 1;
   }
   .conteudo-titulo{
