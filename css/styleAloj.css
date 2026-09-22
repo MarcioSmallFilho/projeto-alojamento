@@ -545,15 +545,14 @@ footer > div >.logotipo:hover{
   .avaliacao > h2{
     min-width: 90%;
   }
-  .areaA{
-    flex-wrap: wrap;
+  .areaImg{
+    flex-direction: column;
     width: 100%;
     gap: 10px;
     align-items: center;
   }
-  .areaA img{
+  .areaImg > img{
     width: 90%;
-    height: 30%;
     aspect-ratio: 2 / 1;
   }
   .areaReservar {
