@@ -161,13 +161,12 @@ header a:hover{
   flex-direction: column;
   width: 33.33%;
   height: 100%;
-  cursor: pointer;
   align-items: center;
   justify-content: center;
 }
 
 .icones > div > i {
-
+  cursor: pointer;
   max-height: 120px; 
   width: auto;
   font-size: 70px;
