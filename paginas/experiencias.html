@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/styleconfig.css">
     <link rel="stylesheet" href="../css/styleExp.css">
     <script src="../script/script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Experiências</title>
 </head>
 <body>
@@ -33,39 +34,40 @@
     </div>
     <div class="icones">
         <div onclick="godown('areaA')">
-            <img src="../imagens/Iconplaceholder.png" alt="">
-            <h4>Area A</h4>
+            <i class="fa-solid fa-umbrella-beach"></i>
+            <h4>Proximidades</h4>
         </div>
         <div onclick="godown('areaB')">
-            <img src="../imagens/Iconplaceholder.png" alt="">
-            <h4>Area B</h4>
+            <i class="fa-solid fa-utensils"></i>
+            <h4>Restauração</h4>
         </div>
         <div onclick="godown('contactos')">
-            <img src="../imagens/Iconplaceholder.png" alt="">
+            <!-- Palmeira -->
+            <i class="fa-solid fa-phone"></i>
             <h4>Contactos</h4>
         </div>
     </div>
     <!-- representa a tabela com imagens reutilizada do index-->    
     <div class="conteudoC" id="areaA">
         <div>
-            <div><img src="../imagens/placeholder2.png"></div>
+            <div><img src="../imagens/experiencias/proximidades/Capela-S-Catarina.png"></div>
             <div>
-                <h2>MONS CABREIRA</h2>
-                <p>Montibus aureis circumdatus, hic recessus perfectum praebet scaenam longis ambulationibus inter robora centenaria et odorem terrae madidae.</p>
+                <h2>Capela de Santa Catarina</h2>
+                <p>A poucos minutos de nós, descubra este pitoresco e histórico monumento local. Um ponto de interesse imperdível para um passeio tranquilo a descobrir o património da zona.</p>
             </div>
         </div>
         <div>
             <div>
-                <h2>FLUMEN ET MYSTERIUM</h2>
-                <P>Constantis aquarum vitrearum fluminis propinqui sonus dies autumnales leniter sopit, ad purae contemplationis momenta secus aquam invitans.</P>
+                <h2>Estação de viana do castelo</h2>
+                <P>Acesso rápido à famosa Praia do Cabedelo e ao emblemático terminal fluvial que liga as duas margens do rio. Perfeito para quem procura praia, desportos náuticos ou uma travessia pitoresca de barco.</P>
             </div>
-            <div><img src="../imagens/placeholder2.png"></div>
+            <div><img src="../imagens/experiencias/proximidades/foto-estacao.png" ></div>
         </div>
         <div>
-            <div><img src="../imagens/placeholder2.png"></div>
+            <div><img src="../imagens/experiencias/proximidades/foto-praia.png"></div>
             <div>
-                <h2>VICUS TRADITIONALIS</h2>
-                <P>Paucis minutis a parvo vico lapideo distant, ubi fumus e caminis leniter ascendit et temporis cursus tandem retardare videtur.</P>
+                <h2>Cabedelo Beach</h2>
+                <P>Um extenso areal dourado ideal para relaxar ou praticar desportos náuticos, situado a pouquíssimos minutos a pé.</P>
             </div>
         </div>
     </div>
@@ -76,36 +78,29 @@
     <!-- representa a tabela com imagens reutilizada do index-->  
     <div class="conteudoC" id="areaB">
         <div>
-            <div><img src="../imagens/placeholder2.png"></div>
             <div>
-                <h2>MONS CABREIRA</h2>
-                <p>Montibus aureis circumdatus, hic recessus perfectum praebet scaenam longis ambulationibus inter robora centenaria et odorem terrae madidae.</p>
+                <h2>Restaurante Feelviana</h2>
+                <p>Uma proposta gastronómica requintada que conjuga ingredientes frescos da região com uma vista privilegiada sobre a natureza e o pinhal, a poucos passos do alojamento.</p>
             </div>
+            <div><img src="../imagens/experiencias/restauracao/foto-restaurante-1.png" class="imgbottom"></div>
         </div>
         <div>
+            <div><img src="../imagens/experiencias/restauracao/foto-bar-1.png"></div>
             <div>
-                <h2>FLUMEN ET MYSTERIUM</h2>
-                <P>Constantis aquarum vitrearum fluminis propinqui sonus dies autumnales leniter sopit, ad purae contemplationis momenta secus aquam invitans.</P>
-            </div>
-            <div><img src="../imagens/placeholder2.png"></div>
-        </div>
-        <div>
-            <div><img src="../imagens/placeholder2.png"></div>
-            <div>
-                <h2>VICUS TRADITIONALIS</h2>
-                <P>Paucis minutis a parvo vico lapideo distant, ubi fumus e caminis leniter ascendit et temporis cursus tandem retardare videtur.</P>
+                <h2>Ap Dona Aninhas</h2>
+                <P>Um espaço acolhedor e requintado, perfeito para desfrutar de uma bebida relaxante ou de um café a poucos minutos do alojamento.</P>
             </div>
         </div>
     </div>
     <div class="area-reservar">
-        <h1>Isso parece divertido? Veja as nossas acomodações.</h1>
+        <h1>Parece divertido? Veja as nossas acomodações.</h1>
         <input type="button" value="Reservar" onclick='gotoAIRBNB()'>
     </div>
     <div class="contactos" id="contactos">
         <div>
-            <div>TLM +351 000 000 000</div>
-            <div>E-Mail exemplo@gmail.cpm</div>
-            <div>Morada Rua da Estrada nº. 173</div>
+            <div><i class="fa-solid fa-phone"></i> +351 000 000 000</div>
+            <div><i class="fa-solid fa-envelope"></i> exemplo@gmail.cpm</div>
+            <div><i class="fa-solid fa-location-dot"></i> Rua da Estrada nº. 173</div>
         </div>
         <div>
             <form action="">

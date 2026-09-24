@@ -34,7 +34,7 @@ header {
 }
 
 header.is-sticky {
-  background-color: rgba(0, 0, 0, 0.700);
+  background-color: rgba(0, 0, 0, 0.950);
   height: 80px;             
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(7px);
