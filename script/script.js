@@ -2,7 +2,7 @@ function goto(params) {
     window.location.href = params
 }
 function gotoAIRBNB() {
-    window.location.href = 'https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1790247193_P3dUzdkSFcTkuTYL'
+    window.location.href = 'https://media.discordapp.net/attachments/1521150818441760788/1551525975144136734/fcf4f3217fb9024a155c3a140cf88fde4ed5b76455ae522a39009e9fe849d4cf_1.png?ex=6ab63f2a&is=6ab4edaa&hm=994820e225770f2e852b66c7c1764fb4a3166e36db19eaeaa691458c945e2c1c&=&format=webp&quality=lossless&width=631&height=768'
 }
 function godown(id) {
     window.location.hash = id
