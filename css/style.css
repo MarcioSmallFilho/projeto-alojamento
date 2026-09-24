@@ -173,7 +173,6 @@ header a:hover{
 }
 
 .but-reservar:active{
-  transform: scale(0.95);
   background-color: var(--cor-3);
 }
 
