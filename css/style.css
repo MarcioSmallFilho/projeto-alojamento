@@ -46,7 +46,7 @@ header > .h-esq >.logotipo{
   width: auto;
 }
 header > .h-esq > .logotipo:hover{
-  transform: scale(1.2) rotate(-10deg);
+  transform: scale(1.2);
 }
 .h-esq{
   box-sizing: border-box;
