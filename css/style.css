@@ -436,9 +436,13 @@ padding-top:50px;
   align-items: center;
   text-align: center;
 }
+.avaliacao h2{
+  margin: 0px;
+}
 .estrelas{
   display: flex;
   flex-direction: row;
+  margin: 25px;
 }
 .estrelas > img{
   margin-top:20px;
