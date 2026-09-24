@@ -34,7 +34,7 @@ header {
 }
 
 header.is-sticky {
-  background-color: rgba(0, 0, 0, 0.700);
+  background-color: rgba(0, 0, 0, 0.950);
   height: 80px;             
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(7px);
@@ -253,17 +253,16 @@ padding-top:50px;
   flex-direction: row;
 }
 .conteiner-video img {
-  width:30%;
+  width:50%;
   height: auto;     
   object-fit: contain;   
   align-self:center; 
-  aspect-ratio: 1/1;
 }
 
 .conteiner-video .texto{
   margin-right: 50px;
   align-content: center;
-  width: 60%;
+  width: 50%;
 }
 .conteiner-video .texto p{
   color: var(--cor-2);
@@ -436,6 +435,10 @@ padding-top:50px;
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+.estrelas{
+  display: flex;
+  flex-direction: row;
 }
 .estrelas > img{
   margin-top:20px;

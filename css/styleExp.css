@@ -133,7 +133,7 @@ header a:hover{
 
     background-image: 
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-    url('../imagens/placeholder-viana.png');
+    url('../imagens/experiencias/banner-exp.png');
 
     background-size: cover;
     background-position: center;
@@ -161,21 +161,20 @@ header a:hover{
   flex-direction: column;
   width: 33.33%;
   height: 100%;
-
   align-items: center;
   justify-content: center;
 }
 
-.icones > div > img {
-
+.icones > div > i {
+  cursor: pointer;
   max-height: 120px; 
   width: auto;
-  
-
+  font-size: 70px;
   object-fit: contain; 
-}
-.icones > div > img:hover {
-  cursor: pointer;
+  background-color: var(--cor-5);
+  padding: 35px;
+  border-radius: 100px;
+  aspect-ratio: 1/1;
 }
 
 .icones > div > h4 {
@@ -189,6 +188,7 @@ header a:hover{
  align-items: center;
  justify-content: center;
  color: var(--cor-5);
+ scroll-margin-top: 90px;
 }
 .conteudoC > div{
   display: flex;
@@ -210,7 +210,10 @@ header a:hover{
   height: 100%;
   max-height: 247px ;
   object-fit: cover; 
-  object-position: center; 
+  object-position:center; 
+}
+.conteudoC .imgbottom{
+  object-position:bottom; 
 }
 .conteudoC h1{
   font-size: 25px;
@@ -258,6 +261,7 @@ header a:hover{
     display: flex;
     flex-direction: row;  
     background-color: var(--cor-fundo-1); 
+    scroll-margin-top: 90px;
 }
 .contactos > div{
     width: 50%;

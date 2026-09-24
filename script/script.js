@@ -2,7 +2,7 @@ function goto(params) {
     window.location.href = params
 }
 function gotoAIRBNB() {
-    window.location.href = 'https://airbnb.com'
+    window.location.href = 'https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1790247193_P3dUzdkSFcTkuTYL'
 }
 function godown(id) {
     window.location.hash = id
