@@ -184,7 +184,6 @@ a:hover{
   font-weight: bolder;
   text-align: justify;
   hyphens: auto;
-  hyphens: auto;
 }
 .conteudoB{
  background-color: var(--cor-fundo-2);

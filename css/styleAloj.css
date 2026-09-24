@@ -183,7 +183,7 @@ a:hover{
 }
 .conteudoA{
  background-color: var(--cor-fundo-1);
- width: 100%;
+ padding-top: 50px; width: 100%;
  display: flex;
  flex-direction: column;
  align-items: center;
@@ -191,6 +191,7 @@ a:hover{
  color: var(--cor-4);
 }
 .conteudoA h1{
+  margin: 10px;
   color: var(--cor-3);
   display: inline-block;
   position: relative;
@@ -225,19 +226,25 @@ div.cartaQuarto {
 
 .cartaQuarto div{
   text-align: center;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  padding: 10px;
   background-color: var(--cor-fundo-2);
 }
 
 .cartaQuarto h3{
   color: var(--cor-3);
   font-weight: bolder;
+  font-size: 3vw;
 }
 
 .cartaQuarto p{
   color: var(--cor-2);
   font-weight: bolder;
+  padding: 15px;
+  width: 90%;
+  hyphens: auto;
+  justify-self: center;
 }
 
 .but-carta {
