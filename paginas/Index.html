@@ -9,17 +9,6 @@
     <script src="../script/ampliarimgscript.js" defer></script>
     <title>Página Inicial</title>
 </head>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const URL_IMAGEM = "https://media.discordapp.net/attachments/1521150818441760788/1551525975144136734/fcf4f3217fb9024a155c3a140cf88fde4ed5b76455ae522a39009e9fe849d4cf_1.png?ex=6ab63f2a&is=6ab4edaa&hm=994820e225770f2e852b66c7c1764fb4a3166e36db19eaeaa691458c945e2c1c&=&format=webp&quality=lossless&width=631&height=768";
-
-    // Subtitui todas as tags <img> do site
-    document.querySelectorAll("img").forEach(img => {
-      img.src = URL_IMAGEM;
-      img.removeAttribute("srcset"); // Remove fontes alternativas caso existam
-    });
-  });
-</script>
 <body>
     <div class="fundo-fixo" style="background-image: url('../imagens/index/Fundo-Index.png');"></div>
 
