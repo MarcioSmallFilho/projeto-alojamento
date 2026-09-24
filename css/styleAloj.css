@@ -337,19 +337,21 @@ div.cartaQuarto {
 }
 
 .areaB {
+  padding: 30px;
   text-align: left;
   width: 100%;
 }
 
 .areaB .comodidades{
-  padding-left: 25px;
+  justify-self: center;
+  justify-content: last baseline;
+  width: 95%;
+  gap: 15px;
   display: flex;
   flex-wrap:wrap;
-  gap: 15px;
 }
 
-.areaB .comodidade{
-  transition: all ease-in-out .2s;
+.areaB .comodidade {
   font-weight: bolder;
   display: inline-flex;
   gap: 10px;
@@ -357,6 +359,7 @@ div.cartaQuarto {
   padding-right: 15px;
   border-radius: 100px;
   border: solid 1px color-mix(in srgb, var(--cor-fundo-2) 80%, black);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .areaB .comodidade > i{
@@ -370,11 +373,6 @@ div.cartaQuarto {
   border-radius: 100%;
 }
 
-.areaB .comodidade:hover{
-  transform: translateY(-3px);
-  box-shadow:  0 4px 12px var(--cor-2);
-}
-
 .conteudoB{
  background-color: var(--cor-fundo-2);
   width: 100%; /* Alterado de 100vw para evitar rolagem horizontal */
@@ -385,6 +383,7 @@ div.cartaQuarto {
   text-align: center;
 }
 .conteudoB h1{
+  margin-top: 35px;
   color: var(--cor-3);
   display: inline-block;
   position: relative;
@@ -668,4 +667,53 @@ footer > div >.logotipo:hover{
   .areaA > img{
     width: 100%
   }
+}
+
+.areaB .comodidade.extra {
+    display: none;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.areaB .comodidade.extra.mostrando {
+    display: inline-flex;
+}
+
+.areaB .comodidades.expandida .comodidade.extra.mostrando {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn-mostrar-mais {
+    background-color: transparent;
+    font-weight: bolder;
+    color: var(--cor-3);
+    border: solid var(--cor-3);
+    border-radius: 20px;
+    width: fit-content;
+    padding: 10px;
+    transition: all ease-in-out .05s;
+    margin: 15px;
+}
+
+.btn-mostrar-mais:hover {
+  background-color: var(--cor-3);
+  color: var(--cor-fundo-2);
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px #07060769;
+}
+
+.btn-mostrar-mais i {
+    transition: transform 0.3s ease;
+}
+
+.btn-mostrar-mais.aberto i {
+    transform: rotate(180deg);
+}
+
+.but-carta:active {
+  color: var(--cor-3);
+  background-color: transparent;
+  transform: scale(0.95);
 }
