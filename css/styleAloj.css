@@ -337,6 +337,7 @@ div.cartaQuarto {
 }
 
 .areaB {
+  box-sizing: border-box;
   padding: 30px;
   text-align: left;
   width: 100%;
