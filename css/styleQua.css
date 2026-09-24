@@ -350,11 +350,18 @@ footer > div >.logotipo:hover{
 /* Areas */
 
 .areaA {
+  box-sizing: border-box;
   border: solid 1px color-mix(in srgb, var(--cor-fundo-2) 80%, black);
   background: linear-gradient(180deg, var(--cor-fundo-1), var(--cor-fundo-2));
   padding: 30px;
   text-align: left;
   width: 100%;
+}
+
+.areaA h1{
+  margin-bottom: 15px;
+  color: var(--cor-4);
+  width: fit-content;
 }
 
 .areaA .comodidades{
@@ -404,8 +411,8 @@ footer > div >.logotipo:hover{
 }
 
 .areaImg img{
-    width: 30%;
-    aspect-ratio: 1 / 1;
+    width: 50%;
+    aspect-ratio: 3 / 2;
     object-fit: cover;
     transition: all ease-in-out .2s;
     overflow: hidden;
