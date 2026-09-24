@@ -358,6 +358,12 @@ footer > div >.logotipo:hover{
   width: 100%;
 }
 
+.areaA h1{
+  margin-bottom: 15px;
+  color: var(--cor-4);
+  width: fit-content;
+}
+
 .areaA .comodidades{
   justify-self: center;
   justify-content: last baseline;
