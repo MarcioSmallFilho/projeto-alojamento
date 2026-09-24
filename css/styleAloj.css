@@ -220,7 +220,8 @@ div.cartaQuarto {
 
 .cartaQuarto img{
   width: 100%;
-  height: 260px;
+  height: 30%;
+  aspect-ratio: 1/1;
   object-fit: cover;
 }
 
@@ -257,7 +258,7 @@ div.cartaQuarto {
   padding: 10px;
   transition: all ease-in-out .05s;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   mix-blend-mode: multiply;
 }
 
@@ -309,11 +310,75 @@ div.cartaQuarto {
   cursor: pointer;
 }
 
+.areaA {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  padding: 35px;
+}
+
+.areaA > .txt{
+  width: 55%;
+  text-align: left;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.areaA > .txt > p{
+  text-align: justify;
+}
+
+.areaA > img{
+  width: 40%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.areaB {
+  text-align: left;
+  width: 100%;
+}
+
+.areaB .comodidades{
+  padding-left: 25px;
+  display: flex;
+  flex-wrap:wrap;
+  gap: 15px;
+}
+
+.areaB .comodidade{
+  transition: all ease-in-out .2s;
+  font-weight: bolder;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding-right: 15px;
+  border-radius: 100px;
+  border: solid 1px color-mix(in srgb, var(--cor-fundo-2) 80%, black);
+}
+
+.areaB .comodidade > i{
+  color: var(--cor-2);
+  background: var(--cor-5);
+  height: 35px;
+  text-align: center;
+  align-content: center;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.areaB .comodidade:hover{
+  transform: translateY(-3px);
+  box-shadow:  0 4px 12px var(--cor-2);
+}
+
 .conteudoB{
  background-color: var(--cor-fundo-2);
   width: 100%; /* Alterado de 100vw para evitar rolagem horizontal */
   color: var(--cor-4);
-  padding-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center; /* Centraliza o h1, p e a div .cards na horizontal */
@@ -450,6 +515,18 @@ footer > div >.logotipo:hover{
   height: 2px; /* Espessura da linha */
   background-color: var(--cor-3); /* Cor da linha */
 }
+
+.areaA > .txt > h1::after {
+  content: '';
+  position: absolute;
+  left: 12%;
+  bottom: -6px; /* Substitui o text-underline-offset */
+  
+  width: 30%; /* Define o tamanho da linha em relação ao texto */
+  height: 2px; /* Espessura da linha */
+  background-color: var(--cor-3); /* Cor da linha */
+}
+
 .modal-lightbox {
     display: none;
     position: fixed;
@@ -542,7 +619,11 @@ footer > div >.logotipo:hover{
   }
 
   div.cartaQuarto {
-    width: 90%;
+    width: 95%;
+  }
+
+  div.cartaQuarto > div > h3{
+    font-size: large;
   }
 
   .avaliacao{
@@ -572,5 +653,19 @@ footer > div >.logotipo:hover{
     height: 95%;
     width: 95%;
     font-size: 3vw;
+  }
+
+  .areaA{
+    flex-direction: column;
+  }
+
+  .areaA > .txt{
+    width: 100%;
+    font-size: 5vw;
+    hyphens: auto;
+  }
+
+  .areaA > img{
+    width: 100%
   }
 }
