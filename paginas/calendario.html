@@ -9,28 +9,65 @@
     <script src="../script/ampliarimgscript.js" defer></script>
     <title>Página Inicial</title>
 </head>
-<body>
-    <div class="fundo-fixo" style="background-image: url('../imagens/banner2.png');"></div>
+    <body>
+        <div class="fundo-fixo" style="background-image: url('../imagens/banner2.png');"></div>
 
-    <div class="conteudo-site">
-        <header>
-            <div class="h-esq">
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('../paginas/index.html')">
-            </div>
-            <div class="h-dir">
-                <button class="menu-mobile-btn" id="btn-menu" aria-label="Abrir Menu">
-                </button>
-                <nav class="nav-menu" id="nav-menu">
-                    <a href="oalojamento.html">O Alojamento</a> 
-                    <a href="experiencias.html">Experiências</a> 
-                    <a href="contactos.html">Contactos</a>
-                    <a href="calendario.html">Calendario</a>
-                </nav>
-            </div>
-        </header>
+        <div class="conteudo-site">
+            <header>
+                <div class="h-esq">
+                    <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('../paginas/index.html')">
+                </div>
+                <div class="h-dir">
+                    <button class="menu-mobile-btn" id="btn-menu" aria-label="Abrir Menu">
+                    </button>
+                    <nav class="nav-menu" id="nav-menu">
+                        <a href="oalojamento.html">O Alojamento</a> 
+                        <a href="experiencias.html">Experiências</a> 
+                        <a href="contactos.html">Contactos</a>
+                        <a href="calendario.html">Calendario</a>
+                    </nav>
+                </div>
+            </header>
 
-        <div class="titulo">
-            <div class="conteudo-titulo">
-                <h1>Calendario</h1>
+            <div class="titulo">
+                <div class="conteudo-titulo">
+                    <h1>Calendario</h1>
+                </div>
             </div>
+            
+            <form id="bookingForm" action="">
+                <input type="date" name="checkin" required>
+                <input type="date" name="checkout" required>
+                <input type="number" name="numberOfAdults" value="0" required>
+                <input type="number" name="numberOfChildren" value="0" required>
+                <input type="number" name="numberOfInfants" value="0" required>
+            <input type="submit" value="Reservar pelo Airbnb">
+            </form>
+
+            <script>
+            const form = document.getElementById('bookingForm');
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                // Captura os dados do formulário
+                const formData = new FormData(form);
+                
+                // Converte para parâmetros de busca (query string)
+                const searchParams = new URLSearchParams(formData);
+
+                // Define a URL base para onde quer redirecionar
+                const baseUrl = 'https://www.airbnb.pt/book/stays/1193985038143849991';
+                
+                const productId = '&productId=1193985038143849991'
+                // Cria a URL final com o GET
+                const destinationUrl = `${baseUrl}?${searchParams.toString()}${productId}`;
+
+                // Redireciona o utilizador
+                window.location.href = destinationUrl;
+            });
+            </script>
+
         </div>
+    </body>
+</html>
