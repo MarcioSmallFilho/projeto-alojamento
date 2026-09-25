@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styleconfig.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/styleCal.css">
     <script src="../script/script.js" defer></script>
     <script src="../script/ampliarimgscript.js" defer></script>
+    <script src="..//script/calendario.js" defer></script>
+
+    <!-- FullCalendar Core & Plugins via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/ical@6.1.10/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
+
     <title>Página Inicial</title>
 </head>
     <body>
@@ -35,6 +42,14 @@
                 </div>
             </div>
             
+            <div class="conteudoB">
+                <section class="seccao-calendario">
+                    <h2>Calendário de Disponibilidade</h2>
+                    
+                    <div id="meu-calendario"></div>
+                </section>
+            </div>
+            
             <form id="bookingForm" action="">
                 <input type="date" name="checkin" required>
                 <input type="date" name="checkout" required>
@@ -45,28 +60,30 @@
             </form>
 
             <script>
-            const form = document.getElementById('bookingForm');
+                const form = document.getElementById('bookingForm');
 
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
 
-                // Captura os dados do formulário
-                const formData = new FormData(form);
-                
-                // Converte para parâmetros de busca (query string)
-                const searchParams = new URLSearchParams(formData);
+                    const checkin = form.querySelector('input[name="checkin"]').value;
+                    const checkout = form.querySelector('input[name="checkout"]').value;
+                    const adults = parseInt(form.querySelector('input[name="numberOfAdults"]').value) || 1;
+                    const children = parseInt(form.querySelector('input[name="numberOfChildren"]').value) || 0;
+                    const infants = parseInt(form.querySelector('input[name="numberOfInfants"]').value) || 0;
 
-                // Define a URL base para onde quer redirecionar
-                const baseUrl = 'https://www.airbnb.pt/book/stays/1193985038143849991';
-                
-                const productId = '&productId=1193985038143849991'
-                // Cria a URL final com o GET
-                const destinationUrl = `${baseUrl}?${searchParams.toString()}${productId}`;
+                    // O total de hóspedes (convidados) é a soma de adultos e crianças
+                    const guests = adults + children;
 
-                // Redireciona o utilizador
-                window.location.href = destinationUrl;
-            });
-            </script>
+                    // ID do teu anúncio no Airbnb
+                    const roomId = '1193985038143849991';
+
+                    // Monta a URL de reserva no formato correto do Airbnb
+                    const destinationUrl = `https://www.airbnb.pt/book/stays/${roomId}?checkin=${checkin}&checkout=${checkout}&numberOfAdults=${adults}&numberOfChildren=${children}&numberOfInfants=${infants}&numberOfGuests=${guests}&productId=${roomId}`;
+
+                    // Redireciona para o Airbnb
+                    window.location.href = destinationUrl;
+                });
+                </script>
 
         </div>
     </body>
