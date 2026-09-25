@@ -274,7 +274,7 @@ header a:hover{
     padding: 70px;
 }
 .contactos > div > div {
-    padding: 35px;
+    padding: 25px;
     width: 80%;
     background-color:var(--cor-5);
     border-radius: 10px;
@@ -282,6 +282,11 @@ header a:hover{
     font-size: 15px;
     transition: all ease-in-out 0.3s;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.464);
+}
+.contactos > div > div > i{
+  padding: 15px;
+  margin-right: 10px;
+  font-size: 20px;
 }
 .contactos > div > div:hover {
     transform: translateX(05px);

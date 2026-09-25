@@ -295,7 +295,7 @@ a:hover{
   border-radius: 100%;
   height: 90px;
   width: 90px;
-  font-size: 50px;
+  font-size: 45px;
   object-fit: cover;
   background-color: var(--cor-5);
 }
@@ -604,9 +604,9 @@ footer > div >.logotipo:hover{
     font-size: 3.5vi;
   }
 
-  .grega1 > .cartinha > img{
-    width: 16vi;
-    height: 16vi;
+  .grega1 > .cartinha > i{
+    width: 16vw;
+    height: 16vw;
   }
 
   .areaB form{
