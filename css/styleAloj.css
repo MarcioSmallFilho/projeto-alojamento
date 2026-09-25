@@ -712,13 +712,15 @@ footer > div >.logotipo:hover{
     padding: 10px;
     transition: all ease-in-out .05s;
     margin: 15px;
+    mix-blend-mode: multiply;
 }
 
 .btn-mostrar-mais:hover {
   background-color: var(--cor-3);
-  color: var(--cor-fundo-2);
+  color: white;
   transform: scale(1.1);
   box-shadow: 0 4px 10px #07060769;
+   mix-blend-mode: multiply;
 }
 
 .btn-mostrar-mais i {
