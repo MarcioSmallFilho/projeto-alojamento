@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
       center: 'title',
       right: ''
     },
+    footerToolbar: {
+      left: 'prev,next today',
+      center: '',
+      right: ''
+    },
     
     // ATIVA A SELEÇÃO NO CALENDÁRIO
     selectable: true,
