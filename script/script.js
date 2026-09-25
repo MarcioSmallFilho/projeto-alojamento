@@ -77,3 +77,35 @@ function toggleComodidades() {
         ? '<i class="fa-solid fa-chevron-down"></i> Mostrar menos'
         : '<i class="fa-solid fa-chevron-down"></i> Mostrar todas as comodidades';
 }
+
+function toggleImg() {
+    const lista = document.querySelector('.areaImg');
+    const botao = document.getElementById('botaoMostrarMaisImg');
+    const extras = document.querySelectorAll('.areaImg .imagem.extra');
+    const expandindo = !lista.classList.contains('expandida');
+
+    if (expandindo) {
+        // 1) Torna visível no layout (display: none -> inline-flex), ainda com opacity 0
+        extras.forEach((item, i) => {
+            item.classList.add('mostrando');
+        });
+
+        // 2) Força o navegador a "registrar" esse estado antes de animar
+        void lista.offsetHeight;
+
+        // 3) Só agora adiciona a classe que dispara a transição de opacity/transform
+        lista.classList.add('expandida');
+
+    } else {
+        lista.classList.remove('expandida');
+        //Espera a transição de saída terminar antes de sumir de vez (display: none)
+        setTimeout(() => {
+            extras.forEach(item => item.classList.remove('mostrando'));
+        }, 0); // bate com o "0.35s" do CSS
+    }
+
+    botao.classList.toggle('aberto');
+    botao.innerHTML = expandindo
+        ? '<i class="fa-solid fa-chevron-down"></i> Mostrar menos'
+        : '<i class="fa-solid fa-chevron-down"></i> Mostrar todas as imagens';
+}
