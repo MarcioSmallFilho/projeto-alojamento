@@ -369,14 +369,17 @@ footer > div >.logotipo:hover{
   margin: 20px auto;
   padding: 20px;
   background-color: var(--cor-fundo-1);
-  color: black;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+#meu-calendario a{
+    font-weight: bolder;
+    color: var(--cor-2);
+}
+
 /* Personalizar cores do FullCalendar para combinar com o site */
 .fc-theme-standard .fc-scrollgrid {
-    color: black;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -385,7 +388,7 @@ footer > div >.logotipo:hover{
 .fc-toolbar-title {
   color: #333;
   font-family: inherit;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 /* Botões do mês anterior/seguinte */
