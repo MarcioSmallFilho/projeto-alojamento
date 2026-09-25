@@ -101,7 +101,7 @@ function toggleImg() {
         //Espera a transição de saída terminar antes de sumir de vez (display: none)
         setTimeout(() => {
             extras.forEach(item => item.classList.remove('mostrando'));
-        }, 0); // bate com o "0.35s" do CSS
+        }, 100); // bate com o "0.35s" do CSS
     }
 
     botao.classList.toggle('aberto');
