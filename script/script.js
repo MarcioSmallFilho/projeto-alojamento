@@ -39,3 +39,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+function toggleComodidades() {
+    const lista = document.querySelector('.areaB .comodidades');
+    const botao = document.getElementById('botaoMostrarMais');
+    const extras = document.querySelectorAll('.areaB .comodidade.extra');
+    const expandindo = !lista.classList.contains('expandida');
+
+    if (expandindo) {
+        // 1) Torna visível no layout (display: none -> inline-flex), ainda com opacity 0
+        extras.forEach((item, i) => {
+            item.classList.add('mostrando');
+            item.style.transitionDelay = `${i * 0.05}s`;
+        });
+
+        // 2) Força o navegador a "registrar" esse estado antes de animar
+        void lista.offsetHeight;
+
+        // 3) Só agora adiciona a classe que dispara a transição de opacity/transform
+        lista.classList.add('expandida');
+
+    } else {
+        lista.classList.remove('expandida');
+        extras.forEach(item => {
+            item.style.transitionDelay = '0s';
+        });
+
+        // Espera a transição de saída terminar antes de sumir de vez (display: none)
+        setTimeout(() => {
+            extras.forEach(item => item.classList.remove('mostrando'));
+        }, 350); // bate com o "0.35s" do CSS
+    }
+
+    botao.classList.toggle('aberto');
+    botao.innerHTML = expandindo
+        ? '<i class="fa-solid fa-chevron-down"></i> Mostrar menos'
+        : '<i class="fa-solid fa-chevron-down"></i> Mostrar todas as comodidades';
+}
