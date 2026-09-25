@@ -61,14 +61,15 @@ function toggleComodidades() {
 
     } else {
         lista.classList.remove('expandida');
-        extras.forEach(item => {
-            item.style.transitionDelay = '0s';
+        extras.forEach((item, i) => {
+          const indiceInvertido = extras.length - 1 - i;
+          item.style.transitionDelay = `${indiceInvertido * 0.03}s`;
         });
 
-        // Espera a transição de saída terminar antes de sumir de vez (display: none)
+        //Espera a transição de saída terminar antes de sumir de vez (display: none)
         setTimeout(() => {
             extras.forEach(item => item.classList.remove('mostrando'));
-        }, 350); // bate com o "0.35s" do CSS
+        }, 600); // bate com o "0.35s" do CSS
     }
 
     botao.classList.toggle('aberto');
