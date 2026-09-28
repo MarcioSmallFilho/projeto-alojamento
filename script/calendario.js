@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     headerToolbar: {
       left: 'prev,today,next',
       center: 'title',
-      right: ''
+      right: 'dayGridMonth multiMonthYear'
     },
     footerToolbar: {
       left: 'prev,today,next',
