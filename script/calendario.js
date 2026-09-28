@@ -11,12 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
     locale: 'pt',
     firstDay: 1,
     headerToolbar: {
-      left: 'prev,next today',
+      left: 'prev,today,next',
       center: 'title',
       right: ''
     },
     footerToolbar: {
-      left: 'prev,next today',
+      left: 'prev,today,next',
       center: '',
       right: ''
     },
