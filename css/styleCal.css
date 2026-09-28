@@ -358,7 +358,7 @@ footer > div >.logotipo:hover{
 }
 .fc-day-past{
   /* Corriger */
-    background-color: color-mix(in srgb, #9F1209 89%, black);
+    background-color: color-mix(in srgb, white 89%, black);
 }
 .fc-day-past > .fc-daygrid-day-frame > .fc-daygrid-day-top > .fc-daygrid-day-number{
   text-decoration: line-through;
