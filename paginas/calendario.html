@@ -50,9 +50,18 @@
                 <form id="bookingForm" action="">
                     <input type="date" name="checkin" style="display: none;" required>
                     <input type="date" name="checkout" style="display: none;" required>
-                    <input type="number" name="numberOfAdults" value="0" required>
-                    <input type="number" name="numberOfChildren" value="0" required>
-                    <input type="number" name="numberOfInfants" value="0" required>
+                    <div>
+                        <div>
+                            <h3>Adultos:</h3>
+                            <h3>Crianças:</h3>
+                            <h3>Bebés:</h3>
+                        </div>
+                        <div style="gap: 4px;">
+                            <input type="number" name="numberOfAdults" value="0" required>
+                            <input type="number" name="numberOfChildren" value="0" required>
+                            <input type="number" name="numberOfInfants" value="0" required>
+                        </div>
+                    </div>
                     <input type="submit" value="Reservar pelo Airbnb">
                 </form>
             </div>

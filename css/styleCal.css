@@ -400,8 +400,32 @@ footer > div >.logotipo:hover{
 .fc-button-primary:hover {
   background-color: #b55e1a !important;
 }
-.bookingform{
-  /*pass*/
+#bookingForm{
+  width: 300px;
+  background-color: var(--cor-fundo-1);
+  border-radius: 20px;
+  box-shadow: 6px 6px black;
+  align-self: center;
+  justify-self: center;
+  padding: 15px;
+}
+
+#bookingForm > div{
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  align-items: right;
+  padding: 30px;
+  align-items: center;
+}
+
+#bookingForm > div > div{
+  display: flex;
+  flex-direction: column;
+}
+#bookingForm > div > div > h3{
+  margin: 0px;
+  padding: 10px 15px;
 }
 /* Estilo base do input */
 #bookingForm input[type="number"] {
