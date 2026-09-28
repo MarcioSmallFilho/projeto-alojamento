@@ -333,7 +333,7 @@ footer > div >.logotipo:hover{
   background-color: var(--cor-3); /* Cor da linha */
 }
 
-.conteudoB > h1::after {
+.conteudoB  h1::after {
   content: '';
   position: absolute;
   left: 0;
