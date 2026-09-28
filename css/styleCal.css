@@ -400,3 +400,63 @@ footer > div >.logotipo:hover{
 .fc-button-primary:hover {
   background-color: #b55e1a !important;
 }
+.bookingform{
+  /*pass*/
+}
+/* Estilo base do input */
+#bookingForm input[type="number"] {
+  width: 120px;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f8f9fa;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse ou focar no input */
+#bookingForm input[type="number"]:hover {
+  border-color: #999;
+}
+
+#bookingForm input[type="number"]:focus {
+  border-color: #d97724; /* Ajustado para combinar com o tema do seu site */
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(217, 119, 36, 0.4);
+}
+
+#bookingForm input[type='submit'] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(90deg, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
+  background-size: 200% auto;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  transition: all 0.3s cubic-bezier(0, 0, 0.1, 1);
+}
+
+/* Efeito ao passar o mouse (gradiente desliza e ganha destaque) */
+#bookingForm input[type='submit']:hover {
+  background-position: right center;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
+}
+
+/* Efeito ao clicar no botão */
+#bookingForm input[type='submit']:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+}
