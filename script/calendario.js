@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (inputCheckOut) inputCheckOut.value = `${ano}-${mes}-${dia}`;
 
-    if (form) form.scrollIntoView({ behavior: 'smooth' });
+    //if (form) form.scrollIntoView({ behavior: 'smooth' });
   }
 
   // ==========================================
