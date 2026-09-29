@@ -512,6 +512,17 @@ footer > div >.logotipo:hover{
 
 /* Aumenta o tamanho das células dos dias para fácil toque no telemóvel */
 @media (max-width: 768px) {
+    #bookingForm{
+        width: 90%;
+        box-sizing: border-box;
+    }
+
+    #bookingForm > div{
+        width: 100%;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+    }
   #meu-calendario-tll .fc .fc-daygrid-day-frame {
     min-height: 50px;
     display: flex;
