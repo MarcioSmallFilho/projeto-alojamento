@@ -44,7 +44,11 @@
             <div class="conteudoB">
                 <h1>Calendário de Disponibilidade</h1>
                 <section class="seccao-calendario">                    
-                    <div id="meu-calendario"></div>
+                    <div id="meu-calendario-pc"></div>
+                </section>
+
+                <section class="seccao-calendario">                    
+                    <div id="meu-calendario-tll"></div>
                 </section>
 
                 <form id="bookingForm" action="">
@@ -58,9 +62,9 @@
                             <h3>Bebés:</h3>
                         </div>
                         <div style="gap: 4px;">
-                            <input type="number" name="numberOfAdults" value="0" required>
-                            <input type="number" name="numberOfChildren" value="0" required>
-                            <input type="number" name="numberOfInfants" value="0" required>
+                            <input type="number" name="numberOfAdults" value="0" min="0" required>
+                            <input type="number" name="numberOfChildren" value="0" min="0" required>
+                            <input type="number" name="numberOfInfants" value="0" min="0" required>
                         </div>
                     </div>
                     <input type="submit" value="Reservar pelo Airbnb">

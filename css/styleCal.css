@@ -364,7 +364,8 @@ footer > div >.logotipo:hover{
   text-decoration: line-through;
 }
 /* Contentor do Calendário */
-#meu-calendario {
+
+#meu-calendario-pc {
   max-width: 90%;
   margin: 20px auto;
   padding: 20px;
@@ -373,7 +374,7 @@ footer > div >.logotipo:hover{
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-#meu-calendario a{
+#meu-calendario-pc a{
     font-weight: bolder;
     color: var(--cor-2);
 }
@@ -400,6 +401,15 @@ footer > div >.logotipo:hover{
 .fc-button-primary:hover {
   background-color: #b55e1a !important;
 }
+
+#meu-calendario-pc{
+    display: block;
+}
+
+#meu-calendario-tll{
+    display: none;
+}
+
 #bookingForm{
   width: 300px;
   background-color: var(--cor-fundo-1);
@@ -483,4 +493,169 @@ footer > div >.logotipo:hover{
 #bookingForm input[type='submit']:active {
   transform: scale(0.96);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 768px) {
+    #meu-calendario-tll {
+        max-width: 90%;
+        margin: 20px auto;
+        padding: 3vw;
+        background-color: var(--cor-fundo-1);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #meu-calendario-tll a{
+        font-weight: bolder;
+        color: var(--cor-2);
+    }
+    #meu-calendario-pc{
+    display: none;
+    }
+
+    #meu-calendario-tll{
+        display: block;
+    }
+  footer{
+    flex-direction: column;
+  }
+  footer > div {
+    width: 100%;
+    background: linear-gradient(90deg, var(--cor-1), var(--cor-2));
+    box-sizing: border-box;
+  }
+  :root{
+    &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  }
+  .conteudoC > div{
+  flex-direction: column;
+  align-items: center;
+  }
+  .conteudoC > div > div{
+  width: 90%;
+  margin-bottom: 30px;
+  }
+  .conteudoC > div > div > p{
+    font-size: 15px;
+  }
+  .conteudoC > div > div > h2{
+    font-size: 3vw;
+  }
+  .conteudoC > div > div:has(img) {
+    order: 1;
+  }
+  .conteudoC img {
+    width: 100%;
+    max-width: 500px;
+    height: 250px; 
+    object-fit: cover; 
+  }
+  .h-esq img{
+    width: 70px;
+    height: auto;
+  }
+  .h-dir{
+    justify-content: right;
+    padding-right: 50px;
+  }
+  .conteudoB{
+    box-sizing: border-box;
+    
+    
+  }
+  .conteudoB .cards{
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    
+  }
+  .conteudoB .cards > div{
+    width: 80%;
+  }
+  .cards > div > div {
+    background-color: color-mix(in srgb, var(--cor-4) 62.5%, transparent);
+    color: var(--cor-txt);
+  }
+
+
+  .cards > div > div .btn-card {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); 
+    border: 1px solid transparent;
+  }
+  .cards > div > div .btn-card:hover{
+    background-color: transparent;
+    color: var(--cor-txt);
+    border: 1px solid var(--cor-6);
+  }
+  .conteiner-video{
+    margin: 20px;
+    flex-direction: column;
+    padding-top: 0px;
+  }
+  .conteiner-video img{
+    width: 100%;
+  }
+  .conteiner-video > .texto{
+    width: 100%;
+  }
+  .conteiner-video > .texto > h2{
+    padding: 20px;
+    font-size: 6vw;
+  }
+  .conteiner-video > .texto > p{
+    font-size: 4vw;
+  }
+  .avaliacao{
+    font-size: 3vi;
+    padding: 10px;
+  }
+  .avaliacao > h2{
+    min-width: 90%;
+  }
+  .conteiner-imgs{
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+  }
+  .conteiner-imgs > img{
+    width: 90%;
+    aspect-ratio: 2/1;
+    }
+  .conteudo-titulo{
+    height: 95%;
+    width: 95%;
+    font-size: 2vw;
+  }
+  .conteudoA h1{
+    font-size: 7vw;
+    margin: 0px;
+  }
+  .conteudoA p{
+    margin: 20px;
+  }
+  .fc-theme-standard .fc-scrollgrid {
+    border-radius: 8px;
+    overflow: hidden;
+  }  
+
+    /* Cor do cabeçalho do calendário */
+    h2#fc-dom-86.fc-toolbar-title {
+        color: #333;
+        font-size: 5vw;
+        font-family: inherit;
+        font-weight: bolder;
+    }
+
+    .fc .fc-button {
+        width: fit-content;
+        font-size: 3vw;
+        padding: 1vw;
+    }
 }
