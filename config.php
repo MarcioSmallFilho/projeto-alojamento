@@ -1,46 +1,56 @@
 <?php
-// proxy-ical.php
+// config.php
 header('Access-Control-Allow-Origin: *');
-header('Content-Type: text/calendar; charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
 
-// Subtitui pelo teu URL iCal real do Airbnb/Booking
-$icalUrl = 'https://www.airbnb.pt/calendar/ical/12345678.ics?s=example_key';
+$icalUrl = 'https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/2026.ics';
 
-$cacheFile = DIR . '/cache/calendar_cache.ics';
-$cacheTime = 900; // Cache de 15 minutos (900 segundos)
+$cacheDir = __DIR__ . '/cache';
+$cacheFile = $cacheDir . '/calendar_cache.json';
+$cacheTime = 900;
 
-// Cria a pasta de cache se não existir
-if (!is_dir(DIR . '/cache')) {
-    mkdir(DIR . '/cache', 0755, true);
+if (!is_dir($cacheDir)) {
+    mkdir($cacheDir, 0755, true);
 }
 
-// Servir a partir da cache se ainda for recente
-if (file_exists($cacheFile) && (time() - filemtime($cacheFile) < $cacheTime)) {
-    echo file_get_contents($cacheFile);
-    exit;
-}
+// Data de hoje no formato YYYY-MM-DD
+$hoje = date('Y-m-d');
 
-// Caso contrário, procura o ficheiro atualizado na plataforma
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $icalUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-curl_setopt($ch, CURLOPT_USERAGENT, 'OasisDuneCalendarSync/1.0');
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
 
-$data = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$icsData = curl_exec($ch);
 curl_close($ch);
 
-if ($httpCode === 200 && !empty($data)) {
-    file_put_contents($cacheFile, $data);
-    echo $data;
-} else {
-    // Se falhar o pedido, devolve a cache antiga se existir
-    if (file_exists($cacheFile)) {
-        echo file_get_contents($cacheFile);
-    } else {
-        http_response_code(500);
-        echo "Erro ao carregar o calendário.";
+$events = [];
+
+if ($icsData) {
+    preg_match_all('/BEGIN:VEVENT(.*?)END:VEVENT/s', $icsData, $matches);
+
+    foreach ($matches[1] as $eventStr) {
+        preg_match('/DTSTART(?:;VALUE=DATE)?:(\d{8})/', $eventStr, $startMatch);
+        preg_match('/DTEND(?:;VALUE=DATE)?:(\d{8})/', $eventStr, $endMatch);
+
+        if (!empty($startMatch[1]) && !empty($endMatch[1])) {
+            $start = substr($startMatch[1], 0, 4) . '-' . substr($startMatch[1], 4, 2) . '-' . substr($startMatch[1], 6, 2);
+            $end   = substr($endMatch[1], 0, 4) . '-' . substr($endMatch[1], 4, 2) . '-' . substr($endMatch[1], 6, 2);
+
+            // FILTRO: Adiciona apenas os eventos onde a data de término seja igual ou posterior a hoje
+            if ($end >= $hoje) {
+                $events[] = [
+                    'title'   => 'Ocupado',
+                    'start'   => $start,
+                    'end'     => $end,
+                    'color'   => '#ff4d4d'
+                ];
+            }
+        }
     }
 }
+
+echo json_encode($events);
 ?>
