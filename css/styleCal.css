@@ -494,21 +494,53 @@ footer > div >.logotipo:hover{
   transform: scale(0.96);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
 }
+.seccao-calendario {
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
 
 @media (max-width: 768px) {
-    #meu-calendario-tll {
-        max-width: 90%;
-        margin: 20px auto;
-        padding: 3vw;
-        background-color: var(--cor-fundo-1);
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
 
-    #meu-calendario-tll a{
-        font-weight: bolder;
-        color: var(--cor-2);
-    }
+/* Limite de largura para telemóvel */
+#meu-calendario-tll {
+  background-color: var(--cor-fundo-1);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 8px;
+  user-select: none; /* Evita selecionar texto ao arrastar o dedo */
+}
+
+/* Aumenta o tamanho das células dos dias para fácil toque no telemóvel */
+@media (max-width: 768px) {
+  #meu-calendario-tll .fc .fc-daygrid-day-frame {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Reduz botões e título no topo */
+  #meu-calendario-tll .fc .fc-toolbar-title {
+    font-size: 1.1rem !important;
+    font-weight: 600;
+  }
+
+  #meu-calendario-tll .fc .fc-button {
+    padding: 0.4em 0.7em !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Ajusta o número do dia */
+  #meu-calendario-tll .fc .fc-daygrid-day-number {
+    font-size: 0.9rem;
+    padding: 4px !important;
+  }
+}
+
+/* Cor de seleção do intervalo reservado pelo cliente */
+#meu-calendario-tll .fc-highlight {
+  background-color: rgba(46, 204, 113, 0.3) !important; /* Verde suave */
+}
     #meu-calendario-pc{
     display: none;
     }
