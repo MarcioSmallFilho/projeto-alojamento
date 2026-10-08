@@ -40,7 +40,7 @@ if ($icsData) {
             $end   = substr($endMatch[1], 0, 4) . '-' . substr($endMatch[1], 4, 2) . '-' . substr($endMatch[1], 6, 2);
 
             // FILTRO: Adiciona apenas os eventos onde a data de término seja igual ou posterior a hoje
-            if ($end >= $hoje) {
+            if ($end > $hoje) {
                 $events[] = [
                     'title'   => 'Ocupado',
                     'start'   => $start,
