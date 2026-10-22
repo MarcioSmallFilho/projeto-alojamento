@@ -39,7 +39,6 @@ header.is-sticky {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(7px);
 }
-
 header > .h-esq >.logotipo{
   transition: all ease-in-out 0.3s;
   height:75% ;
@@ -480,9 +479,18 @@ footer > div > a:hover{
 }
 footer > div > .logotipo{
   transition: all ease-in-out 0.3s;
+  width: 180px;
 }
 footer > div >.logotipo:hover{
-  transform: scale(1.2) rotate(-10deg);
+  transform:scale(1.05);
+}
+.airbnb_btn{
+  background: linear-gradient(to right, #E31C59 0%, #D70466 50%, #BD1E59 100%);
+  padding: 5px;
+  border-radius: 5px;
+}
+.airbnb_btn:hover{
+  color: var(--cor-fundo-2);
 }
 @media (max-width: 768px) {
   footer{
