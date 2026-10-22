@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubra o que fazer perto do Oasis Dune: Praia do Cabedelo, terminal fluvial, Capela de Santa Catarina e restaurantes.">
+    <meta property="og:title" content="Experiências | Oasis Dune">
+    <meta property="og:description" content="Descubra o que fazer perto do Oasis Dune: Praia do Cabedelo, terminal fluvial, Capela de Santa Catarina e restaurantes.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="../imagens/logo.png">
     <link rel="stylesheet" href="../css/styleconfig.css">
     <link rel="stylesheet" href="../css/styleExp.css">
     <script src="../script/script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Experiências</title>
+    <title>Experiências | Oasis Dune</title>
 </head>
 <body>
     
         <header>
             <div class="h-esq">
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.html')">
+                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.html')" alt="Oasis Dune – página inicial">
             </div>
             <div class="h-dir">
                 <button class="menu-mobile-btn" id="btn-menu" aria-label="Abrir Menu">
@@ -42,15 +47,14 @@
             <h4>Restauração</h4>
         </div>
         <div>
-            <!-- Palmeira -->
-            <i class="fa-solid fa-phone" onclick="godown('contactos')"></i>
+                        <i class="fa-solid fa-phone" onclick="godown('contactos')"></i>
             <h4>Contactos</h4>
         </div>
     </div>
     <!-- representa a tabela com imagens reutilizada do index-->    
     <div class="conteudoC" id="areaA">
         <div>
-            <div><img src="../imagens/experiencias/proximidades/Capela-S-Catarina.png"></div>
+            <div><img src="../imagens/experiencias/proximidades/Capela-S-Catarina.png" alt="Capela de Santa Catarina" loading="lazy"></div>
             <div>
                 <h2>Capela de Santa Catarina</h2>
                 <p>A poucos minutos de nós, descubra este pitoresco e histórico monumento local. Um ponto de interesse imperdível para um passeio tranquilo a descobrir o património da zona.</p>
@@ -59,15 +63,15 @@
         <div>
             <div>
                 <h2>Estação de viana do castelo</h2>
-                <P>Acesso rápido à famosa Praia do Cabedelo e ao emblemático terminal fluvial que liga as duas margens do rio. Perfeito para quem procura praia, desportos náuticos ou uma travessia pitoresca de barco.</P>
+                <p>Acesso rápido à famosa Praia do Cabedelo e ao emblemático terminal fluvial que liga as duas margens do rio. Perfeito para quem procura praia, desportos náuticos ou uma travessia pitoresca de barco.</p>
             </div>
-            <div><img src="../imagens/experiencias/proximidades/foto-estacao.png" ></div>
+            <div><img src="../imagens/experiencias/proximidades/foto-estacao.png" alt="Estação de Viana do Castelo" loading="lazy" ></div>
         </div>
         <div>
-            <div><img src="../imagens/experiencias/proximidades/foto-praia.png"></div>
+            <div><img src="../imagens/experiencias/proximidades/foto-praia.png" alt="Praia do Cabedelo" loading="lazy"></div>
             <div>
-                <h2>Cabedelo Beach</h2>
-                <P>Um extenso areal dourado ideal para relaxar ou praticar desportos náuticos, situado a pouquíssimos minutos a pé.</P>
+                <h2>Praia do Cabedelo</h2>
+                <p>Um extenso areal dourado ideal para relaxar ou praticar desportos náuticos, situado a pouquíssimos minutos a pé.</p>
             </div>
         </div>
     </div>
@@ -82,51 +86,53 @@
                 <h2>Restaurante Feelviana</h2>
                 <p>Uma proposta gastronómica requintada que conjuga ingredientes frescos da região com uma vista privilegiada sobre a natureza e o pinhal, a poucos passos do alojamento.</p>
             </div>
-            <div><img src="../imagens/experiencias/restauracao/foto-restaurante-1.png" class="imgbottom"></div>
+            <div><img src="../imagens/experiencias/restauracao/foto-restaurante-1.png" class="imgbottom" alt="Restaurante Feelviana" loading="lazy"></div>
         </div>
         <div>
-            <div><img src="../imagens/experiencias/restauracao/foto-bar-1.png"></div>
+            <div><img src="../imagens/experiencias/restauracao/foto-bar-1.png" alt="Ap Dona Aninhas" loading="lazy"></div>
             <div>
                 <h2>Ap Dona Aninhas</h2>
-                <P>Um espaço acolhedor e requintado, perfeito para desfrutar de uma bebida relaxante ou de um café a poucos minutos do alojamento.</P>
+                <p>Um espaço acolhedor e requintado, perfeito para desfrutar de uma bebida relaxante ou de um café a poucos minutos do alojamento.</p>
             </div>
         </div>
     </div>
     <div class="area-reservar">
         <h1>Parece divertido? Veja as nossas acomodações.</h1>
-        <input type="button" value="Reservar" onclick='gotoAIRBNB()'>
+        <input type="button" value="Ver acomodações" onclick="goto('oalojamento.html')">
     </div>
     <div class="contactos" id="contactos">
         <div>
             <div><i class="fa-solid fa-phone"></i> +351 000 000 000</div>
-            <div><i class="fa-solid fa-envelope"></i> exemplo@gmail.cpm</div>
-            <div><i class="fa-solid fa-location-dot"></i> Rua da Estrada nº. 173</div>
+            <div><i class="fa-solid fa-envelope"></i> exemplo@gmail.com</div>
+            <div><i class="fa-solid fa-location-dot"></i> Rua da Estrada, n.º 173</div>
         </div>
         <div>
             <form action="">
             <input type="text" placeholder="Nome" required>
             <input type="email" placeholder="E-mail" required>
-            <textarea placeholder="Mensagem"></textarea required>
+            <textarea placeholder="Mensagem" required></textarea>
             <input type="submit" value="Enviar">
             </form>
         </div>
     </div>
     <footer>
             <div>
-                <img src="../imagens/logo.png" class='logotipo' height="100px" width="100px" onclick="goto('index.html')">
+                <img src="../imagens/logo.png" class='logotipo' height="100px" width="100px" onclick="goto('index.html')" alt="Oasis Dune – página inicial">
                 <p>+000 000 000</p> 
                 <p>exemplo@gmail.com</p> 
-                <p>Rua da Estrada n173 - viana do castelo</p> 
-                <p>Registro nº. 123497AL</p></div>
+                <p>Rua da Estrada, n.º 173 - Viana do Castelo</p> 
+                <p>Registo n.º 123497AL</p></div>
             <div>
                 <b>Sobre o alojamento</b>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam.</p>
+                <p>O Oasis Dune é uma moradia para seis pessoas na Praia do Cabedelo, em Viana do Castelo, com acesso direto às dunas, vista mar, jardim com jacuzzi e garagem.</p>
             </div>
             <div>
                 <h2>Alojamento</h2>
                 <a href="oalojamento.html">O Alojamento</a> 
                 <a href="experiencias.html">Experiências</a> 
                 <a href="contactos.html">Contactos</a>
+                <a href="calendario.html">Reservar</a>
+                <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a>
             </div>
         </footer>
 
