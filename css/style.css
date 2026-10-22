@@ -346,14 +346,6 @@ padding-top:50px;
   height: 400px;
 }
 
-header > .h-esq > .logotipo:hover {
-  transform: scale(1.2);
-}
-
-.logotipo:hover {
-  transform: none;
-}
-
 .h-esq {
   width: 35%;
 }
@@ -377,12 +369,4 @@ header > .h-esq > .logotipo:hover {
   body .conteudo-site .conteudo-titulo {
     font-size: 2vw;
   }
-}
-
-footer > div > .logotipo {
-  width: 180px;
-}
-
-footer > div > .logotipo:hover {
-  transform: scale(1.05);
 }

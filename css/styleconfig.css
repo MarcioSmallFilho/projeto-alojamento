@@ -436,4 +436,20 @@ footer > div > a:hover { color: color-mix(in srgb, var(--cor-txt) 50%, black); }
   padding: 4px;
 }
 
+header > .h-esq > .logotipo:hover {
+  transform: scale(1.2);
+}
+
+.logotipo:hover {
+  transform: none;
+}
+
+footer > div > .logotipo {
+  width: 180px;
+}
+
+footer > div > .logotipo:hover {
+  transform: scale(1.05);
+}
+
 
