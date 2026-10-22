@@ -309,6 +309,7 @@ form > .butaomsg:active{
     text-align: center;
     padding-bottom: 25px;
     padding-top: 25px;
+    height: auto;
   }
 
 }
@@ -333,5 +334,7 @@ form > .butaomsg:active{
 }
 
 .areaReservar > input {
-  --area-reservar-button-width: 150px;
+  width: 85%;
+  max-width: 250px;
+  margin-left: 0px;
 }

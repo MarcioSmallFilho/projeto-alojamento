@@ -284,4 +284,13 @@ header {
   .nav-menu {
     background-color: transparent;
   }
+
+  .icones > div > i {
+    font-size: 5vb;
+    padding: 20px;
+  }
+
+  .icones > div {
+    height: auto;
+  }
 }
