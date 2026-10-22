@@ -1,131 +1,3 @@
-header{
-  position: sticky;
-  top: -1px;
-  width: 100%;
-  z-index: 1000;
-  transition: all 0.3s ease-in-out;
-
-  display:flex;
-  flex-direction: row;
-  height: 120px;
-  border-bottom: 1px solid var(--cor-6); 
-}
-header.is-sticky {
-  background-color: rgba(0, 0, 0, 0.950);
-  height: 80px;             
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(7px);
-}
-header > .h-esq >.logotipo{
-  transition: all ease-in-out 0.3s;
-  height:75%;
-  width: auto;
-}
-header > .h-esq > .logotipo:hover{
-  transform: scale(1.2) rotate(-10deg);
-}
-.logotipo{
-  transition: all ease-in-out 0.3s;
-}
-.logotipo:hover{
-  transform: scale(1.2) rotate(-10deg);
-}
-.h-esq{
-  box-sizing: border-box;
-  width: 50%;
-  padding-left: 10%;
-  align-content: center;
-}
-.h-dir{
-  padding: 30px;
-  display: flex;
-  flex-direction: row;
-  gap: 25px;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-}
-/* --- ESTILOS PADRÃO (DESKTOP) --- */
-.menu-mobile-btn {
-  display: none;
-  background-color: transparent;
-  border: none;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  
-  /* Ícone SVG de 3 barras inserido diretamente no CSS */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  transition: transform 0.2s ease;
-}
-.menu-mobile-btn:hover {
-  background-color: var(--cor-5);
-  border-radius: 5px;
-  transform: scale(1.1);
-}
-.menu-mobile-btn.ativo:hover{
-    background-color: var(--cor-3);
-    border-radius: 5px;
-  }
-
-.nav-menu {
-  display: flex;
-  flex-direction: row;
-  gap: 25px;
-}
-
-@media (max-width: 768px) {
-  .menu-mobile-btn {
-    display: block;
-  }
-
-  .nav-menu {
-    display: flex; 
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    padding: 0; 
-    max-height: 0; 
-    gap: 10px;
-    border-bottom: 1px solid transparent;
-    
-    opacity: 0;
-    transform: translateY(-10px); 
-    pointer-events: none; 
-    overflow: hidden;
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  header.is-sticky .nav-menu {
-  background-color: rgba(0, 0, 0, 0.950);
-  }
-  .nav-menu.aberto {
-    opacity: 1;
-    transform: translateY(0); 
-    pointer-events: auto; 
-    padding: 20px 0;
-    max-height: 300px; 
-    border-bottom-color: var(--cor-6);
-    border-top-color: var(--cor-6);
-  }
-  .menu-mobile-btn.ativo {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24L24 6'/%3E%3C/svg%3E");
-  }
-}
-header a{
-  color: var(--cor-txt);
-  transition: all ease-in-out 0.2s;
-  text-decoration: none;
-  font-weight: bolder;
-}
-header a:hover{
-  color:var(--cor-5);
-}
 .topo {
     margin-top: -120px; 
   
@@ -141,14 +13,7 @@ header a:hover{
 
     color: var(--cor-txt);
 }
-.titulo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 720px;
-    font-size: 2.2vw;
-}
+
 .icones {
   height: 300px;
   display: flex;
@@ -341,42 +206,7 @@ header a:hover{
     background-color: var(--cor-1);
     color: var(--cor-5); 
 }
-footer{
-  width: 100%;
-  height: 300px;
-  display: flex;
-  flex-direction: row;
-  color: var(--cor-txt);
-  font-weight: bolder;
-}
-footer > div{
-  display: flex;
-  flex-direction: column;
-  justify-content:baseline;
-  align-items: left;
-  background: linear-gradient(0deg, var(--cor-1), var(--cor-2));
-  width: 33.33%;
-  height: 100%;
-  text-justify: justify;
-  font-size: 12px;
-  padding: 40px;
-  box-sizing: border-box
-}
-footer > div > a{
-  color: var(--cor-txt);
-  text-decoration: none;
-  padding-top: 20px;
-  transition: all ease-in-out 0.2s;
-}
-footer > div > a:hover{
-  color: color-mix(in srgb, var(--cor-txt) 50%, black);
-}
-footer > div > .logotipo{
-  transition: all ease-in-out 0.3s;
-}
-footer > div >.logotipo:hover{
-  transform: scale(1.2) rotate(-10deg);
-}
+
 @media (max-width: 768px) {
   .area-reservar {
     flex-direction: column;
@@ -409,54 +239,49 @@ footer > div >.logotipo:hover{
     padding: 20px;
     gap: 20px;
   }
-  footer{
-    flex-direction: column;
-  }
-  footer > div {
-    width: 100%;
-    background: linear-gradient(90deg, var(--cor-1), var(--cor-2));
-  }
-  :root{
-    &::-webkit-scrollbar {
-    display: none;
-  }
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  }
+
   .conteudoC > div{
   flex-direction: column;
   }
   .conteudoC > div > div{
   width: 100%;
   }
-  .conteudoC > div > div > p{
-    font-size: 15px;
-  }
+  
   .conteudoC > div > div > h2{
     font-size: 15px;
   }
-  .conteudoC > div > div:has(img) {
-    order: 1;
-  }
-  .conteudoC img {
-    width: 100%;
-    max-width: 500px;
-    height: 250px; 
-    object-fit: cover; 
-  }
-  .h-dir{
-    justify-content: right;
-    padding-right: 50px;
-  }
-  .h-esq img{
-    width: 70px;
-    height: auto;
-  }
+
   .icones {
     height: auto;
     padding: 30px;
   }
   .icones div img{
     width: 20vw;
+  }
+}
+
+/* Personalizações exclusivas desta página. */
+.titulo {
+  height: 720px;
+  font-size: 2.2vw;
+}
+
+footer {
+  width: 100%;
+}
+
+footer > div {
+  --footer-column-width: 33.33%;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--cor-6);
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    background-color: transparent;
   }
 }
