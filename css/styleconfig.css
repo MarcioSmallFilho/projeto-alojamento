@@ -2,38 +2,438 @@
 
 :root {
   --cor-fundo-1: white;
-
   --cor-fundo-2: #dcdcdc;
-
   --cor-txt: white;
-
   --cor-1: #070607;
-
   --cor-2: #201009;
-
   --cor-3: #9F1209;
-
   --cor-4: #B73312;
-
   --cor-5: #dc8030;
-
   --cor-6: wheat;
-
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.titulo{
-  font-family:Georgia, 'Times New Roman', Times, serif;
-}
+html { scroll-behavior: smooth; }
 
-body{
+body {
   background-color: black;
-  padding: 0px;
-  margin: 0px;
-
+  padding: 0;
+  margin: 0;
 }
-html{
-  scroll-behavior: smooth;
+
+/* Fundo fixo: cada página define apenas a imagem de fundo. */
+.fundo-fixo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.conteudo-site { position: relative; z-index: 1; }
+
+/* Cabeçalho e logótipo comuns. */
+header {
+  position: sticky;
+  top: -1px;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.26);
+  display: flex;
+  flex-direction: row;
+  height: 120px;
+  transition: all 0.3s ease-in-out;
+}
+
+header.is-sticky {
+  background-color: rgba(0, 0, 0, 0.95);
+  height: 80px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(7px);
+}
+
+header > .h-esq > .logotipo {
+  transition: all ease-in-out 0.3s;
+  height: 75%;
+  width: auto;
+}
+
+header > .h-esq > .logotipo:hover { transform: scale(1.2) rotate(-10deg); }
+.logotipo { transition: all ease-in-out 0.3s; }
+.logotipo:hover { transform: scale(1.2) rotate(-10deg); }
+
+.h-esq {
+  box-sizing: border-box;
+  width: 50%;
+  padding-left: 10%;
+  align-content: center;
+}
+
+.h-dir {
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+header a {
+  color: var(--cor-txt);
+  transition: all ease-in-out 0.2s;
+  text-decoration: none;
+  font-weight: bolder;
+}
+header a:hover { color: var(--cor-5); }
+
+/* Menu desktop/mobile. */
+.menu-mobile-btn {
+  display: none;
+  background-color: transparent;
+  border: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: transform 0.2s ease;
+}
+.menu-mobile-btn:hover {
+  background-color: var(--cor-5);
+  border-radius: 5px;
+  transform: scale(1.1);
+}
+.menu-mobile-btn.ativo:hover { background-color: var(--cor-3); border-radius: 5px; }
+.nav-menu { display: flex; flex-direction: row; gap: 25px; }
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 480px;
+  color: var(--cor-txt);
+  font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Painel do título com máscara comum; dimensões e blur podem variar por página. */
+.conteudo-titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 60%;
+  font-size: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+                      linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+              linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+/* Botões de reserva: as páginas mantêm apenas as pequenas diferenças de efeito. */
+.but-reservar {
+  padding: 25px;
+  border-radius: 15px;
+  border: none;
+  background-color: var(--cor-4);
+  color: var(--cor-txt);
+  font-weight: bolder;
+  font-size: large;
+  transition: all ease-in-out 0.2s;
+}
+.but-reservar:hover { background-color: var(--cor-5); }
+.but-reservar:active { background-color: var(--cor-3); }
+
+/* Rodapé comum, com largura das colunas configurável quando necessário. */
+footer {
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  color: var(--cor-txt);
+  font-weight: bolder;
+}
+
+footer > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: left;
+  background: linear-gradient(0deg, var(--cor-1), var(--cor-2));
+  width: var(--footer-column-width, 33%);
+  height: 100%;
+  text-justify: justify;
+  font-size: 12px;
+  padding: 40px;
+}
+
+footer > div > a {
+  color: var(--cor-txt);
+  text-decoration: none;
+  padding-top: 20px;
+  transition: all ease-in-out 0.2s;
+}
+footer > div > a:hover { color: color-mix(in srgb, var(--cor-txt) 50%, black); }
+
+/* Faixa de reserva e botão partilhados pelas páginas de detalhe. */
+.areaReservar {
+  background: linear-gradient(47deg, var(--cor-3), var(--cor-5));
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.areaReservar > input {
+  width: var(--area-reservar-button-width, fit-content);
+  height: 50px;
+  border: solid 3px var(--cor-1);
+  border-radius: 150px;
+  font-weight: bolder;
+  font-size: large;
+  color: var(--cor-1);
+  background-color: transparent;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  mix-blend-mode: multiply;
+}
+.areaReservar > input:hover {
+  transform: scale(1.2);
+  background-color: var(--cor-1);
+  color: white;
+  mix-blend-mode: multiply;
+}
+.areaReservar > input:active {
+  transform: scale(0.95);
+  background-color: transparent;
+  color: var(--cor-1);
+}
+
+/* Lightbox comum às galerias. */
+.modal-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.modal-lightbox.aberto { display: flex; }
+.modal-lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  animation: zoomInLightbox 0.25s ease;
+}
+.fechar-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.2rem;
+  color: white;
+  cursor: pointer;
+}
+@keyframes zoomInLightbox {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .menu-mobile-btn { display: block; }
+  .nav-menu {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.26);
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    max-height: 0;
+    gap: 10px;
+    border-bottom: 1px solid transparent;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  header.is-sticky .nav-menu { background-color: rgba(0, 0, 0, 0.95); }
+  .nav-menu.aberto {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    padding: 20px 0;
+    max-height: 300px;
+    border-bottom-color: var(--cor-6);
+    border-top-color: var(--cor-6);
+  }
+  .menu-mobile-btn.ativo {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24L24 6'/%3E%3C/svg%3E");
+    transition: all ease-in-out 0.2s;
+  }
+
+  .h-dir { justify-content: right; padding-right: 50px; }
+  html body .conteudoC img { width: 100%; max-width: 500px; height: 250px; object-fit: cover; }
+  header .h-esq img { width: 70px; height: auto; }
+  body .conteudo-site .conteudoB { box-sizing: border-box; }
+  body .conteudo-site .conteudo-titulo {
+    height: 95%;
+    width: 95%;
+    font-size: 3vw;
+  }
+
+  :root {
+    &::-webkit-scrollbar { display: none; }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  footer { flex-direction: column; }
+  footer > div {
+    width: 100%;
+    background: linear-gradient(90deg, var(--cor-1), var(--cor-2));
+    box-sizing: border-box;
+  }
+}
+
+/* Componentes partilhados entre várias páginas. */
+
+.areaImg {
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 2;
+  gap: 15px;
+  justify-content: center;
+}
+
+.areaImg img:hover{
+  transform: translateY(-5px);
+  box-shadow:  0 4px 12px var(--cor-2);
+  cursor: pointer;
+}
+
+.conteudoA > h1::after {
+  content: '';
+  position: absolute;bottom: -6px; /* Substitui o text-underline-offset */
+
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 30%; /* Define o tamanho da linha em relação ao texto */
+  height: 2px; /* Espessura da linha */
+  background-color: var(--cor-3); /* Cor da linha */
+}
+
+.conteudoB > h1::after {
+  content: '';
+  position: absolute;bottom: -6px; /* Substitui o text-underline-offset */
+
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 30%; /* Define o tamanho da linha em relação ao texto */
+  height: 2px; /* Espessura da linha */
+  background-color: var(--cor-3); /* Cor da linha */
+}
+
+.areaA h1{
+  margin-bottom: 15px;
+  color: var(--cor-4);
+  width: fit-content;
+}
+
+.areaA .comodidades{
+  justify-self: center;
+  justify-content: last baseline;
+  width: 95%;
+  gap: 15px;
+  display: flex;
+  flex-wrap:wrap;
+}
+
+.areaA .comodidade {
+  font-weight: bolder;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding-right: 15px;
+  border-radius: 100px;
+  border: solid 1px color-mix(in srgb, var(--cor-fundo-2) 80%, black);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.areaA .comodidade > i{
+  color: var(--cor-2);
+  background: var(--cor-5);
+  height: 35px;
+  text-align: center;
+  align-content: center;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.areaA .comodidade:hover{
+  transform: translateY(-3px);
+  box-shadow:  0 4px 12px var(--cor-2);
+}
+
+@media (max-width: 768px) {
+  .conteudoC > div > div > p{
+      font-size: 15px;
+    }
+
+  .conteudoC > div > div:has(img) {
+      order: 1;
+    }
+
+  .conteudoB .cards{
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      
+    }
+
+  .conteudoB .cards > div{
+      width: 80%;
+    }
+
+  .avaliacao > h2{
+      min-width: 90%;
+    }
+
+  .areaImg > img{
+      width: 100%;
+      aspect-ratio: 2 / 1;
+    }
+}
+
+/* Base comum das imagens das galerias. */
+.areaImg img {
+  object-fit: cover;
+  transition: all ease-in-out .2s;
+  overflow: hidden;
+  border: solid 1px color-mix(in srgb, var(--cor-fundo-2) 80%, black);
+  border-radius: 15px;
+  padding: 4px;
 }
 
 
