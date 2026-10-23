@@ -338,14 +338,6 @@ padding-top:50px;
   height: 400px;
 }
 
-.h-esq {
-  width: 35%;
-}
-
-.h-dir {
-  width: 65%;
-}
-
 .but-reservar {
   transition: all ease-in-out 0.4s;
   cursor: pointer;

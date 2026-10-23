@@ -80,7 +80,7 @@ header > .h-esq > .logotipo:hover { transform: scale(1.2) rotate(-10deg); }
   gap: 25px;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 65%;
 }
 
 header a {
