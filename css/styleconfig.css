@@ -166,6 +166,10 @@ footer {
   background: linear-gradient(0deg, var(--cor-1), var(--cor-2));
 }
 
+footer p {
+  text-align: justify;
+}
+
 footer > div {
   display: flex;
   flex-direction: column;
@@ -184,6 +188,7 @@ footer > div > a {
   padding-top: 20px;
   transition: all ease-in-out 0.2s;
 }
+
 footer > div > a:hover { color: color-mix(in srgb, var(--cor-txt) 50%, black); }
 
 /* Faixa de reserva e botão partilhados pelas páginas de detalhe. */
