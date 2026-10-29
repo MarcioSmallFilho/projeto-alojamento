@@ -3,7 +3,7 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
 
-$icalUrl = 'https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/2026.ics';
+$icalUrl = 'http://localhost/sites/projeto-alojamento/oasis-dune-teste.ics';
 
 $cacheDir = __DIR__ . '/cache';
 $cacheFile = $cacheDir . '/calendar_cache.json';
