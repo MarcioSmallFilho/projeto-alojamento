@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bal>
+    <Unidade_Hoteleira>
+        <Codigo_Unidade_Hoteleira>123456789</Codigo_Unidade_Hoteleira>
+        <Estabelecimento>0001</Estabelecimento>
+        <Nome>ALOJAMENTO EXEMPLO</Nome>
+        <Abreviatura>ALOJAMENTO</Abreviatura>
+        <Morada>RUA EXEMPLO 10</Morada>
+        <Localidade>PORTO</Localidade>
+        <Codigo_Postal>4000</Codigo_Postal>
+        <Zona_Postal>123</Zona_Postal>
+        <Telefone>912345678</Telefone>
+        <Nome_Contacto>CONTACTO EXEMPLO</Nome_Contacto>
+        <Email_Contacto>teste@example.com</Email_Contacto>
+    </Unidade_Hoteleira>
+
+    <Boletim_Alojamento>
+        <Apelido>EXEMPLO</Apelido>
+        <Nome>JOAO</Nome>
+        <Nacionalidade>PRT</Nacionalidade>
+        <Data_Nascimento>1990-01-15</Data_Nascimento>
+        <Local_Nascimento>PORTO</Local_Nascimento>
+        <Documento_Identificacao>12345678</Documento_Identificacao>
+        <Tipo_Documento_Identificacao>P</Tipo_Documento_Identificacao>
+        <Pais_Emissor_Documento>PRT</Pais_Emissor_Documento>
+        <Data_Entrada>2026-10-28</Data_Entrada>
+        <Data_Saida>2026-10-30</Data_Saida>
+        <Pais_Residencia_Origem>PRT</Pais_Residencia_Origem>
+        <Local_Residencia_Origem>PORTO</Local_Residencia_Origem>
+    </Boletim_Alojamento>
+
+    <Boletim_Alojamento>
+        <Apelido>TESTE</Apelido>
+        <Nome>MARIA</Nome>
+        <Nacionalidade>ESP</Nacionalidade>
+        <Data_Nascimento>1992-04-20</Data_Nascimento>
+        <Local_Nascimento>MADRID</Local_Nascimento>
+        <Documento_Identificacao>AB123456</Documento_Identificacao>
+        <Tipo_Documento_Identificacao>P</Tipo_Documento_Identificacao>
+        <Pais_Emissor_Documento>ESP</Pais_Emissor_Documento>
+        <Data_Entrada>2026-10-28</Data_Entrada>
+        <Data_Saida>2026-10-30</Data_Saida>
+        <Pais_Residencia_Origem>ESP</Pais_Residencia_Origem>
+        <Local_Residencia_Origem>MADRID</Local_Residencia_Origem>
+    </Boletim_Alojamento>
+
+    <Envio>
+        <Numero_Ficheiro>00001</Numero_Ficheiro>
+        <Data_Movimento>2026-10-29</Data_Movimento>
+    </Envio>
+</Bal>
