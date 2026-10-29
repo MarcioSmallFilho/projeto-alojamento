@@ -1,0 +1,53 @@
+BEGIN:VCALENDAR
+PRODID:-//Airbnb Inc//Hosting Calendar 1.0//EN
+CALSCALE:GREGORIAN
+VERSION:2.0
+BEGIN:VEVENT
+DTEND;VALUE=DATE:20261014
+DTSTART;VALUE=DATE:20261010
+UID:teste-1-1193985038143849991@airbnb.com
+DESCRIPTION:Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMTESTE001\nPhone Number (Last 4 Digits): 0000
+SUMMARY:Reserved
+END:VEVENT
+BEGIN:VEVENT
+DTEND;VALUE=DATE:20261023
+DTSTART;VALUE=DATE:20261019
+UID:teste-2-1193985038143849991@airbnb.com
+DESCRIPTION:Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMTESTE002\nPhone Number (Last 4 Digits): 0000
+SUMMARY:Reserved
+END:VEVENT
+BEGIN:VEVENT
+DTEND;VALUE=DATE:20261031
+DTSTART;VALUE=DATE:20261029
+UID:teste-3-1193985038143849991@airbnb.com
+DESCRIPTION:Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMTESTE003\nPhone Number (Last 4 Digits): 0000
+SUMMARY:Reserved
+END:VEVENT
+BEGIN:VEVENT
+DTEND;VALUE=DATE:20261116
+DTSTART;VALUE=DATE:20261113
+UID:teste-4-1193985038143849991@airbnb.com
+DESCRIPTION:Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMTESTE004\nPhone Number (Last 4 Digits): 0000
+SUMMARY:Reserved
+END:VEVENT
+BEGIN:VEVENT
+DTEND;VALUE=DATE:20261125
+DTSTART;VALUE=DATE:20261120
+UID:teste-5-bloqueio@airbnb.com
+SUMMARY:Airbnb (Not available)
+END:VEVENT
+BEGIN:VEVENT
+DTEND;VALUE=DATE:20270102
+DTSTART;VALUE=DATE:20261226
+UID:teste-6-1193985038143849991@airbnb.com
+DESCRIPTION:Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMTESTE005\nPhone Number (Last 4 Digits): 0000
+SUMMARY:Reserved
+END:VEVENT
+BEGIN:VEVENT
+DTEND;VALUE=DATE:20270722
+DTSTART;VALUE=DATE:20270715
+UID:teste-7-1193985038143849991@airbnb.com
+DESCRIPTION:Reservation URL: https://www.airbnb.com/hosting/reservations/details/HMTESTE006\nPhone Number (Last 4 Digits): 0000
+SUMMARY:Reserved
+END:VEVENT
+END:VCALENDAR
