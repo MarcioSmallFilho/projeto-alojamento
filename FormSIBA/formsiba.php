@@ -509,6 +509,10 @@
                 var_dump($info);
             }
         }
+
+        $arquivo = fopen('exemplo.xml','w');
+        fwrite($arquivo, "\n0|BA03|123456789|0001|HOTEL EXEMPLO|RUA CENTRAL 10|PORTO|4000|123|220123456||JOAO SILVA|\n1|".$info['Apelido']."|".$info['Nome']."|".$info['Data_Nascimento']."|".$info['Nacionalidade']."|".$info['Documento_Identificacao']."|".$info['Tipo_Documento_Identificacao']."|".$info['Pais_Emissor_Documento']."|".$info['Pais_Residencia_Origem']."|".$info['Local_Residencia_Origem']."|".$info['Data_Entrada']."|".$info['Data_Saida']."|\n9|00002|20261030|00001|");
+        fclose($arquivo);
     ?>
     <script>
     document.querySelectorAll('.etiqueta-flutuante').forEach(function(etiqueta) {
