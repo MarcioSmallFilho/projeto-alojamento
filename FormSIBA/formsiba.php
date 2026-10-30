@@ -67,14 +67,14 @@
     </div>
     <form method="POST">
         <input type="text" name="nome" id="" placeholder="Nome Completo" required>
-        <input type="date" name="data_nasc" id="" placeholder="Data de nascimento" >
-        <input type="text" name="local_nasc" id="" placeholder="Local Nascimento" >
-        <select name="Nacionalidade" id="" >
+        <input type="date" name="data_nasc" id="" placeholder="Data de nascimento" required>
+        <input type="text" name="local_nasc" id="" placeholder="Local Nascimento">
+        <select name="Nacionalidade" id="" required>
             <option value="" disabled selected>Nacionalidade...</option>
                 <option value="AFG">Afegão / Afegã</option>
                 <option value="ZAF">Sul-africano / Sul-africana</option>
                 <option value="ALB">Albanês / Albanesa</option>
-                <option value="DEU">Alemão / Alemã</option>
+                <option value="D  ">Alemão / Alemã</option>
                 <option value="AND">Andorrano / Andorrana</option>
                 <option value="AGO">Angolano / Angolana</option>
                 <option value="SAU">Saudita</option>
@@ -157,191 +157,191 @@
                 <option value="ZMB">Zambiano / Zambiana</option>
                 <option value="ZWE">Zimbabueano / Zimbabueana</option>
         </select> 
-        <input type="text" name="local_resid" id="" placeholder="Local Residencia" >
-        <select name="Pais residencia" id="" >
+        <input type="text" name="local_resid" id="" placeholder="Local_Residencia" >
+        <select name="Pais_residencia" id="" required>
             <!-- Seleção de País -->
             <option value="" disabled selected>Pais Residencia...</option>
-            <option value="AF">🇦🇫 Afeganistão</option>
-            <option value="ZA">🇿🇦 África do Sul</option>
-            <option value="AL">🇦🇱 Albânia</option>
-            <option value="DE">🇩🇪 Alemanha</option>
-            <option value="AD">🇦🇩 Andorra</option>
-            <option value="AO">🇦🇴 Angola</option>
-            <option value="SA">🇸🇦 Arábia Saudita</option>
-            <option value="DZ">🇩🇿 Argélia</option>
-            <option value="AR">🇦🇷 Argentina</option>
-            <option value="AM">🇦🇲 Arménia</option>
-            <option value="AU">🇦🇺 Austrália</option>
-            <option value="AT">🇦🇹 Áustria</option>
-            <option value="AZ">🇦🇿 Azerbaijão</option>
-            <option value="BS">🇧🇸 Baamas</option>
-            <option value="BD">🇧🇩 Bangladeche</option>
-            <option value="BE">🇧🇪 Bélgica</option>
-            <option value="BR">🇧🇷 Brasil</option>
-            <option value="CV">🇨🇻 Cabo Verde</option>
-            <option value="CA">🇨🇦 Canadá</option>
-            <option value="CL">🇨🇱 Chile</option>
-            <option value="CN">🇨🇳 China</option>
-            <option value="CO">🇨🇴 Colômbia</option>
-            <option value="KR">🇰🇷 Coreia do Sul</option>
-            <option value="CR">🇨🇷 Costa Rica</option>
-            <option value="CU">🇨🇺 Cuba</option>
-            <option value="DK">🇩🇰 Dinamarca</option>
-            <option value="EG">🇪🇬 Egito</option>
-            <option value="AE">🇦🇪 Emirados Árabes Unidos</option>
-            <option value="EC">🇪🇨 Equador</option>
-            <option value="ES">🇪🇸 Espanha</option>
-            <option value="US">🇺🇸 Estados Unidos</option>
-            <option value="PH">🇵🇭 Filipinas</option>
-            <option value="FI">🇫🇮 Finlândia</option>
-            <option value="FR">🇫🇷 França</option>
-            <option value="GR">🇬🇷 Grécia</option>
-            <option value="GT">🇬🇹 Guatemala</option>
-            <option value="NL">🇳🇱 Países Baixos (Holanda)</option>
-            <option value="HN">🇭🇳 Honduras</option>
-            <option value="HU">🇭🇺 Hungria</option>
-            <option value="IN">🇮🇳 Índia</option>
-            <option value="ID">🇮🇩 Indonésia</option>
-            <option value="IQ">🇮🇶 Iraque</option>
-            <option value="IR">🇮🇷 Irão</option>
-            <option value="IE">🇮🇪 Irlanda</option>
-            <option value="IS">🇮🇸 Islândia</option>
-            <option value="IL">🇮🇱 Israel</option>
-            <option value="IT">🇮🇹 Itália</option>
-            <option value="JM">🇯🇲 Jamaica</option>
-            <option value="JP">🇯🇵 Japão</option>
-            <option value="JO">🇯🇴 Jordânia</option>
-            <option value="KW">🇰🇼 Kuwait</option>
-            <option value="LB">🇱🇧 Líbano</option>
-            <option value="MY">🇲🇾 Malásia</option>
-            <option value="MA">🇲🇦 Marrocos</option>
-            <option value="MX">🇲🇽 México</option>
-            <option value="MZ">🇲🇿 Moçambique</option>
-            <option value="NP">🇳🇵 Nepal</option>
-            <option value="NO">🇳🇴 Noruega</option>
-            <option value="NZ">🇳🇿 Nova Zelândia</option>
-            <option value="PK">🇵🇰 Paquistão</option>
-            <option value="PY">🇵🇾 Paraguai</option>
-            <option value="PE">🇵🇪 Peru</option>
-            <option value="PL">🇵🇱 Polónia</option>
-            <option value="GB">🇬🇧 Reino Unido</option>
-            <option value="DO">🇩🇴 República Dominicana</option>
-            <option value="RO">🇷🇴 Roménia</option>
-            <option value="RU">🇷🇺 Rússia</option>
-            <option value="SV">🇸🇻 El Salvador</option>
-            <option value="RS">🇷🇸 Sérvia</option>
-            <option value="SG">🇸🇬 Singapura</option>
-            <option value="SY">🇸🇾 Síria</option>
-            <option value="SE">🇸🇪 Suécia</option>
-            <option value="CH">🇨🇭 Suíça</option>
-            <option value="TH">🇹🇭 Tailândia</option>
-            <option value="TW">🇹🇼 Taiwan</option>
-            <option value="TZ">🇹🇿 Tanzânia</option>
-            <option value="TR">🇹🇷 Turquia</option>
-            <option value="UA">🇺🇦 Ucrânia</option>
-            <option value="UG">🇺🇬 Uganda</option>
-            <option value="UY">🇺🇾 Uruguai</option>
-            <option value="VE">🇻🇪 Venezuela</option>
-            <option value="VN">🇻🇳 Vietname</option>
-            <option value="ZM">🇿🇲 Zâmbia</option>
-            <option value="ZW">🇿🇼 Zimbabué</option>
+            <option value="AFG">🇦🇫 Afeganistão</option>
+            <option value="ZAF">🇿🇦 África do Sul</option>
+            <option value="ALB">🇦🇱 Albânia</option>
+            <option value="D  ">🇩🇪 Alemanha</option>
+            <option value="AND">🇦🇩 Andorra</option>
+            <option value="AGO">🇦🇴 Angola</option>
+            <option value="SAU">🇸🇦 Arábia Saudita</option>
+            <option value="DZA">🇩🇿 Argélia</option>
+            <option value="ARG">🇦🇷 Argentina</option>
+            <option value="ARM">🇦🇲 Arménia</option>
+            <option value="AUS">🇦🇺 Austrália</option>
+            <option value="AUT">🇦🇹 Áustria</option>
+            <option value="AZE">🇦🇿 Azerbaijão</option>
+            <option value="BHS">🇧🇸 Baamas</option>
+            <option value="BGD">🇧🇩 Bangladeche</option>
+            <option value="BEL">🇧🇪 Bélgica</option>
+            <option value="BRA">🇧🇷 Brasil</option>
+            <option value="CPV">🇨🇻 Cabo Verde</option>
+            <option value="CAN">🇨🇦 Canadá</option>
+            <option value="CHL">🇨🇱 Chile</option>
+            <option value="CHN">🇨🇳 China</option>
+            <option value="COL">🇨🇴 Colômbia</option>
+            <option value="KOR">🇰🇷 Coreia do Sul</option>
+            <option value="CRI">🇨🇷 Costa Rica</option>
+            <option value="CUB">🇨🇺 Cuba</option>
+            <option value="DNK">🇩🇰 Dinamarca</option>
+            <option value="EGY">🇪🇬 Egito</option>
+            <option value="ARE">🇦🇪 Emirados Árabes Unidos</option>
+            <option value="ECU">🇪🇨 Equador</option>
+            <option value="ESP">🇪🇸 Espanha</option>
+            <option value="USA">🇺🇸 Estados Unidos</option>
+            <option value="PHL">🇵🇭 Filipinas</option>
+            <option value="FIN">🇫🇮 Finlândia</option>
+            <option value="FRA">🇫🇷 França</option>
+            <option value="GRC">🇬🇷 Grécia</option>
+            <option value="GTM">🇬🇹 Guatemala</option>
+            <option value="NLD">🇳🇱 Países Baixos</option>
+            <option value="HND">🇭🇳 Honduras</option>
+            <option value="HUN">🇭🇺 Hungria</option>
+            <option value="IND">🇮🇳 Índia</option>
+            <option value="IDN">🇮🇩 Indonésia</option>
+            <option value="IRQ">🇮🇶 Iraque</option>
+            <option value="IRN">🇮🇷 Irão</option>
+            <option value="IRL">🇮🇪 Irlanda</option>
+            <option value="ISL">🇮🇸 Islândia</option>
+            <option value="ISR">🇮🇱 Israel</option>
+            <option value="ITA">🇮🇹 Itália</option>
+            <option value="JAM">🇯🇲 Jamaica</option>
+            <option value="JPN">🇯🇵 Japão</option>
+            <option value="JOR">🇯🇴 Jordânia</option>
+            <option value="KWT">🇰🇼 Kuwait</option>
+            <option value="LBN">🇱🇧 Líbano</option>
+            <option value="MYS">🇲🇾 Malásia</option>
+            <option value="MAR">🇲🇦 Marrocos</option>
+            <option value="MEX">🇲🇽 México</option>
+            <option value="MOZ">🇲🇿 Moçambique</option>
+            <option value="NPL">🇳🇵 Nepal</option>
+            <option value="NOR">🇳🇴 Noruega</option>
+            <option value="NZL">🇳🇿 Nova Zelândia</option>
+            <option value="PAK">🇵🇰 Paquistão</option>
+            <option value="PRY">🇵🇾 Paraguai</option>
+            <option value="PER">🇵🇪 Peru</option>
+            <option value="POL">🇵🇱 Polónia</option>
+            <option value="GBR">🇬🇧 Reino Unido</option>
+            <option value="DOM">🇩🇴 República Dominicana</option>
+            <option value="ROU">🇷🇴 Roménia</option>
+            <option value="RUS">🇷🇺 Rússia</option>
+            <option value="SLV">🇸🇻 El Salvador</option>
+            <option value="SRB">🇷🇸 Sérvia</option>
+            <option value="SGP">🇸🇬 Singapura</option>
+            <option value="SYR">🇸🇾 Síria</option>
+            <option value="SWE">🇸🇪 Suécia</option>
+            <option value="CHE">🇨🇭 Suíça</option>
+            <option value="THA">🇹🇭 Tailândia</option>
+            <option value="TWN">🇹🇼 Taiwan</option>
+            <option value="TZA">🇹🇿 Tanzânia</option>
+            <option value="TUR">🇹🇷 Turquia</option>
+            <option value="UKR">🇺🇦 Ucrânia</option>
+            <option value="UGA">🇺🇬 Uganda</option>
+            <option value="URY">🇺🇾 Uruguai</option>
+            <option value="VEN">🇻🇪 Venezuela</option>
+            <option value="VNM">🇻🇳 Vietname</option>
+            <option value="ZMB">🇿🇲 Zâmbia</option>
+            <option value="ZWE">🇿🇼 Zimbabué</option>
         </select>
-        <input type="text" name="num_doc" id="" placeholder="Numero Documento" >
-        <select name="Tipo documento" id="" >
+        <input type="text" name="num_doc" id="" placeholder="Numero Documento" required>
+        <select name="tipo_documento" id="" required>
             <option value="" disabled selected>Tipo de Documento</option>
             <option value="P">Passaporte</option>
             <option value="B">Bilhete identidade</option>
             <option value="O">Outro tipo de documento</option>
         </select>
-        <select name="Pais Emissor Documento" id="" >
-            <option value="" disabled selected>Pais Emissor Documento...</option>
-            <option value="AF">🇦🇫 Afeganistão</option>
-            <option value="ZA">🇿🇦 África do Sul</option>
-            <option value="AL">🇦🇱 Albânia</option>
-            <option value="DE">🇩🇪 Alemanha</option>
-            <option value="AD">🇦🇩 Andorra</option>
-            <option value="AO">🇦🇴 Angola</option>
-            <option value="SA">🇸🇦 Arábia Saudita</option>
-            <option value="DZ">🇩🇿 Argélia</option>
-            <option value="AR">🇦🇷 Argentina</option>
-            <option value="AM">🇦🇲 Arménia</option>
-            <option value="AU">🇦🇺 Austrália</option>
-            <option value="AT">🇦🇹 Áustria</option>
-            <option value="AZ">🇦🇿 Azerbaijão</option>
-            <option value="BS">🇧🇸 Baamas</option>
-            <option value="BD">🇧🇩 Bangladeche</option>
-            <option value="BE">🇧🇪 Bélgica</option>
-            <option value="BR">🇧🇷 Brasil</option>
-            <option value="CV">🇨🇻 Cabo Verde</option>
-            <option value="CA">🇨🇦 Canadá</option>
-            <option value="CL">🇨🇱 Chile</option>
-            <option value="CN">🇨🇳 China</option>
-            <option value="CO">🇨🇴 Colômbia</option>
-            <option value="KR">🇰🇷 Coreia do Sul</option>
-            <option value="CR">🇨🇷 Costa Rica</option>
-            <option value="CU">🇨🇺 Cuba</option>
-            <option value="DK">🇩🇰 Dinamarca</option>
-            <option value="EG">🇪🇬 Egito</option>
-            <option value="AE">🇦🇪 Emirados Árabes Unidos</option>
-            <option value="EC">🇪🇨 Equador</option>
-            <option value="ES">🇪🇸 Espanha</option>
-            <option value="US">🇺🇸 Estados Unidos</option>
-            <option value="PH">🇵🇭 Filipinas</option>
-            <option value="FI">🇫🇮 Finlândia</option>
-            <option value="FR">🇫🇷 França</option>
-            <option value="GR">🇬🇷 Grécia</option>
-            <option value="GT">🇬🇹 Guatemala</option>
-            <option value="NL">🇳🇱 Países Baixos (Holanda)</option>
-            <option value="HN">🇭🇳 Honduras</option>
-            <option value="HU">🇭🇺 Hungria</option>
-            <option value="IN">🇮🇳 Índia</option>
-            <option value="ID">🇮🇩 Indonésia</option>
-            <option value="IQ">🇮🇶 Iraque</option>
-            <option value="IR">🇮🇷 Irão</option>
-            <option value="IE">🇮🇪 Irlanda</option>
-            <option value="IS">🇮🇸 Islândia</option>
-            <option value="IL">🇮🇱 Israel</option>
-            <option value="IT">🇮🇹 Itália</option>
-            <option value="JM">🇯🇲 Jamaica</option>
-            <option value="JP">🇯🇵 Japão</option>
-            <option value="JO">🇯🇴 Jordânia</option>
-            <option value="KW">🇰🇼 Kuwait</option>
-            <option value="LB">🇱🇧 Líbano</option>
-            <option value="MY">🇲🇾 Malásia</option>
-            <option value="MA">🇲🇦 Marrocos</option>
-            <option value="MX">🇲🇽 México</option>
-            <option value="MZ">🇲🇿 Moçambique</option>
-            <option value="NP">🇳🇵 Nepal</option>
-            <option value="NO">🇳🇴 Noruega</option>
-            <option value="NZ">🇳🇿 Nova Zelândia</option>
-            <option value="PK">🇵🇰 Paquistão</option>
-            <option value="PY">🇵🇾 Paraguai</option>
-            <option value="PE">🇵🇪 Peru</option>
-            <option value="PL">🇵🇱 Polónia</option>
-            <option value="GB">🇬🇧 Reino Unido</option>
-            <option value="DO">🇩🇴 República Dominicana</option>
-            <option value="RO">🇷🇴 Roménia</option>
-            <option value="RU">🇷🇺 Rússia</option>
-            <option value="SV">🇸🇻 El Salvador</option>
-            <option value="RS">🇷🇸 Sérvia</option>
-            <option value="SG">🇸🇬 Singapura</option>
-            <option value="SY">🇸🇾 Síria</option>
-            <option value="SE">🇸🇪 Suécia</option>
-            <option value="CH">🇨🇭 Suíça</option>
-            <option value="TH">🇹🇭 Tailândia</option>
-            <option value="TW">🇹🇼 Taiwan</option>
-            <option value="TZ">🇹🇿 Tanzânia</option>
-            <option value="TR">🇹🇷 Turquia</option>
-            <option value="UA">🇺🇦 Ucrânia</option>
-            <option value="UG">🇺🇬 Uganda</option>
-            <option value="UY">🇺🇾 Uruguai</option>
-            <option value="VE">🇻🇪 Venezuela</option>
-            <option value="VN">🇻🇳 Vietname</option>
-            <option value="ZM">🇿🇲 Zâmbia</option>
-            <option value="ZW">🇿🇼 Zimbabué</option>
+       <select name="Pais_Emissor_Documento" required>
+            <option value="" disabled selected>País Emissor do Documento...</option>
+            <option value="AFG">🇦🇫 Afeganistão</option>
+            <option value="ZAF">🇿🇦 África do Sul</option>
+            <option value="ALB">🇦🇱 Albânia</option>
+            <option value="D  ">🇩🇪 Alemanha</option>
+            <option value="AND">🇦🇩 Andorra</option>
+            <option value="AGO">🇦🇴 Angola</option>
+            <option value="SAU">🇸🇦 Arábia Saudita</option>
+            <option value="DZA">🇩🇿 Argélia</option>
+            <option value="ARG">🇦🇷 Argentina</option>
+            <option value="ARM">🇦🇲 Arménia</option>
+            <option value="AUS">🇦🇺 Austrália</option>
+            <option value="AUT">🇦🇹 Áustria</option>
+            <option value="AZE">🇦🇿 Azerbaijão</option>
+            <option value="BHS">🇧🇸 Baamas</option>
+            <option value="BGD">🇧🇩 Bangladeche</option>
+            <option value="BEL">🇧🇪 Bélgica</option>
+            <option value="BRA">🇧🇷 Brasil</option>
+            <option value="CPV">🇨🇻 Cabo Verde</option>
+            <option value="CAN">🇨🇦 Canadá</option>
+            <option value="CHL">🇨🇱 Chile</option>
+            <option value="CHN">🇨🇳 China</option>
+            <option value="COL">🇨🇴 Colômbia</option>
+            <option value="KOR">🇰🇷 Coreia do Sul</option>
+            <option value="CRI">🇨🇷 Costa Rica</option>
+            <option value="CUB">🇨🇺 Cuba</option>
+            <option value="DNK">🇩🇰 Dinamarca</option>
+            <option value="EGY">🇪🇬 Egito</option>
+            <option value="ARE">🇦🇪 Emirados Árabes Unidos</option>
+            <option value="ECU">🇪🇨 Equador</option>
+            <option value="ESP">🇪🇸 Espanha</option>
+            <option value="USA">🇺🇸 Estados Unidos</option>
+            <option value="PHL">🇵🇭 Filipinas</option>
+            <option value="FIN">🇫🇮 Finlândia</option>
+            <option value="FRA">🇫🇷 França</option>
+            <option value="GRC">🇬🇷 Grécia</option>
+            <option value="GTM">🇬🇹 Guatemala</option>
+            <option value="NLD">🇳🇱 Países Baixos</option>
+            <option value="HND">🇭🇳 Honduras</option>
+            <option value="HUN">🇭🇺 Hungria</option>
+            <option value="IND">🇮🇳 Índia</option>
+            <option value="IDN">🇮🇩 Indonésia</option>
+            <option value="IRQ">🇮🇶 Iraque</option>
+            <option value="IRN">🇮🇷 Irão</option>
+            <option value="IRL">🇮🇪 Irlanda</option>
+            <option value="ISL">🇮🇸 Islândia</option>
+            <option value="ISR">🇮🇱 Israel</option>
+            <option value="ITA">🇮🇹 Itália</option>
+            <option value="JAM">🇯🇲 Jamaica</option>
+            <option value="JPN">🇯🇵 Japão</option>
+            <option value="JOR">🇯🇴 Jordânia</option>
+            <option value="KWT">🇰🇼 Kuwait</option>
+            <option value="LBN">🇱🇧 Líbano</option>
+            <option value="MYS">🇲🇾 Malásia</option>
+            <option value="MAR">🇲🇦 Marrocos</option>
+            <option value="MEX">🇲🇽 México</option>
+            <option value="MOZ">🇲🇿 Moçambique</option>
+            <option value="NPL">🇳🇵 Nepal</option>
+            <option value="NOR">🇳🇴 Noruega</option>
+            <option value="NZL">🇳🇿 Nova Zelândia</option>
+            <option value="PAK">🇵🇰 Paquistão</option>
+            <option value="PRY">🇵🇾 Paraguai</option>
+            <option value="PER">🇵🇪 Peru</option>
+            <option value="POL">🇵🇱 Polónia</option>
+            <option value="GBR">🇬🇧 Reino Unido</option>
+            <option value="DOM">🇩🇴 República Dominicana</option>
+            <option value="ROU">🇷🇴 Roménia</option>
+            <option value="RUS">🇷🇺 Rússia</option>
+            <option value="SLV">🇸🇻 El Salvador</option>
+            <option value="SRB">🇷🇸 Sérvia</option>
+            <option value="SGP">🇸🇬 Singapura</option>
+            <option value="SYR">🇸🇾 Síria</option>
+            <option value="SWE">🇸🇪 Suécia</option>
+            <option value="CHE">🇨🇭 Suíça</option>
+            <option value="THA">🇹🇭 Tailândia</option>
+            <option value="TWN">🇹🇼 Taiwan</option>
+            <option value="TZA">🇹🇿 Tanzânia</option>
+            <option value="TUR">🇹🇷 Turquia</option>
+            <option value="UKR">🇺🇦 Ucrânia</option>
+            <option value="UGA">🇺🇬 Uganda</option>
+            <option value="URY">🇺🇾 Uruguai</option>
+            <option value="VEN">🇻🇪 Venezuela</option>
+            <option value="VNM">🇻🇳 Vietname</option>
+            <option value="ZMB">🇿🇲 Zâmbia</option>
+            <option value="ZWE">🇿🇼 Zimbabué</option>
         </select>
-        <input type="date" name="check_in" id="" placeholder="Data check-in" >
-        <input type="date" name="check_out" id="" placeholder="Data check-out" >
+        <input type="date" name="check_in" id="" placeholder="Data check-in" required>
+        <input type="date" name="check_out" id="" placeholder="Data check-out" required>
         <input type="submit" value="">
     </form>
     <?php
@@ -384,6 +384,35 @@
             </script>';
         }
 
+        // Não tira o contra barra '\' 
+        $codigosPaises = [
+            'AFG', 'ALB', 'DZA', 'AND', 'AGO', 'ATG', 'ARG', 'ARM',
+            'AUS', 'AUT', 'AZE', 'BHS', 'BHR', 'BGD', 'BRB', 'BLR',
+            'PLW', 'BEL', 'BLZ', 'BEN', 'BMU', 'BTN', 'BOL', 'BIH',
+            'BWA', 'BRA', 'BRN', 'BGR', 'BFA', 'MMR', 'BDI', 'KHM',
+            'CMR', 'CAN', 'CPV', 'CAF', 'TCD', 'CHL', 'CHN', 'COL',
+            'COM', 'COG', 'COK', 'CRI', 'HRV', 'CZE', 'CUB', 'CYP',
+            'DNK', 'DJI', 'DMA', 'DOM', 'TLS', 'ECU', 'EGY', 'SLV',
+            'GNQ', 'ERI', 'EST', 'ETH', 'FJI', 'FIN', 'FRA', 'GAB',
+            'GMB', 'GEO', 'D  ', 'GHA', 'GRC', 'GRD', 'GUM', 'GTM',
+            'GIN', 'GNB', 'GUY', 'HTI', 'HND', 'HKG', 'HUN', 'ISL',
+            'IND', 'IDN', 'IRN', 'IRQ', 'IRL', 'ISR', 'ITA', 'CIV',
+            'JAM', 'JPN', 'JOR', 'KAZ', 'KEN', 'KIR', 'PRK', 'KOR',
+            'RKS', 'KWT', 'KGZ', 'LAO', 'LVA', 'LBN', 'LSO', 'LBR',
+            'LBY', 'LIE', 'LTU', 'LUX', 'MAC', 'MKD', 'MDG', 'MWI',
+            'MYS', 'MDV', 'MLI', 'MLT', 'MHL', 'MRT', 'MUS', 'MYT',
+            'MEX', 'FSM', 'MDA', 'MCO', 'MNG', 'MSR', 'MNE', 'MAR',
+            'MOZ', 'NAM', 'NRU', 'NPL', 'NLD', 'NCL', 'NZL', 'NIC',
+            'NER', 'NGA', 'NIU', 'NOR', 'OMN', 'PAK', 'PSE', 'PAN',
+            'PNG', 'PRY', 'PER', 'PHL', 'POL', 'PRT', 'PRI', 'QAT',
+            'COD', 'REU', 'ROU', 'RUS', 'RWA', 'STP', 'VCT', 'WSM',
+            'SMR', 'SAU', 'SEN', 'SRB', 'SYC', 'SLE', 'SGP', 'SVK',
+            'SVN', 'SLB', 'SOM', 'ZAF', 'SSD', 'ESP', 'LKA', 'KNA',
+            'LCA', 'SDN', 'SUR', 'SWZ', 'SWE', 'CHE', 'SYR', 'TWN',
+            'TJK', 'TZA', 'THA', 'TGO', 'TON', 'TTO', 'TUN', 'TUR',
+            'TKM', 'TUV', 'UGA', 'UKR', 'ARE', 'GBR', 'URY', 'USA',
+            'UZB', 'VUT', 'VAT', 'VEN', 'VNM', 'YEM', 'ZMB', 'ZWE'
+        ];
         // Iniciar variaveis
         $cabou = false;
 
@@ -394,12 +423,12 @@
             $nome = trim($_POST['nome']);
 
             //Verificar se tudo foi preenchido
-            if( in_array("", $_POST) ){
+            if( in_array("", $_POST) || in_array(NULL, $_POST)){
                 mostrarMensagem("Algum pos parametros não foi preenchido");
                 $cabou = True;
             }
 
-            //Verificar se os parametros estão validos !?!?!?!?
+            //---------------------------Verificar se os parametros estão validos !?!?!?!?-----------------------
 
             // Verificar se o nome tem multipla palavras e se é demasiado grande
             if(strlen($nome) > 40){
@@ -417,13 +446,11 @@
             $dtN = $_POST['data_nasc'];
             if ($dtN > date('Y-m-d')) {
                 mostrarMensagem("A data de nascimento não pode ser no futuro!");
-                $cabou = True;
-               
             }
 
             // Verificar se o Local_Nascimento ultrapassa o limite de caracteres
             if(strlen($_POST['local_nasc']) > 30){
-                mostrarMensagem('O parametro "Local Nascimento" é demasiaso grande!');
+                mostrarMensagem('O parametro "Local Nascimento" é demasiado grande!');
                 $cabou = True;
             }
 
@@ -433,6 +460,34 @@
                 $cabou = True;
             }
 
+            // Verificar se a Nacionalidade está de acordo com o Códigos de países definido pela ICAO norma 9303
+            if(!in_array($_POST['Nacionalidade'], $codigosPaises)){
+                mostrarMensagem('O atributo "Nacionalidade" está modificado!');
+                $cabou = true;
+            }
+
+            //Verificar se o 'tipo_documento' não foi modificadox\
+            if(strlen($_POST['tipo_documento']) > 1){
+                mostrarMensagem('O atributo "Tipo Documento" está modificado!');
+                $cabou = true;
+            }
+
+            // Verificar se o pais emissor de documento está de acordo com o Códigos de países definido pela ICAO norma 9303
+            if(!in_array($_POST['Pais_Emissor_Documento'], $codigosPaises)){
+                mostrarMensagem('O parametro "Pais Emissor Documento" está modificado!');
+                $cabou = true;
+            }
+
+            // Verificar se o pais residencia está de acordo com o Códigos de países definido pela ICAO norma 9303
+            if(!in_array($_POST['Pais_residencia'], $codigosPaises)){
+                mostrarMensagem('O parametro "Pais_residencia" está modificado!');
+                $cabou = true;
+            }
+
+
+
+
+
 
 
 
@@ -440,6 +495,14 @@
 
             //Verificar se ouve algum erro, e se não proceder normalmente, 
             if(!$cabou){
+                $info['Local_Residencia'] = $_POST['local_resid'];
+                $info['Pais_Residencia'] = $_POST["Pais_residencia"];
+                $info['Data_Saida'] = $_POST['check_out'];
+                $info['Data_Entrada'] = $_POST['check_in'];
+                $info['Pais_Emissor_Documento'] = $_POST['Pais_Emissor_Documento'];
+                $info['Tipo_Documento_Identificação'] = $_POST['tipo_documento'];
+                $info['Local_Nascimento'] = $_POST['local_nasc'];
+                $info['Documento_Identificacao'] = $_POST['num_doc'];
                 $info['Data_Nascimento'] = $dtN;
                 $info['Nacionalidade'] = $_POST['Nacionalidade'];
 
