@@ -500,7 +500,7 @@
                 $info['Data_Saida'] = $_POST['check_out'];
                 $info['Data_Entrada'] = $_POST['check_in'];
                 $info['Pais_Emissor_Documento'] = $_POST['Pais_Emissor_Documento'];
-                $info['Tipo_Documento_Identificação'] = $_POST['tipo_documento'];
+                $info['Tipo_Documento_Identificacao'] = $_POST['tipo_documento'];
                 $info['Local_Nascimento'] = $_POST['local_nasc'];
                 $info['Documento_Identificacao'] = $_POST['num_doc'];
                 $info['Data_Nascimento'] = $dtN;
@@ -511,7 +511,7 @@
         }
 
         $arquivo = fopen('exemplo.xml','w');
-        fwrite($arquivo, "\n0|BA03|123456789|0001|HOTEL EXEMPLO|RUA CENTRAL 10|PORTO|4000|123|220123456||JOAO SILVA|\n1|".$info['Apelido']."|".$info['Nome']."|".$info['Data_Nascimento']."|".$info['Nacionalidade']."|".$info['Documento_Identificacao']."|".$info['Tipo_Documento_Identificacao']."|".$info['Pais_Emissor_Documento']."|".$info['Pais_Residencia_Origem']."|".$info['Local_Residencia_Origem']."|".$info['Data_Entrada']."|".$info['Data_Saida']."|\n9|00002|20261030|00001|");
+        fwrite($arquivo, "\n0|BA03|123456789|0001|HOTEL EXEMPLO|RUA CENTRAL 10|PORTO|4000|123|220123456||JOAO SILVA|\n1|".$info['Apelido']."|".$info['Nome']."|".$info['Data_Nascimento']."|".$info['Nacionalidade']."|".$info['Documento_Identificacao']."|".$info['Tipo_Documento_Identificacao']."|".$info['Pais_Emissor_Documento']."|".$info['Pais_Residencia']."|".$info['Local_Residencia']."|".$info['Data_Entrada']."|".$info['Data_Saida']."|\n9|00002|20261030|00001|");
         fclose($arquivo);
     ?>
     <script>
