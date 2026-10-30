@@ -497,13 +497,13 @@
             if(!$cabou){
                 $info['Local_Residencia'] = $_POST['local_resid'];
                 $info['Pais_Residencia'] = $_POST["Pais_residencia"];
-                $info['Data_Saida'] = $_POST['check_out'];
-                $info['Data_Entrada'] = $_POST['check_in'];
+                $info['Data_Saida'] = str_replace('-', '', $_POST['check_out']);
+                $info['Data_Entrada'] = str_replace('-', '', $_POST['check_in']);
                 $info['Pais_Emissor_Documento'] = $_POST['Pais_Emissor_Documento'];
                 $info['Tipo_Documento_Identificacao'] = $_POST['tipo_documento'];
                 $info['Local_Nascimento'] = $_POST['local_nasc'];
                 $info['Documento_Identificacao'] = $_POST['num_doc'];
-                $info['Data_Nascimento'] = $dtN;
+                $info['Data_Nascimento'] = str_replace('-', '', $dtN);
                 $info['Nacionalidade'] = $_POST['Nacionalidade'];
 
                 var_dump($info);
