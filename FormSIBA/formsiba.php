@@ -436,7 +436,10 @@
                 $cabou = True;
             }else{
                 if(substr_count($nome, " ") > 0){
-                    $info['Nome'] = $nome;
+                    $nomepropio = strstr($nome, ' ', true);
+                    $info['Nome'] = $nomepropio;
+                    $apelido = strstr($nome, ' ');
+                    $info['Apelido'] = $apelido;
                 }else{
                     $info['Apelido'] = $nome;
                 }
@@ -484,14 +487,10 @@
                 $cabou = true;
             }
 
-
-
-
-
-
-
-
-
+            if(strlen($_POST['local_resid']) > 30){
+                mostrarMensagem('O parametro "Local Residencia" é demasiado grande!');
+                $cabou = true;
+            }
 
             //Verificar se ouve algum erro, e se não proceder normalmente, 
             if(!$cabou){
