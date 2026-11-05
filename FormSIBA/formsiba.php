@@ -384,6 +384,110 @@
             </script>';
         }
 
+        const NOMINATIM_CONTACTO = 'smallmarcio48@gmail.com';
+
+        const LUGARES_CACHE_DIR = __DIR__ . '/cache_lugares';
+
+        function formatarLugar(string $lugar, int $max = 30): string {
+            $lugar = trim($lugar);
+            if ($lugar === '') return '';
+
+            // Alfabetos não latinos (cirílico, árabe, chinês...) → letras latinas. Só com a extensão intl.
+            if (function_exists('transliterator_transliterate')) {
+                $t = transliterator_transliterate('Any-Latin; Latin-ASCII', $lugar);
+                if ($t !== false) $lugar = $t;
+            }
+
+            $lugar = mb_strtoupper($lugar, 'UTF-8');
+
+            static $mapa = null;
+            if ($mapa === null) {
+                $mapa = ['Æ' => 'AE', 'Œ' => 'OE', 'Þ' => 'TH'];
+                $grupos = [
+                    'A' => 'ÀÁÂÃÄÅĀĂĄ', 'C' => 'ÇĆČ',  'D' => 'ĎĐ',   'E' => 'ÈÉÊËĒĖĘĚ',
+                    'G' => 'Ğ',         'I' => 'ÌÍÎÏĪİĮ', 'L' => 'ŁĽ',  'N' => 'ÑŃŇ',
+                    'O' => 'ÒÓÔÕÖØŌŐ',  'R' => 'ŘŔ',   'S' => 'ŚŠŞȘ', 'T' => 'ŤŢȚ',
+                    'U' => 'ÙÚÛÜŪŮŰŲ',  'Y' => 'ÝŸ',   'Z' => 'ŹŻŽ',
+                ];
+                foreach ($grupos as $letra => $acentuadas) {
+                    foreach (mb_str_split($acentuadas) as $c) $mapa[$c] = $letra;
+                }
+            }
+            $lugar = strtr($lugar, $mapa);
+
+            $lugar = preg_replace('/[^A-Z0-9]+/', ' ', $lugar);
+            $lugar = trim($lugar);
+
+            return rtrim(substr($lugar, 0, $max));
+        }
+
+        function iso2DoPais(string $icao): string {
+            static $m = [
+                'AFG'=>'AF','ZAF'=>'ZA','ALB'=>'AL','D'=>'DE','AND'=>'AD','AGO'=>'AO','SAU'=>'SA','DZA'=>'DZ',
+                'ARG'=>'AR','ARM'=>'AM','AUS'=>'AU','AUT'=>'AT','AZE'=>'AZ','BHS'=>'BS','BGD'=>'BD','BEL'=>'BE',
+                'BRA'=>'BR','CPV'=>'CV','CAN'=>'CA','CHL'=>'CL','CHN'=>'CN','COL'=>'CO','KOR'=>'KR','CRI'=>'CR',
+                'CUB'=>'CU','DNK'=>'DK','EGY'=>'EG','ARE'=>'AE','ECU'=>'EC','ESP'=>'ES','USA'=>'US','PHL'=>'PH',
+                'FIN'=>'FI','FRA'=>'FR','GRC'=>'GR','GTM'=>'GT','NLD'=>'NL','HND'=>'HN','HUN'=>'HU','IND'=>'IN',
+                'IDN'=>'ID','IRQ'=>'IQ','IRN'=>'IR','IRL'=>'IE','ISL'=>'IS','ISR'=>'IL','ITA'=>'IT','JAM'=>'JM',
+                'JPN'=>'JP','JOR'=>'JO','KWT'=>'KW','LBN'=>'LB','MYS'=>'MY','MAR'=>'MA','MEX'=>'MX','MOZ'=>'MZ',
+                'NPL'=>'NP','NOR'=>'NO','NZL'=>'NZ','PAK'=>'PK','PRY'=>'PY','PER'=>'PE','POL'=>'PL','PRT'=>'PT',
+                'GBR'=>'GB','DOM'=>'DO','ROU'=>'RO','RUS'=>'RU','SLV'=>'SV','SRB'=>'RS','SGP'=>'SG','SYR'=>'SY',
+                'SWE'=>'SE','CHE'=>'CH','THA'=>'TH','TWN'=>'TW','TZA'=>'TZ','TUR'=>'TR','UKR'=>'UA','UGA'=>'UG',
+                'URY'=>'UY','VEN'=>'VE','VNM'=>'VN','ZMB'=>'ZM','ZWE'=>'ZW',
+            ];
+            return $m[strtoupper(trim($icao))] ?? '';   // '' = país desconhecido → pesquisa sem filtro
+        }
+
+        function nominatimEncontra(string $q, string $iso2): ?bool {
+            $params = ['q' => $q, 'format' => 'jsonv2', 'limit' => 5];
+            if ($iso2 !== '') $params['countrycodes'] = strtolower($iso2);
+
+            $ch = curl_init('https://nominatim.openstreetmap.org/search?' . http_build_query($params));
+            curl_setopt_array($ch, [
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_TIMEOUT        => 5,
+                CURLOPT_USERAGENT      => 'oasis-dune-checkin/1.0 (' . NOMINATIM_CONTACTO . ')',
+            ]);
+            $corpo  = curl_exec($ch);
+            $codigo = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            usleep(1100000);
+
+            if ($corpo === false || $codigo !== 200) return null;
+            $dados = json_decode($corpo, true);
+            if (!is_array($dados)) return null;
+
+            foreach ($dados as $r) {
+                if (in_array($r['category'] ?? '', ['place', 'boundary'], true)) return true;
+            }
+            return false;
+        }
+
+        function procurarLugar(string $lugar, string $codigoPais = '', bool $tentarMundo = false): array {
+            $formatado = formatarLugar($lugar);
+            if ($formatado === '') return ['estado' => 'vazio', 'formatado' => ''];
+
+            $iso2 = iso2DoPais($codigoPais);
+
+            // Cache (30 dias) para não repetir pedidos
+            $ficheiro = LUGARES_CACHE_DIR . '/' . sha1("$formatado|$iso2|" . (int)$tentarMundo) . '.json';
+            if (is_file($ficheiro) && filemtime($ficheiro) > time() - 30 * 86400) {
+                $estado = json_decode((string)file_get_contents($ficheiro), true)['estado'] ?? null;
+                if ($estado) return ['estado' => $estado, 'formatado' => $formatado];
+            }
+
+            $achou = nominatimEncontra($formatado, $iso2);
+            if ($achou === false && $iso2 !== '' && $tentarMundo) {
+                $achou = nominatimEncontra($formatado, '');
+            }
+            if ($achou === null) return ['estado' => 'erro', 'formatado' => $formatado];   // não vai para a cache
+
+            $estado = $achou ? 'encontrado' : 'nao_encontrado';
+            if (!is_dir(LUGARES_CACHE_DIR)) @mkdir(LUGARES_CACHE_DIR, 0700, true);
+            @file_put_contents($ficheiro, json_encode(['estado' => $estado]));
+            return ['estado' => $estado, 'formatado' => $formatado];
+        }
+
         // Não tira o contra barra '\' 
         $codigosPaises = [
             'AFG', 'ALB', 'DZA', 'AND', 'AGO', 'ATG', 'ARG', 'ARM',
@@ -495,19 +599,27 @@
 
             //Verificar se ouve algum erro, e se não proceder normalmente, 
             if(!$cabou){
-                $info['Local_Residencia'] = $_POST['local_resid'];
+                $locNasc  = procurarLugar($_POST['local_nasc'],  $_POST['Nacionalidade'],  true);
+                $locResid = procurarLugar($_POST['local_resid'], $_POST['Pais_residencia'], false);
+                if($locNasc['estado'] === 'nao_encontrado'){
+                    mostrarMensagem('Não encontrámos o local de nascimento "' . $locNasc['formatado'] . '". Confirme se o nome está correto.');
+                }
+                if($locResid['estado'] === 'nao_encontrado'){
+                    mostrarMensagem('Não encontrámos o local de residência "' . $locResid['formatado'] . '". Confirme se o nome está correto.');
+                }
+
+                $info['Local_Residencia'] = $locResid['formatado'];
                 $info['Pais_Residencia'] = $_POST["Pais_residencia"];
                 $info['Data_Saida'] = str_replace('-', '', $_POST['check_out']);
                 $info['Data_Entrada'] = str_replace('-', '', $_POST['check_in']);
                 $info['Pais_Emissor_Documento'] = $_POST['Pais_Emissor_Documento'];
                 $info['Tipo_Documento_Identificacao'] = $_POST['tipo_documento'];
-                $info['Local_Nascimento'] = $_POST['local_nasc'];
+                $info['Local_Nascimento'] = $locNasc['formatado'];
                 $info['Documento_Identificacao'] = $_POST['num_doc'];
                 $info['Data_Nascimento'] = str_replace('-', '', $dtN);
                 $info['Nacionalidade'] = $_POST['Nacionalidade'];
 
                 var_dump($info);
-
                 $arquivo = fopen('exemplo.xml','w');
                 fwrite($arquivo, "\n0|BA03|123456789|0001|HOTEL EXEMPLO|RUA CENTRAL 10|PORTO|4000|123|220123456||JOAO SILVA|\n1|".$info['Apelido']."|".$info['Nome']."|".$info['Data_Nascimento']."|".$info['Nacionalidade']."|".$info['Documento_Identificacao']."|".$info['Tipo_Documento_Identificacao']."|".$info['Pais_Emissor_Documento']."|".$info['Pais_Residencia']."|".$info['Local_Residencia']."|".$info['Data_Entrada']."|".$info['Data_Saida']."|\n9|00002|20261030|00001|");
                 fclose($arquivo);
