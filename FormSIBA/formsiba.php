@@ -519,6 +519,7 @@
         ];
         // Iniciar variaveis
         $cabou = false;
+        $info=[];
 
         // verificar se o form foi preenchido
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){

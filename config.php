@@ -1,56 +1,96 @@
+
 <?php
-// config.php
-header('Access-Control-Allow-Origin: *');
+
 header('Content-Type: application/json; charset=utf-8');
 
-$icalUrl = 'http://localhost/sites/projeto-alojamento/oasis-dune-teste.ics';
+// ==========================================
+// 1. LIGAÇÃO À BASE DE DADOS
+// ==========================================
 
-$cacheDir = __DIR__ . '/cache';
-$cacheFile = $cacheDir . '/calendar_cache.json';
-$cacheTime = 900;
+$host = "localhost";
+$dbname = "estagio_bd";
+$username = "root";
+$password = "";
 
-if (!is_dir($cacheDir)) {
-    mkdir($cacheDir, 0755, true);
-}
+try {
 
-// Data de hoje no formato YYYY-MM-DD
-$hoje = date('Y-m-d');
+    $pdo = new PDO(
+        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+        $username,
+        $password
+    );
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $icalUrl);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$icsData = curl_exec($ch);
-curl_close($ch);
+    // ==========================================
+    // 2. CONSULTAR AS RESERVAS
+    // ==========================================
 
-$events = [];
+    $hoje = date('Y-m-d');
 
-if ($icsData) {
-    preg_match_all('/BEGIN:VEVENT(.*?)END:VEVENT/s', $icsData, $matches);
+    $sql = "
+        SELECT
+            codUtilizador,
+            codAlojamento,
+            checkIn,
+            checkOut,
+            dataReserva,
+            precoTotal
+        FROM Reserva
+        WHERE checkOut > :hoje
+        ORDER BY checkIn ASC
+    ";
 
-    foreach ($matches[1] as $eventStr) {
-        preg_match('/DTSTART(?:;VALUE=DATE)?:(\d{8})/', $eventStr, $startMatch);
-        preg_match('/DTEND(?:;VALUE=DATE)?:(\d{8})/', $eventStr, $endMatch);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['hoje' => $hoje]);
 
-        if (!empty($startMatch[1]) && !empty($endMatch[1])) {
-            $start = substr($startMatch[1], 0, 4) . '-' . substr($startMatch[1], 4, 2) . '-' . substr($startMatch[1], 6, 2);
-            $end   = substr($endMatch[1], 0, 4) . '-' . substr($endMatch[1], 4, 2) . '-' . substr($endMatch[1], 6, 2);
+    $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // FILTRO: Adiciona apenas os eventos onde a data de término seja igual ou posterior a hoje
-            if ($end > $hoje) {
-                $events[] = [
-                    'title'   => 'Ocupado',
-                    'start'   => $start,
-                    'end'     => $end,
-                    'color'   => '#ff4d4d'
-                ];
-            }
-        }
+    // ==========================================
+    // 3. CONVERTER PARA JSON DO FULLCALENDAR
+    // ==========================================
+
+    $events = [];
+
+    foreach ($reservas as $reserva) {
+
+        $events[] = [
+            'id' => $reserva['codAlojamento'] . '_' .
+                    $reserva['checkIn'] . '_' .
+                    $reserva['checkOut'],
+
+            'title' => 'Ocupado',
+
+            'start' => $reserva['checkIn'],
+
+            'end' => $reserva['checkOut'],
+
+            'allDay' => true,
+
+            'color' => '#ff4d4d',
+
+            'extendedProps' => [
+                'codUtilizador' => $reserva['codUtilizador'],
+                'codAlojamento' => $reserva['codAlojamento'],
+                'dataReserva' => $reserva['dataReserva'],
+                'precoTotal' => $reserva['precoTotal']
+            ]
+        ];
     }
-}
 
-echo json_encode($events);
+    // ==========================================
+    // 4. DEVOLVER JSON
+    // ==========================================
+
+    echo json_encode($events, JSON_UNESCAPED_UNICODE);
+
+} catch (PDOException $e) {
+
+    http_response_code(500);
+
+    echo json_encode([
+        'erro' => 'Erro ao consultar a base de dados.'
+    ]);
+
+}
 ?>
