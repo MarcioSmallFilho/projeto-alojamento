@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputCheckOut = document.querySelector('input[name="checkout"]');
 
     // PHP que vai buscar as reservas à base de dados
-    const calendarEventsSource = '../config.php';
+    const calendarEventsSource = '../PHP/config.php';
 
     // ==========================================
     // PREENCHER FORMULÁRIO
