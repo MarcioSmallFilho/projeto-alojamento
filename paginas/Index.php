@@ -29,6 +29,7 @@
                     <a href="experiencias.php">Experiências</a> 
                     <a href="contactos.php">Contactos</a>
                     <a href="calendario.php">Reservar</a>
+                    <a href="../PHP/logout.php" style="color:darkred;">Sair</a>
                 </nav>
                  <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Airbnb</a>
                 <button class="menu-mobile-btn" id="btn-menu" aria-label="Abrir Menu">
