@@ -1,26 +1,15 @@
 
 <?php
-
+require_once 'C:/xampp/database.php';
 header('Content-Type: application/json; charset=utf-8');
 
 // ==========================================
 // 1. LIGAÇÃO À BASE DE DADOS
 // ==========================================
 
-$host = "localhost";
-$dbname = "estagio_bd";
-$username = "root";
-$password = "";
-
 try {
 
-    $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
-        $username,
-        $password
-    );
-
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   $pdo = ConnectDB();
 
     // ==========================================
     // 2. CONSULTAR AS RESERVAS
@@ -37,7 +26,7 @@ try {
             dataReserva,
             precoTotal
         FROM Reserva
-        WHERE checkOut > :hoje
+        WHERE checkOut > :hoje and estadoReserva = 'Aceite'
         ORDER BY checkIn ASC
     ";
 
@@ -93,4 +82,9 @@ try {
     ]);
 
 }
+//========================================
+// 5. Funções Globais
+//========================================
+
+
 ?>

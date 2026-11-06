@@ -75,40 +75,8 @@
                     <input type="submit" value="Reservar pelo Airbnb">
                 </form>
             </div>
-            <script>
-                const form = document.getElementById('bookingForm');
-
-                form.addEventListener('submit', (event) => {
-                    event.preventDefault();
-
-                    const checkin = form.querySelector('input[name="checkin"]').value;
-                    const checkout = form.querySelector('input[name="checkout"]').value;
-                    const msgErro = document.getElementById('msgErro');
-                    if (!checkin || !checkout) {
-                        msgErro.textContent = 'Selecione no calendário as datas de entrada e de saída.';
-                        msgErro.style.display = 'block';
-                        return;
-                    }
-                    msgErro.style.display = 'none';
-
-                    const adults = parseInt(form.querySelector('input[name="numberOfAdults"]').value) || 1;
-                    const children = parseInt(form.querySelector('input[name="numberOfChildren"]').value) || 0;
-                    const infants = parseInt(form.querySelector('input[name="numberOfInfants"]').value) || 0;
-
-                    // O total de hóspedes (convidados) é a soma de adultos e crianças
-                    const guests = adults + children;
-
-                    // ID do teu anúncio no Airbnb
-                    const roomId = '1193985038143849991';
-
-                    // Monta a URL de reserva no formato correto do Airbnb
-                    const destinationUrl = `https://www.airbnb.pt/book/stays/${roomId}?checkin=${checkin}&checkout=${checkout}&numberOfAdults=${adults}&numberOfChildren=${children}&numberOfInfants=${infants}&numberOfGuests=${guests}&productId=${roomId}`;
-
-                    // Redireciona para o Airbnb
-                    window.location.href = destinationUrl;
-                    
-                });
-                </script>
+            
+            
 
         </div>
         <footer>
