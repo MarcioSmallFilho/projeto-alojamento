@@ -4,9 +4,9 @@ require_once 'C:/xampp/database.php';
 
 const COOKIE_TOKEN    = 'remember_me';
 const TOKEN_DIAS      = 30;
-const URL_LOGIN       = '/SitesPHP/alojamento/paginas/login.php';
-const URL_LOGOUT      = '/SitesPHP/alojamento/PHP/logout.php';
-const URL_INICIO      = '/SitesPHP/alojamento/paginas/index.php'; // ajuste para a sua página inicial
+const URL_LOGIN       = '../paginas/login.php';
+const URL_LOGOUT      = '../PHP/logout.php';
+const URL_INICIO      = '../paginas/index.php'; // ajuste para a sua página inicial
 
 function iniciarSessaoSegura(): void
 {
