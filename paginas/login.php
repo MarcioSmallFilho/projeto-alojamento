@@ -1,12 +1,14 @@
- <?php
+<?php
 
 require_once __DIR__ . '/../PHP/auth.php';
 
 const MAX_TENTATIVAS = 5;
 const BLOQUEIO_SEG   = 900; // 15 minutos
 
-$pdo  = ConnectDB();
-$erro = '';
+$pdo   = ConnectDB();
+$erro  = '';
+$nome  = '';
+$email = '';
 
 if (utilizadorAutenticado($pdo)) {
     header('Location: ' . URL_INICIO);
@@ -62,30 +64,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Entrar | Oasis Dune</title>
+    <link rel="stylesheet" href="../css/auth.css">
 </head>
-<body>
-    <div>
-        <div class="login-card" style="border: 1px solid black; border-radius: 5px; width: 350px; height: 200px; justify-self: center;">
-            <form action="" method="post" style="display: flex; flex-direction: column;">
-                <input type="text" name="user" id="" placeholder="Username" required>
-                <input type="email" name="email" id="" placeholder="E-mail" required>
-                <input type="password" name="password" id="" placeholder="Password" required>
-                <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrfToken(), ENT_QUOTES) ?>">
-                <input type="submit" value="Login">
+<body class="auth">
+    <main class="auth-cartao">
+        <header class="auth-topo">
+            <p class="auth-marca">Oasis Dune</p>
+            <h1>Entrar</h1>
+            <p>Bem-vindo de volta. Inicie sessão para continuar.</p>
+        </header>
 
-                <?php if ($erro): ?>
-                    <p style="color: red;"><?= htmlspecialchars($erro, ENT_QUOTES) ?></p>
-                <?php endif; ?>
-               
+        <?php if ($erro): ?>
+            <div class="alerta" role="alert"><?= htmlspecialchars($erro, ENT_QUOTES) ?></div>
+        <?php endif; ?>
 
-                <p>Não tens uma conta? <a href="register.php">Registra-te</a></p>
-            </form>
-        </div>
-    </div>
+        <form class="auth-form" action="" method="post">
+            <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrfToken(), ENT_QUOTES) ?>">
+
+            <div class="campo">
+                <label for="user">Nome de utilizador</label>
+                <input type="text" name="user" id="user" maxlength="40" autocomplete="username"
+                       placeholder="O seu nome de utilizador" value="<?= htmlspecialchars($nome, ENT_QUOTES) ?>" required>
+            </div>
+
+            <div class="campo">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" maxlength="100" autocomplete="email"
+                       placeholder="exemplo@email.com" value="<?= htmlspecialchars($email, ENT_QUOTES) ?>" required>
+            </div>
+
+            <div class="campo">
+                <label for="password">Palavra-passe</label>
+                <div class="campo-senha">
+                    <input type="password" name="password" id="password" maxlength="72" autocomplete="current-password"
+                           placeholder="A sua palavra-passe" required>
+                    <button type="button" class="btn-olho" data-alvo="password" aria-pressed="false">Mostrar</button>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-auth">Entrar</button>
+        </form>
+
+        <p class="auth-rodape">Não tens uma conta? <a href="register.php">Regista-te</a></p>
+    </main>
+
+    <script src="../script/auth.js"></script>
 </body>
 </html>
