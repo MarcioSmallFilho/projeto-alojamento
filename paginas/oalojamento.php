@@ -21,14 +21,14 @@
     <div class="conteudo-site">
         <header>
             <div class="h-esq">
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.html')" alt="Oasis Dune – página inicial">
+                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
             </div>
             <div class="h-dir">
                 <nav class="nav-menu" id="nav-menu">
-                    <a href="oalojamento.html">O Alojamento</a> 
-                    <a href="experiencias.html">Experiências</a> 
-                    <a href="contactos.html">Contactos</a>
-                    <a href="calendario.html">Reservar</a>
+                    <a href="oalojamento.php">O Alojamento</a> 
+                    <a href="experiencias.php">Experiências</a> 
+                    <a href="contactos.php">Contactos</a>
+                    <a href="calendario.php">Reservar</a>
                 </nav>
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Airbnb</a>
                 <button class="menu-mobile-btn" id="btn-menu" aria-label="Abrir Menu">
@@ -40,7 +40,7 @@
         <div class="titulo">
             <div class="conteudo-titulo">
                 <h1>O Alojamento</h1>
-                <input type="button" value="Reservar" class="but-reservar" onclick="goto('calendario.html')">
+                <input type="button" value="Reservar" class="but-reservar" onclick="goto('calendario.php')">
             </div>
         </div>
 
@@ -94,7 +94,7 @@
                     <img src="../imagens/Oalojamento/Quarto1.png" alt="Quarto I" loading="lazy">
                     <div>
                         <h3>Quarto I</h3>
-                        <input type="button" value="Ver Mais" class="but-carta" onclick="goto('QuartoI.html')">
+                        <input type="button" value="Ver Mais" class="but-carta" onclick="goto('QuartoI.php')">
                     </div>
                 </div>
 
@@ -102,7 +102,7 @@
                     <img src="../imagens/quartos/quartoII/quartoII-1.png" alt="Quarto II" loading="lazy">
                     <div>
                         <h3>Quarto II</h3>
-                        <input type="button" value="Ver Mais" class="but-carta" onclick="goto('QuartoII.html')">
+                        <input type="button" value="Ver Mais" class="but-carta" onclick="goto('QuartoII.php')">
                     </div>
                 </div>
 
@@ -110,7 +110,7 @@
                     <img src="../imagens/Oalojamento/Sala.png" alt="Sala de estar" loading="lazy">
                     <div>
                         <h3>Sala de estar</h3>
-                        <input type="button" value="Ver Mais" class="but-carta" onclick="goto('saladeestar.html')">
+                        <input type="button" value="Ver Mais" class="but-carta" onclick="goto('saladeestar.php')">
                     </div>
                 </div>
             </div>
@@ -177,12 +177,12 @@
 
         <div class="areaReservar">
             <h1>Que tal uma dormida? ...</h1>
-            <input type="button" value="Reserve agora!" onclick="goto('calendario.html')">
+            <input type="button" value="Reserve agora!" onclick="goto('calendario.php')">
         </div>
 
         <footer>
             <div>
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.html')">
+                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')">
                 <p>+351 935 334 117</p> 
                 <p>info.oasisdune@gmail.com</p> 
                 <p>Rua Fernão Martins da Costa, 4935-158 Viana do Castelo</p> 
@@ -194,10 +194,10 @@
             </div>
             <div>
                 <h2>Alojamento</h2>
-                <a href="oalojamento.html">O Alojamento</a> 
-                <a href="experiencias.html">Experiências</a> 
-                <a href="contactos.html">Contactos</a>
-                <a href="calendario.html">Reservar</a>
+                <a href="oalojamento.php">O Alojamento</a> 
+                <a href="experiencias.php">Experiências</a> 
+                <a href="contactos.php">Contactos</a>
+                <a href="calendario.php">Reservar</a>
                 <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a>
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Mais no Airbnb</a>
             </div>

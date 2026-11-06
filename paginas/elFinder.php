@@ -1,3 +1,8 @@
+<?php
+require_once '../PHP/auth.php'; 
+$pdo = ConnectDB();
+exigirLogin($pdo);
+?>
 <!DOCTYPE html>
 <html>
 <head>

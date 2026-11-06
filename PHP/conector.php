@@ -1,5 +1,13 @@
 <?php
-    require '../elFinder/php/autoload.php';
+    require_once __DIR__ . '/auth.php';
+    $pdo = ConnectDB();
+    if (!utilizadorAutenticado($pdo)) {
+        http_response_code(403);
+        exit(json_encode(['error' => 'Não autorizado']));
+    }
+    require __DIR__ . '/../elFinder/php/autoload.php';
+
+
     // Se baixou manualmente: require 'php/autoload.php';
 
     // Função de controle de acesso (permissões)

@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sala de estar do Oasis Dune com sofá-cama, ar condicionado, lareira interior e TV.">
-    <meta property="og:title" content="Sala de estar | Oasis Dune">
-    <meta property="og:description" content="Sala de estar do Oasis Dune com sofá-cama, ar condicionado, lareira interior e TV.">
+    <meta name="description" content="Quarto I do Oasis Dune: cama de casal, ar condicionado, acesso a closet e roupa de cama de elevada qualidade.">
+    <meta property="og:title" content="Quarto I | Oasis Dune">
+    <meta property="og:description" content="Quarto I do Oasis Dune: cama de casal, ar condicionado, acesso a closet e roupa de cama de elevada qualidade.">
     <meta property="og:type" content="website">
     <link rel="icon" href="../imagens/logo.png">
     <link rel="stylesheet" href="../css/styleconfig.css">
-    <link rel="stylesheet" href="../css/stylesala.css">
+    <link rel="stylesheet" href="../css/styleQua.css">
     <script src="../script/script.js" defer></script>
     <script src="../script/ampliarimgscript.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Sala de estar | Oasis Dune</title>
+    <title>Quarto I | Oasis Dune</title>
 </head>
 <body>
     <div class="fundo-fixo"></div>
@@ -21,14 +21,14 @@
     <div class="conteudo-site">
         <header>
             <div class="h-esq">
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.html')" alt="Oasis Dune – página inicial">
+                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
             </div>
             <div class="h-dir">
                 <nav class="nav-menu" id="nav-menu">
-                    <a href="oalojamento.html">O Alojamento</a> 
-                    <a href="experiencias.html">Experiências</a> 
-                    <a href="contactos.html">Contactos</a>
-                    <a href="calendario.html">Reservar</a>
+                    <a href="oalojamento.php">O Alojamento</a> 
+                    <a href="experiencias.php">Experiências</a> 
+                    <a href="contactos.php">Contactos</a>
+                    <a href="calendario.php">Reservar</a>
                 </nav>
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Airbnb</a>
                 <button class="menu-mobile-btn" id="btn-menu" aria-label="Abrir Menu">
@@ -39,13 +39,13 @@
 
         <div class="titulo">
             <div class="conteudo-titulo">
-                <h1>Sala de estar</h1>
+                <h1>Quarto I</h1>
             </div>
         </div>
 
         <div class="conteudoA">
-            <h1>Sobre a Sala de estar</h1>
-            <p>Espaçosa sala de estar equipada com sofá-cama, ar condicionado, lareira interior e TV. Combina conforto e entretenimento, ideal para relaxar com total tranquilidade.</p>
+            <h1>Sobre o Quarto</h1>
+            <p>Acolhedor quarto equipado com cama de casal, ar condicionado e acesso a closet. Inclui roupa de cama e atoalhados de elevada qualidade, ideal para um descanso tranquilo e confortável.</p>
         </div>
 
         <div class="areaA">
@@ -53,10 +53,13 @@
             <div class="areaB">
                 <div class="areaBPrincipal">
                     <div class="comodidades">
-                        <span class="comodidade"><i class="fa-solid fa-couch"></i>Sofá-cama</span>
+                        <span class="comodidade"><i class="fa-solid fa-door-open"></i>Armário de roupa</span>
+                        <span class="comodidade"><i class="fa-solid fa-pump-soap"></i>Artigos essenciais</span>
+                        <span class="comodidade"><i class="fa-solid fa-shirt"></i>Cabides</span>
+                        <span class="comodidade"><i class="fa-solid fa-vault"></i>Cofre</span>
+                        <span class="comodidade"><i class="fa-solid fa-moon"></i>Estores blackout</span>
+                        <span class="comodidade"><i class="fa-solid fa-mattress-pillow"></i>Roupa de cama</span>
                         <span class="comodidade"><i class="fa-solid fa-snowflake"></i>Ar condicionado</span>
-                        <span class="comodidade"><i class="fa-solid fa-fire"></i>Lareira interior</span>
-                        <span class="comodidade"><i class="fa-solid fa-tv"></i>TV</span>
                     </div>
                 </div>
             </div>
@@ -65,12 +68,7 @@
         <div class="conteudoB">
             <h1>Galeria</h1>
             <div class="areaImg">
-                <img src="../imagens/quartos/sala-de-estar/foto-sala-1.png" alt="Sala de estar" loading="lazy">
-                <img src="../imagens/quartos/sala-de-estar/foto-sala-2.png" alt="Sala de estar" loading="lazy">
-                <img src="../imagens/quartos/sala-de-estar/foto-sala-3.png" alt="Sala de estar" loading="lazy">
-                <img src="../imagens/quartos/sala-de-estar/foto-sala-4.png" alt="Sala de estar" loading="lazy">
-                <img src="../imagens/quartos/sala-de-estar/foto-sala-5.png" alt="Sala de estar" loading="lazy">
-                <img src="../imagens/quartos/sala-de-estar/foto-sala-6.png" alt="Sala de estar" loading="lazy">
+                <img src="../imagens/Oalojamento/Quarto1.png" alt="Quarto I" loading="lazy">
             </div>  
         </div>
 
@@ -86,7 +84,7 @@
 
         <footer>
             <div>
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.html')">
+                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')">
                 <p>+351 935 334 117</p> 
                 <p>info.oasisdune@gmail.com</p> 
                 <p>Rua Fernão Martins da Costa, 4935-158 Viana do Castelo</p> 
@@ -98,10 +96,10 @@
             </div>
             <div>
                 <h2>Alojamento</h2>
-                <a href="oalojamento.html">O Alojamento</a> 
-                <a href="experiencias.html">Experiências</a> 
-                <a href="contactos.html">Contactos</a>
-                <a href="calendario.html">Reservar</a>
+                <a href="oalojamento.php">O Alojamento</a> 
+                <a href="experiencias.php">Experiências</a> 
+                <a href="contactos.php">Contactos</a>
+                <a href="calendario.php">Reservar</a>
                 <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a>
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Mais no Airbnb</a>
             </div>

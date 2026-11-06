@@ -1,3 +1,74 @@
+<?php
+
+require_once __DIR__ . '/../PHP/auth.php';
+
+$pdo  = ConnectDB();
+$erro = '';
+
+if (utilizadorAutenticado($pdo)) {
+    header('Location: ' . URL_INICIO);
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome  = trim($_POST['user'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $pass1 = $_POST['password'] ?? '';   // sem trim: a palavra-passe é usada tal como foi escrita
+    $pass2 = $_POST['password-2'] ?? '';
+    $nacio = trim($_POST['nacionalidade'] ?? '');
+
+    if (!csrfValido($_POST['csrf'] ?? null)) {
+        $erro = 'Pedido inválido. Atualize a página e tente novamente.';
+    } elseif (!preg_match('/^[\p{L}\p{N}_.-]{3,40}$/u', $nome)) {
+        $erro = 'O nome de utilizador deve ter 3 a 30 caracteres (letras, números, _ . -).';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 100) {
+        $erro = 'E-mail inválido.';
+    } elseif (strlen($pass1) < 8 || strlen($pass1) > 72) { // bcrypt só considera 72 bytes
+        $erro = 'A palavra-passe deve ter entre 8 e 72 caracteres.';
+    } elseif (!hash_equals($pass1, $pass2)) {
+        $erro = 'As palavras-passe não coincidem.';
+    } elseif (!preg_match('/^[A-Z]{3}$/', $nacio)) {
+        $erro = 'Selecione uma nacionalidade válida.';
+    } else {
+        $stmt = $pdo->prepare(
+            "SELECT 1 FROM Utilizador
+             WHERE emailUtilizador = :email OR nomeUtilizador = :nome
+             LIMIT 1"
+        );
+        $stmt->execute([':email' => $email, ':nome' => $nome]);
+
+        if ($stmt->fetchColumn()) {
+            $erro = 'Nome de utilizador ou e-mail já existente.';
+        } else {
+            try {
+                $pdo->prepare(
+                    "INSERT INTO Utilizador (nomeUtilizador, emailUtilizador, palavraPasse, paisOrigem)
+                     VALUES (:nome, :email, :pass, :nacionalidade)"
+                )->execute([
+                    ':nome'          => $nome,
+                    ':email'         => $email,
+                    ':pass'          => password_hash($pass1, PASSWORD_DEFAULT),
+                    ':nacionalidade' => $nacio,
+                ]);
+
+                $novo = ['codUtilizador' => (int)$pdo->lastInsertId(), 'nomeUtilizador' => $nome];
+                iniciarSessao($novo);
+                criarTokenPersistente($pdo, $novo['codUtilizador']);
+
+                header('Location: ' . URL_INICIO);
+                exit;
+            } catch (PDOException $e) {
+                if ($e->getCode() === '23000') { // duplicado (corrida entre dois registos)
+                    $erro = 'Nome de utilizador ou e-mail já existente.';
+                } else {
+                    error_log($e->getMessage());
+                    $erro = 'Ocorreu um erro. Tente novamente mais tarde.';
+                }
+            }
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,12 +84,13 @@
                 <input type="email" name="email" id="" placeholder="E-mail" required>
                 <input type="password" name="password" id="" placeholder="Password" required>
                 <input type="password" name="password-2" id="" placeholder="Repeat the password" required>
+                <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrfToken(), ENT_QUOTES) ?>">
                 <select name="nacionalidade" id="" required>
                 <option value="" disabled selected>Nacionalidade...</option>
                     <option value="AFG">Afegão / Afegã</option>
                     <option value="ZAF">Sul-africano / Sul-africana</option>
                     <option value="ALB">Albanês / Albanesa</option>
-                    <option value="D  ">Alemão / Alemã</option>
+                    <option value="DEU">Alemão / Alemã</option>
                     <option value="AND">Andorrano / Andorrana</option>
                     <option value="AGO">Angolano / Angolana</option>
                     <option value="SAU">Saudita</option>
@@ -103,55 +175,11 @@
             </select> 
                 <input type="submit" value="Criar Conta">
 
-                <?php
+                <?php if ($erro): ?>
+                    <p style="color: red;"><?= htmlspecialchars($erro, ENT_QUOTES) ?></p>
+                <?php endif; ?>
 
-                require_once 'C:/xampp/database.php';
-                $pdo = ConnectDB();
-
-                if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-                    $nome = trim($_POST['user']);
-                    $email = trim($_POST['email']);
-                    $pass1 = trim($_POST['password']);
-                    $pass2 = trim($_POST['password-2']);
-                    $nacio = trim($_POST['nacionalidade']);
-
-                    if(!password_hash($pass1, PASSWORD_DEFAULT) === password_hash($pass2, PASSWORD_DEFAULT)){
-                        echo '<p style="color: red;">Palavra-passes diferentes</p>';
-                    }else{
-                        $password = password_hash($pass1, PASSWORD_DEFAULT);
-                    }
-
-
-                    $sql = "
-                        SELECT * FROM Utilizador
-                        WHERE emailUtilizador = :email";
-
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute([':nome' => $nome, ':email' => $email]);
-
-                    $Utilizador = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-                    if($Utilizador){
-                        echo'<p style="color: red;">Nome de utilizador ou email já existente.</p>';
-                    }else{
-
-
-                        $sql = "INSERT INTO utilizador (nomeUtilizador, emailUtilizador, palavraPasse, paisOrigem) VALUES (:nome, :email, :pass, :nacionalidade)";
-
-                        $stmt = $pdo->prepare($sql);
-
-                        $stmt->execute([
-                            ':nome' => $nome,
-                            ':email' => $email,
-                            ':pass' => $password,
-                            ':nacionalidade' => $nacio
-                        ]);
-                    }
-                }
-                ?>
-
-                <p>Já tens uma conta? <a href="../alojamento/login.php">Login</a></p>
+                <p>Já tens uma conta? <a href="login.php">Login</a></p>
             </form>
         </div>
     </div>
