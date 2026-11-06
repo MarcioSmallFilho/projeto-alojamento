@@ -5,7 +5,7 @@
 
   $nU = $_SESSION['nomeUtilizador'];
   $r = $pdo->prepare("SELECT admin FROM utilizador WHERE nomeUtilizador = nome");
-  $r->execute(array("nome"=> $nU));
+  $r->execute(["nome"=> $nU]);
 
   $resultado = $r->fetch(PDO::FETCH_ASSOC);
   if ($resultado["admin"] == 0) {
