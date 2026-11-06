@@ -4,7 +4,7 @@
   exigirLogin($pdo);
 
   $nU = $_SESSION['nomeUtilizador'];
-  $r = $pdo->prepare("SELECT admin FROM utilizador WHERE nomeUtilizador = 'nome';");
+  $r = $pdo->prepare("SELECT admin FROM utilizador WHERE nomeUtilizador = nome");
   $r->execute(array("nome"=> $nU));
 
   $resultado = $r->fetch(PDO::FETCH_ASSOC);
