@@ -26,7 +26,7 @@ try {
             dataReserva,
             precoTotal
         FROM Reserva
-        WHERE checkOut > :hoje and estadoReserva = 'Aceite'
+        WHERE checkOut > :hoje and estadoReserva = 'Pendente'
         ORDER BY checkIn ASC
     ";
 
