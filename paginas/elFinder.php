@@ -1,7 +1,16 @@
 <?php
-require_once '../PHP/auth.php'; 
-$pdo = ConnectDB();
-exigirLogin($pdo);
+  require_once '../PHP/auth.php'; 
+  $pdo = ConnectDB();
+  exigirLogin($pdo);
+
+  $nU = $_SESSION['nomeUtilizador'];
+  $r = $pdo->prepare("SELECT admin FROM utilizador WHERE nomeUtilizador = 'nome';");
+  $r->execute(array("nome"=> $nU));
+
+  $resultado = $r->fetch(PDO::FETCH_ASSOC);
+  if ($resultado["admin"] == 0) {
+    header('Index.php');
+  }
 ?>
 <!DOCTYPE html>
 <html>
