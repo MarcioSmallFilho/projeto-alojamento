@@ -135,4 +135,14 @@ function terminarSessao(PDO $pdo): void
     session_destroy();
 }
 
+function is_admin(PDO $pdo) {
+    $r = $pdo->prepare("SELECT admin FROM utilizador WHERE nomeUtilizador = :nome");
+    $r->execute([":nome"=> $_SESSION['nomeUtilizador']]);
+
+    $resultado = $r->fetch(PDO::FETCH_ASSOC);
+    if ($resultado["admin"] == 0) {
+        header('Location: ' . URL_INICIO);
+    }
+}
+
 iniciarSessaoSegura();

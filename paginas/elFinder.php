@@ -2,15 +2,7 @@
   require_once '../PHP/auth.php'; 
   $pdo = ConnectDB();
   exigirLogin($pdo);
-
-  $nU = $_SESSION['nomeUtilizador'];
-  $r = $pdo->prepare("SELECT admin FROM utilizador WHERE nomeUtilizador = nome");
-  $r->execute(["nome"=> $nU]);
-
-  $resultado = $r->fetch(PDO::FETCH_ASSOC);
-  if ($resultado["admin"] == 0) {
-    header('Index.php');
-  }
+  is_admin($pdo);
 ?>
 <!DOCTYPE html>
 <html>
