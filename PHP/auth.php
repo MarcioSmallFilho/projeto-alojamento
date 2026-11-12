@@ -152,4 +152,24 @@ function admPage(PDO $pdo){
     }
 }
 
+function procurarImagem(PDO $pdo, $nome = null, $seccao = null){
+    $query = 'SELECT nomeAlojamento,caminho FROM alojamento AS a INNER JOIN imagem AS i ON a.codAlojamento = i.alojamento';
+
+    if (!is_null($nome) AND !is_null($seccao)) {$query .= ' WHERE i.nomeOriginal = '. $nome .' AND i.seccao = '. $seccao;}
+    elseif (!is_null($nome)) {$query .= ' WHERE i.nomeOriginal = '. $nome;}
+    elseif (!is_null($seccao)) {$query .= ' WHERE i.seccao ='. $seccao;}
+
+    $srmt = $pdo->prepare($query);
+    $srmt->execute();
+
+    while ($linha = $srmt->fetch(PDO::FETCH_ASSOC)){
+        print_r([$linha['nomeAlojamento'] => $linha['caminho']]);
+        $resultado[] = [$linha['nomeAlojamento'] => '../'.$linha['caminho']];
+    }
+
+    $arquvioJSON = fopen('../Imagens.json', 'w');
+    fwrite($arquvioJSON, json_encode($resultado));
+    fclose($arquvioJSON);
+}
+
 iniciarSessaoSegura();
