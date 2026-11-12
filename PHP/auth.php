@@ -140,8 +140,15 @@ function is_admin(PDO $pdo) {
     $r->execute([":nome"=> $_SESSION['nomeUtilizador']]);
 
     $resultado = $r->fetch(PDO::FETCH_ASSOC);
-    if ($resultado["admin"] == 0) {
-        header('Location: ' . URL_INICIO);
+    if ($resultado["admin"] == 1) {
+       return TRUE;
+    }
+}
+
+//provisorio
+function admPage(PDO $pdo){
+    if (is_admin($pdo)){
+        echo '<a href="elFinder.php">ELFinder</a>';
     }
 }
 

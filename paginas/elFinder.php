@@ -2,7 +2,7 @@
   require_once '../PHP/auth.php'; 
   $pdo = ConnectDB();
   exigirLogin($pdo);
-  is_admin($pdo);
+  if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
 ?>
 <!DOCTYPE html>
 <html>
