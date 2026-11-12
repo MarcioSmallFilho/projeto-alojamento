@@ -155,6 +155,21 @@ function admPage(PDO $pdo){
     }
 }
 
+//========================================
+// 5. Funções Globais
+//========================================
+
+function SELECT($pdo, $sql, $params){
+    try{
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+
+        $fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+        echo 'Erro manito.';
+    }
+    return $fetch;
+}
 function procurarImagem(PDO $pdo, $nome = null, $seccao = null){
     $query = 'SELECT nomeAlojamento,caminho FROM alojamento AS a INNER JOIN imagem AS i ON a.codAlojamento = i.alojamento';
 

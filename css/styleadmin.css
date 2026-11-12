@@ -8,6 +8,8 @@ header{
     font-weight: bolder;
     display: flex;
     gap: 15px;
+    display: flex;
+    align-items: center;
 }
 header > a{
     text-decoration: none;
@@ -16,9 +18,11 @@ header > a{
     padding: 12px;
     border-radius: 15px;
     border: 2px solid color-mix(in srgb, darkcyan , black 30%);
+    display: flex;
 }
 header > a:hover{
     color: color-mix(in srgb,white , black 10%);
+    transform: scale(1.03);
 }
 .pagina{
     padding: 5px;
@@ -37,4 +41,15 @@ header > a:hover{
 }
 .Recusada{
     background-color: color-mix(in srgb,  white, red 30%);
+}
+.perfil > p{
+    color: white;
+    font-weight: bolder;
+    padding: 12px;
+    border-radius: 15px;
+    border: 3px solid color-mix(in srgb, darkcyan , black 30%);
+
+}
+.perfil{
+    margin-left: auto;
 }
