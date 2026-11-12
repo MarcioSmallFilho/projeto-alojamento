@@ -136,6 +136,9 @@ function terminarSessao(PDO $pdo): void
 }
 
 function is_admin(PDO $pdo) {
+    if (!utilizadorAutenticado($pdo)) {
+        return ;
+    }
     $r = $pdo->prepare("SELECT admin FROM utilizador WHERE nomeUtilizador = :nome");
     $r->execute([":nome"=> $_SESSION['nomeUtilizador']]);
 
@@ -167,9 +170,13 @@ function procurarImagem(PDO $pdo, $nome = null, $seccao = null){
         $resultado[] = [$linha['nomeAlojamento'] => '../'.$linha['caminho']];
     }
 
-    $arquvioJSON = fopen('../Imagens.json', 'w');
-    fwrite($arquvioJSON, json_encode($resultado));
-    fclose($arquvioJSON);
+    return $resultado;
+}
+
+//Se está logado aparece o logout, se não aparece para logar
+function paginaLogin(PDO $pdo){
+    if (utilizadorAutenticado($pdo)){echo '<a href="../PHP/logout.php">Logout</a>';}
+    else{echo '<a href="login.php">Login/Register</a>';}
 }
 
 iniciarSessaoSegura();
