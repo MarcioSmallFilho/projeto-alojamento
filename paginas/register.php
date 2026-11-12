@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!csrfValido($_POST['csrf'] ?? null)) {
         $erro = 'Pedido inválido. Atualize a página e tente novamente.';
-    } elseif (!preg_match('/^[\p{L}\p{N}_.-]{3,40}$/u', $nome)) {
+    } elseif (!preg_match('/^[\p{L}\p{N}_.-]\s{3,40}$/u', $nome)) {
         $erro = 'O nome de utilizador deve ter 3 a 40 caracteres (letras, números, _ . -).';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 100) {
         $erro = 'E-mail inválido.';
