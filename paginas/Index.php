@@ -25,6 +25,11 @@
             </div>
             <div class="h-dir">
                 <nav class="nav-menu" id="nav-menu">
+                    <?php
+                        require_once "../PHP/auth.php";
+                        $pdo = ConnectDB();
+                        admPage($pdo);
+                    ?>
                     <a href="oalojamento.php">O Alojamento</a> 
                     <a href="experiencias.php">Experiências</a> 
                     <a href="contactos.php">Contactos</a>
