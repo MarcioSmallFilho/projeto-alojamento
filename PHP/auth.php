@@ -152,4 +152,20 @@ function admPage(PDO $pdo){
     }
 }
 
+//========================================
+// 5. Funções Globais
+//========================================
+
+function SELECT($pdo, $sql, $params){
+    try{
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+
+        $fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+        echo 'Erro manito.';
+    }
+    return $fetch;
+}
+
 iniciarSessaoSegura();

@@ -1,5 +1,5 @@
 <?php
-  require_once '../PHP/auth.php'; 
+  require_once '../PHP/auth.php';
   $pdo = ConnectDB();
   exigirLogin($pdo);
   if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
@@ -15,8 +15,10 @@
 <body>
   <header>
   <a href="elFinder.php">elFinder</a>
-
   <a href="index.php">index</a>
+  <div class="perfil">
+    <p><?php echo $_SESSION['nomeUtilizador'];?> [<?php echo SELECT($pdo, 'SELECT paisOrigem from utilizador where codUtilizador = :cod', [':cod' => $_SESSION['codUtilizador']])[0]['paisOrigem'] ?>]</p>
+  </div>
   </header>
   <div class="pagina">
   <?php
@@ -46,8 +48,6 @@
     }
     echo '</div>';
   }
-
-  
   ?>
   </div>
 </body>
