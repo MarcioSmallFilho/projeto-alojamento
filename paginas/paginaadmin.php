@@ -10,9 +10,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/styleadmin.css">
 </head>
 <body>
+  <header>
   <a href="elFinder.php">elFinder</a>
+
   <a href="index.php">index</a>
+  </header>
+  <div class="pagina">
+  <?php
+
+  // ==========================================
+  // 2. CONSULTAR AS RESERVAS
+  // ==========================================
+
+  $hoje = date('Y-m-d');
+
+  $sql = "
+      SELECT
+          *
+      FROM Reserva
+      WHERE checkOut > :hoje
+      ORDER BY dataReserva DESC
+  ";
+
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute(['hoje' => $hoje]);
+
+  $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  foreach($reservas as $reserva){
+    echo '<div class="reserva '.$reserva['estadoReserva'].'" styles="display: flex;">';
+    foreach($reserva as $data){
+      echo array_search($data, $reserva).': '.$data. ' ';
+    }
+    echo '</div>';
+  }
+
+  
+  ?>
+  </div>
 </body>
 </html>

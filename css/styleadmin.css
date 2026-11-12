@@ -1,0 +1,40 @@
+body{
+    margin: 0px;
+    font-family: 'Courier New', Courier, monospace;
+}
+header{
+    background-color:darkcyan;
+    padding: 30px;
+    font-weight: bolder;
+    display: flex;
+    gap: 15px;
+}
+header > a{
+    text-decoration: none;
+    color: white;
+    transition: all ease-in-out 0.2s;
+    padding: 12px;
+    border-radius: 15px;
+    border: 2px solid color-mix(in srgb, darkcyan , black 30%);
+}
+header > a:hover{
+    color: color-mix(in srgb,white , black 10%);
+}
+.pagina{
+    padding: 5px;
+}
+.reserva{
+    padding: 15px;
+    font-weight: bolder;
+    color: black;
+    margin-bottom: 5px;
+}
+.Pendente{
+    background-color: color-mix(in srgb, white , black 10%);
+}
+.Aceite{
+    background-color: color-mix(in srgb, white , green 30%);
+}
+.Recusada{
+    background-color: color-mix(in srgb,  white, red 30%);
+}
