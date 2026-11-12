@@ -148,7 +148,7 @@ function is_admin(PDO $pdo) {
     }
 }
 
-//provisorio (y)
+//Botão para mandar a pagina de admin
 function admPage(PDO $pdo){
     if (is_admin($pdo)){
         echo '<a href="paginaadmin.php">Admin Page</a>';
@@ -159,7 +159,7 @@ function admPage(PDO $pdo){
 // 5. Funções Globais
 //========================================
 
-function SELECT($pdo, $sql, $params){
+function SELECT($pdo, $sql, $params = []){
     try{
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
@@ -170,6 +170,7 @@ function SELECT($pdo, $sql, $params){
     }
     return $fetch;
 }
+
 function procurarImagem(PDO $pdo, $nome = null, $seccao = null){
     $query = 'SELECT nomeAlojamento,caminho FROM alojamento AS a INNER JOIN imagem AS i ON a.codAlojamento = i.alojamento';
 
