@@ -14,15 +14,21 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
   <script src="../elFinder/js/elfinder.min.js"></script>
+  <link rel="stylesheet" href="../css/styleadmin.css">
 </head>
 <body>
+  <header>
+    <a href="paginaadmin.php">Pagina admin</a>
+    <a href="index.php">index</a>
+  </header>
   <div id="elfinder"></div>
 
   <script>
     $(function () {
       $('#elfinder').elfinder({
         url: '../PHP/conector.php',
-        lang: 'pt_BR'
+        lang: 'pt_BR',
+        resizable: false
       });
     });
   </script>

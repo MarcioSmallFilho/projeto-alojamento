@@ -145,10 +145,10 @@ function is_admin(PDO $pdo) {
     }
 }
 
-//provisorio
+//provisorio (y)
 function admPage(PDO $pdo){
     if (is_admin($pdo)){
-        echo '<a href="elFinder.php">ELFinder</a>';
+        echo '<a href="paginaadmin.php">Admin Page</a>';
     }
 }
 
