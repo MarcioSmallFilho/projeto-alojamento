@@ -77,10 +77,14 @@ exigirLogin($pdo);
                         </div>
                     </div>
                     <p id="msgErro" role="alert" style="display:none; color:#c0392b; margin:8px 0;"></p>
-                    <input type="submit" value="Reservar pelo Airbnb">
+                    <input type="submit" value="Fazer pedido de reserva">
                 </form>
             </div>
-            
+            <?php 
+             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                
+             }
+            ?>
             
 
         </div>
