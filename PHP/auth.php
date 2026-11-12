@@ -181,6 +181,7 @@ function INSERT($pdo, $sql, $params=[]){
     }
 
 function procurarImagem(PDO $pdo, $nome = null, $seccao = null){
+    $resultado = array();
     $query = 'SELECT nomeAlojamento,caminho FROM alojamento AS a INNER JOIN imagem AS i ON a.codAlojamento = i.alojamento';
 
     if (!is_null($nome) AND !is_null($seccao)) {$query .= ' WHERE i.nomeOriginal = '. $nome .' AND i.seccao = '. $seccao;}
@@ -191,7 +192,6 @@ function procurarImagem(PDO $pdo, $nome = null, $seccao = null){
     $srmt->execute();
 
     while ($linha = $srmt->fetch(PDO::FETCH_ASSOC)){
-        print_r([$linha['nomeAlojamento'] => $linha['caminho']]);
         $resultado[] = [$linha['nomeAlojamento'] => '../'.$linha['caminho']];
     }
 
