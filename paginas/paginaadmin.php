@@ -42,9 +42,9 @@
 
   $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
   foreach($reservas as $reserva){
-    echo '<div class="reserva '.$reserva['estadoReserva'].'" styles="display: flex;">';
-    foreach($reserva as $data){
-      echo array_search($data, $reserva).': '.$data. ' ';
+    echo '<div class="reserva '.$reserva['estadoReserva'].'" style="display: flex;">';
+    foreach($reserva as $chave => $valor){
+      echo $chave . ': ' . $valor . ' ';
     }
     echo '</div>';
   }
