@@ -12,6 +12,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="elFinder.php">elFinder</a>
+  <a href="elFinder.php">elFinder</a>
+  <a href="index.php">index</a>
 </body>
 </html>
