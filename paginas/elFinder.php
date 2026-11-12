@@ -32,5 +32,9 @@
       });
     });
   </script>
+
+  <?php
+    procurarImagem($pdo);
+  ?>
 </body>
 </html>
