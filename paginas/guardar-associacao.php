@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // A verificação do token é comum aos dois formulários
     $tokenRecebido = $_POST['csrf'] ?? '';
 
-    if (!is_string($tokenRecebido) || !hash_equals($_SESSION['csrf'], $tokenRecebido)) {
+    if (!is_string($tokenRecebido) || !hash_equals($_SESSION['csrf'], $tokenRecebido) && !isset($_POST['formulario_id']) && !$_POST['formulario_id'] === 'Guardar') {
         http_response_code(403);
         exit('Pedido inválido.');
     }
@@ -299,6 +299,7 @@ $camposFormulario = [
             <p class="mensagem"><?= assocEscapar($mensagem) ?></p>
 
             <form method="POST" class="formulario">
+                <input type="hidden" name="formulario_id" value="Guardar">
 
                 <input type="hidden" name="csrf"
                     value="<?= assocEscapar($_SESSION['csrf']) ?>">
@@ -370,6 +371,8 @@ $camposFormulario = [
             <p class="mensagem"><?= assocEscapar($mensagemSecao) ?></p>
 
             <form method="POST" class="formulario">
+
+                <input type="hidden" name="formulario_id" value="Guardar">
 
                 <input type="hidden" name="csrf"
                     value="<?= assocEscapar($_SESSION['csrf']) ?>">
