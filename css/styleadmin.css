@@ -53,6 +53,7 @@ header > a:hover{
 .perfil{
     margin-left: auto;
 }
+
 form.formulario{
     padding: 15px;
     background-color: color-mix(in srgb, white, black 5%);
@@ -68,6 +69,23 @@ form.formulario{
     color: white;
 }
 
+.formulario img{
+    border-radius: 15px;
+    align-self: center;
+}
+
 div.formulario {
     width: 20%;
+}
+
+.formularios {
+    display: flex;
+    gap: 15px;
+}
+
+.mensagem {
+    text-align: center;
+    margin: 0px;
+    color: white;
+    background-color: color-mix(in srgb, darkcyan, white 20%);
 }
