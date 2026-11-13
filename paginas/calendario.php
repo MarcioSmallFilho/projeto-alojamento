@@ -1,7 +1,7 @@
 <?php
 require_once '../PHP/auth.php'; 
 $pdo = ConnectDB();
-exigirLogin($pdo);
+exigirLogin($pdo, 'calendario.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-pt">
@@ -97,6 +97,11 @@ exigirLogin($pdo);
 
                             }else{
                                 //Criar o Pedido de Reserva.
+                                //-------------------------------------------
+                                $agora = new DateTime();
+
+                                // Formata para o formato padrão do MySQL (Ano-Mês-Dia Horas:Minutos:Segundos)
+                                $dataHora = $agora->format('Y-m-d H:i:s');
 
                                 $checkinStr = $_POST['checkin'];
                                 $checkoutStr = $_POST['checkout'];
@@ -113,7 +118,7 @@ exigirLogin($pdo);
 
                                 $preco = $numeroDias *  $valor['precoNoite'];
 
-                                INSERT($pdo, 'INSERT INTO reserva(checkIn, checkOut, codAlojamento, codUtilizador, dataReserva, numeroAdultos, numeroBebes, numeroCriancas, precoTotal) VALUES(:ckIn, :ckOut, :codAloj, :codUtil, :hoje, :nAdultos, :nBebes, :nCriancas, :preco)', [':ckIn' => $_POST['checkin'], ':ckOut' => $_POST['checkout'],':codAloj' => $codAlojamento, ':codUtil' => $_SESSION['codUtilizador'],':hoje' => date('Y-m-d'),':nAdultos' => $_POST['numberOfAdults'] ,':nBebes' => $_POST['numberOfInfants'],':nCriancas' => $_POST['numberOfChildren'], ':preco' => $preco]);
+                                INSERT($pdo, 'INSERT INTO reserva(checkIn, checkOut, codAlojamento, codUtilizador, dataReserva, numeroAdultos, numeroBebes, numeroCriancas, precoTotal) VALUES(:ckIn, :ckOut, :codAloj, :codUtil, :hoje, :nAdultos, :nBebes, :nCriancas, :preco)', [':ckIn' => $_POST['checkin'], ':ckOut' => $_POST['checkout'],':codAloj' => $codAlojamento, ':codUtil' => $_SESSION['codUtilizador'],':hoje' => $dataHora,':nAdultos' => $_POST['numberOfAdults'] ,':nBebes' => $_POST['numberOfInfants'],':nCriancas' => $_POST['numberOfChildren'], ':preco' => $preco]);
                                 echo '<p style="color:green; margin-bottom: 7px;">Pedido enviado com sucesso.</p>';
                             }
                         }
