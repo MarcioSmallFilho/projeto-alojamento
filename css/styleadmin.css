@@ -24,14 +24,14 @@ header > a:hover{
     color: color-mix(in srgb,white , black 10%);
     transform: scale(1.03);
 }
-.pagina{
-    padding: 5px;
+.reservas{
+    padding: 7px;
 }
 .reserva{
     padding: 15px;
     font-weight: bolder;
     color: black;
-    margin-bottom: 5px;
+    margin-top: 5px;
     border-radius: 15px;
 }
 .Pendente{
@@ -106,3 +106,29 @@ footer{
     display: flex;
     align-items: center;
 }
+#filtro{
+    background-color: color-mix(in srgb, darkcyan , black 10%);
+    padding: 5px;
+}
+
+.reservas{
+    padding: 7px;
+    max-height: 270px;          /* altura máxima: ajusta ao teu layout */
+    overflow-y: auto;           /* scroll só quando for preciso */
+    overflow-x: hidden;
+    scrollbar-gutter: stable;   /* evita o "salto" quando a barra aparece */
+    scrollbar-width: thin;      /* Firefox */
+}
+.reserva{
+    padding: 15px;
+    font-weight: bolder;
+    color: black;
+    margin-top: 5px;
+    border-radius: 15px;
+    flex-shrink: 0;             /* sem isto os cartões encolhiam em vez de dar scroll */
+    flex-wrap: wrap;            /* texto longo quebra a linha */
+    gap: 6px;
+}
+
+.reservas::-webkit-scrollbar{ width: 8px; }
+.reservas::-webkit-scrollbar-thumb{ background: #bbb; border-radius: 4px; }
