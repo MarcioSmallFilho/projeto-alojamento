@@ -4,7 +4,7 @@ body{
 }
 header{
     background-color:darkcyan;
-    padding: 30px;
+    padding: 20px;
     font-weight: bolder;
     display: flex;
     gap: 15px;

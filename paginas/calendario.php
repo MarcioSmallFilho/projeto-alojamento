@@ -82,7 +82,23 @@ exigirLogin($pdo, 'calendario.php');
                         $valor = SELECT($pdo, 'SELECT precoNoite, limitePessoas FROM Alojamento WHERE codAlojamento = :cod', [':cod' => $codAlojamento]);
                         $valor = $valor[0];
 
+                        
+
+
                         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                            
+                            $agora = new DateTime();
+
+                            // Formata para o formato padrão do MySQL (Ano-Mês-Dia Horas:Minutos:Segundos)
+                            $dataHora = $agora->format('Y-m-d H:i:s');
+
+                            $checkinStr = $_POST['checkin'];
+                            $checkoutStr = $_POST['checkout'];
+
+                            // Cria objetos DateTime a partir das strings das datas
+                            $checkin = new DateTime($checkinStr);
+                            $checkout = new DateTime($checkoutStr);
+
                             if($_POST['checkin'] == '' or $_POST['checkout'] == ''){
                                 $erro = 'Precisas de preencher uma data.';
                             }elseif($_POST['numberOfAdults'] < 1){
@@ -90,25 +106,16 @@ exigirLogin($pdo, 'calendario.php');
                             }elseif($_POST['numberOfChildren'] < 0 or $_POST['numberOfInfants'] < 0){
                                 $erro = 'não podem haver valores menores que 0.';
                             }elseif($_POST['numberOfChildren'] + $_POST['numberOfInfants'] + $_POST['numberOfAdults'] > $valor['limitePessoas']){
-                                $erro = 'limite de pessoas ultrapassado.';
+                                $erro = "limite de pessoas ultrapassado. (".$valor['limitePessoas'].")";
+                            }elseif($checkin >= $checkout){
+                                $erro = "A data de check-in tem de ser anterior à data de check-out.";
                             }
                             if(!empty($erro)){
                                 echo "<p id='msgErro' role='alert' style='color:red; margin-bottom: 7px;'>{$erro}</p>";
 
                             }else{
                                 //Criar o Pedido de Reserva.
-                                //-------------------------------------------
-                                $agora = new DateTime();
-
-                                // Formata para o formato padrão do MySQL (Ano-Mês-Dia Horas:Minutos:Segundos)
-                                $dataHora = $agora->format('Y-m-d H:i:s');
-
-                                $checkinStr = $_POST['checkin'];
-                                $checkoutStr = $_POST['checkout'];
-
-                                // Cria objetos DateTime a partir das strings das datas
-                                $checkin = new DateTime($checkinStr);
-                                $checkout = new DateTime($checkoutStr);
+                                //-------------------------------------------                               
 
                                 // Calcula a diferença entre as duas datas
                                 $diferenca = $checkin->diff($checkout);

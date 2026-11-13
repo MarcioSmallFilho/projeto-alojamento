@@ -1,4 +1,9 @@
 <?php
+require_once '../PHP/auth.php';
+$pdo = ConnectDB();
+exigirLogin($pdo);
+if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
+
 // Os erros do PHP não podem aparecer na resposta, senão o elFinder deixa de receber JSON válido.
 ini_set('display_errors', '0');
 error_reporting(E_ALL);
