@@ -1,3 +1,7 @@
+<?php
+    $codAlojamento = 2; // codAlojamento do Oasis Dune na tabela alojamento
+    $semImagem     = '../imagens/imagens/sem-imagem.svg'; // usada quando falta a associação
+?>
 <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
@@ -7,28 +11,35 @@
     <meta property="og:title" content="O Alojamento | Oasis Dune">
     <meta property="og:description" content="Conheça o Oasis Dune: moradia com dois quartos, sala com lareira, cozinha equipada, jacuzzi exterior, jardim, terraço e garagem na Praia do Cabedelo.">
     <meta property="og:type" content="website">
-    <link rel="icon" href="../imagens/logo.png">
+    <link rel="icon" href="<?= $semImagem ?>" data-secao="Logo" data-pos="0">
     <link rel="stylesheet" href="../css/styleconfig.css">
     <link rel="stylesheet" href="../css/styleAloj.css">
     <script src="../script/script.js" defer></script>
     <script src="../script/ampliarimgscript.js" defer></script>
+    <script src="../script/imagens-dinamicas.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>O Alojamento | Oasis Dune</title>
 </head>
-<body>
-    <div class="fundo-fixo"></div>
+<body data-alojamento="<?= (int) $codAlojamento ?>" data-sem-imagem="<?= $semImagem ?>">
+    <div class="fundo-fixo" data-secao="oAlojamento - fundo" data-pos="0" data-fundo style="background-image: url('<?= $semImagem ?>');"></div>
 
     <div class="conteudo-site">
         <header>
             <div class="h-esq">
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
+                <img src="<?= $semImagem ?>" data-secao="Logo" data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
             </div>
             <div class="h-dir">
                 <nav class="nav-menu" id="nav-menu">
-                    <a href="oalojamento.php">O Alojamento</a> 
-                    <a href="experiencias.php">Experiências</a> 
+                    <a href="oalojamento.php">O Alojamento</a>
+                    <a href="experiencias.php">Experiências</a>
                     <a href="contactos.php">Contactos</a>
                     <a href="calendario.php">Reservar</a>
+                    <?php
+                        require_once "../PHP/auth.php";
+                        $pdo = ConnectDB();
+                        admPage($pdo);
+                        paginaLogin($pdo);
+                    ?>
                 </nav>
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Airbnb</a>
                 <button class="menu-mobile-btn" id="btn-menu" aria-label="Abrir Menu">
@@ -91,7 +102,7 @@
             <p>Um lugar para descansar</p>
             <div class="areaCartas">
                 <div class="cartaQuarto">
-                    <img src="../imagens/Oalojamento/Quarto1.png" alt="Quarto I" loading="lazy">
+                    <img src="<?= $semImagem ?>" data-secao="Quarto I" data-pos="0" alt="Quarto I" loading="lazy">
                     <div>
                         <h3>Quarto I</h3>
                         <input type="button" value="Ver Mais" class="but-carta" onclick="goto('QuartoI.php')">
@@ -99,7 +110,7 @@
                 </div>
 
                 <div class="cartaQuarto">
-                    <img src="../imagens/quartos/quartoII/quartoII-1.png" alt="Quarto II" loading="lazy">
+                    <img src="<?= $semImagem ?>" data-secao="Quarto II" data-pos="0" alt="Quarto II" loading="lazy">
                     <div>
                         <h3>Quarto II</h3>
                         <input type="button" value="Ver Mais" class="but-carta" onclick="goto('QuartoII.php')">
@@ -107,7 +118,7 @@
                 </div>
 
                 <div class="cartaQuarto">
-                    <img src="../imagens/Oalojamento/Sala.png" alt="Sala de estar" loading="lazy">
+                    <img src="<?= $semImagem ?>" data-secao="Sala de estar" data-pos="0" alt="Sala de estar" loading="lazy">
                     <div>
                         <h3>Sala de estar</h3>
                         <input type="button" value="Ver Mais" class="but-carta" onclick="goto('saladeestar.php')">
@@ -122,48 +133,24 @@
                     <h1>O que temos a oferecer</h1>
                     <p>O Oasis Dune (Praia do Cabedelo, Viana do Castelo) é uma moradia para seis pessoas com acesso direto às dunas e vista mar. Oferece dois quartos com ar condicionado, closet e varanda, sala com sofá-cama e TV, cozinha equipada, lavandaria, Wi-Fi, duas casas de banho (uma com hidromassagem), jacuzzi exterior no jardim, terraço mobilado, garagem e estacionamento.</p>
                 </div>
-                <img src="../imagens/Oalojamento/casa.jpeg" alt="Vista exterior do Oasis Dune" loading="lazy">
+                <img src="<?= $semImagem ?>" data-secao="oAlojamento" data-pos="0" alt="Vista exterior do Oasis Dune" loading="lazy">
             </div>
         </div>
         
         <div class="conteudoA">
             <h1>Galeria</h1>
             <div class="areaImg">
-                <img src="../imagens/Oalojamento/campo-fute.png" class="imagem" alt="Campo de futebol" loading="lazy">
-                <img src="../imagens/Oalojamento/casa-banho.jpeg" class="imagem" alt="Casa de banho" loading="lazy">
-                <img src="../imagens/Oalojamento/cozinha.jpeg" class="imagem" alt="Cozinha" loading="lazy">
-                <img src="../imagens/Oalojamento/Jardim-4.jpg" class="imagem" alt="Jardim" loading="lazy">
-                <img src="../imagens/Oalojamento/garagem.png" class="imagem" alt="Garagem" loading="lazy">
-                <img src="../imagens/Oalojamento/terraco.jpeg" class="imagem" alt="Terraço" loading="lazy">
+                <?php
+                    $imagens = SELECT($pdo, 'SELECT DISTINCT i.caminho, i.nomeOriginal FROM imagem AS i INNER JOIN imagemassociacao AS ic ON i.codImagem = ic.codImagem WHERE ic.idSecao NOT IN (4, 15);');
 
-                <img src="../imagens/Oalojamento/Quarto1.png" class="imagem extra" alt="Quarto I" loading="lazy">
-                <img src="../imagens/Oalojamento/Quarto2.png" class="imagem extra" alt="Quarto II" loading="lazy">
-                <img src="../imagens/Oalojamento/Quarto2-2.jpg" class="imagem extra" alt="Quarto II" loading="lazy">
-                <img src="../imagens/Oalojamento/Quarto2-3.avif" class="imagem extra" alt="Quarto II" loading="lazy">
-                <img src="../imagens/Oalojamento/Quarto2-4.jpeg" class="imagem extra" alt="Quarto II" loading="lazy">
-                <img src="../imagens/Oalojamento/Quarto2-5.avif" class="imagem extra" alt="Quarto II" loading="lazy">
-                <img src="../imagens/Oalojamento/casa-banho-2.jpg" class="imagem extra" alt="Casa de banho" loading="lazy">
-                <img src="../imagens/Oalojamento/casa-banho-3.jpg" class="imagem extra" alt="Casa de banho" loading="lazy">
-                <img src="../imagens/Oalojamento/casa.jpeg" class="imagem extra" alt="Vista exterior do Oasis Dune" loading="lazy">
-                <img src="../imagens/Oalojamento/cozinha-2.jpg" class="imagem extra" alt="Cozinha" loading="lazy">
-                <img src="../imagens/Oalojamento/cozinha-3.jpg" class="imagem extra" alt="Cozinha" loading="lazy">
-                <img src="../imagens/Oalojamento/sala-2.jpg" class="imagem extra" alt="Sala de estar" loading="lazy">
-                <img src="../imagens/Oalojamento/sala-3.jpg" class="imagem extra" alt="Sala de estar" loading="lazy">
-                <img src="../imagens/Oalojamento/sala-4.jpg" class="imagem extra" alt="Sala de estar" loading="lazy">
-                <img src="../imagens/Oalojamento/sala-5.jpg" class="imagem extra" alt="Sala de estar" loading="lazy">
-                <img src="../imagens/Oalojamento/sala-6.jpg" class="imagem extra" alt="Sala de estar" loading="lazy">
-                <img src="../imagens/Oalojamento/Jardim.jpg" class="imagem extra" alt="Jardim" loading="lazy">
-                <img src="../imagens/Oalojamento/Jardim-2.jpg" class="imagem extra" alt="Jardim" loading="lazy">
-                <img src="../imagens/Oalojamento/Jardim-3.jpg" class="imagem extra" alt="Jardim" loading="lazy">
-                <img src="../imagens/Oalojamento/Jardim-5.jpg" class="imagem extra" alt="Jardim" loading="lazy">
-                <img src="../imagens/Oalojamento/Jardim-6.jpg" class="imagem extra" alt="Jardim" loading="lazy">
-                <img src="../imagens/Oalojamento/Interior.jpg" class="imagem extra" alt="Interior do alojamento" loading="lazy">
-                <img src="../imagens/Oalojamento/Interior-2.jpg" class="imagem extra" alt="Interior do alojamento" loading="lazy">
-                <img src="../imagens/Oalojamento/Interior-3.jpg" class="imagem extra" alt="Interior do alojamento" loading="lazy">
-                <img src="../imagens/Oalojamento/Interior-4.jpg" class="imagem extra" alt="Interior do alojamento" loading="lazy">
-                <img src="../imagens/Oalojamento/exterior-2.jpg" class="imagem extra" alt="Exterior do alojamento" loading="lazy">
-                <img src="../imagens/Oalojamento/exterior-3.jpg" class="imagem extra" alt="Exterior do alojamento" loading="lazy">
-                <img src="../imagens/Oalojamento/PORTA.jpg" class="imagem extra" alt="Entrada do alojamento" loading="lazy">
+                    for ( $x = 0; $x < count($imagens); $x++ ) {
+                        if ($x < 6) {
+                            echo "<img src=\"../". $imagens[$x]['caminho'] . "\" class=\"imagem\" alt=\"" . $imagens[$x]['nomeOriginal'] . "\" loading=\"lazy\">";
+                        } else {
+                            echo "<img src=\"../". $imagens[$x]['caminho'] . "\" class=\"imagem extra\" alt=\"" . $imagens[$x]['nomeOriginal'] . "\" loading=\"lazy\">";
+                        }
+                    }
+                ?>
             </div>
             <button id="botaoMostrarMaisImg" class="btn-mostrar-mais" onclick="toggleImg()">
                 <i class="fa-solid fa-chevron-down"></i> Mostrar todas as imagens
@@ -182,7 +169,7 @@
 
         <footer>
             <div>
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')">
+                <img src="<?= $semImagem ?>" data-secao='Logo' data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')">
                 <p>+351 935 334 117</p> 
                 <p>info.oasisdune@gmail.com</p> 
                 <p>Rua Fernão Martins da Costa, 4935-158 Viana do Castelo</p> 
@@ -198,7 +185,7 @@
                 <a href="experiencias.php">Experiências</a> 
                 <a href="contactos.php">Contactos</a>
                 <a href="calendario.php">Reservar</a>
-                <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a>
+                <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a><br>
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Mais no Airbnb</a>
             </div>
         </footer>

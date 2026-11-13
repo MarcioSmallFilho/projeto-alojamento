@@ -107,11 +107,11 @@
         <div class="avaliacao">
             <h2>"Todas as comodidades bem equipadas, Anfitriões extremamente atenciosos."</h2>
             <div class="estrelas" role="img" aria-label="Avaliação de 5 estrelas em 5">
-                <img src="../imagens/estrela.png" height="25px" alt="">
-                <img src="../imagens/estrela.png" height="25px" alt="">
-                <img src="../imagens/estrela.png" height="25px" alt="">
-                <img src="../imagens/estrela.png" height="25px" alt="">
-                <img src="../imagens/estrela.png" height="25px" alt="">
+                <img src="<?= $semImagem ?>" data-secao='Star' height="25px" alt="">
+                <img src="<?= $semImagem ?>" data-secao='Star' height="25px" alt="">
+                <img src="<?= $semImagem ?>" data-secao='Star' height="25px" alt="">
+                <img src="<?= $semImagem ?>" data-secao='Star' height="25px" alt="">
+                <img src="<?= $semImagem ?>" data-secao='Star' height="25px" alt="">
             </div>
             <!-- Substituir por uma imagem automaticamente ficará formatado-->
             <i class="fa-solid fa-circle-user" style="font-size: 50px;"></i>

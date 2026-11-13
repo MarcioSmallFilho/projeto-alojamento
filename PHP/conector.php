@@ -51,10 +51,9 @@ function registarImagem($cmd, &$result, $args, $elfinder, $volume) {
         $pdo = ConnectDB();
 
         $stmt = $pdo->prepare("
-            INSERT INTO Imagens
-            (alojamento, caminho, nomeOriginal,
-             seccao, ordem, destaque)
-            VALUES (?, ?, ?, 'galeria', 0, 0)
+            INSERT INTO Imagem
+            (caminho, nomeOriginal)
+            VALUES (?, ?)
         ");
 
         $raiz = str_replace(
@@ -82,7 +81,6 @@ function registarImagem($cmd, &$result, $args, $elfinder, $volume) {
             );
 
             $stmt->execute([
-                $idAlojamento,
                 $relativo,
                 $ficheiro['name']
             ]);
