@@ -25,14 +25,54 @@
 
   <script>
     $(function () {
-      $('#elfinder').elfinder({
-        url: '../PHP/conector.php',
-        lang: 'pt_BR',
-        resizable: false
-      });
+
+        $('#elfinder').elfinder({
+            url: '../PHP/conector.php',
+            lang: 'pt_BR',
+            resizable: false,
+
+            getFileCallback: function(file, fm) {
+
+                // Aceitar tanto uma string como um objeto
+                let url;
+
+                if (typeof file === 'string') {
+                    url = file;
+                } else if (file && file.url) {
+                    url = file.url;
+                } else if (file && file.hash) {
+                    url = fm.url(file.hash);
+                }
+
+                // Verificar se recebemos uma imagem
+                if (!url) {
+                    console.error('Imagem recebida:', file);
+                    alert('Não foi possível obter o caminho da imagem.');
+                    return;
+                }
+
+                // Devolver ao formulário
+                if (window.opener && !window.opener.closed) {
+
+                    window.opener.selecionarImagem(url);
+
+                    window.close();
+
+                } else {
+                    alert('Não foi possível comunicar com o formulário.');
+                }
+            },
+
+            commandsOptions: {
+                getfile: {
+                    onlyURL: true,
+                    multiple: false
+                }
+            }
+        });
+
     });
   </script>
-
   <?php
     $resultado = procurarImagem($pdo);
     $arquvioJSON = fopen('../Imagens.json', 'w');

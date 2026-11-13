@@ -72,6 +72,11 @@
     echo '</div>';
   }
   ?>
+
+  <?php 
+    require_once 'guardar-associacao.php';
+  ?>
+  
   </div>
 </body>
 </html>
