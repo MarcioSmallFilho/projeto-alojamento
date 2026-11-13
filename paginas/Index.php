@@ -12,7 +12,7 @@ $semImagem     = '../imagens/sem-imagem.svg';  // usada quando falta a associaç
     <meta property="og:title" content="Oasis Dune | Alojamento na Praia do Cabedelo, Viana do Castelo">
     <meta property="og:description" content="Moradia para seis pessoas na Praia do Cabedelo, em Viana do Castelo, com acesso direto às dunas, vista mar, jacuzzi e jardim. Reserve a sua estadia.">
     <meta property="og:type" content="website">
-    <link rel="icon" href="../imagens/logo-ico.ico">
+    <link rel="icon" src="../imagens/logo-ico.ico">
     <link rel="stylesheet" href="../css/styleconfig.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../script/script.js" defer></script>

@@ -19,12 +19,10 @@ try {
 
     $sql = "
         SELECT
-            codUtilizador,
             codAlojamento,
             checkIn,
             checkOut,
-            dataReserva,
-            precoTotal
+            dataReserva
         FROM Reserva
         WHERE checkOut > :hoje and estadoReserva = 'Aceite'
         ORDER BY checkIn ASC
@@ -59,10 +57,8 @@ try {
             'color' => '#ff4d4d',
 
             'extendedProps' => [
-                'codUtilizador' => $reserva['codUtilizador'],
                 'codAlojamento' => $reserva['codAlojamento'],
                 'dataReserva' => $reserva['dataReserva'],
-                'precoTotal' => $reserva['precoTotal']
             ]
         ];
     }
