@@ -1,6 +1,7 @@
 <?php
-    $codAlojamento = 2; // codAlojamento do Oasis Dune na tabela alojamento
     $semImagem     = '../imagens/imagens/sem-imagem.svg'; // usada quando falta a associação
+    require_once "../PHP/auth.php";
+    $pdo = ConnectDB();
 ?>
 <!DOCTYPE html>
 <html lang="pt-pt">
@@ -35,8 +36,6 @@
                     <a href="contactos.php">Contactos</a>
                     <a href="calendario.php">Reservar</a>
                     <?php
-                        require_once "../PHP/auth.php";
-                        $pdo = ConnectDB();
                         admPage($pdo);
                         paginaLogin($pdo);
                     ?>
