@@ -26,6 +26,7 @@
   </div>
   </header>
   <div class="pagina">
+  
   <?php
 
   // ==========================================
@@ -55,7 +56,6 @@
       ON reserva.codAlojamento = alojamento.codAlojamento
       WHERE checkOut > :hoje
       ORDER BY dataReserva DESC
-      LIMIT 5
   ";
   $parametros = ['codReserva', 'nomeUtilizador', 'nomeAlojamento', 'checkIn', 'checkOut', 'dataReserva', 'precoTotal', 'estadoReserva', 'nPessoas' ];
   $stmt = $pdo->prepare($sql);
@@ -68,7 +68,7 @@
     foreach($reserva as $chave => $valor){
       if(in_array($chave, $parametros)) {
         //adicionar o valor no card
-        echo $valor. ' | ';
+        echo $valor. ' |';
       } 
     }
     if($reserva['estadoReserva'] == 'Pendente'){
@@ -86,7 +86,7 @@
       }
       
       if($Sobreposto){
-          echo "<i style='text-decoration: underline;'>Bloqueado</i>";
+          echo "<i style='text-decoration: underline;'>Bloqueado:</i><a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a>";
       } else {
           echo "<a href='../PHP/responderPedido.php?request="."Aceite"."&cod=".$reserva['codReserva']."'>Aceitar</a> / <a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a>";
       }

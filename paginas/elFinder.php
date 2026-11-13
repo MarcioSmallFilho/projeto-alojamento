@@ -73,11 +73,5 @@
 
     });
   </script>
-  <?php
-    $resultado = procurarImagem($pdo);
-    $arquvioJSON = fopen('../Imagens.json', 'w');
-    fwrite($arquvioJSON, json_encode($resultado));
-    fclose($arquvioJSON);
-  ?>
 </body>
 </html>

@@ -184,24 +184,6 @@ function INSERT($pdo, $sql, $params=[]){
     return NULL;
     }
 
-function procurarImagem(PDO $pdo, $nome = null, $seccao = null){
-    $resultado = array();
-    $query = 'SELECT nomeAlojamento,caminho FROM alojamento AS a INNER JOIN imagem AS i ON a.codAlojamento = i.alojamento';
-
-    if (!is_null($nome) AND !is_null($seccao)) {$query .= ' WHERE i.nomeOriginal = '. $nome .' AND i.seccao = '. $seccao;}
-    elseif (!is_null($nome)) {$query .= ' WHERE i.nomeOriginal = '. $nome;}
-    elseif (!is_null($seccao)) {$query .= ' WHERE i.seccao ='. $seccao;}
-
-    $srmt = $pdo->prepare($query);
-    $srmt->execute();
-
-    while ($linha = $srmt->fetch(PDO::FETCH_ASSOC)){
-        $resultado[] = [$linha['nomeAlojamento'] => '../'.$linha['caminho']];
-    }
-
-    return $resultado;
-}
-
 //Se está logado aparece o logout, se não aparece para logar
 function paginaLogin(PDO $pdo){
     if (utilizadorAutenticado($pdo)){echo '<a href="../PHP/logout.php">Logout</a>';}
