@@ -9,7 +9,6 @@ $pdo   = ConnectDB();
 $erro  = '';
 $nome  = '';
 $email = '';
-
 if (utilizadorAutenticado($pdo)) {
     header('Location: ' . URL_INICIO);
     exit;
@@ -50,6 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             iniciarSessao($u);
             criarTokenPersistente($pdo, (int)$u['codUtilizador']);
+            if($_GET['source']){
+                header('Location: ' . $_GET['source']);
+                exit;
+            }
             header('Location: ' . URL_INICIO);
             exit;
         }

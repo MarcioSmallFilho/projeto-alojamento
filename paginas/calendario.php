@@ -1,7 +1,7 @@
 <?php
 require_once '../PHP/auth.php'; 
 $pdo = ConnectDB();
-exigirLogin($pdo);
+exigirLogin($pdo, 'calendario.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-pt">

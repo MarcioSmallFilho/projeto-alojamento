@@ -102,10 +102,14 @@ function utilizadorAutenticado(PDO $pdo): bool
 }
 
 /** Chamar no topo de qualquer página que exija conta. */
-function exigirLogin(PDO $pdo): void
+function exigirLogin(PDO $pdo, $source = ''): void
 {
     header('Cache-Control: no-store'); // o botão "voltar" não mostra páginas depois do logout
     if (!utilizadorAutenticado($pdo)) {
+        if($source != ''){
+        header('Location: ' . URL_LOGIN . '?source=' . $source);
+        exit;
+        }
         header('Location: ' . URL_LOGIN);
         exit;
     }
