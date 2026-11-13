@@ -1,3 +1,8 @@
+<?php
+// Configuração das imagens desta página (vêm do sistema de secções)
+$codAlojamento = 2;                            // codAlojamento do Oasis Dune na tabela alojamento
+$semImagem     = '../imagens/sem-imagem.svg';  // usada quando falta a associação
+?>
 <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
@@ -12,11 +17,12 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../script/script.js" defer></script>
     <script src="../script/ampliarimgscript.js" defer></script>
+    <script src="../script/imagens-dinamicas.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Oasis Dune | Alojamento na Praia do Cabedelo, Viana do Castelo</title>
 </head>
-<body>
-    <div class="fundo-fixo" style="background-image: url('../imagens/index/Fundo-Index.png');"></div>
+<body data-alojamento="<?= (int) $codAlojamento ?>" data-sem-imagem="<?= $semImagem ?>">
+    <div class="fundo-fixo" data-secao="Index - Fundo" data-pos="0" data-fundo style="background-image: url('<?= $semImagem ?>');"></div>
 
     <div class="conteudo-site">
         <header>
@@ -53,9 +59,9 @@
             <h1>O Alojamento</h1>
             <p>Descontraia e aproveite o melhor de Cabedelo.</p>
             <div class="conteiner-imgs">
-                <img src="../imagens/index/foto-index-1.png" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
-                <img src="../imagens/index/foto-index-2.png" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
-                <img src="../imagens/index/foto-index-3.png" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
+                <img src="<?= $semImagem ?>" data-secao="Index - Galeria" data-pos="0" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
+                <img src="<?= $semImagem ?>" data-secao="Index - Galeria" data-pos="1" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
+                <img src="<?= $semImagem ?>" data-secao="Index - Galeria" data-pos="2" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
             </div>
 
             <div class="modal-lightbox" id="modalLightbox">
@@ -68,16 +74,16 @@
                 <h2>O seu refúgio de paz e descanso</h2>
                 <p>Espaços desenhados ao pormenor para garantir o descanso máximo. Com luz natural, ambiente acolhedor e todas as comodidades essenciais, os nossos quartos são o seu refúgio privado no Oasís Dune.</p>
                 </div>
-                <img src="../imagens/index/foto-index-2-2.png" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
+                <img src="<?= $semImagem ?>" data-secao="Index - Descanso" data-pos="0" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
             </div>
         </div>
         <div class="conteudoB">
             <h1>Quartos</h1>
             <p>Simplicidade e conforto para uma noite sem preocupações.</p>
             <div class="cards">
-                <div class="card1" style="background-image: url('../imagens/index/foto-quarto-1.png');"><div>Quarto I<button class="btn-card" onclick="goto('QuartoI.php')">Saber Mais</button></div></div>
-                <div class="card2" style="background-image: url('../imagens/quartos/quartoII/quartoII-1.png');"><div>Quarto II<button class="btn-card" onclick="goto('QuartoII.php')">Saber Mais</button></div></div>
-                <div class="card3" style="background-image: url('../imagens/index/foto-index-1.png');"><div>Sala de estar <button class="btn-card" onclick="goto('saladeestar.php')">Saber Mais</button></div></div>
+                <div class="card1" data-secao="Quarto I" data-pos="0" data-fundo style="background-image: url('<?= $semImagem ?>');"><div>Quarto I<button class="btn-card" onclick="goto('QuartoI.php')">Saber Mais</button></div></div>
+                <div class="card2" data-secao="Quarto II" data-pos="0" data-fundo style="background-image: url('<?= $semImagem ?>');"><div>Quarto II<button class="btn-card" onclick="goto('QuartoII.php')">Saber Mais</button></div></div>
+                <div class="card3" data-secao="Sala de estar" data-pos="0" data-fundo style="background-image: url('<?= $semImagem ?>');"><div>Sala de estar <button class="btn-card" onclick="goto('saladeestar.php')">Saber Mais</button></div></div>
             </div>
         </div>
         <div class="conteudoC">
@@ -87,12 +93,12 @@
                     <p>O seu bem-estar vem em primeiro lugar. Oferecemos um serviço genuíno, atento e discreto, para que a sua única preocupação seja relaxar.</p>
                 </div>
                 <div>
-                    <img src="../imagens/index/foto-index-3-1.png" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
+                    <img src="<?= $semImagem ?>" data-secao="Index - Atendimento" data-pos="0" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
                 </div>
             </div>
             <div>
                 <div>
-                    <img src="../imagens/index/foto-index-cabedelo.png" alt="Praia do Cabedelo, Viana do Castelo" loading="lazy">
+                    <img src="<?= $semImagem ?>" data-secao="Index - Centralidade" data-pos="0" alt="Praia do Cabedelo, Viana do Castelo" loading="lazy">
                 </div>
                 <div>
                     <h1>Centralidade</h1>
@@ -131,7 +137,7 @@
                 <a href="experiencias.php">Experiências</a> 
                 <a href="contactos.php">Contactos</a>
                 <a href="calendario.php">Reservar</a>
-                <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a>
+                <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a><br>
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Mais no Airbnb</a>
             </div>
         </footer>
