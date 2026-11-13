@@ -1,7 +1,6 @@
 <?php
-// Configuração das imagens desta página (vêm do sistema de secções)
-$codAlojamento = 2;                            // codAlojamento do Oasis Dune na tabela alojamento
-$semImagem     = '../imagens/sem-imagem.svg';  // usada quando falta a associação
+    $codAlojamento = 2; // codAlojamento do Oasis Dune na tabela alojamento
+    $semImagem     = '../imagens/imagens/sem-imagem.svg'; // usada quando falta a associação
 ?>
 <!DOCTYPE html>
 <html lang="pt-pt">
@@ -12,7 +11,7 @@ $semImagem     = '../imagens/sem-imagem.svg';  // usada quando falta a associaç
     <meta property="og:title" content="Oasis Dune | Alojamento na Praia do Cabedelo, Viana do Castelo">
     <meta property="og:description" content="Moradia para seis pessoas na Praia do Cabedelo, em Viana do Castelo, com acesso direto às dunas, vista mar, jacuzzi e jardim. Reserve a sua estadia.">
     <meta property="og:type" content="website">
-    <link rel="icon" href="../imagens/logo-ico.ico">
+    <link rel="icon" href="<?= $semImagem ?>" data-secao="Logo" data-pos="0">
     <link rel="stylesheet" href="../css/styleconfig.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../script/script.js" defer></script>
@@ -27,7 +26,7 @@ $semImagem     = '../imagens/sem-imagem.svg';  // usada quando falta a associaç
     <div class="conteudo-site">
         <header>
             <div class="h-esq">
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
+                <img src="../imagens/sem-imagem.svg" data-secao="Logo" data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
             </div>
             <div class="h-dir">
                 <nav class="nav-menu" id="nav-menu">
@@ -59,9 +58,9 @@ $semImagem     = '../imagens/sem-imagem.svg';  // usada quando falta a associaç
             <h1>O Alojamento</h1>
             <p>Descontraia e aproveite o melhor de Cabedelo.</p>
             <div class="conteiner-imgs">
-                <img src="<?= $semImagem ?>" data-secao="Index - Galeria" data-pos="0" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
-                <img src="<?= $semImagem ?>" data-secao="Index - Galeria" data-pos="1" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
-                <img src="<?= $semImagem ?>" data-secao="Index - Galeria" data-pos="2" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
+                <img src="<?= $semImagem ?>" data-secao="Index" data-pos="0" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
+                <img src="<?= $semImagem ?>" data-secao="Index" data-pos="1" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
+                <img src="<?= $semImagem ?>" data-secao="Index" data-pos="2" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
             </div>
 
             <div class="modal-lightbox" id="modalLightbox">
@@ -74,7 +73,7 @@ $semImagem     = '../imagens/sem-imagem.svg';  // usada quando falta a associaç
                 <h2>O seu refúgio de paz e descanso</h2>
                 <p>Espaços desenhados ao pormenor para garantir o descanso máximo. Com luz natural, ambiente acolhedor e todas as comodidades essenciais, os nossos quartos são o seu refúgio privado no Oasís Dune.</p>
                 </div>
-                <img src="<?= $semImagem ?>" data-secao="Index - Descanso" data-pos="0" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
+                <img src="<?= $semImagem ?>" data-secao="Index" data-pos="3" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
             </div>
         </div>
         <div class="conteudoB">
@@ -93,12 +92,12 @@ $semImagem     = '../imagens/sem-imagem.svg';  // usada quando falta a associaç
                     <p>O seu bem-estar vem em primeiro lugar. Oferecemos um serviço genuíno, atento e discreto, para que a sua única preocupação seja relaxar.</p>
                 </div>
                 <div>
-                    <img src="<?= $semImagem ?>" data-secao="Index - Atendimento" data-pos="0" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
+                    <img src="<?= $semImagem ?>" data-secao="Index" data-pos="4" alt="Alojamento Oasis Dune, Praia do Cabedelo" loading="lazy">
                 </div>
             </div>
             <div>
                 <div>
-                    <img src="<?= $semImagem ?>" data-secao="Index - Centralidade" data-pos="0" alt="Praia do Cabedelo, Viana do Castelo" loading="lazy">
+                    <img src="<?= $semImagem ?>" data-secao="Index" data-pos="5" alt="Praia do Cabedelo, Viana do Castelo" loading="lazy">
                 </div>
                 <div>
                     <h1>Centralidade</h1>
@@ -121,7 +120,7 @@ $semImagem     = '../imagens/sem-imagem.svg';  // usada quando falta a associaç
         </div>
         <footer>
             <div>
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')">
+                <img src="<?= $semImagem ?>" data-secao='Logo' data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')">
                 <p>+351 935 334 117</p> 
                 <p>info.oasisdune@gmail.com</p> 
                 <p>Rua Fernão Martins da Costa, 4935-158 Viana do Castelo</p> 
