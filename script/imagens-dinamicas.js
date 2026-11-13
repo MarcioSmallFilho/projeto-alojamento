@@ -53,6 +53,7 @@
 
     function aplicarImagem(espaco, url) {
         const fundo = espaco.hasAttribute('data-fundo');
+        const fundoEscuro = espaco.hasAttribute('data-fundo-escuro');
         const atributo = atributoDoEspaco(espaco);
 
         // Fundos CSS
@@ -61,6 +62,17 @@
 
             teste.onload = function () {
                 espaco.style.backgroundImage = 'url("' + url + '")';
+            };
+
+            teste.src = url;
+            return;
+        }
+
+        if (fundoEscuro) {
+            const teste = new Image();
+
+            teste.onload = function (){
+                espaco.style.backgroundImage = 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) ,url("' + url + '")';
             };
 
             teste.src = url;
