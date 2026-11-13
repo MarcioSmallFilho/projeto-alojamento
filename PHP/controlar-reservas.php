@@ -7,10 +7,15 @@
     <option value="Aceite">Aceite</option>
     <option value="Recusada">Recusada</option>
   </select>
+  <input type="number" name="nReservas" min="1" value="5">
   <input type="submit" value="Filtrar">
 </form>
 <?php
-  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['form_id']) && $_POST['form_id'] === 'filtro') {
+    $limite = 5; // valor por defeito
+    if (isset($_POST['nReservas']) && is_numeric($_POST['nReservas']) && (int)$_POST['nReservas'] > 0) {
+      $limite = (int)$_POST['nReservas'];
+}
+    
     $filtroReserva = 'Todos';
     if(isset($_POST['tipoReserva'])){
       $filtroReserva = $_POST['tipoReserva'];
@@ -20,7 +25,6 @@
     // ==========================================
 
     $hoje = date('Y-m-d');
-
     $sql = "
         SELECT
             codReserva, 
@@ -42,13 +46,13 @@
         ON reserva.codAlojamento = alojamento.codAlojamento
         WHERE checkOut > :hoje and reserva.codAlojamento = :cod AND (estadoReserva = :state OR :state = 'Todos')
         ORDER BY dataReserva DESC
-        LIMIT 5
+        LIMIT $limite
     ";
     $parametros = ['codReserva', 'nomeUtilizador', 'nomeAlojamento', 'checkIn', 'checkOut', 'dataReserva', 'precoTotal', 'estadoReserva', 'nPessoas' ];
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['hoje' => $hoje, ':cod' => $codAlojamento, ':state' => $filtroReserva]);
-
     $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     if(!empty($reservas)){
       foreach($reservas as $reserva){
         $reserva['nPessoas'] = $reserva['numeroAdultos'] + $reserva['numeroCriancas'] + $reserva['numeroBebes'];
@@ -56,7 +60,7 @@
         foreach($reserva as $chave => $valor){
           if(in_array($chave, $parametros)) {
             //adicionar o valor no card
-            echo $valor. ' |';
+            echo $valor. '|';
           } 
         }
         if($reserva['estadoReserva'] == 'Pendente'){
@@ -82,5 +86,4 @@
         echo '</div>';
       }
     }
-  }
 ?>

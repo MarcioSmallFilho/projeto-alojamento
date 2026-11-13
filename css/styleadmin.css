@@ -32,6 +32,7 @@ header > a:hover{
     font-weight: bolder;
     color: black;
     margin-bottom: 5px;
+    border-radius: 15px;
 }
 .Pendente{
     background-color: color-mix(in srgb, white , black 10%);

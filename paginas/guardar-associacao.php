@@ -84,12 +84,12 @@ $mensagem = '';
 $mensagemSecao = $_SESSION['flash_secao'] ?? '';
 unset($_SESSION['flash_secao']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['formulario_id']) && $_POST['formulario_id'] == 'Guardar'){
 
     // A verificação do token é comum aos dois formulários
     $tokenRecebido = $_POST['csrf'] ?? '';
 
-    if (!is_string($tokenRecebido) || !hash_equals($_SESSION['csrf'], $tokenRecebido) && !isset($_POST['formulario_id']) && !$_POST['formulario_id'] === 'Guardar') {
+    if (!is_string($tokenRecebido) || !hash_equals($_SESSION['csrf'], $tokenRecebido)){
         http_response_code(403);
         exit('Pedido inválido.');
     }
