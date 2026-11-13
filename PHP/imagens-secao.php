@@ -1,4 +1,9 @@
 <?php
+require_once '../PHP/auth.php';
+$pdo = ConnectDB();
+exigirLogin($pdo);
+if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
+
 /*
  * Endpoint de leitura (público): devolve as imagens associadas a um alojamento,
  * agrupadas pelas secções pedidas.
