@@ -77,7 +77,6 @@ exigirLogin($pdo, 'calendario.php');
                         </div>
                     </div>
                     <?php 
-                        $codAlojamento = 2;
 
                         $valor = SELECT($pdo, 'SELECT precoNoite, limitePessoas FROM Alojamento WHERE codAlojamento = :cod', [':cod' => $codAlojamento]);
                         $valor = $valor[0];

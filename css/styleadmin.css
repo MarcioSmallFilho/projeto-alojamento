@@ -32,6 +32,7 @@ header > a:hover{
     font-weight: bolder;
     color: black;
     margin-bottom: 5px;
+    border-radius: 15px;
 }
 .Pendente{
     background-color: color-mix(in srgb, white , black 10%);
@@ -95,4 +96,13 @@ div.formulario {
     margin: 0px;
     color: white;
     background-color: color-mix(in srgb, darkcyan, white 20%);
+}
+footer{
+    background-color:darkcyan;
+    padding: 60px;
+    font-weight: bolder;
+    display: flex;
+    gap: 15px;
+    display: flex;
+    align-items: center;
 }
