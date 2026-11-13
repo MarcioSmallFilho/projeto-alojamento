@@ -1,3 +1,8 @@
+<?php
+    $semImagem     = '../imagens/imagens/sem-imagem.svg'; // usada quando falta a associação
+    require_once "../PHP/auth.php";
+    $pdo = ConnectDB();
+?>
 <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
@@ -7,20 +12,21 @@
     <meta property="og:title" content="Contactos | Oasis Dune">
     <meta property="og:description" content="Entre em contacto com o Oasis Dune, alojamento na Praia do Cabedelo, Viana do Castelo.">
     <meta property="og:type" content="website">
-    <link rel="icon" href="../imagens/logo.png">
+    <link rel="icon" href="<?= $semImagem ?>" data-secao="Logo" data-pos="0">
     <link rel="stylesheet" href="../css/styleconfig.css">
     <link rel="stylesheet" href="../css/styleCont.css">
     <script src="../script/script.js" defer></script>
+    <script src="../script/imagens-dinamicas.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Contactos | Oasis Dune</title>
 </head>
-<body>
-    <div class="fundo-fixo"></div>
+<body data-alojamento="<?= (int) $codAlojamento ?>" data-sem-imagem="<?= $semImagem ?>">
+    <div class="fundo-fixo" data-secao="contacto - fundo" data-pos="0" data-fundo style="background-image: url('<?= $semImagem ?>');"></div>
 
     <div class="conteudo-site">
         <header>
             <div class="h-esq">
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
+                <img src="<?= $semImagem ?>" data-secao="Logo" data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
             </div>
             <div class="h-dir">
                 <nav class="nav-menu" id="nav-menu">
@@ -28,6 +34,10 @@
                     <a href="experiencias.php">Experiências</a> 
                     <a href="contactos.php">Contactos</a>
                     <a href="calendario.php">Reservar</a>
+                    <?php
+                        admPage($pdo);
+                        paginaLogin($pdo);
+                    ?>
                 </nav>
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Airbnb</a>
                 <button class="menu-mobile-btn" id="btn-menu" aria-label="Abrir Menu">
@@ -91,7 +101,7 @@
 
         <footer>
             <div>
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')">
+                <img src="<?= $semImagem ?>" data-secao='Logo' data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')">
                 <p>+351 935 334 117</p> 
                 <p>info.oasisdune@gmail.com</p> 
                 <p>Rua Fernão Martins da Costa, 4935-158 Viana do Castelo</p> 
@@ -107,7 +117,7 @@
                 <a href="experiencias.php">Experiências</a> 
                 <a href="contactos.php">Contactos</a>
                 <a href="calendario.php">Reservar</a>
-                <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a>
+                <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a><br>
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Mais no Airbnb</a>
             </div>
         </footer>
