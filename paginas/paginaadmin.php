@@ -54,12 +54,12 @@
       ON reserva.codUtilizador = utilizador.codUtilizador
       inner join alojamento 
       ON reserva.codAlojamento = alojamento.codAlojamento
-      WHERE checkOut > :hoje
+      WHERE checkOut > :hoje and reserva.codAlojamento = :cod
       ORDER BY dataReserva DESC
   ";
   $parametros = ['codReserva', 'nomeUtilizador', 'nomeAlojamento', 'checkIn', 'checkOut', 'dataReserva', 'precoTotal', 'estadoReserva', 'nPessoas' ];
   $stmt = $pdo->prepare($sql);
-  $stmt->execute(['hoje' => $hoje]);
+  $stmt->execute(['hoje' => $hoje, ':cod' => $codAlojamento]);
 
   $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
   foreach($reservas as $reserva){
