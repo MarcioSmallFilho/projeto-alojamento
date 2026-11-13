@@ -44,7 +44,7 @@
                 </button>
             </div>
         </header>
-    <div class="topo" data-secao="experiencias - fundo" data-fundo data-pos="0" style="background-image: url('<?= $semImagem ?>');">
+    <div class="topo" data-secao="experiencias - fundo" data-fundo-escuro data-pos="0" style="background-image: url('<?= $semImagem ?>');">
         <div class="titulo">
                 <h1>SINTA, DESCUBRA E RELAXE</h1>
         </div>
