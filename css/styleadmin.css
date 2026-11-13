@@ -52,4 +52,11 @@ header > a:hover{
 }
 .perfil{
     margin-left: auto;
+    display: flex;
+    gap: 20px;
+}
+.perfil > a{
+    align-self: center;
+    color: white;
+    font-weight: bolder;
 }
