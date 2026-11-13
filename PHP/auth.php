@@ -170,6 +170,15 @@ function SELECT($pdo, $sql, $params = []){
     }
     return $fetch;
 }
+function INSERT($pdo, $sql, $params=[]){   
+    //prepara o SQL 
+    $stmt = $pdo->prepare($sql);
+    //executa o SQL 
+    if ($stmt->execute($params)) {  
+        //caso funcione
+        return true;}
+    return NULL;
+    }
 
 function procurarImagem(PDO $pdo, $nome = null, $seccao = null){
     $resultado = array();

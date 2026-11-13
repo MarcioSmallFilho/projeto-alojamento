@@ -35,6 +35,7 @@
       FROM Reserva
       WHERE checkOut > :hoje
       ORDER BY dataReserva DESC
+      LIMIT 3
   ";
 
   $stmt = $pdo->prepare($sql);

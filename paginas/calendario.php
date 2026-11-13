@@ -60,7 +60,7 @@ exigirLogin($pdo);
                     <div id="meu-calendario-tll"></div>
                 </section>
 
-                <form id="bookingForm" action="">
+                <form id="bookingForm" method="post">
                     <h1>Reserva</h1>
                     <input type="date" name="checkin" style="display: none;">
                     <input type="date" name="checkout" style="display: none;">
@@ -76,8 +76,49 @@ exigirLogin($pdo);
                             <input type="number" name="numberOfInfants" value="0" min="0" required>
                         </div>
                     </div>
-                    <p id="msgErro" role="alert" style="display:none; color:#c0392b; margin:8px 0;"></p>
-                    <input type="submit" value="Reservar pelo Airbnb">
+                    <?php 
+                        $codAlojamento = 2;
+
+                        $valor = SELECT($pdo, 'SELECT precoNoite, limitePessoas FROM Alojamento WHERE codAlojamento = :cod', [':cod' => $codAlojamento]);
+                        $valor = $valor[0];
+
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                            if($_POST['checkin'] == '' or $_POST['checkout'] == ''){
+                                $erro = 'Precisas de preencher uma data.';
+                            }elseif($_POST['numberOfAdults'] < 1){
+                                $erro = 'Precisas de pelo menos um adulto.';
+                            }elseif($_POST['numberOfChildren'] < 0 or $_POST['numberOfInfants'] < 0){
+                                $erro = 'não podem haver valores menores que 0.';
+                            }elseif($_POST['numberOfChildren'] + $_POST['numberOfInfants'] + $_POST['numberOfAdults'] > $valor['limitePessoas']){
+                                $erro = 'limite de pessoas ultrapassado.';
+                            }
+                            if(!empty($erro)){
+                                echo "<p id='msgErro' role='alert' style='color:red; margin-bottom: 7px;'>{$erro}</p>";
+
+                            }else{
+                                //Criar o Pedido de Reserva.
+
+                                $checkinStr = $_POST['checkin'];
+                                $checkoutStr = $_POST['checkout'];
+
+                                // Cria objetos DateTime a partir das strings das datas
+                                $checkin = new DateTime($checkinStr);
+                                $checkout = new DateTime($checkoutStr);
+
+                                // Calcula a diferença entre as duas datas
+                                $diferenca = $checkin->diff($checkout);
+
+                                // Obtém o número de dias
+                                $numeroDias = $diferenca->days;
+
+                                $preco = $numeroDias *  $valor['precoNoite'];
+
+                                INSERT($pdo, 'INSERT INTO reserva(checkIn, checkOut, codAlojamento, codUtilizador, dataReserva, numeroAdultos, numeroBebes, numeroCriancas, precoTotal) VALUES(:ckIn, :ckOut, :codAloj, :codUtil, :hoje, :nAdultos, :nBebes, :nCriancas, :preco)', [':ckIn' => $_POST['checkin'], ':ckOut' => $_POST['checkout'],':codAloj' => $codAlojamento, ':codUtil' => $_SESSION['codUtilizador'],':hoje' => date('Y-m-d'),':nAdultos' => $_POST['numberOfAdults'] ,':nBebes' => $_POST['numberOfInfants'],':nCriancas' => $_POST['numberOfChildren'], ':preco' => $preco]);
+                                echo '<p style="color:green; margin-bottom: 7px;">Pedido enviado com sucesso.</p>';
+                            }
+                        }
+            ?>
+                    <input type="submit" value="Fazer pedido de reserva">
                 </form>
             </div>
             
