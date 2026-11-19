@@ -1,6 +1,7 @@
 
 <?php
 require_once 'C:/xampp/database.php';
+require_once 'auth.php';
 header('Content-Type: application/json; charset=utf-8');
 
 // ==========================================
@@ -24,12 +25,12 @@ try {
             checkOut,
             dataReserva
         FROM Reserva
-        WHERE checkOut > :hoje and estadoReserva = 'Aceite'
+        WHERE checkOut > :hoje and estadoReserva = 'Aceite' AND codAlojamento = :cod
         ORDER BY checkIn ASC
     ";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(['hoje' => $hoje]);
+    $stmt->execute(['hoje' => $hoje, ':cod' => $codAlojamento]);
 
     $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

@@ -15,7 +15,7 @@ header > a{
     text-decoration: none;
     color: white;
     transition: all ease-in-out 0.2s;
-    padding: 12px;
+    padding:9px;
     border-radius: 15px;
     border: 2px solid color-mix(in srgb, darkcyan , black 30%);
     display: flex;

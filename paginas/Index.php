@@ -19,7 +19,7 @@
     <script src="../script/ampliarimgscript.js" defer></script>
     <script src="../script/imagens-dinamicas.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Oasis Dune | Alojamento na Praia do Cabedelo, Viana do Castelo</title>
+    <title><?php echo SELECT($pdo, 'SELECT nomeAlojamento from Alojamento where codAlojamento = :cod', [':cod' => $codAlojamento])[0]['nomeAlojamento'] ?></title>
 </head>
 <body data-alojamento="<?= (int) $codAlojamento ?>" data-sem-imagem="<?= $semImagem ?>">
     <div class="fundo-fixo" data-secao="Index - Fundo" data-pos="0" data-fundo style="background-image: url('<?= $semImagem ?>');"></div>
@@ -48,7 +48,7 @@
 
         <div class="titulo">
             <div class="conteudo-titulo">
-                <h1>Oasis Dune, Praia do Cabedelo</h1>
+                <h1><?php echo SELECT($pdo, 'SELECT nomeAlojamento from Alojamento where codAlojamento = :cod', [':cod' => $codAlojamento])[0]['nomeAlojamento'] ?></h1>
                 <input type="button" value="Reservar" class="but-reservar" onclick="goto('calendario.php')">
             </div>
         </div>
