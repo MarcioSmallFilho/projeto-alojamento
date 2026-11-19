@@ -8,6 +8,7 @@ if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
       <input type="hidden" name="form_id" value="filtro">
       <select name="tipoReserva" id="">
         <option value="" disabled selected>Filtro de reserva</option>
+        <option value="Todos">Todos</option>
         <option value="Pendente">Pendente</option>
         <option value="Aceite">Aceite</option>
         <option value="Recusada">Recusada</option>
@@ -77,7 +78,7 @@ if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
           //Se a reserva estiver em pendente
           if($reserva['estadoReserva'] == 'Pendente'){
 
-            $reservasAceites = SELECT($pdo, 'SELECT checkIn, checkOut FROM reserva WHERE estadoReserva = "Aceite" AND codAlojamento = '.$codAlojamento.'');  
+            $reservasAceites = SELECT($pdo, 'SELECT checkIn, checkOut FROM reserva WHERE (estadoReserva = "Aceite" OR estadoReserva = "Bloqueado")  AND codAlojamento = '.$codAlojamento.'');  
             
             $Sobreposto = false;
             
