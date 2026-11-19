@@ -1,7 +1,7 @@
 <?php
 require_once '../PHP/auth.php';
 $pdo = ConnectDB();
-exigirLogin($pdo);
+//exigirLogin($pdo);
 if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
 
 /*
