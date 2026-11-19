@@ -45,6 +45,7 @@
   <a href="paginaadmin.php?secao=reservas">Gerir Reservas</a>
   <a href="paginaadmin.php?secao=imagens">Gerir imagens</a>
   <a href="paginaadmin.php?secao=elfinder">Gerir ElFinder</a>
+  <a href="paginaadmin.php?secao=msg">Gerir Mensagens</a>
 
   <div class="perfil">
     <a href="../PHP/logout.php"> Sair</a>
@@ -74,6 +75,10 @@
               
           case 'elfinder':
               include_once('../paginas/elFinder.php') ;
+              break;
+
+            case 'msg':
+              include_once('../paginas/msg.php') ;
               break;
               
           default:

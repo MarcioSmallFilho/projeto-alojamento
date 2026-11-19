@@ -84,13 +84,28 @@
                     </div>
                 </div>
 
-                <form action="">
+                <form method="POST">
                     <h1 class="tituloMsg">Envie-nos uma mensagem</h1>
-                    <input type="text" placeholder="Nome" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea placeholder="Mensagem" required></textarea>
-                    <input type="submit" value="Enviar Mensagem" class="butaomsg">
+                    <textarea placeholder="Mensagem" name='mensagem' required></textarea>
+                    <?php if(utilizadorAutenticado($pdo)){echo "<input type=\"submit\" value=\"Enviar Mensagem\" class=\"butaomsg\">";}else{echo"<p>Você precisa está logado para mandar uma mensagem";} ?>
                 </form>
+
+                <?php 
+                    if (isset($_POST["mensagem"]) AND strlen($_POST['mensagem']) < 201) {
+                        INSERT(
+                            $pdo,
+                            "INSERT INTO contacto (mensagem, codUtilizador, codAlojamento, dataEnvio)
+                            VALUES (:msg, :codUtilizador, :codAlojamento, :dataEnvio)",
+                            [
+                                ':msg'           => $_POST['mensagem'],
+                                ':codUtilizador' => $_SESSION['codUtilizador'],
+                                ':codAlojamento' => $codAlojamento,
+                                ':dataEnvio'     => date('Y-m-d'),
+                            ]
+                        );
+                    }
+                ?>
+                
             </div>
         </div>
 

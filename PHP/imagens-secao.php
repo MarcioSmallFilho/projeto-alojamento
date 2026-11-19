@@ -1,21 +1,8 @@
 <?php
 require_once '../PHP/auth.php';
 $pdo = ConnectDB();
-//exigirLogin($pdo);
 if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
 
-/*
- * Endpoint de leitura (público): devolve as imagens associadas a um alojamento,
- * agrupadas pelas secções pedidas.
- *
- * Pedido:   GET imagens-secao.php?alojamento=1&secoes[]=Index - Galeria&secoes[]=Quarto I
- * Resposta: {"ok":true,"secoes":{"Index - Galeria":[{"caminho":"imagens/a.png","ordem":0,"destaque":true}, ...],
- *                                "Quarto I":[]}}
- *
- * Em cada secção a lista vem já ordenada: primeiro a imagem em destaque,
- * depois por "ordem". Uma secção sem associações devolve uma lista vazia.
- * O "caminho" é o guardado na tabela imagem (relativo à pasta do projeto).
- */
 require_once __DIR__ . '/auth.php';
 
 header('Content-Type: application/json; charset=utf-8');
