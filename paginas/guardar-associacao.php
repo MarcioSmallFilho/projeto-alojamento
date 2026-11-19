@@ -79,10 +79,10 @@ function assocExiste(PDO $pdo, string $entidade, int $id): bool
 // Mensagem do formulário "Associar imagem"
 $mensagem = '';
 
-// Mensagem do formulário "Adicionar secção" (guardada antes do redirecionamento,
+// Mensagem do formulário "Retirar associação" (guardada antes do redirecionamento,
 // para que atualizar a página não reenvie o formulário)
-$mensagemSecao = $_SESSION['flash_secao'] ?? '';
-unset($_SESSION['flash_secao']);
+$mensagemRetirar = $_SESSION['flash_retirar'] ?? '';
+unset($_SESSION['flash_retirar']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['formulario_id']) && $_POST['formulario_id'] == 'Guardar'){
 
@@ -248,56 +248,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['formulario_id']) && $
             }
         }
 
-    } elseif ($acao === 'criar_secao') {
+    } elseif ($acao === 'retirar') {
 
         // ---------------------------------------------------------------
-        // Adicionar secção
+        // Retirar associação (a imagem continua na biblioteca)
         // ---------------------------------------------------------------
+        $codAlojamento = filter_input(INPUT_POST, 'codAlojamento', FILTER_VALIDATE_INT);
+        $idSecao       = filter_input(INPUT_POST, 'idSecao', FILTER_VALIDATE_INT);
+        $ordem         = filter_input(INPUT_POST, 'ordem', FILTER_VALIDATE_INT);
 
-        // Limpar o nome: sem espaços nas pontas e sem espaços repetidos
-        $nome = is_string($_POST['nomeSeccao'] ?? null) ? trim($_POST['nomeSeccao']) : '';
-        $nome = (string) preg_replace('/\s+/u', ' ', $nome);
-
-        if ($nome === '' || mb_strlen($nome) > 50) {
-            $mensagemSecao = 'O nome da secção é obrigatório e pode ter no máximo 50 caracteres.';
+        if (
+            !$codAlojamento || $codAlojamento < 1 ||
+            !$idSecao || $idSecao < 1 ||
+            $ordem === false || $ordem === null || $ordem < 0
+        ) {
+            $mensagemRetirar = 'Preenche corretamente todos os campos.';
         } else {
             try {
-                // Já existe uma secção com este nome?
                 $stmt = $pdo->prepare("
-                    SELECT 1
-                    FROM Secao
-                    WHERE nomeSecao = ?
-                    LIMIT 1
+                    DELETE FROM ImagemAssociacao
+                    WHERE codAlojamento = ?
+                    AND idSecao = ?
+                    AND ordem = ?
                 ");
-                $stmt->execute([$nome]);
+                $stmt->execute([$codAlojamento, $idSecao, $ordem]);
 
-                if ($stmt->fetchColumn()) {
-                    $mensagemSecao = 'Já existe uma secção com esse nome.';
+                if ($stmt->rowCount() === 0) {
+                    $mensagemRetirar = 'Não existe nenhuma associação com essa ordem nesta secção deste alojamento.';
                 } else {
-                    $stmt = $pdo->prepare("
-                        INSERT INTO Secao (nomeSecao)
-                        VALUES (?)
-                    ");
-                    $stmt->execute([$nome]);
-
-                    $_SESSION['flash_secao'] = 'Secção criada com sucesso!';
+                    $_SESSION['flash_retirar'] = 'Associação retirada com sucesso!';
                     header('Location: ' . basename($_SERVER['PHP_SELF']));
                     exit;
                 }
 
-            } catch (PDOException $erro) {
-
-                // 1062 = nome repetido (caso dois pedidos cheguem ao mesmo tempo)
-                if (($erro->errorInfo[1] ?? null) === 1062) {
-                    $mensagemSecao = 'Já existe uma secção com esse nome.';
-                } else {
-                    error_log($erro->getMessage());
-                    $mensagemSecao = 'Erro ao criar a secção.';
-                }
-
             } catch (Throwable $erro) {
                 error_log($erro->getMessage());
-                $mensagemSecao = 'Erro ao criar a secção.';
+                $mensagemRetirar = 'Erro ao retirar a associação.';
             }
         }
 
@@ -408,24 +394,51 @@ $camposFormulario = [
         </div>
 
         <div class="formulario">
-            <h2>Adicionar secção</h2>
+            <h2>Retirar associação</h2>
 
-            <p class="mensagem"><?= assocEscapar($mensagemSecao) ?></p>
+            <p class="mensagem"><?= assocEscapar($mensagemRetirar) ?></p>
 
-            <form method="POST" class="formulario">
+            <form method="POST" class="formulario"
+                onsubmit="return confirm('Retirar esta associação? A imagem continua na biblioteca.');">
 
                 <input type="hidden" name="formulario_id" value="Guardar">
 
                 <input type="hidden" name="csrf"
                     value="<?= assocEscapar($_SESSION['csrf']) ?>">
-                <input type="hidden" name="acao" value="criar_secao">
+                <input type="hidden" name="acao" value="retirar">
 
-                <label for="Nseccao">Nome da Secção</label>
-                <input type="text" name="nomeSeccao" id="Nseccao"
-                    maxlength="50" required>
+                <?php foreach (ENTIDADES_ASSOCIACAO as $chave => $cfg): ?>
+
+                    <label for="retirar_<?= assocEscapar($camposFormulario[$chave]) ?>">
+                        <?= assocEscapar($cfg['rotulo']) ?>:
+                    </label>
+
+                    <select name="<?= assocEscapar($camposFormulario[$chave]) ?>"
+                        id="retirar_<?= assocEscapar($camposFormulario[$chave]) ?>"
+                        required>
+
+                        <option value="" disabled selected>
+                            <?= $listas[$chave] ? '— Escolhe —' : '— Sem registos —' ?>
+                        </option>
+
+                        <?php foreach ($listas[$chave] as $registo): ?>
+                            <option value="<?= (int) $registo['id'] ?>">
+                                <?= assocEscapar($registo['nome']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <br><br>
+
+                <?php endforeach; ?>
+
+                <label for="retirar_ordem">Ordem:</label>
+
+                <input type="number" name="ordem" id="retirar_ordem"
+                    min="0" required>
 
                 <br><br>
-                <button type="submit">Guardar secção</button>
+                <button type="submit">Retirar associação</button>
             </form>
         </div>
     </div>

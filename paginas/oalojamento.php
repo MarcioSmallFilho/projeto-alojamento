@@ -140,13 +140,13 @@
             <h1>Galeria</h1>
             <div class="areaImg">
                 <?php
-                    $imagens = SELECT($pdo, 'SELECT DISTINCT i.caminho, i.nomeOriginal FROM imagem AS i INNER JOIN imagemassociacao AS ic ON i.codImagem = ic.codImagem WHERE ic.idSecao NOT IN (4, 15);');
+                    $imagens = SELECT($pdo, 'SELECT ordem FROM imagemassociacao WHERE idSecao = :idsecao;', [':idsecao' => 1]);
 
                     for ( $x = 0; $x < count($imagens); $x++ ) {
                         if ($x < 6) {
-                            echo "<img src=\"../". $imagens[$x]['caminho'] . "\" class=\"imagem\" alt=\"" . $imagens[$x]['nomeOriginal'] . "\" loading=\"lazy\">";
+                            echo "<img src=\"<?= $semImagem?>\" class=\"imagem\" data-secao=\"Galeria\" data-pos=\"$x\" alt=\"Galeria\" loading=\"lazy\">";
                         } else {
-                            echo "<img src=\"../". $imagens[$x]['caminho'] . "\" class=\"imagem extra\" alt=\"" . $imagens[$x]['nomeOriginal'] . "\" loading=\"lazy\">";
+                            echo "<img src=\"<?= $semImagem?>\" class=\"imagem extra\" data-secao=\"Galeria\" data-pos=\"$x\" alt=\"Galeria\" loading=\"lazy\">";
                         }
                     }
                 ?>
