@@ -168,27 +168,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['formulario_id']) && $
                         $stmt->execute([$codAlojamento, $idSecao]);
                     }
 
-                    // Criar ou atualizar associação
+                    // Já existe uma associação com esta ordem nesta secção (e alojamento)?
+                    // FOR UPDATE bloqueia a linha até ao commit, para dois pedidos
+                    // simultâneos não passarem ambos pela verificação.
                     $stmt = $pdo->prepare("
-                        INSERT INTO ImagemAssociacao
-                        (codImagem, codAlojamento, idSecao, ordem, destaque)
-                        VALUES (?, ?, ?, ?, ?)
-
-                        ON DUPLICATE KEY UPDATE
-                            ordem = VALUES(ordem),
-                            destaque = VALUES(destaque)
+                        SELECT 1
+                        FROM ImagemAssociacao
+                        WHERE codAlojamento = ?
+                        AND idSecao = ?
+                        AND ordem = ?
+                        LIMIT 1
+                        FOR UPDATE
                     ");
-                    $stmt->execute([
-                        $imagem['codImagem'],
-                        $codAlojamento,
-                        $idSecao,
-                        $ordem,
-                        $destaque
-                    ]);
+                    $stmt->execute([$codAlojamento, $idSecao, $ordem]);
+                    $ordemOcupada = (bool) $stmt->fetchColumn();
+
+                    if ($ordemOcupada) {
+
+                        // Atualizar a associação existente (substitui a imagem dessa ordem)
+                        $stmt = $pdo->prepare("
+                            UPDATE ImagemAssociacao
+                            SET codImagem = :imagem,
+                                destaque  = :destaque
+                            WHERE codAlojamento = :codAlojamento
+                            AND idSecao = :idSecao
+                            AND ordem = :ordem
+                        ");
+                        $stmt->execute([
+                            ':imagem'        => $imagem['codImagem'],
+                            ':destaque'      => $destaque,
+                            ':codAlojamento' => $codAlojamento,
+                            ':idSecao'       => $idSecao,
+                            ':ordem'         => $ordem,
+                        ]);
+
+                        $mensagem = 'Já existia uma imagem nesta ordem: foi substituída.';
+
+                    } else {
+
+                        // Criar associação nova
+                        $stmt = $pdo->prepare("
+                            INSERT INTO ImagemAssociacao
+                            (codImagem, codAlojamento, idSecao, ordem, destaque)
+                            VALUES (?, ?, ?, ?, ?)
+
+                            ON DUPLICATE KEY UPDATE
+                                ordem = VALUES(ordem),
+                                destaque = VALUES(destaque)
+                        ");
+                        $stmt->execute([
+                            $imagem['codImagem'],
+                            $codAlojamento,
+                            $idSecao,
+                            $ordem,
+                            $destaque
+                        ]);
+
+                        $mensagem = 'Imagem associada com sucesso!';
+                    }
 
                     $pdo->commit();
-
-                    $mensagem = 'Imagem associada com sucesso!';
 
                 } catch (Throwable $erro) {
 
@@ -198,6 +237,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['formulario_id']) && $
 
                     if ($erro instanceof ErroAssociacao) {
                         $mensagem = $erro->getMessage();
+                    } elseif ($erro instanceof PDOException && ($erro->errorInfo[1] ?? null) === 1062) {
+                        // Chave única: esta imagem já está nesta secção, noutra ordem
+                        $mensagem = 'Esta imagem já está associada a esta secção, noutra ordem.';
                     } else {
                         error_log($erro->getMessage());
                         $mensagem = 'Erro ao associar imagem.';
