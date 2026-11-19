@@ -59,37 +59,44 @@ if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
       $stmt->execute(['hoje' => $hoje, ':cod' => $codAlojamento, ':state' => $filtroReserva]);
       $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+      //Se existem reservas
       if(!empty($reservas)){
+
         foreach($reservas as $reserva){
+
           $reserva['nPessoas'] = $reserva['numeroAdultos'] + $reserva['numeroCriancas'] + $reserva['numeroBebes'];
-          echo '<div class="reserva '.$reserva['estadoReserva'].'" style="display: flex;">';
+          echo '<div class="reserva '.$reserva['estadoReserva'].'" style="display: flex;"><p style="margin: 0px;">';
           foreach($reserva as $chave => $valor){
+
             if(in_array($chave, $parametros)) {
               //adicionar o valor no card
               echo $valor. '|';
-            } 
+            }
           }
+
+          //Se a reserva estiver em pendente
           if($reserva['estadoReserva'] == 'Pendente'){
-            // PAUSA para manutenção após identificação do alojamento pelo GET
+
             $reservasAceites = SELECT($pdo, 'SELECT checkIn, checkOut FROM reserva WHERE estadoReserva = "Aceite" AND codAlojamento = '.$codAlojamento.'');  
             
-            $Sobreposto = false; // Inicializa a falso antes de verificar
+            $Sobreposto = false;
             
             foreach($reservasAceites as $reservaAceite){
-                // Condição correta de sobreposição de datas em alojamentos:
+                // Condição correta de sobreposição de datas em alojamentos
                 if ($reserva['checkIn'] < $reservaAceite['checkOut'] && $reserva['checkOut'] > $reservaAceite['checkIn']) {
                     $Sobreposto = true;
-                    break; // Já encontrámos uma sobreposição, não precisamos de continuar a verificar o resto
+                    break;
                 }
             }
             
             if($Sobreposto){
-                echo "<i style='text-decoration: underline;'>Bloqueado:</i><a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a>";
-            } else {
+                echo "<i style='text-decoration: underline;'>Sobreposto:</i><a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a>";
+            }else{
                 echo "<a href='../PHP/responderPedido.php?request="."Aceite"."&cod=".$reserva['codReserva']."'>Aceitar</a> / <a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a>";
             }
-        }
-          echo '</div>';
+            
+          }elseif($reserva['estadoReserva'] == 'Bloqueado'){echo "<i style='text-decoration: underline;'>Bloqueado:</i> <a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Cancelar</a>";}
+          echo '</p></div>';
         }
       }
   ?>

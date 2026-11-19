@@ -9,7 +9,7 @@ const URL_LOGOUT      = '../PHP/logout.php';
 const URL_INICIO      = '../paginas/index.php'; // ajuste para a sua página inicial
 
 //Variavel Temporaria para identificação do Alojamento
- $codAlojamento = 2;
+ $codAlojamento = 1;
 
 function iniciarSessaoSegura(): void
 {

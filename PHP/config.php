@@ -25,7 +25,7 @@ try {
             checkOut,
             dataReserva
         FROM Reserva
-        WHERE checkOut > :hoje and estadoReserva = 'Aceite' AND codAlojamento = :cod
+        WHERE checkOut > :hoje AND (estadoReserva = 'Aceite' OR estadoReserva = 'Bloqueado') AND codAlojamento = :cod
         ORDER BY checkIn ASC
     ";
 

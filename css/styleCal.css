@@ -179,7 +179,7 @@ h1{
   box-shadow: 0 0 8px rgba(217, 119, 36, 0.4);
 }
 
-#bookingForm input[type='submit'] {
+.btn-gradient {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -190,6 +190,24 @@ h1{
   font-weight: 600;
   color: #ffffff;
   background: linear-gradient(90deg, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
+  background-size: 200% auto;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  transition: all 0.3s cubic-bezier(0, 0, 0.1, 1);
+}
+.block{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
   background-size: 200% auto;
   border: none;
   border-radius: 8px;
