@@ -1,7 +1,7 @@
 <?php
-require_once '../PHP/auth.php'; 
-$pdo = ConnectDB();
-exigirLogin($pdo, 'calendario.php');
+    require_once '../PHP/auth.php'; 
+    $pdo = ConnectDB();
+    exigirLogin($pdo, 'calendario.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-pt">
@@ -12,24 +12,25 @@ exigirLogin($pdo, 'calendario.php');
     <meta property="og:title" content="Reservar | Oasis Dune">
     <meta property="og:description" content="Consulte a disponibilidade do Oasis Dune e reserve a sua estadia na Praia do Cabedelo através do Airbnb.">
     <meta property="og:type" content="website">
-    <link rel="icon" href="../imagens/logo.png">
+    <link rel="icon" href="<?= $semImagem ?>" data-secao="Logo" data-pos="0">
     <link rel="stylesheet" href="../css/styleconfig.css">
     <link rel="stylesheet" href="../css/styleCal.css">
     <script src="../script/script.js" defer></script>
     <script src="../script/ampliarimgscript.js" defer></script>
     <script src="../script/calendario.js" defer></script>
+    <script src="../script/imagens-dinamicas.js" defer></script>
 
     <!-- FullCalendar Core & Plugins via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
     <title>Reservar | Oasis Dune</title>
 </head>
-    <body>
-        <div class="fundo-fixo" style="background-image: url('../imagens/experiencias/proximidades/foto-estacao.png');"></div>
+    <body data-alojamento="<?= (int) $codAlojamento ?>" data-sem-imagem="<?= $semImagem ?>">
+        <div class="fundo-fixo" data-secao="reservar - fundo" data-pos="0" data-fundo style="background-image: url('<?= $semImagem ?>');"></div>
 
         <div class="conteudo-site">
             <header>
                 <div class="h-esq">
-                    <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
+                    <img src="<?= $semImagem ?>" data-secao="Logo" data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
                 </div>
                 <div class="h-dir">
                     <nav class="nav-menu" id="nav-menu">
@@ -37,6 +38,10 @@ exigirLogin($pdo, 'calendario.php');
                         <a href="experiencias.php">Experiências</a> 
                         <a href="contactos.php">Contactos</a>
                         <a href="calendario.php">Reservar</a>
+                        <?php
+                            admPage($pdo);
+                            paginaLogin($pdo);
+                        ?>
                     </nav>
                     <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Airbnb</a>
                     <button class="menu-mobile-btn" id="btn-menu" aria-label="Abrir Menu">
@@ -140,7 +145,7 @@ exigirLogin($pdo, 'calendario.php');
         </div>
         <footer>
             <div>
-                <img src="../imagens/logo.png" class='logotipo' height="100px" onclick="goto('index.php')">
+                <img src="<?= $semImagem ?>" data-secao='Logo' data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')">
                 <p>+351 935 334 117</p> 
                 <p>info.oasisdune@gmail.com</p> 
                 <p>Rua Fernão Martins da Costa, 4935-158 Viana do Castelo</p> 
@@ -156,7 +161,7 @@ exigirLogin($pdo, 'calendario.php');
                 <a href="experiencias.php">Experiências</a> 
                 <a href="contactos.php">Contactos</a>
                 <a href="calendario.php">Reservar</a>
-                <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a>
+                <a href="https://www.livroreclamacoes.pt/" target="_blank" rel="noopener">Livro de Reclamações</a><br>
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Mais no Airbnb</a>
             </div>
         </footer>
