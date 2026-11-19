@@ -17,10 +17,6 @@
   <link rel="stylesheet" href="../css/styleadmin.css">
 </head>
 <body>
-  <header>
-    <a href="paginaadmin.php">Pagina admin</a>
-    <a href="index.php">index</a>
-  </header>
   <div id="elfinder"></div>
 
   <script>

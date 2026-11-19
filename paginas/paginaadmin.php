@@ -15,113 +15,80 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/styleadmin.css">
 </head>
+  <script>
+  function atualizarRelogio() {
+      const agora = new Date();
+      
+      // Formata os números para terem sempre 2 dígitos (ex: 09 em vez de 9)
+      const ano = agora.getFullYear();
+      const mes = String(agora.getMonth() + 1).padStart(2, '0');
+      const dia = String(agora.getDate()).padStart(2, '0');
+      const horas = String(agora.getHours()).padStart(2, '0');
+      const minutos = String(agora.getMinutes()).padStart(2, '0');
+      const segundos = String(agora.getSeconds()).padStart(2, '0');
+
+      // Junta no formato igual ao do MySQL (YYYY-MM-DD HH:MM:SS)
+      const formatoMySQL = `${dia}-${mes}-${ano} ${horas}:${minutos}:${segundos}`;
+
+      // Atualiza o texto dentro do span
+      document.getElementById('relogio').innerText = formatoMySQL;
+  }
+
+  // Executa a função a cada 1 segundo (1000 milissegundos)
+  setInterval(atualizarRelogio, 1000);
+  </script>
+
+
 <body>
   <header>
-  <a href="elFinder.php">elFinder</a>
   <a href="index.php">index</a>
+  <a href="paginaadmin.php?secao=reservas">Gerir Reservas</a>
+  <a href="paginaadmin.php?secao=imagens">Gerir imagens</a>
+  <a href="paginaadmin.php?secao=elfinder">Gerir ElFinder</a>
+
   <div class="perfil">
     <a href="../PHP/logout.php"> Sair</a>
     <p><?php echo $_SESSION['nomeUtilizador'];?> [<?php echo SELECT($pdo, 'SELECT paisOrigem from utilizador where codUtilizador = :cod', [':cod' => $_SESSION['codUtilizador']])[0]['paisOrigem'] ?>]</p>
   </div>
   </header>
+
+
   <div class="pagina">
-    <form action="" method="post" id="filtro">
-      <input type="hidden" name="form_id" value="filtro">
-      <select name="tipoReserva" id="">
-        <option value="" disabled selected>Filtro de reserva</option>
-        <option value="Pendente">Pendente</option>
-        <option value="Aceite">Aceite</option>
-        <option value="Recusada">Recusada</option>
-      </select>
-      <input type="number" name="nReservas" min="1" value="5">
-      <input type="submit" value="Filtrar">
-    </form>
-  <div class="reservas">
-  <?php
-      $limite = 5; // valor por defeito
-      if (isset($_POST['nReservas']) && is_numeric($_POST['nReservas']) && (int)$_POST['nReservas'] > 0) {
-        $limite = (int)$_POST['nReservas'];
-      }
-      
-      $filtroReserva = 'Todos';
-      if(isset($_POST['tipoReserva'])){
-        $filtroReserva = $_POST['tipoReserva'];
-      }
-      // ==========================================
-      // 2. CONSULTAR AS RESERVAS
-      // ==========================================
+    <?php
+      // Define uma secção padrão caso nenhuma seja escolhida
+      $secao = 'reservas';
 
-      $hoje = date('Y-m-d');
-      $sql = "
-          SELECT
-              codReserva, 
-              reserva.codUtilizador, 
-              utilizador.nomeUtilizador, 
-              reserva.codAlojamento, 
-              alojamento.nomeAlojamento, 
-              checkIn, 
-              checkOut, 
-              dataReserva, 
-              precoTotal, 
-              estadoReserva, 
-              numeroAdultos, 
-              numeroCriancas, 
-              numeroBebes
-          FROM Reserva inner join utilizador
-          ON reserva.codUtilizador = utilizador.codUtilizador
-          inner join alojamento 
-          ON reserva.codAlojamento = alojamento.codAlojamento
-          WHERE checkOut > :hoje and reserva.codAlojamento = :cod AND (estadoReserva = :state OR :state = 'Todos')
-          ORDER BY dataReserva DESC
-          LIMIT $limite
-      ";
-      $parametros = ['codReserva', 'nomeUtilizador', 'nomeAlojamento', 'checkIn', 'checkOut', 'dataReserva', 'precoTotal', 'estadoReserva', 'nPessoas' ];
-      $stmt = $pdo->prepare($sql);
-      $stmt->execute(['hoje' => $hoje, ':cod' => $codAlojamento, ':state' => $filtroReserva]);
-      $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-      if(!empty($reservas)){
-        foreach($reservas as $reserva){
-          $reserva['nPessoas'] = $reserva['numeroAdultos'] + $reserva['numeroCriancas'] + $reserva['numeroBebes'];
-          echo '<div class="reserva '.$reserva['estadoReserva'].'" style="display: flex;">';
-          foreach($reserva as $chave => $valor){
-            if(in_array($chave, $parametros)) {
-              //adicionar o valor no card
-              echo $valor. '|';
-            } 
-          }
-          if($reserva['estadoReserva'] == 'Pendente'){
-            // PAUSA para manutenção após identificação do alojamento pelo GET
-            $reservasAceites = SELECT($pdo, 'SELECT checkIn, checkOut FROM reserva WHERE estadoReserva = "Aceite" AND codAlojamento = '.$codAlojamento.'');  
-            
-            $Sobreposto = false; // Inicializa a falso antes de verificar
-            
-            foreach($reservasAceites as $reservaAceite){
-                // Condição correta de sobreposição de datas em alojamentos:
-                if ($reserva['checkIn'] < $reservaAceite['checkOut'] && $reserva['checkOut'] > $reservaAceite['checkIn']) {
-                    $Sobreposto = true;
-                    break; // Já encontrámos uma sobreposição, não precisamos de continuar a verificar o resto
-                }
-            }
-            
-            if($Sobreposto){
-                echo "<i style='text-decoration: underline;'>Bloqueado:</i><a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a>";
-            } else {
-                echo "<a href='../PHP/responderPedido.php?request="."Aceite"."&cod=".$reserva['codReserva']."'>Aceitar</a> / <a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a>";
-            }
-        }
-          echo '</div>';
-        }
+      if (isset($_GET['secao'])) {
+          $secao = $_GET['secao'];
       }
-  ?>
-  </div>
-  
-  
-  
 
-  <?php require_once 'guardar-associacao.php';?>  
+      // Mostra o conteúdo consoante a escolha do navbar
+      switch ($secao) {
+          case 'reservas':
+              include_once('../PHP/controlar-reservas.php') ;
+              break;
+              
+          case 'imagens':
+              include_once('../paginas/guardar-associacao.php') ;
+              break;
+              
+          case 'elfinder':
+              include_once('../paginas/elFinder.php') ;
+              break;
+              
+          default:
+              echo "<h2>Página não encontrada.</h2>";
+              break;
+      }
+    ?>
   </div>
   <footer>
+      <span id="relogio">
+        <?php
+        $agora = new DateTime();
+        echo $agora->format('d-m-Y H:i:s');
+        ?>
+      </span>
   </footer>
 </body>
 </html>
