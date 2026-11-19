@@ -86,7 +86,11 @@
                         $valor = SELECT($pdo, 'SELECT precoNoite, limitePessoas FROM Alojamento WHERE codAlojamento = :cod', [':cod' => $codAlojamento]);
                         $valor = $valor[0];
 
-                        
+                        if(is_admin($pdo)){
+                            echo "<input type='submit' value='Bloquear Datas' class='block' style='margin-bottom: 10px; background-color: gray;' >";
+                        }else{
+                            echo '<input type="submit" class="btn-gradient" value="Fazer pedido de reserva">';
+                        }
 
 
                         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -118,25 +122,33 @@
                                 echo "<p id='msgErro' role='alert' style='color:red; margin-bottom: 7px;'>{$erro}</p>";
 
                             }else{
-                                //Criar o Pedido de Reserva.
-                                //-------------------------------------------                               
+                                if(is_admin($pdo)){
+                                    $insert = INSERT($pdo, 'INSERT INTO reserva(checkIn, checkOut, codAlojamento, dataReserva, codUtilizador, estadoReserva) 
+                                    VALUES(:ckIn, :ckOut, :codAloj, :hoje, :codUtil, "Bloqueado")', 
+                                    [':ckIn' => $_POST['checkin'],
+                                     ':ckOut' => $_POST['checkout'],
+                                     ':codAloj' => $codAlojamento,
+                                     ':hoje' => $dataHora,
+                                     ':codUtil' => $_SESSION['codUtilizador'],
+                                     ]
+                                     );
+                                }else{
+                                    //Criar o Pedido de Reserva.
+                                    //-------------------------------------------                               
 
-                                // Calcula a diferença entre as duas datas
-                                $diferenca = $checkin->diff($checkout);
-
-                                // Obtém o número de dias
-                                $numeroDias = $diferenca->days;
-
-                                $preco = $numeroDias *  $valor['precoNoite'];
-
-                                $insert = INSERT($pdo, 'INSERT INTO reserva(checkIn, checkOut, codAlojamento, codUtilizador, dataReserva, numeroAdultos, numeroBebes, numeroCriancas, precoTotal) VALUES(:ckIn, :ckOut, :codAloj, :codUtil, :hoje, :nAdultos, :nBebes, :nCriancas, :preco)', [':ckIn' => $_POST['checkin'], ':ckOut' => $_POST['checkout'],':codAloj' => $codAlojamento, ':codUtil' => $_SESSION['codUtilizador'],':hoje' => $dataHora,':nAdultos' => $_POST['numberOfAdults'] ,':nBebes' => $_POST['numberOfInfants'],':nCriancas' => $_POST['numberOfChildren'], ':preco' => $preco]);
-                                if($insert){
-                                    echo '<p style="color:green; margin-bottom: 7px;">Pedido enviado com sucesso.</p>';
+                                    // Calcula a diferença entre as duas datas
+                                    $diferenca = $checkin->diff($checkout);
+                                    // Obtém o número de dias
+                                    $numeroDias = $diferenca->days;
+                                    $preco = $numeroDias *  $valor['precoNoite'];
+                                    $insert = INSERT($pdo, 'INSERT INTO reserva(checkIn, checkOut, codAlojamento, codUtilizador, dataReserva, numeroAdultos, numeroBebes, numeroCriancas, precoTotal) VALUES(:ckIn, :ckOut, :codAloj, :codUtil, :hoje, :nAdultos, :nBebes, :nCriancas, :preco)', [':ckIn' => $_POST['checkin'], ':ckOut' => $_POST['checkout'],':codAloj' => $codAlojamento, ':codUtil' => $_SESSION['codUtilizador'],':hoje' => $dataHora,':nAdultos' => $_POST['numberOfAdults'] ,':nBebes' => $_POST['numberOfInfants'],':nCriancas' => $_POST['numberOfChildren'], ':preco' => $preco]);
+                                    if($insert){
+                                        echo '<p style="color:green; margin-bottom: 7px;">Pedido enviado com sucesso.</p>';
+                                    }
                                 }
                             }
                         }
-            ?>
-                    <input type="submit" value="Fazer pedido de reserva">
+            ?>       
                 </form>
             </div>
             

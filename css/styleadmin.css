@@ -43,6 +43,13 @@ header > a:hover{
 .Recusada{
     background-color: color-mix(in srgb,  white, red 30%);
 }
+.Bloqueado{
+    background-color: color-mix(in srgb,  white, black 60%);
+    
+}
+.Bloqueado > p{
+    color: white;
+}
 .perfil > p{
     color: white;
     font-weight: bolder;
