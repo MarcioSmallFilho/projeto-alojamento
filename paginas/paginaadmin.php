@@ -15,6 +15,30 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/styleadmin.css">
 </head>
+  <script>
+  function atualizarRelogio() {
+      const agora = new Date();
+      
+      // Formata os números para terem sempre 2 dígitos (ex: 09 em vez de 9)
+      const ano = agora.getFullYear();
+      const mes = String(agora.getMonth() + 1).padStart(2, '0');
+      const dia = String(agora.getDate()).padStart(2, '0');
+      const horas = String(agora.getHours()).padStart(2, '0');
+      const minutos = String(agora.getMinutes()).padStart(2, '0');
+      const segundos = String(agora.getSeconds()).padStart(2, '0');
+
+      // Junta no formato igual ao do MySQL (YYYY-MM-DD HH:MM:SS)
+      const formatoMySQL = `${dia}-${mes}-${ano} ${horas}:${minutos}:${segundos}`;
+
+      // Atualiza o texto dentro do span
+      document.getElementById('relogio').innerText = formatoMySQL;
+  }
+
+  // Executa a função a cada 1 segundo (1000 milissegundos)
+  setInterval(atualizarRelogio, 1000);
+  </script>
+
+
 <body>
   <header>
   <a href="index.php">index</a>
@@ -27,6 +51,8 @@
     <p><?php echo $_SESSION['nomeUtilizador'];?> [<?php echo SELECT($pdo, 'SELECT paisOrigem from utilizador where codUtilizador = :cod', [':cod' => $_SESSION['codUtilizador']])[0]['paisOrigem'] ?>]</p>
   </div>
   </header>
+
+
   <div class="pagina">
     <?php
       // Define uma secção padrão caso nenhuma seja escolhida
@@ -57,6 +83,12 @@
     ?>
   </div>
   <footer>
+      <span id="relogio">
+        <?php
+        $agora = new DateTime();
+        echo $agora->format('d-m-Y H:i:s');
+        ?>
+      </span>
   </footer>
 </body>
 </html>

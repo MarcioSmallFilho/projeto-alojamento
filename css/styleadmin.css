@@ -106,6 +106,10 @@ footer{
     display: flex;
     align-items: center;
 }
+footer > span{
+    color: white;
+    font-weight: bolder;
+}
 #filtro{
     background-color: color-mix(in srgb, darkcyan , black 10%);
     padding: 5px;
