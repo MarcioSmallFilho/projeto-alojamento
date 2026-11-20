@@ -27,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = "Demasiadas tentativas. Tente novamente dentro de {$minutos} minuto(s).";
     } elseif ($nome === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $password === '') {
         $erro = 'Preencha todos os campos corretamente.';
+    }elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {
+        $erro = 'Ocorreu um erro, tente novamente mais tarde.';
     } else {
         $stmt = $pdo->prepare(
             "SELECT * FROM Utilizador
@@ -109,6 +111,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button type="button" class="btn-olho" data-alvo="password" aria-pressed="false">Mostrar</button>
                 </div>
             </div>
+
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+            <div class="cf-turnstile" data-sitekey="<?php echo CAPTCHA_PUBLIC; ?>" data-appearance="interaction-only"></div>
 
             <button type="submit" class="btn-auth">Entrar</button>
         </form>

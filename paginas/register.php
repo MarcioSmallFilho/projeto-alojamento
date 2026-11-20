@@ -120,6 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = 'As palavras-passe não coincidem.';
     } elseif (!isset($nacionalidades[$nacio])) {
         $erro = 'Selecione uma nacionalidade válida.';
+    }elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {
+        $erro = 'Ocorreu um erro, tente novamente mais tarde.';
     } else {
         $stmt = $pdo->prepare(
             "SELECT 1 FROM Utilizador
@@ -245,6 +247,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php endforeach; ?>
                 </select>
             </div>
+
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+            <div class="cf-turnstile" data-sitekey="<?php echo CAPTCHA_PUBLIC; ?>" data-appearance="interaction-only"></div>
 
             <button type="submit" class="btn-auth">Criar conta</button>
         </form>

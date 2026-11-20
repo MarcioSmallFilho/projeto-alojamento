@@ -120,6 +120,8 @@
         <div>
             <form method="POST">
             <textarea placeholder="Mensagem" name="mensagem"></textarea>
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+            <div class="cf-turnstile" data-sitekey="<?php echo CAPTCHA_PUBLIC; ?>" data-appearance="interaction-only"></div>
             <?php if(utilizadorAutenticado($pdo)){echo "<input type=\"submit\" value=\"Enviar\">";}
                   else{echo"<button type=\"button\" onclick=\"goto('login.php')\">Login/Registrar</button>";}
 
@@ -127,7 +129,11 @@
                 $agora = new DateTime();
                 // Formata para o formato padrão do MySQL (Ano-Mês-Dia Horas:Minutos:Segundos)
                 $dataHora = $agora->format('Y-m-d H:i:s');
-                if (!(strlen($_POST['mensagem']) < 201)) {echo "<p class=\"erro\">A mensagem é muito longa, maximo 200 characteres</p>";}
+                $statusban = SELECT($pdo, "SELECT ban FROM utilizador WHERE codUtilizador = :codUtilizador;", [":codUtilizador" => $_SESSION["codUtilizador"]]);
+                $statusban = (bool) $statusban[0]['ban'];
+                if ($statusban) {echo "<p class=\"erro\">Você está banido</p>";}
+                elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {echo 'Ocorreu um erro, tente novamente mais tarde.';}
+                elseif (!(strlen($_POST['mensagem']) < 201)) {echo "<p class=\"erro\">A mensagem é muito longa, maximo 200 characteres</p>";}
                 elseif (empty($_POST['mensagem'])) {echo "<p class=\"erro\">Precisa de conteudo para mandar a mensagem</p>";}
                 else { 
                     INSERT(
