@@ -7,7 +7,7 @@ if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
 
 $estadoRecebido = $_GET['request'];
 $Codigo = $_GET['cod'];
-INSERT($pdo, "UPDATE utilizador SET ban = '{$estadoRecebido}' WHERE codUtilizador = {$Codigo}; ");
+INSERT($pdo, "UPDATE utilizador SET ban = {$estadoRecebido} WHERE codUtilizador = {$Codigo}; ");
 
 if (isset($_SERVER['HTTP_REFERER'])) {
     $urlAnterior = $_SERVER['HTTP_REFERER'];
