@@ -23,10 +23,10 @@
 </head>
 <body data-alojamento="<?= (int) $codAlojamento ?>" data-sem-imagem="<?= $semImagem ?>">
     <div class="fundo-fixo" data-secao="Index - Fundo" data-pos="0" data-fundo style="background-image: url('<?= $semImagem ?>');"></div>
-
     <div class="conteudo-site">
         <header>
             <div class="h-esq">
+                
                 <img src="../imagens/sem-imagem.svg" data-secao="Logo" data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
             </div>
             <div class="h-dir">

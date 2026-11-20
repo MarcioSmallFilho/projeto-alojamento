@@ -13,7 +13,6 @@ if (utilizadorAutenticado($pdo)) {
     header('Location: ' . URL_INICIO);
     exit;
 }
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome     = trim($_POST['user'] ?? '');
     $email    = trim($_POST['email'] ?? '');
@@ -49,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ->execute([':h' => password_hash($password, PASSWORD_DEFAULT), ':id' => $u['codUtilizador']]);
             }
 
-            
+
             iniciarSessao($u);
             criarTokenPersistente($pdo, (int)$u['codUtilizador']);
             if($_GET['source']){
