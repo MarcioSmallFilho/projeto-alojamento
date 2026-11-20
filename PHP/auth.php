@@ -92,9 +92,6 @@ function loginPorCookie(PDO $pdo): bool
         return false;
     }
 
-    if ($_SERVER['REMOTE_ADDR'] == '192.168.127.71') {
-        return FALSE;
-    }
 
     // Rotação do token
     $pdo->prepare("DELETE FROM TokenSessao WHERE idToken = :id")->execute([':id' => $linha['idToken']]);
