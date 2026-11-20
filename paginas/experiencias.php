@@ -118,13 +118,32 @@
             <div><i class="fa-solid fa-location-dot"></i> Rua Fernão Martins da Costa, Viana do Castelo</div>
         </div>
         <div>
-            <form action="">
-            <input type="text" placeholder="Nome" required>
-            <input type="email" placeholder="E-mail" required>
-            <textarea placeholder="Mensagem" required></textarea>
-            <input type="submit" value="Enviar">
+            <form method="POST">
+            <textarea placeholder="Mensagem" name="mensagem"></textarea>
+            <?php if(utilizadorAutenticado($pdo)){echo "<input type=\"submit\" value=\"Enviar\">";}
+                  else{echo"<button type=\"button\" onclick=\"goto('login.php')\">Login/Registrar</button>";}
+
+            if (isset($_POST["mensagem"])) {
+                if (!(strlen($_POST['mensagem']) < 201)) {echo "<p class=\"erro\">A mensagem é muito longa, maximo 200 characteres</p>";}
+                elseif (empty($_POST['mensagem'])) {echo "<p class=\"erro\">Precisa de conteudo para mandar a mensagem</p>";}
+                else { 
+                    INSERT(
+                        $pdo,
+                        "INSERT INTO contacto (mensagem, codUtilizador, codAlojamento, dataEnvio)
+                        VALUES (:msg, :codUtilizador, :codAlojamento, :dataEnvio)",
+                        [
+                            ':msg'           => $_POST['mensagem'],
+                            ':codUtilizador' => $_SESSION['codUtilizador'],
+                            ':codAlojamento' => $codAlojamento,
+                            ':dataEnvio'     => date('Y-m-d'),
+                        ]
+                    );
+                }
+            }
+        ?>
             </form>
         </div>
+        
     </div>
     <footer>
         <div>
