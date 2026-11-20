@@ -143,3 +143,27 @@ footer > span{
 
 .reservas::-webkit-scrollbar{ width: 8px; }
 .reservas::-webkit-scrollbar-thumb{ background: #bbb; border-radius: 4px; }
+
+.mensagens{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 5px;
+}
+
+.msg{
+    background: linear-gradient(45deg, darkcyan 0%, color-mix(in srgb, cyan , black 45%) 50%, color-mix(in srgb, cyan , black 30%) 100%);
+    padding: 10px;
+    border-radius: 15px;
+    color: white;
+    font-weight: bolder;
+    transition: all ease-in-out 0.3s;
+    
+}
+.msg:hover{
+    padding-left: 20px;
+}
+.ban{
+
+    opacity: 70%;
+}

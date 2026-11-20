@@ -77,9 +77,9 @@
               include_once('../paginas/elFinder.php') ;
               break;
 
-            case 'msg':
-              include_once('../paginas/msg.php') ;
-              break;
+          case 'msg':
+            include_once('../paginas/msg.php') ;
+            break;
               
           default:
               echo "<h2>Página não encontrada.</h2>";
