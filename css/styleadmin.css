@@ -149,6 +149,11 @@ footer > span{
     flex-direction: column;
     gap: 7px;
     padding: 5px;
+    max-height: 270px;          /* altura máxima: ajusta ao teu layout */
+    overflow-y: auto;           /* scroll só quando for preciso */
+    overflow-x: hidden;
+    scrollbar-gutter: stable;   /* evita o "salto" quando a barra aparece */
+    scrollbar-width: thin;
 }
 
 .msg{
@@ -159,9 +164,6 @@ footer > span{
     font-weight: bolder;
     transition: all ease-in-out 0.3s;
     
-}
-.msg:hover{
-    padding-left: 20px;
 }
 .ban{
 

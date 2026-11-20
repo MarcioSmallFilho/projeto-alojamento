@@ -12,8 +12,9 @@ if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
         <option value="Pendente">Pendente</option>
         <option value="Aceite">Aceite</option>
         <option value="Recusada">Recusada</option>
+        <option value="Bloqueado">Bloqueado</option>
       </select>
-      <input type="number" name="nReservas" min="1" value="5">
+      <input type="number" name="nReservas" min="1" value="<?php echo htmlspecialchars($_POST['nReservas'] ?? '5', ENT_QUOTES, 'UTF-8'); ?>">
       <input type="submit" value="Filtrar">
     </form>
   <div class="reservas">
@@ -99,6 +100,8 @@ if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
           }elseif($reserva['estadoReserva'] == 'Bloqueado'){echo "<i style='text-decoration: underline;'>Bloqueado:</i> <a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Cancelar</a>";}
           echo '</p></div>';
         }
+      }else{
+        echo '<div class="reserva Pendente" style="display: flex;"><p style="margin: 0px;"> Sem Reservas... </p></div>';
       }
   ?>
   </div>

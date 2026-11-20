@@ -46,6 +46,7 @@
   <a href="paginaadmin.php?secao=imagens">Gerir imagens</a>
   <a href="paginaadmin.php?secao=elfinder">Gerir ElFinder</a>
   <a href="paginaadmin.php?secao=msg">Gerir Mensagens</a>
+  <a href="paginaadmin.php?secao=users">Gerir Utilizadores</a>
 
   <div class="perfil">
     <a href="../PHP/logout.php"> Sair</a>
@@ -57,7 +58,7 @@
   <div class="pagina">
     <?php
       // Define uma secção padrão caso nenhuma seja escolhida
-      $secao = 'reservas';
+      $secao = '';
 
       if (isset($_GET['secao'])) {
           $secao = $_GET['secao'];
@@ -82,10 +83,14 @@
             break;
               
           default:
-              echo "<h2>Página não encontrada.</h2>";
+              include_once('../PHP/controlar-reservas.php') ;
+              include_once('../paginas/msg.php') ;
               break;
       }
+
     ?>
+    <a href="../PHP/responderBan.php?request=1&cod=18">Vapo nele</a>
+    <a href="../PHP/responderBan.php?request=0&cod=18">desVapo nele</a>
   </div>
   <footer>
       <span id="relogio">
