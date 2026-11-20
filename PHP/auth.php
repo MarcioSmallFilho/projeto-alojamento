@@ -249,8 +249,3 @@ function verificarEmailExiste($email) {
 }
 
 iniciarSessaoSegura();
-
-$daw = SELECT($pdo, 'SELECT donoAlojamento FROM alojamento WHERE codAlojamento = :codAlojamento', [':codAlojamento' => $codAlojamento]);
-if ($_SESSION('codUtilizador') == $daw[0]['donoAlojamento']){
-    header('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
-}

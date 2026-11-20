@@ -30,9 +30,9 @@
     if(isset($users) and !empty($users)){
         foreach($users as $user){
             if ($user['ban'] == 1){
-            echo "<div class='msg ban'>(" . $user['dataCriacao'] . ") ". $user['nomeUtilizador'] .": ". $user['ban'];
+            echo "<div class='msg ban'>(" . $user['dataCriacao'] . ") ". $user['nomeUtilizador'] .": ";
             }else{
-            echo "<div class='msg'>(" . $user['dataCriacao'] . ") ". $user['nomeUtilizador'] .": ". $user['ban']; }
+            echo "<div class='msg'>(" . $user['dataCriacao'] . ") ". $user['nomeUtilizador'] .": "; }
             if($user['ban']){
                 echo "<a href='../PHP/responderBan.php?request=0&cod=".$user['codUtilizador']."'>Desbanir</a>";
             }else{
