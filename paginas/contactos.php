@@ -92,6 +92,10 @@
 
                 <?php 
                     if (isset($_POST["mensagem"]) AND strlen($_POST['mensagem']) < 201 AND empty($_POST['mensagem'])) {
+                        $agora = new DateTime();
+                        // Formata para o formato padrão do MySQL (Ano-Mês-Dia Horas:Minutos:Segundos)
+                        $dataHora = $agora->format('Y-m-d H:i:s');
+
                         INSERT(
                             $pdo,
                             "INSERT INTO contacto (mensagem, codUtilizador, codAlojamento, dataEnvio)
@@ -100,7 +104,7 @@
                                 ':msg'           => $_POST['mensagem'],
                                 ':codUtilizador' => $_SESSION['codUtilizador'],
                                 ':codAlojamento' => $codAlojamento,
-                                ':dataEnvio'     => date('Y-m-d'),
+                                ':dataEnvio'     => $dataHora,
                             ]
                         );
                     }
