@@ -12,8 +12,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="<?= $semImagem ?>" data-secao="Logo" data-pos="0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/styleadmin.css">
+    <script src="../script/imagens-dinamicas.js" defer></script>
 </head>
   <script>
   function atualizarRelogio() {
@@ -39,7 +41,7 @@
   </script>
 
 
-<body>
+<body data-alojamento="<?= (int) $codAlojamento ?>" data-sem-imagem="<?= $semImagem ?>">
   <header>
   <a href="index.php">index</a>
   <a href="paginaadmin.php?secao=reservas">Gerir Reservas</a>
@@ -89,8 +91,8 @@
       }
 
     ?>
-    <a href="../PHP/responderBan.php?request=1&cod=18">Vapo nele</a>
-    <a href="../PHP/responderBan.php?request=0&cod=18">desVapo nele</a>
+    <a href="../PHP/responderBan.php?request=1&cod=5">Vapo nele</a>
+    <a href="../PHP/responderBan.php?request=0&cod=5">desVapo nele</a>
   </div>
   <footer>
       <span id="relogio">
