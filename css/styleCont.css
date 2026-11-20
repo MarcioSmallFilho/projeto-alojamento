@@ -2,16 +2,6 @@ h1{
   margin: 0px;
 }
 
-.erro {
-  color: red;
-  font-weight: bolder;
-  text-align: center;
-  background-color: yellow;
-  padding: 5px;
-  margin: 0px;
-  border-radius: 5px;
-}
-
 a{
   color: var(--cor-txt);
   transition: all ease-in-out 0.2s;
@@ -259,6 +249,16 @@ form > .butaomsg:active{
     background-color: var(--cor-2);
     color: white;
     mix-blend-mode: multiply;
+}
+
+p.erro{
+  color: red;
+  font-weight: bolder;
+  text-align: center;
+  background-color: yellow;
+  padding: 5px;
+  margin: 0px;
+  border-radius: 5px;
 }
 
 @media (max-width: 768px) {

@@ -81,6 +81,8 @@
                             <input type="number" name="numberOfInfants" value="0" min="0" required>
                         </div>
                     </div>
+                    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                    <div class="cf-turnstile" data-sitekey="<?php echo CAPTCHA_PUBLIC; ?>" data-appearance="interaction-only"></div>
                     <?php 
 
                         $valor = SELECT($pdo, 'SELECT precoNoite, limitePessoas FROM Alojamento WHERE codAlojamento = :cod', [':cod' => $codAlojamento]);
@@ -117,6 +119,8 @@
                                 $erro = "limite de pessoas ultrapassado. (".$valor['limitePessoas'].")";
                             }elseif($checkin >= $checkout){
                                 $erro = "A data de check-in tem de ser anterior à data de check-out.";
+                            }elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {
+                                $erro = 'Ocorreu um erro, tente novamente mais tarde.';
                             }
                             if(!empty($erro)){
                                 echo "<p id='msgErro' role='alert' style='color:red; margin-bottom: 7px;'>{$erro}</p>";

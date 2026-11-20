@@ -168,6 +168,38 @@ function admPage(PDO $pdo){
     }
 }
 
+function validarCaptcha(?string $token): bool
+{
+    if (!$token) {
+        return false;
+    }
+
+    $contexto = stream_context_create(['http' => [
+        'method'  => 'POST',
+        'header'  => "Content-Type: application/x-www-form-urlencoded\r\n",
+        'content' => http_build_query([
+            'secret'   => CAPTCHA_SECRET,
+            'response' => $token,
+            'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
+        ]),
+        'timeout' => 5,
+    ]]);
+
+    $resposta = @file_get_contents(
+        'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+        false,
+        $contexto
+    );
+
+    if ($resposta === false) {
+        return false; // se não der para verificar, não deixa passar
+    }
+
+    $resultado = json_decode($resposta, true);
+
+    return is_array($resultado) && ($resultado['success'] ?? false) === true;
+}
+
 //========================================
 // 5. Funções Globais
 //========================================
