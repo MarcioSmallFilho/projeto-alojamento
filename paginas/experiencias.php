@@ -124,6 +124,9 @@
                   else{echo"<button type=\"button\" onclick=\"goto('login.php')\">Login/Registrar</button>";}
 
             if (isset($_POST["mensagem"])) {
+                $agora = new DateTime();
+                // Formata para o formato padrão do MySQL (Ano-Mês-Dia Horas:Minutos:Segundos)
+                $dataHora = $agora->format('Y-m-d H:i:s');
                 if (!(strlen($_POST['mensagem']) < 201)) {echo "<p class=\"erro\">A mensagem é muito longa, maximo 200 characteres</p>";}
                 elseif (empty($_POST['mensagem'])) {echo "<p class=\"erro\">Precisa de conteudo para mandar a mensagem</p>";}
                 else { 
@@ -135,7 +138,7 @@
                             ':msg'           => $_POST['mensagem'],
                             ':codUtilizador' => $_SESSION['codUtilizador'],
                             ':codAlojamento' => $codAlojamento,
-                            ':dataEnvio'     => date('Y-m-d'),
+                            ':dataEnvio'     => $dataHora,
                         ]
                     );
                 }
