@@ -87,25 +87,27 @@
                 <form method="POST">
                     <h1 class="tituloMsg">Envie-nos uma mensagem</h1>
                     <textarea placeholder="Mensagem" name='mensagem' required></textarea>
-                    <?php if(utilizadorAutenticado($pdo)){echo "<input type=\"submit\" value=\"Enviar Mensagem\" class=\"butaomsg\">";}else{echo"<button class=\"butaomsg\" type=\"button\" onclick=\"goto('login.php')\">Login/Registrar</button>";} ?>
-                </form>
-
-                <?php 
-                    if (isset($_POST["mensagem"]) AND strlen($_POST['mensagem']) < 201 AND empty($_POST['mensagem'])) {
-                        INSERT(
-                            $pdo,
-                            "INSERT INTO contacto (mensagem, codUtilizador, codAlojamento, dataEnvio)
-                            VALUES (:msg, :codUtilizador, :codAlojamento, :dataEnvio)",
-                            [
-                                ':msg'           => $_POST['mensagem'],
-                                ':codUtilizador' => $_SESSION['codUtilizador'],
-                                ':codAlojamento' => $codAlojamento,
-                                ':dataEnvio'     => date('Y-m-d'),
-                            ]
-                        );
-                    }
+                    <?php if(utilizadorAutenticado($pdo)){echo "<input type=\"submit\" value=\"Enviar Mensagem\" class=\"butaomsg\">";}
+                          else{echo"<button class=\"butaomsg\" type=\"button\" onclick=\"goto('login.php')\">Login/Registrar</button>";}
+                        if (isset($_POST["mensagem"])) {
+                            if (!(strlen($_POST['mensagem']) < 201)) {echo "<p class=\"erro\">A mensagem é muito longa, maximo 200 characteres</p>";}
+                            elseif (empty($_POST['mensagem'])) {echo "<p class=\"erro\">Precisa de conteudo para mandar a mensagem</p>";}
+                            else { 
+                                INSERT(
+                                    $pdo,
+                                    "INSERT INTO contacto (mensagem, codUtilizador, codAlojamento, dataEnvio)
+                                    VALUES (:msg, :codUtilizador, :codAlojamento, :dataEnvio)",
+                                    [
+                                        ':msg'           => $_POST['mensagem'],
+                                        ':codUtilizador' => $_SESSION['codUtilizador'],
+                                        ':codAlojamento' => $codAlojamento,
+                                        ':dataEnvio'     => date('Y-m-d'),
+                                    ]
+                                );
+                            }
+                        }
                 ?>
-                
+                </form>                
             </div>
         </div>
 
