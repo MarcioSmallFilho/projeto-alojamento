@@ -17,6 +17,7 @@ if (empty($_SESSION['csrf'])) {
     $_SESSION['csrf'] = bin2hex(random_bytes(32));
 }
 
+
 /*
  * As duas coisas a que uma imagem é associada (ambas obrigatórias).
  * Os nomes de tabela e de colunas usados nas consultas vêm APENAS desta

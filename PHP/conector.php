@@ -22,6 +22,7 @@ if (!is_admin($pdo)) {
     exit;
 }
 
+
 $idAlojamento = filter_input(
     INPUT_GET,
     'alojamento',

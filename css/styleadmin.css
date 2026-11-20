@@ -144,7 +144,7 @@ footer > span{
 .reservas::-webkit-scrollbar{ width: 8px; }
 .reservas::-webkit-scrollbar-thumb{ background: #bbb; border-radius: 4px; }
 
-.mensagens{
+.mensagens, .utilizadores{
     display: flex;
     flex-direction: column;
     gap: 7px;

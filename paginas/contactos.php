@@ -2,6 +2,7 @@
     $semImagem     = '../imagens/imagens/sem-imagem.svg'; // usada quando falta a associação
     require_once "../PHP/auth.php";
     $pdo = ConnectDB();
+    exigirLogin($pdo);
 ?>
 <!DOCTYPE html>
 <html lang="pt-pt">
@@ -64,6 +65,7 @@
             </div>
         </div>
 
+        
         <div class="conteudoB">
             <div class="areaB">
                 <div class="grega1">

@@ -17,6 +17,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
     // Fallback (plano B) caso não haja histórico, redireciona para uma página padrão
     header('Location: ../paginas/paginaadmin.php');
     exit();
+    
 }
 
 ?>

@@ -17,4 +17,5 @@ if (isset($_SERVER['HTTP_REFERER'])) {
     header('Location: ../paginas/paginaadmin.php');
     exit();
 }
+
 ?>

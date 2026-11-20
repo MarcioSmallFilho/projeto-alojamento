@@ -48,13 +48,14 @@
   <a href="paginaadmin.php?secao=msg">Gerir Mensagens</a>
   <a href="paginaadmin.php?secao=users">Gerir Utilizadores</a>
 
+  
   <div class="perfil">
     <a href="../PHP/logout.php"> Sair</a>
     <p><?php echo $_SESSION['nomeUtilizador'];?> [<?php echo SELECT($pdo, 'SELECT paisOrigem from utilizador where codUtilizador = :cod', [':cod' => $_SESSION['codUtilizador']])[0]['paisOrigem'] ?>]</p>
   </div>
   </header>
 
-
+  
   <div class="pagina">
     <?php
       // Define uma secção padrão caso nenhuma seja escolhida
@@ -82,6 +83,10 @@
             include_once('../paginas/msg.php') ;
             break;
               
+          case 'users':
+            include_once('../PHP/controlar-utilizadores.php');
+            break;
+
           default:
               include_once('../PHP/controlar-reservas.php') ;
               include_once('../paginas/msg.php') ;
@@ -89,8 +94,6 @@
       }
 
     ?>
-    <a href="../PHP/responderBan.php?request=1&cod=18">Vapo nele</a>
-    <a href="../PHP/responderBan.php?request=0&cod=18">desVapo nele</a>
   </div>
   <footer>
       <span id="relogio">

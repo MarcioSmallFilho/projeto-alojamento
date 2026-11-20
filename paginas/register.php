@@ -144,6 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ':nacionalidade' => $nacio,
                 ]);
 
+                
                 $novo = ['codUtilizador' => (int)$pdo->lastInsertId(), 'nomeUtilizador' => $nome];
                 iniciarSessao($novo);
                 criarTokenPersistente($pdo, $novo['codUtilizador']);
