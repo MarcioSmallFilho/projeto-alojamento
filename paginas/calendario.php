@@ -5,7 +5,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="pt-pt">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Consulte a disponibilidade do Oasis Dune e reserve a sua estadia na Praia do Cabedelo através do Airbnb.">
@@ -23,7 +23,7 @@
     <!-- FullCalendar Core & Plugins via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
     <title>Reservar | Oasis Dune</title>
-</head>
+</head> 
     <body data-alojamento="<?= (int) $codAlojamento ?>" data-sem-imagem="<?= $semImagem ?>">
         <div class="fundo-fixo" data-secao="reservar - fundo" data-pos="0" data-fundo style="background-image: url('<?= $semImagem ?>');"></div>
 
@@ -39,7 +39,7 @@
                         <a href="contactos.php">Contactos</a>
                         <a href="calendario.php">Reservar</a>
                         <?php
-                            admPage($pdo);
+                            admPage($pdo); 
                             paginaLogin($pdo);
                         ?>
                     </nav>
@@ -52,7 +52,7 @@
             <div class="titulo">
                 <div class="conteudo-titulo">
                     <h1>Calendário</h1>
-                </div>
+                </div> 
             </div>
             
             <div class="conteudoB">
@@ -63,7 +63,7 @@
 
                 <section class="seccao-calendario">                    
                     <div id="meu-calendario-tll"></div>
-                </section>
+                </section> 
 
                 <form id="bookingForm" method="post">
                     <h1>Reserva</h1>
@@ -90,7 +90,7 @@
 
                         if(is_admin($pdo)){
                             echo "<input type='submit' value='Bloquear Datas' class='block' style='margin-bottom: 10px; background-color: gray;' >";
-                        }else{
+                        }else{ 
                             echo '<input type="submit" class="btn-gradient" value="Fazer pedido de reserva">';
                         }
 
@@ -108,7 +108,7 @@
                             // Cria objetos DateTime a partir das strings das datas
                             $checkin = new DateTime($checkinStr);
                             $checkout = new DateTime($checkoutStr);
-
+ 
                             if($_POST['checkin'] == '' or $_POST['checkout'] == ''){
                                 $erro = 'Precisas de preencher uma data.';
                             }elseif($_POST['numberOfAdults'] < 1){
@@ -129,7 +129,7 @@
                                 if(is_admin($pdo)){
                                     $insert = INSERT($pdo, 'INSERT INTO reserva(checkIn, checkOut, codAlojamento, dataReserva, codUtilizador, estadoReserva) 
                                     VALUES(:ckIn, :ckOut, :codAloj, :hoje, :codUtil, "Bloqueado")', 
-                                    [':ckIn' => $_POST['checkin'],
+                                    [':ckIn' => $_POST['checkin'], 
                                      ':ckOut' => $_POST['checkout'],
                                      ':codAloj' => $codAlojamento,
                                      ':hoje' => $dataHora,
@@ -181,5 +181,5 @@
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Mais no Airbnb</a>
             </div>
         </footer>
-    </body>
+    </body>//Não é aq
 </html>

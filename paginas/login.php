@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $hash   = $u['palavraPasse'] ?? '$2y$10$usesomesillystringforsaleeKqzGcPzLxB0tnnQzKcx6w6wZ0rW';
         $valida = password_verify($password, $hash);
 
-        if ($u && $valida) {
+        if ($u && $valida) { 
             unset($_SESSION['tentativas'], $_SESSION['bloqueio_ate']);
 
             if (password_needs_rehash($u['palavraPasse'], PASSWORD_DEFAULT)) {
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit;
             }
             header('Location: ' . URL_INICIO);
-            exit;
+            exit; 
         }
 
         $_SESSION['tentativas'] = ($_SESSION['tentativas'] ?? 0) + 1;
@@ -78,8 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="auth">
     <main class="auth-cartao">
-        <header class="auth-topo">
-            <p class="auth-marca">Oasis Dune</p>
+        <header class="auth-topo"> 
+            <p class="auth-marca">Oasis Dune</p> 
             <h1>Entrar</h1>
             <p>Bem-vindo de volta. Inicie sessão para continuar.</p>
         </header>
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form class="auth-form" action="" method="post">
             <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrfToken(), ENT_QUOTES) ?>">
 
-            <div class="campo">
+            <div class="campo"> 
                 <label for="user">Nome de utilizador</label>
                 <input type="text" name="user" id="user" maxlength="40" autocomplete="username"
                        placeholder="O seu nome de utilizador" value="<?= htmlspecialchars($nome, ENT_QUOTES) ?>" required>
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        placeholder="exemplo@email.com" value="<?= htmlspecialchars($email, ENT_QUOTES) ?>" required>
             </div>
 
-            <div class="campo">
+            <div class="campo"> 
                 <label for="password">Palavra-passe</label>
                 <div class="campo-senha">
                     <input type="password" name="password" id="password" maxlength="72" autocomplete="current-password"
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="cf-turnstile" data-sitekey="<?php echo CAPTCHA_PUBLIC; ?>" data-appearance="interaction-only"></div>
 
             <button type="submit" class="btn-auth">Entrar</button>
-        </form>
+        </form> 
 
         <p class="auth-rodape">Não tens uma conta? <a href="register.php">Regista-te</a></p>
     </main>

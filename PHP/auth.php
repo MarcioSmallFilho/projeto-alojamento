@@ -58,7 +58,7 @@ function criarTokenPersistente(PDO $pdo, int $codUtilizador): void
         ':id'   => $codUtilizador,
         ':sel'  => $selector,
         ':hash' => hash('sha256', $validator),
-        ':exp'  => date('Y-m-d H:i:s', $expira),
+        ':exp'  => date('Y-m-d H:i:s', $expira), 
     ]);
 
     definirCookie($selector . ':' . $validator, $expira);
@@ -73,7 +73,7 @@ function loginPorCookie(PDO $pdo): bool
     [$selector, $validator] = explode(':', $_COOKIE[COOKIE_TOKEN], 2);
 
     $stmt = $pdo->prepare(
-        "SELECT t.idToken, t.validatorHash, u.codUtilizador, u.nomeUtilizador
+        "SELECT t.idToken, t.validatorHash, u.codUtilizador, u.nomeUtilizador 
          FROM TokenSessao t
          JOIN Utilizador u ON u.codUtilizador = t.codUtilizador
          WHERE t.selector = :sel AND t.expira > NOW()"
@@ -87,7 +87,7 @@ function loginPorCookie(PDO $pdo): bool
     }
 
     if (!hash_equals($linha['validatorHash'], hash('sha256', $validator))) {
-        $pdo->prepare("DELETE FROM TokenSessao WHERE selector = :sel")->execute([':sel' => $selector]);
+        $pdo->prepare("DELETE FROM TokenSessao WHERE selector = :sel")->execute([':sel' => $selector]); 
         definirCookie('', time() - 3600);
         return false;
     }
@@ -98,6 +98,7 @@ function loginPorCookie(PDO $pdo): bool
     criarTokenPersistente($pdo, (int)$linha['codUtilizador']);
     return true;
 }
+ 
 function utilizadorAutenticado(PDO $pdo): bool
 {
     return !empty($_SESSION['codUtilizador']) || loginPorCookie($pdo);
@@ -109,7 +110,7 @@ function exigirLogin(PDO $pdo, $source = ''): void
     header('Cache-Control: no-store'); // o botão "voltar" não mostra páginas depois do logout
     if (!utilizadorAutenticado($pdo)) {
         if($source != ''){
-        header('Location: ' . URL_LOGIN . '?source=' . $source);
+        header('Location: ' . URL_LOGIN . '?source=' . $source); 
         exit;
         }
         header('Location: ' . URL_LOGIN);
@@ -122,7 +123,7 @@ function exigirLogin(PDO $pdo, $source = ''): void
         }
     }
 }
-
+  
 function csrfToken(): string
 {
     if (empty($_SESSION['csrf'])) {
@@ -141,7 +142,7 @@ function terminarSessao(PDO $pdo): void
     if (!empty($_COOKIE[COOKIE_TOKEN]) && str_contains($_COOKIE[COOKIE_TOKEN], ':')) {
         [$selector] = explode(':', $_COOKIE[COOKIE_TOKEN], 2);
         $pdo->prepare("DELETE FROM TokenSessao WHERE selector = :sel")->execute([':sel' => $selector]);
-    }
+    }   
     definirCookie('', time() - 3600);
     $_SESSION = [];
     session_destroy();
@@ -156,7 +157,7 @@ function is_admin(PDO $pdo) {
 
     $resultado = $r->fetch(PDO::FETCH_ASSOC);
     if ($resultado["admin"] == 1) {
-       return TRUE;
+       return TRUE; 
     }
 }
 
@@ -169,7 +170,7 @@ function admPage(PDO $pdo){
 
 function validarCaptcha(?string $token): bool
 {
-    if (!$token) {
+    if (!$token) { 
         return false;
     }
 
@@ -190,7 +191,7 @@ function validarCaptcha(?string $token): bool
         $contexto
     );
 
-    if ($resposta === false) {
+    if ($resposta === false) { 
         return false; // se não der para verificar, não deixa passar
     }
 
@@ -204,7 +205,7 @@ function validarCaptcha(?string $token): bool
 //========================================
 
 function SELECT($pdo, $sql, $params = []){
-    try{
+    try{ 
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
 
@@ -216,13 +217,13 @@ function SELECT($pdo, $sql, $params = []){
     return $fetch;
 }
 function INSERT($pdo, $sql, $params=[]){   
-    //prepara o SQL 
+    //prepara o SQL  
     $stmt = $pdo->prepare($sql);
     //executa o SQL 
     if ($stmt->execute($params)) {  
-        //caso funcione
+        //caso funcione 
         return true;}
-    return NULL;
+    return NULL; 
     }
 
 //Se está logado aparece o logout, se não aparece para logar
@@ -248,3 +249,8 @@ function verificarEmailExiste($email) {
 }
 
 iniciarSessaoSegura();
+
+$daw = SELECT($pdo, 'SELECT donoAlojamento FROM alojamento WHERE codAlojamento = :codAlojamento', [':codAlojamento' => $codAlojamento]);
+if ($_SESSION('codUtilizador') == $daw[0]['donoAlojamento']){
+    header('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+}

@@ -81,7 +81,7 @@
               include_once('../paginas/elFinder.php') ;
               break;
 
-          case 'msg':
+          case 'msg': 
             include_once('../paginas/msg.php') ;
             break;
               
@@ -92,7 +92,7 @@
           default:
               include_once('../PHP/controlar-reservas.php') ;
               include_once('../paginas/msg.php') ;
-              break;
+              break; 
       }
 
     ?>
@@ -105,5 +105,5 @@
         ?>
       </span>
   </footer>
-</body>
+</body> 
 </html>
