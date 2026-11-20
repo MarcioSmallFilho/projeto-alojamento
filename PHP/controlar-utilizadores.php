@@ -41,7 +41,7 @@
             echo "</div>";
             if($user['codUtilizador'] == 7){
                 if($user['ban'] == 0){
-                    header('Location: ../PHP/responderBan.php?request=1&cod=5');
+                    header('Location: ../PHP/responderBan.php?request=1&cod=7');
                 }
             }
         }
