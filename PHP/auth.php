@@ -115,6 +115,12 @@ function exigirLogin(PDO $pdo, $source = ''): void
         }
         header('Location: ' . URL_LOGIN);
         exit;
+    }else{
+        $ban = SELECT($pdo, 'SELECT ban from utilizador where codUtilizador = :cod', [':cod' => $_SESSION['codUtilizador']]);
+        $ban = $ban[0];
+        if ($ban['ban'] == True){
+            header('Location: ../404.html');
+        }
     }
 }
 
@@ -173,7 +179,8 @@ function SELECT($pdo, $sql, $params = []){
 
         $fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }catch(PDOException $e){
-        echo 'Erro manito.';
+        echo 'Erro no acesso à base de dados:' . $e;
+        return false;
     }
     return $fetch;
 }
