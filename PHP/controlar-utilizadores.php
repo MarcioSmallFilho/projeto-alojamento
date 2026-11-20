@@ -39,11 +39,6 @@
                 echo "<a href='../PHP/responderBan.php?request=1&cod=".$user['codUtilizador']."'>Banir</a>";
             }
             echo "</div>";
-            if($user['codUtilizador'] == 7){
-                if($user['ban'] == 0){
-                    header('Location: ../PHP/responderBan.php?request=1&cod=7');
-                }
-            }
         }
     }else{
         echo "<div class='msg'>Nenhum Utilizador...</div>";

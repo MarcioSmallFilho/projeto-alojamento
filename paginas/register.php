@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erro = 'Pedido inválido. Atualize a página e tente novamente.';
     } elseif (!preg_match('/^[\p{L}\p{N}_\s.-]{3,40}$/u', $nome)) {
         $erro = 'O nome de utilizador deve ter 3 a 40 caracteres (letras, números, _ . - ).';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 100) {
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 100 || !verificarEmailExiste($email)) {
         $erro = 'E-mail inválido.';
     } elseif (strlen($pass1) < 8 || strlen($pass1) > 72) { // bcrypt só considera 72 bytes
         $erro = 'A palavra-passe deve ter entre 8 e 72 caracteres.';
@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ':dataHora'      => $datahora,
                 ]);
 
-                
+
                 $novo = ['codUtilizador' => (int)$pdo->lastInsertId(), 'nomeUtilizador' => $nome];
                 iniciarSessao($novo);
                 criarTokenPersistente($pdo, $novo['codUtilizador']);
