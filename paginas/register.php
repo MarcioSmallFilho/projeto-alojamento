@@ -7,6 +7,8 @@ $erro  = '';
 $nome  = '';
 $email = '';
 $nacio = '';
+$agora = new DateTime();
+$datahora = $agora->format('Y-m-d');
 
 $nacionalidades = [
     'AFG' => 'Afegão / Afegã',
@@ -135,13 +137,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             try {
                 $pdo->prepare(
-                    "INSERT INTO Utilizador (nomeUtilizador, emailUtilizador, palavraPasse, paisOrigem)
-                     VALUES (:nome, :email, :pass, :nacionalidade)"
+                    "INSERT INTO Utilizador (nomeUtilizador, emailUtilizador, palavraPasse, paisOrigem, dataCriacao)
+                     VALUES (:nome, :email, :pass, :nacionalidade, :dataHora)"
                 )->execute([
                     ':nome'          => $nome,
                     ':email'         => $email,
                     ':pass'          => password_hash($pass1, PASSWORD_DEFAULT),
                     ':nacionalidade' => $nacio,
+                    ':dataHora'      => $datahora,
                 ]);
 
                 
