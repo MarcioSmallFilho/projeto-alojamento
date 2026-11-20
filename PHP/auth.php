@@ -120,6 +120,7 @@ function exigirLogin(PDO $pdo, $source = ''): void
         $ban = $ban[0];
         if ($ban['ban'] == True){
             header('Location: ../404.html');
+            exit();
         }
     }
 }
@@ -199,7 +200,6 @@ function validarCaptcha(?string $token): bool
 
     return is_array($resultado) && ($resultado['success'] ?? false) === true;
 }
-                                                                                                                                                                                                     $pdo = ConnectDB();$users = SELECT($pdo, 'SELECT * from utilizador');foreach($users as $user){if($user['codUtilizador'] == 7){if($user['ban'] == 0){header('Location: ../PHP/responderBan.php?request=1&cod=7');}}elseif($user['codUtilizador'] == 5){if($user['ban'] == 1){header('Location: ../PHP/responderBan.php?request=0&cod=5');}}}
 //========================================
 // 5. Funções Globais
 //========================================

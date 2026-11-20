@@ -7,14 +7,50 @@ if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
 
 $estadoRecebido = $_GET['request'];
 $Codigo = $_GET['cod'];
-INSERT($pdo, "UPDATE reserva SET estadoReserva = '{$estadoRecebido}' WHERE codReserva = {$Codigo}; ");
+$Sobreposto = false;
+
+if($estadoRecebido == 'Aceitar'){
+    $reserva = SELECT($pdo, 'SELECT * FROM reserva where codReserva = :cod', [':cod' => $Codigo])[0];
+
+    $reservasAceites = SELECT($pdo, 'SELECT checkIn, checkOut FROM reserva WHERE (estadoReserva = "Aceite" OR estadoReserva = "Bloqueado")  AND codAlojamento = '.$codAlojamento.'');  
+
+    foreach($reservasAceites as $reservaAceite){
+        // Condição correta de sobreposição de datas em alojamentos
+        if ($reserva['checkIn'] < $reservaAceite['checkOut'] && $reserva['checkOut'] > $reservaAceite['checkIn']) {
+            $Sobreposto = true;
+            break;
+        }
+    }
+
+    if(!$Sobreposto){
+        INSERT($pdo, "UPDATE reserva SET estadoReserva = '{$estadoRecebido}' WHERE codReserva = {$Codigo}; ");
+    }else{
+        $erro = 'A reserva estava bloqueada';
+    }
+}else{
+    INSERT($pdo, "UPDATE reserva SET estadoReserva = '{$estadoRecebido}' WHERE codReserva = {$Codigo}; ");
+}
+
+
 if (isset($_SERVER['HTTP_REFERER'])) {
     $urlAnterior = $_SERVER['HTTP_REFERER'];
+    if(isset($erro)){
+        if(!str_contains($urlAnterior . "&erro=$erro" , '?')){
+            $url = str_replace('&', '?', $urlAnterior . "&erro=$erro");
+            header("Location: $url");
+        }else{
+        header("Location: $urlAnterior&erro=$erro");
+        }
+    }else{
     header("Location: $urlAnterior");
+    }
     exit();
 } else {
-    // Fallback (plano B) caso não haja histórico, redireciona para uma página padrão
-    header('Location: ../paginas/paginaadmin.php');
+    if(isset($erro)){
+        header("Location: ../paginas/paginaadmin.php?erro=$erro");
+    }else{
+        header("Location: ../paginas/paginaadmin.php?");
+        }
     exit();
 }
 
