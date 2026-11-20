@@ -92,7 +92,6 @@ function loginPorCookie(PDO $pdo): bool
         return false;
     }
 
-
     // Rotação do token
     $pdo->prepare("DELETE FROM TokenSessao WHERE idToken = :id")->execute([':id' => $linha['idToken']]);
     iniciarSessao($linha);
