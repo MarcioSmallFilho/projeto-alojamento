@@ -34,6 +34,8 @@
             }else{
             echo "<div class='msg'>(" . $msg['dataEnvio'] . ") ". $msg['nomeUtilizador'] .": ". $msg['mensagem'] . "</div>"; }
         }
+    }else{
+        echo "<div class='msg'>Nenhuma mensagem...</div>";
     }
     echo '</div>';
 ?>
