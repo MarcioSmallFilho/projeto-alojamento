@@ -7,7 +7,7 @@
         http_response_code(403);
         exit('Acesso negado.');
     }
-?>
+?> 
 <form action="" method="post" id="filtro">
         <input type="hidden" name="form_id" value="filtro">
         <Label>Banido:</Label>
@@ -24,7 +24,7 @@
     $ban = 0; // valor por defeito
       if (isset($_POST['form_id']) && $_POST['form_id'] == 'filtro' && isset($_POST['ban']) && $_POST['ban'] == 'on') {
         $ban = 'on';
-      }
+      } 
     $users = SELECT($pdo, "SELECT * FROM utilizador ORDER BY dataCriacao DESC LIMIT $limite", []);
     echo '<div class="utilizadores">';
     if(isset($users) and !empty($users)){
@@ -39,11 +39,6 @@
                 echo "<a href='../PHP/responderBan.php?request=1&cod=".$user['codUtilizador']."'>Banir</a>";
             }
             echo "</div>";
-            if($user['codUtilizador'] == 7){
-                if($user['ban'] == 0){
-                    header('Location: ../PHP/responderBan.php?request=1&cod=5');
-                }
-            }
         }
     }else{
         echo "<div class='msg'>Nenhum Utilizador...</div>";
