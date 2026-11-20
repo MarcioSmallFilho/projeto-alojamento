@@ -3,9 +3,6 @@
   $pdo = ConnectDB();
   exigirLogin($pdo);
   if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
-
-
-  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +57,10 @@
   
   <div class="pagina">
     <?php
+    require_once '../PHP/notificacoes.php';
+    if(isset($_GET['erro'])){
+      notificacao($_GET['erro'], "erro");
+    }
       // Define uma secção padrão caso nenhuma seja escolhida
       $secao = '';
 
@@ -70,28 +71,28 @@
       // Mostra o conteúdo consoante a escolha do navbar
       switch ($secao) {
           case 'reservas':
-              include_once('../PHP/controlar-reservas.php') ;
+              require_once('../PHP/controlar-reservas.php') ;
               break;
               
           case 'imagens':
-              include_once('../paginas/guardar-associacao.php') ;
+              require_once('../paginas/guardar-associacao.php') ;
               break;
               
           case 'elfinder':
-              include_once('../paginas/elFinder.php') ;
+              require_once('../paginas/elFinder.php') ;
               break;
 
           case 'msg': 
-            include_once('../paginas/msg.php') ;
+            require_once('../paginas/msg.php') ;
             break;
               
           case 'users':
-            include_once('../PHP/controlar-utilizadores.php');
+            require_once('../PHP/controlar-utilizadores.php');
             break;
 
           default:
-              include_once('../PHP/controlar-reservas.php') ;
-              include_once('../paginas/msg.php') ;
+              require_once('../PHP/controlar-reservas.php') ;
+              require_once('../paginas/msg.php') ;
               break; 
       }
 

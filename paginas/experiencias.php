@@ -21,7 +21,6 @@
     <title>Experiências | Oasis Dune</title>
 </head>
 <body data-alojamento="<?= (int) $codAlojamento ?>" data-sem-imagem="<?= $semImagem ?>">
-    
         <header>
             <div class="h-esq">
                 <img src="<?= $semImagem ?>" data-secao="Logo" data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
@@ -176,5 +175,4 @@
             <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Mais no Airbnb</a>
         </div>
     </footer>
-
 </body>

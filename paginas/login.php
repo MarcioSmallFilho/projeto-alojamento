@@ -8,14 +8,12 @@ const BLOQUEIO_SEG   = 900; // 15 minutos
 $pdo   = ConnectDB();
 $erro  = '';
 $nome  = '';
-$email = '';
 if (utilizadorAutenticado($pdo)) {
     header('Location: ' . URL_INICIO);
     exit;
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome     = trim($_POST['user'] ?? '');
-    $email    = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     $bloqueadoAte = $_SESSION['bloqueio_ate'] ?? 0;
 
@@ -24,17 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($bloqueadoAte > time()) {
         $minutos = (int)ceil(($bloqueadoAte - time()) / 60);
         $erro = "Demasiadas tentativas. Tente novamente dentro de {$minutos} minuto(s).";
-    } elseif ($nome === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $password === '') {
+    } elseif ($nome === '' || $password === '') {
         $erro = 'Preencha todos os campos corretamente.';
     }elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {
         $erro = 'Ocorreu um erro, tente novamente mais tarde.';
     } else {
         $stmt = $pdo->prepare(
             "SELECT * FROM Utilizador
-             WHERE nomeUtilizador = :nome AND emailUtilizador = :email
+             WHERE nomeUtilizador = :nome
              LIMIT 1"
         );
-        $stmt->execute([':nome' => $nome, ':email' => $email]);
+        $stmt->execute([':nome' => $nome]);
         $u = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $hash   = $u['palavraPasse'] ?? '$2y$10$usesomesillystringforsaleeKqzGcPzLxB0tnnQzKcx6w6wZ0rW';
@@ -95,12 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="user">Nome de utilizador</label>
                 <input type="text" name="user" id="user" maxlength="40" autocomplete="username"
                        placeholder="O seu nome de utilizador" value="<?= htmlspecialchars($nome, ENT_QUOTES) ?>" required>
-            </div>
-
-            <div class="campo">
-                <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" maxlength="100" autocomplete="email"
-                       placeholder="exemplo@email.com" value="<?= htmlspecialchars($email, ENT_QUOTES) ?>" required>
             </div>
 
             <div class="campo"> 

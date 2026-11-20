@@ -112,6 +112,7 @@ footer{
     gap: 15px;
     display: flex;
     align-items: center;
+    margin-top: auto;
 }
 footer > span{
     color: white;
@@ -120,6 +121,7 @@ footer > span{
 #filtro{
     background-color: color-mix(in srgb, darkcyan , black 10%);
     padding: 5px;
+    margin-bottom: 0px;
 }
 
 .reservas{

@@ -120,6 +120,7 @@ function exigirLogin(PDO $pdo, $source = ''): void
         $ban = $ban[0];
         if ($ban['ban'] == True){
             header('Location: ../404.html');
+            exit();
         }
     }
 }
