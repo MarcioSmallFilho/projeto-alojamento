@@ -124,7 +124,7 @@
             <?php 
                 if(utilizadorAutenticado($pdo)){echo "<input type=\"submit\" value=\"Enviar Mensagem\" class=\"butaomsg\">";}
                     else{echo"<button class=\"butaomsg\" type=\"button\" onclick=\"goto('login.php')\">Login/Registrar</button>";}
-                    
+
                 if (isset($_POST["mensagem"])) {
                     $agora = new DateTime();
                     // Formata para o formato padrão do MySQL (Ano-Mês-Dia Horas:Minutos:Segundos)
@@ -139,7 +139,7 @@
                     elseif (!(strlen($_POST['mensagem']) < 201)) {notificacao("A mensagem é muito longa, maximo 200 characteres");}
                     elseif (empty($_POST['mensagem'])) { notificacao("Precisa de conteudo para mandar a mensagem");}
                     elseif (empty(trim($_POST['mensagem']))) { notificacao("A mensagem não pode conter só espaços");}
-                    elseif (preg_match_all('/[^a-zA-ZáàâãéêíóôõúüçÁÀÂÃÉÊÍÓÔÕÚÜÇ ]/u', $_POST['mensagem'], $m)) {$erros = array_unique($m[0]); notificacao("A mensagem não pode conter " . implode(', ', $erros));}
+                    elseif (preg_match_all('/^[\p{L}\p{M}0-9!#$%&\/()=£{}\[\]\'+*_,.?€| -]+$/u', $_POST['mensagem'], $m)) {$erros = array_unique($m[0]); notificacao("A mensagem não pode conter " . implode(', ', $erros));}
                     else {
                         INSERT(
                             $pdo,
