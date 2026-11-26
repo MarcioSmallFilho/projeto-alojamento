@@ -12,16 +12,6 @@ ini_set('error_log', __DIR__ . '/erro-php.log');
 
 require_once 'C:/xampp/database.php';                    // define ConnectDB()
 require_once __DIR__ . '/../elFinder/php/autoload.php';
-require_once __DIR__ . '/auth.php';
-
-$pdo = ConnectDB();
-exigirLogin($pdo);
-
-if (!is_admin($pdo)) {
-    http_response_code(403);
-    exit;
-}
-
 
 $idAlojamento = filter_input(
     INPUT_GET,

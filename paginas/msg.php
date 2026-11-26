@@ -28,14 +28,15 @@
       if (isset($_POST['form_id']) && $_POST['form_id'] == 'filtro' && isset($_POST['ban']) && $_POST['ban'] == 'on') {
         $ban = 'on';
       }
-    $mensagens = SELECT($pdo, "SELECT ban, nomeUtilizador, mensagem, dataEnvio FROM contacto AS m INNER JOIN utilizador AS u ON m.codUtilizador = u.codUtilizador WHERE codAlojamento = :cod AND (ban = :banlim OR :banlim = 'on' ) ORDER BY dataEnvio DESC LIMIT $limite", [':cod' => $codAlojamento, ':banlim' => $ban]);
+    $mensagens = SELECT($pdo, "SELECT * FROM contacto AS m INNER JOIN utilizador AS u ON m.codUtilizador = u.codUtilizador WHERE codAlojamento = :cod AND (ban = :banlim OR :banlim = 'on' ) ORDER BY dataEnvio DESC LIMIT $limite", [':cod' => $codAlojamento, ':banlim' => $ban]);
     echo '<div class="mensagens">';
     if(!empty($mensagens)){
         foreach($mensagens as $msg){
             if ($msg['ban'] == 1){
-            echo "<div class='msg ban'>(" . $msg['dataEnvio'] . ") ". $msg['nomeUtilizador'] .": ". $msg['mensagem'] . "</div>";
+                echo "<div class='msg ban'>(" . $msg['dataEnvio'] . ") ". $msg['nomeUtilizador'] .": ". $msg['mensagem'] . "<a href='../PHP/responderBan.php?request=0&cod=".$msg['codUtilizador']."'>Desbanir</a></div>";
             }else{
-            echo "<div class='msg'>(" . $msg['dataEnvio'] . ") ". $msg['nomeUtilizador'] .": ". $msg['mensagem'] . "</div>"; }
+                echo "<div class='msg'>(" . $msg['dataEnvio'] . ") ". $msg['nomeUtilizador'] .": ". $msg['mensagem'] . "<a href='../PHP/responderBan.php?request=1&cod=".$msg['codUtilizador']."'>Banir</a></div>";
+            }
         }
     }else{
         echo "<div class='msg'>Nenhuma mensagem...</div>";
