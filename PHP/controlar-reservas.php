@@ -103,7 +103,13 @@ if (realpath($_SERVER['SCRIPT_FILENAME']) === realpath(__FILE__)) {
                 echo "<a href='../PHP/responderPedido.php?request="."Aceite"."&cod=".$reserva['codReserva']."'>Aceitar</a> / <a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a>";
             }
             
-          }elseif($reserva['estadoReserva'] == 'Bloqueado'){echo "<i style='text-decoration: underline;'>Bloqueado:</i> <a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Cancelar</a>";}
+          }elseif($reserva['estadoReserva'] == 'Bloqueado'){
+            echo "<i style='text-decoration: underline;'>Bloqueado:</i> <a href='../PHP/responderPedido.php?request="."Cancelada"."&cod=".$reserva['codReserva']."'>Cancelar</a>";
+          }elseif($reserva['estadoReserva'] == 'Aceite'){
+            echo "<a href='../PHP/responderPedido.php?request="."Pendente"."&cod=".$reserva['codReserva']."'>Cancelar</a>";
+          }elseif($reserva['estadoReserva'] == 'Recusada'){
+            echo "<a href='../PHP/responderPedido.php?request="."Pendente"."&cod=".$reserva['codReserva']."'>Cancelar</a>";
+          }
           echo '</p></div>';
         }
       }else{

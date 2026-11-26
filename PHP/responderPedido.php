@@ -27,6 +27,8 @@ if($estadoRecebido == 'Aceite'){
     }else{
         $_SESSION['erro'] = 'A reserva estava bloqueada';
     }
+}elseif($estadoRecebido == 'Cancelada'){
+    INSERT($pdo, "DELETE FROM reserva WHERE codReserva = {$Codigo}; ");
 }else{
     INSERT($pdo, "UPDATE reserva SET estadoReserva = '{$estadoRecebido}' WHERE codReserva = {$Codigo}; ");
 }
