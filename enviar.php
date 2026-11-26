@@ -6,34 +6,35 @@ use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
 
-$mail = new PHPMailer(true);
+function enviarEmail($Remetente, $Destinatario ,$titulo, $conteudo){
 
-try {
-    // Configuração SMTP
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'smallmarcio48@gmail.com';
-    $mail->Password = 'slug xjpi tujq svep';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = 587;
+    $mail = new PHPMailer(true);
 
-    // Remetente
-    $mail->setFrom('smallmarcio48@gmail.com', 'Meu Site');
+    try {
+        // Configuração SMTP
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'smallmarcio48@gmail.com';
+        $mail->Password = 'slug xjpi tujq svep';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
 
-    // Destinatário
-    $mail->addAddress('smallmarcio48@gmail.com');
+        // Remetente
+        $mail->setFrom($Remetente[0], $Remetente[1]);
 
-    // Conteúdo do email
-    $mail->isHTML(true);
-    $mail->Subject = 'Teste de email';
-    $mail->Body = '<h1>Olá!</h1><p>Este email foi enviado com PHP e XAMPP.</p>';
+        // Destinatário
+        $mail->addAddress($Destinatario);
 
-    // Enviar
-    $mail->send();
+        // Conteúdo do email
+        $mail->isHTML(true);
+        $mail->Subject = $titulo;
+        $mail->Body = $conteudo;
 
-    echo 'Email enviado com sucesso!';
+        // Enviar
+        $mail->send();
 
-} catch (Exception $e) {
-    echo "Erro ao enviar email: {$mail->ErrorInfo}";
+    } catch (Exception $e) {
+        echo "Erro ao enviar email: {$mail->ErrorInfo}";
+    }
 }

@@ -1,5 +1,6 @@
 <?php
   require_once '../PHP/auth.php';
+  include '../enviar.php';
   $pdo = ConnectDB();
   exigirLogin($pdo);
   if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
