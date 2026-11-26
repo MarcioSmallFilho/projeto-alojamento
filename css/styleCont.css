@@ -251,16 +251,6 @@ form > .butaomsg:active{
     mix-blend-mode: multiply;
 }
 
-p.erro{
-  color: red;
-  font-weight: bolder;
-  text-align: center;
-  background-color: yellow;
-  padding: 5px;
-  margin: 0px;
-  border-radius: 5px;
-}
-
 @media (max-width: 768px) {
 
   .conteudoC > div{

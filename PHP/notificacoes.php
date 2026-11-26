@@ -80,6 +80,7 @@ function notificacao($mensagem, $tipo = "erro") {
 }
 
 .notificacao p {
+    color: white;
     margin: 5px 0 0;
     font-size: 13px;
 }

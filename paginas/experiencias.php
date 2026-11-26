@@ -121,34 +121,40 @@
             <textarea placeholder="Mensagem" name="mensagem"></textarea>
             <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
             <div class="cf-turnstile" data-sitekey="<?php echo CAPTCHA_PUBLIC; ?>" data-appearance="interaction-only"></div>
-            <?php if(utilizadorAutenticado($pdo)){echo "<input type=\"submit\" value=\"Enviar\">";}
-                  else{echo"<button type=\"button\" onclick=\"goto('login.php')\">Login/Registrar</button>";}
+            <?php 
+                if(utilizadorAutenticado($pdo)){echo "<input type=\"submit\" value=\"Enviar Mensagem\" class=\"butaomsg\">";}
+                    else{echo"<button class=\"butaomsg\" type=\"button\" onclick=\"goto('login.php')\">Login/Registrar</button>";}
+                    
+                if (isset($_POST["mensagem"])) {
+                    $agora = new DateTime();
+                    // Formata para o formato padrão do MySQL (Ano-Mês-Dia Horas:Minutos:Segundos)
+                    $dataHora = $agora->format('Y-m-d H:i:s');
+                    $statusban = SELECT($pdo, "SELECT ban FROM utilizador WHERE codUtilizador = :codUtilizador;", [":codUtilizador" => $_SESSION["codUtilizador"]]);
+                    $statusban = (bool) $statusban[0]['ban'];
 
-            if (isset($_POST["mensagem"])) {
-                $agora = new DateTime();
-                // Formata para o formato padrão do MySQL (Ano-Mês-Dia Horas:Minutos:Segundos)
-                $dataHora = $agora->format('Y-m-d H:i:s');
-                $statusban = SELECT($pdo, "SELECT ban FROM utilizador WHERE codUtilizador = :codUtilizador;", [":codUtilizador" => $_SESSION["codUtilizador"]]);
-                $statusban = (bool) $statusban[0]['ban'];
-                if ($statusban) {echo "<p class=\"erro\">Você está banido</p>";}
-                elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {echo 'Ocorreu um erro, tente novamente mais tarde.';}
-                elseif (!(strlen($_POST['mensagem']) < 201)) {echo "<p class=\"erro\">A mensagem é muito longa, maximo 200 characteres</p>";}
-                elseif (empty($_POST['mensagem'])) {echo "<p class=\"erro\">Precisa de conteudo para mandar a mensagem</p>";}
-                else { 
-                    INSERT(
-                        $pdo,
-                        "INSERT INTO contacto (mensagem, codUtilizador, codAlojamento, dataEnvio)
-                        VALUES (:msg, :codUtilizador, :codAlojamento, :dataEnvio)",
-                        [
-                            ':msg'           => $_POST['mensagem'],
-                            ':codUtilizador' => $_SESSION['codUtilizador'],
-                            ':codAlojamento' => $codAlojamento,
-                            ':dataEnvio'     => $dataHora,
-                        ]
-                    );
+                    require_once "../PHP/notificacoes.php";
+
+                    if ($statusban) { notificacao("Você está banido");}
+                    elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {notificacao('Ocorreu um erro, tente novamente mais tarde.');}
+                    elseif (!(strlen($_POST['mensagem']) < 201)) {notificacao("A mensagem é muito longa, maximo 200 characteres");}
+                    elseif (empty($_POST['mensagem'])) { notificacao("Precisa de conteudo para mandar a mensagem");}
+                    elseif (empty(trim($_POST['mensagem']))) { notificacao("A mensagem não pode conter só espaços");}
+                    elseif (preg_match_all('/[^a-zA-ZáàâãéêíóôõúüçÁÀÂÃÉÊÍÓÔÕÚÜÇ ]/u', $_POST['mensagem'], $m)) {$erros = array_unique($m[0]); notificacao("A mensagem não pode conter " . implode(', ', $erros));}
+                    else {
+                        INSERT(
+                            $pdo,
+                            "INSERT INTO contacto (mensagem, codUtilizador, codAlojamento, dataEnvio)
+                            VALUES (:msg, :codUtilizador, :codAlojamento, :dataEnvio)",
+                            [
+                                ':msg'           => trim($_POST['mensagem']),
+                                ':codUtilizador' => $_SESSION['codUtilizador'],
+                                ':codAlojamento' => $codAlojamento,
+                                ':dataEnvio'     => $dataHora,
+                            ]
+                        );
+                    }
                 }
-            }
-        ?>
+            ?>
             </form>
         </div>
         
