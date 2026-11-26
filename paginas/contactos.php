@@ -103,7 +103,7 @@
                             elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {echo 'Ocorreu um erro, tente novamente mais tarde.';}
                             elseif (!(strlen($_POST['mensagem']) < 201)) {echo "<p class=\"erro\">A mensagem é muito longa, maximo 200 characteres</p>";}
                             elseif (empty($_POST['mensagem'])) {echo "<p class=\"erro\">Precisa de conteudo para mandar a mensagem</p>";}
-                            else { 
+                            else {
                                 INSERT(
                                     $pdo,
                                     "INSERT INTO contacto (mensagem, codUtilizador, codAlojamento, dataEnvio)
