@@ -9,7 +9,7 @@ $estadoRecebido = $_GET['request'];
 $Codigo = $_GET['cod'];
 $Sobreposto = false;
 
-if($estadoRecebido == 'Aceitar'){
+if($estadoRecebido == 'Aceite'){
     $reserva = SELECT($pdo, 'SELECT * FROM reserva where codReserva = :cod', [':cod' => $Codigo])[0];
 
     $reservasAceites = SELECT($pdo, 'SELECT checkIn, checkOut FROM reserva WHERE (estadoReserva = "Aceite" OR estadoReserva = "Bloqueado")  AND codAlojamento = '.$codAlojamento.'');  
@@ -25,7 +25,7 @@ if($estadoRecebido == 'Aceitar'){
     if(!$Sobreposto){
         INSERT($pdo, "UPDATE reserva SET estadoReserva = '{$estadoRecebido}' WHERE codReserva = {$Codigo}; ");
     }else{
-        $erro = 'A reserva estava bloqueada';
+        $_SESSION['erro'] = 'A reserva estava bloqueada';
     }
 }else{
     INSERT($pdo, "UPDATE reserva SET estadoReserva = '{$estadoRecebido}' WHERE codReserva = {$Codigo}; ");
@@ -34,21 +34,10 @@ if($estadoRecebido == 'Aceitar'){
 
 if (isset($_SERVER['HTTP_REFERER'])) {
     $urlAnterior = $_SERVER['HTTP_REFERER'];
-    if(isset($erro)){
-        if(!str_contains($urlAnterior . "&erro=$erro" , '?')){
-            $url = str_replace('&', '?', $urlAnterior . "&erro=$erro");
-            header("Location: $url");
-        }else{
-        header("Location: $urlAnterior&erro=$erro");
-        }
-    }else{
     header("Location: $urlAnterior");
-    }
     exit();
 } else {
     if(isset($erro)){
-        header("Location: ../paginas/paginaadmin.php?erro=$erro");
-    }else{
         header("Location: ../paginas/paginaadmin.php?");
         }
     exit();

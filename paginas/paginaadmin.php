@@ -13,6 +13,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/styleadmin.css">
     <script src="../script/imagens-dinamicas.js" defer></script>
+    <script src="../script/script.js"></script>
 </head>
   <script>
   function atualizarRelogio() {
@@ -58,8 +59,9 @@
   <div class="pagina">
     <?php
     require_once '../PHP/notificacoes.php';
-    if(isset($_GET['erro'])){
-      notificacao($_GET['erro'], "erro");
+    if(isset($_SESSION['erro'])){
+      notificacao($_SESSION['erro'], "erro");
+      unset($_SESSION['erro']);
     }
       // Define uma secção padrão caso nenhuma seja escolhida
       $secao = '';
