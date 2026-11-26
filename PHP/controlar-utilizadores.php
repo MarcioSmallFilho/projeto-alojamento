@@ -1,11 +1,13 @@
 <?php 
     include_once("../PHP/auth.php");
     $pdo = ConnectDB();
-    exigirLogin($pdo);
+    if (realpath($_SERVER['SCRIPT_FILENAME']) === realpath(__FILE__)) {
+        exigirLogin($pdo);
 
-    if (!is_admin($pdo)){
-        http_response_code(403);
-        exit('Acesso negado.');
+        if (!is_admin($pdo)){
+            http_response_code(403);
+            exit('Acesso negado.');
+        }
     }
 ?> 
 <form action="" method="post" id="filtro">
