@@ -117,10 +117,12 @@ function exigirLogin(PDO $pdo, $source = ''): void
         exit;
     }else{
         $ban = SELECT($pdo, 'SELECT ban from utilizador where codUtilizador = :cod', [':cod' => $_SESSION['codUtilizador']]);
-        $ban = $ban[0];
-        if ($ban['ban'] == True){
-            header('Location: ../404.html');
-            exit();
+        if(isset($ban)){
+            $ban = $ban[0];
+            if ($ban['ban'] == True){
+                header('Location: ../404.html');
+                exit();
+            }
         }
     }
 }

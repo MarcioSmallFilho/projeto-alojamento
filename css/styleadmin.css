@@ -45,7 +45,9 @@ header > a:hover{
 }
 .Bloqueado{
     background-color: color-mix(in srgb,  white, black 60%);
-    
+}
+.Cancelada{
+    background-color:cyan;
 }
 .Bloqueado > p{
     color: white;
