@@ -98,7 +98,7 @@ if (realpath($_SERVER['SCRIPT_FILENAME']) === realpath(__FILE__)) {
             }
             
             if($Sobreposto){
-                echo "<i style='text-decoration: underline;'>Sobreposto:</i><a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a>";
+                echo "<i style='text-decoration: underline;'>Sobreposto: </i> <a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a> - <a href='../PHP/responderPedido.php?request="."Cancelada"."&cod=".$reserva['codReserva']."'>Apagar</a>";
             }else{
                 echo "<a href='../PHP/responderPedido.php?request="."Aceite"."&cod=".$reserva['codReserva']."'>Aceitar</a> / <a href='../PHP/responderPedido.php?request="."Recusada"."&cod=".$reserva['codReserva']."'>Recusar</a>";
             }
@@ -108,7 +108,7 @@ if (realpath($_SERVER['SCRIPT_FILENAME']) === realpath(__FILE__)) {
           }elseif($reserva['estadoReserva'] == 'Aceite'){
             echo "<a href='../PHP/responderPedido.php?request="."Pendente"."&cod=".$reserva['codReserva']."'>Cancelar</a>";
           }elseif($reserva['estadoReserva'] == 'Recusada'){
-            echo "<a href='../PHP/responderPedido.php?request="."Pendente"."&cod=".$reserva['codReserva']."'>Cancelar</a>";
+            echo "<a href='../PHP/responderPedido.php?request="."Pendente"."&cod=".$reserva['codReserva']."'>Anular</a>";
           }
           echo '</p></div>';
         }
