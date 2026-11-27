@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($nome === '' || $password === '') {
         $erro = 'Preencha todos os campos corretamente.';
     }elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {
-        $erro = 'Ocorreu um erro, tente novamente mais tarde.';
+        $erro = 'Verificação CAPTCHA falhada. Tente novamente.';
     } else {
         $stmt = $pdo->prepare(
             "SELECT * FROM Utilizador

@@ -147,7 +147,7 @@ $valor = $valor[0];
                                         $erro = 'Limite de pessoas ultrapassado. (' .
                                                 $valor['limitePessoas'] . ')';
                                     } elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {
-                                        $erro = 'Ocorreu um erro, tente novamente mais tarde.';
+                                        $erro = 'Verificação CAPTCHA falhada. Tente novamente.';
                                     }
                                 }
                                 // Se existir algum erro

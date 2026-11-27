@@ -102,7 +102,7 @@
                             $statusban = (bool) $statusban[0]['ban'];
 
                             if ($statusban) { notificacao("Você está banido");}
-                            elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {notificacao('Ocorreu um erro, tente novamente mais tarde.');}
+                            elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {notificacao('Verificação CAPTCHA falhada. Tente novamente.');}
                             elseif (!(strlen($_POST['mensagem']) < 201)) {notificacao("A mensagem é muito longa, maximo 200 characteres");}
                             elseif (empty($_POST['mensagem'])) { notificacao("Precisa de conteudo para mandar a mensagem");}
                             elseif (empty(trim($_POST['mensagem']))) { notificacao("A mensagem não pode conter só espaços");}
