@@ -44,7 +44,7 @@
 </form>
 
 <?php
-    $limite = 5; // valor por defeito
+    $limite = 15; // valor por defeito
     if (isset($f['nReservas_user']) && is_numeric($f['nReservas_user']) && (int)$f['nReservas_user'] > 0) {
         $limite = (int)$f['nReservas_user'];
     }

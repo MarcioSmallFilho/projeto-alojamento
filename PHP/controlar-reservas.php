@@ -25,7 +25,7 @@ if (realpath($_SERVER['SCRIPT_FILENAME']) === realpath(__FILE__)) {
     </form>
   <div class="reservas">
   <?php
-      $limite = 5; // valor por defeito
+      $limite = 15; // valor por defeito
       if (isset($_POST['nReservas']) && is_numeric($_POST['nReservas']) && (int)$_POST['nReservas'] > 0) {
         $limite = (int)$_POST['nReservas'];
       }
@@ -62,7 +62,7 @@ if (realpath($_SERVER['SCRIPT_FILENAME']) === realpath(__FILE__)) {
           ORDER BY dataReserva DESC
           LIMIT $limite
       ";
-      $parametros = ['codReserva', 'nomeUtilizador', 'nomeAlojamento', 'checkIn', 'checkOut', 'dataReserva', 'precoTotal', 'estadoReserva', 'nPessoas' ];
+      $parametros = ['codReserva', 'nomeUtilizador', 'checkIn', 'checkOut', 'dataReserva', 'precoTotal', 'estadoReserva', 'nPessoas' ];
       $stmt = $pdo->prepare($sql);
       $stmt->execute(['hoje' => $hoje, ':cod' => $codAlojamento, ':state' => $filtroReserva]);
       $reservas = $stmt->fetchAll(PDO::FETCH_ASSOC);
