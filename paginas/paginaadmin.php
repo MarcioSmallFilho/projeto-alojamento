@@ -1,5 +1,6 @@
 <?php
   require_once '../PHP/auth.php';
+  include '../enviar.php';
   $pdo = ConnectDB();
   exigirLogin($pdo);
   if (!is_admin($pdo)){header('Location: ' . URL_INICIO);}
@@ -63,6 +64,11 @@
       notificacao($_SESSION['erro'], "erro");
       unset($_SESSION['erro']);
     }
+    if(isset($_SESSION['aviso'])){
+      notificacao($_SESSION['aviso'], "aviso");
+      unset($_SESSION['aviso']);
+    }
+
       // Define uma secção padrão caso nenhuma seja escolhida
       $secao = '';
 

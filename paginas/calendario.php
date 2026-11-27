@@ -185,5 +185,5 @@
                 <a href="https://www.airbnb.pt/rooms/1193985038143849991?source_impression_id=p3_1792669220_P3AOW4b4XqChBI5x" class="airbnb_btn">Mais no Airbnb</a>
             </div>
         </footer>
-    </body>//Não é aq
+    </body>
 </html>
