@@ -57,10 +57,7 @@ try {
 
             'color' => '#ff4d4d',
 
-            'extendedProps' => [
-                'codAlojamento' => $reserva['codAlojamento'],
-                'dataReserva' => $reserva['dataReserva'],
-            ]
+
         ];
     }
 
