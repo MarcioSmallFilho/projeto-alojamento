@@ -250,11 +250,11 @@ function verificarEmailExiste($email) {
     return false;
 }
 function mostrarResumo($checkin='-', $checkout='-', $nnoites='-', $adultos='-', $criancas='-', $bebes='-', $preconoite='-', $totalreserva='-'){
-    echo "<div id='modalReserva' class='modal-reserva'>
+    echo "<div id='modalReserva' class='modal-reserva' style='display: none;'>
                 <div class='resumo-reserva'>
                     <h2>Confirmar reserva</h2>
                     <p class='subtitulo-reserva'>
-                        Confirma os dados da tua estadia antes de enviar o pedido'
+                        Confirma os dados da tua estadia antes de enviar o pedido.
                     </p>
                     <div class='resumo-dados'>
                         <div class='resumo-item'>
@@ -293,10 +293,10 @@ function mostrarResumo($checkin='-', $checkout='-', $nnoites='-', $adultos='-', 
                         </div>
                     </div>
                     <div class='botoes-reserva'>
-                        <button type='button' id='voltarReserva' onclick='document.getElementById('modalReserva').style.display = 'none';'>
+                        <button type='button' id='voltarReserva'>
                             Voltar e editar
                         </button>
-                        <button type='submit' name='confirmarReserva' value='1'>
+                        <button type='button' id='confirmarPedido'>
                             Confirmar e enviar pedido
                         </button>
                     </div>

@@ -78,7 +78,7 @@ $valor = $valor[0];
                         <div id="meu-calendario-tll"></div>
                     </section> 
 
-                   <form id="bookingForm" method="post" data-preco-noite="<?= htmlspecialchars((string)$valor['precoNoite'], ENT_QUOTES, 'UTF-8') ?>" data-admin="<?= is_admin($pdo) ? '1' : '0' ?>">
+                   <form id="bookingForm" method="post" data-preco-noite="<?= htmlspecialchars((string)$valor['precoNoite'], ENT_QUOTES, 'UTF-8') ?>" data-admin="<?= is_admin($pdo) ? '1' : '0' ?>" data-limite="<?= (int) $valor['limitePessoas'] ?>">
                         <h1>Reserva</h1>
                         <input type="date" name="checkin" style="display: none;">
                         <input type="date" name="checkout" style="display: none;">
@@ -95,7 +95,7 @@ $valor = $valor[0];
                                 <input type="number" name="numberOfInfants" value="0" min="0" required>
                             </div>
                         </div>
-                        <style>.modal-reserva{display: flex;}</style>
+                        <?php mostrarResumo(); // modal escondido; o JavaScript e que o abre ?>
                         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
                         <div class="cf-turnstile" data-sitekey="<?php echo CAPTCHA_PUBLIC; ?>" data-appearance="interaction-only"></div>
                         <?php 
@@ -110,7 +110,6 @@ $valor = $valor[0];
                             }
 
                             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                                mostrarResumo();
                                 $erro = '';
                                 $checkinStr = $_POST['checkin'] ?? '';
                                 $checkoutStr = $_POST['checkout'] ?? '';
@@ -154,7 +153,10 @@ $valor = $valor[0];
                                 if (!empty($erro)) {
                                     notificacao($erro);
                                 } else {
-                                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmarReserva'])) {
+                                    if (($_POST['confirmarReserva'] ?? '0') !== '1') {
+                                        // Dados validos, mas o resumo ainda nao foi confirmado: nao grava nada
+                                        notificacao('Confirma o resumo da reserva antes de enviar o pedido.', 'aviso');
+                                    } else {
                                         // Executar código após clicar em confirmar
 
                                         $agora = new DateTime();
