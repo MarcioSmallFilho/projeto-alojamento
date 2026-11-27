@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (calendarElPc) {
 
         calendarPc = new FullCalendar.Calendar(calendarElPc, {
+            height: 'auto',        // ajusta à quantidade de conteúdo
+            contentHeight: 350,    // altura fixa do conteúdo
+            aspectRatio: 1.35,     // proporção largura/altura
 
             initialView: 'dayGridMonth',
             locale: 'pt',
@@ -51,12 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
             headerToolbar: {
                 left: 'prev,today,next',
                 center: 'title',
-                right: 'dayGridMonth multiMonthYear'
-            },
-
-            footerToolbar: {
-                left: 'prev,today,next',
-                center: '',
                 right: ''
             },
 
@@ -91,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (calendarElTll) {
 
         calendarTll = new FullCalendar.Calendar(calendarElTll, {
+            height: '80%',        // ajusta à quantidade de conteúdo
 
             initialView: 'dayGridMonth',
             locale: 'pt',

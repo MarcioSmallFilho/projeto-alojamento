@@ -33,6 +33,12 @@ h1{
  padding-bottom: 30px;
  text-align: center;
 }
+.areaCalendarioReserva {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-evenly;
+  gap: 20px;
+}
 .conteudoB h1{
   color: var(--cor-4);
   display: inline-block;
@@ -229,10 +235,7 @@ h1{
   transform: scale(0.96);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
 }
-.seccao-calendario {
-    margin-top: 35px;
-    margin-bottom: 35px;
-}
+
 
 @media (max-width: 768px) {
 
@@ -404,5 +407,8 @@ h1{
 @media (max-width: 768px) {
   body .conteudo-site .conteudo-titulo {
     font-size: 2vw;
+  }
+  .areaCalendarioReserva {
+    flex-direction: column;
   }
 }

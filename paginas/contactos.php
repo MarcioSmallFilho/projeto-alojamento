@@ -1,6 +1,7 @@
 <?php
-    $semImagem     = '../imagens/imagens/sem-imagem.svg'; // usada quando falta a associação
+    require_once "../PHP/notificacoes.php";
     require_once "../PHP/auth.php";
+    $semImagem     = '../imagens/imagens/sem-imagem.svg'; // usada quando falta a associação
     $pdo = ConnectDB();
     exigirLogin($pdo);
 ?>
@@ -99,8 +100,6 @@
                             $dataHora = $agora->format('Y-m-d H:i:s');
                             $statusban = SELECT($pdo, "SELECT ban FROM utilizador WHERE codUtilizador = :codUtilizador;", [":codUtilizador" => $_SESSION["codUtilizador"]]);
                             $statusban = (bool) $statusban[0]['ban'];
-
-                            require_once "../PHP/notificacoes.php";
 
                             if ($statusban) { notificacao("Você está banido");}
                             elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {notificacao('Ocorreu um erro, tente novamente mais tarde.');}

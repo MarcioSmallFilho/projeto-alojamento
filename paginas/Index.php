@@ -27,7 +27,7 @@
         <header>
             <div class="h-esq">
                 
-                <img src="../imagens/sem-imagem.svg" data-secao="Logo" data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
+                <img src="<?= $semImagem ?>" data-secao="Logo" data-pos="2" class='logotipo' height="100px" onclick="goto('index.php')" alt="Oasis Dune – página inicial">
             </div>
             <div class="h-dir">
                 <nav class="nav-menu" id="nav-menu">

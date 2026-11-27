@@ -37,7 +37,7 @@
         value="<?= htmlspecialchars($f['nReservas_user'] ?? '5', ENT_QUOTES, 'UTF-8') ?>">
     <input type="text" name="nome_utilizador" placeholder="nome de utilizador"
         value="<?= htmlspecialchars($f['nome_utilizador'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-    <input type="number" name="cod_utilizador" placeholder="codigo de utilizador"
+    <input type="number" name="cod_utilizador" placeholder="codigo de utilizador" min="0"
         value="<?= htmlspecialchars($f['cod_utilizador'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
     <input type="submit" value="Filtrar">
     <a href="?limpar=1">Limpar filtro</a>
