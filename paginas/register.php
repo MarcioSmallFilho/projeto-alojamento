@@ -1,13 +1,13 @@
 <?php
 require_once __DIR__ . '/../PHP/auth.php';
 include_once '../enviar.php';
-
-$pdo   = ConnectDB();
-$erro  = '';
-$nome  = '';
-$email = '';
-$nacio = '';
-$agora = new DateTime();
+$pdo     = ConnectDB();
+$erro    = '';
+$sucesso = '';
+$nome    = '';
+$email   = '';
+$nacio   = '';
+$agora   = new DateTime();
 $datahora = $agora->format('Y-m-d');
 
 $nacionalidades = [
@@ -109,6 +109,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrfValido($_POST['csrf'] ?? null)) {
         $erro = 'Pedido inválido. Atualize a página e tente novamente.';
     } else {
+        // AÇÃO: Voltar atrás a partir da verificação
+        if (isset($_POST['acao']) && $_POST['acao'] === 'voltar') {
+            unset($_SESSION['registo_temp'], $_SESSION['etapa_registo']);
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
+        }
+
         // ETAPA 1: Submissão do formulário de registo
         if ($etapa === 'formulario') {
             $nome  = trim($_POST['user'] ?? '');
@@ -136,69 +143,96 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($stmt->fetchColumn()) {
                     $erro = 'Nome de utilizador ou e-mail já existente.';
                 } else {
-                    // Gerar código de verificação de 6 dígitos
                     $codigoVerificacao = random_int(100000, 999999);
 
-                    // Guardar dados temporariamente na sessão
+                    // Guardar dados e pré-preencher o campo do nome/email para caso voltem atrás
                     $_SESSION['registo_temp'] = [
-                        'nome' => $nome,
-                        'email' => $email,
-                        'pass' => password_hash($pass1, PASSWORD_DEFAULT),
+                        'nome'          => $nome,
+                        'email'         => $email,
+                        'pass'          => password_hash($pass1, PASSWORD_DEFAULT),
                         'nacionalidade' => $nacio,
-                        'dataHora' => $datahora,
-                        'codigo' => $codigoVerificacao
+                        'dataHora'      => $datahora,
+                        'codigo'        => $codigoVerificacao,
+                        'ultimo_envio'  => time()
                     ];
                     $_SESSION['etapa_registo'] = 'verificacao';
                     $etapa = 'verificacao';
 
-                    // Enviar o e-mail com o código
                     $mensagemHtml = "<h1>Verificar Email!</h1><p>Código de Verificação: <strong>{$codigoVerificacao}</strong></p>";
                     enviarEmail([$email, $nome], $email, 'Verificar e-mail', $mensagemHtml);
                 }
             }
         } 
-        // ETAPA 2: Verificação do código introduzido
+        // ETAPA 2: Verificação do código ou Reenvio
         elseif ($etapa === 'verificacao') {
-            $codigoInserido = trim($_POST['codigo_verificacao'] ?? '');
             $dadosTemp = $_SESSION['registo_temp'] ?? null;
 
             if (!$dadosTemp) {
                 $erro = 'Sessão expirada. Preencha o formulário novamente.';
                 $_SESSION['etapa_registo'] = 'formulario';
                 $etapa = 'formulario';
-            } elseif ((int)$codigoInserido !== (int)$dadosTemp['codigo']) {
-                $erro = 'Código de verificação incorreto.';
-            } else {
-                try {
-                    // Inserir efetivamente na base de dados após confirmar o e-mail
-                    $stmt = $pdo->prepare(
-                        "INSERT INTO Utilizador (nomeUtilizador, emailUtilizador, palavraPasse, paisOrigem, dataCriacao)
-                         VALUES (:nome, :email, :pass, :nacionalidade, :dataHora)"
-                    );
-                    $stmt->execute([
-                        ':nome'          => $dadosTemp['nome'],
-                        ':email'         => $dadosTemp['email'],
-                        ':pass'          => $dadosTemp['pass'],
-                        ':nacionalidade' => $dadosTemp['nacionalidade'],
-                        ':dataHora'      => $dadosTemp['dataHora'],
-                    ]);
+            } 
+            // AÇÃO: Reenviar o e-mail
+            elseif (isset($_POST['acao']) && $_POST['acao'] === 'reenviar') {
+                $tempoDecorrido = time() - ($dadosTemp['ultimo_envio'] ?? 0);
 
-                    $novo = ['codUtilizador' => (int)$pdo->lastInsertId(), 'nomeUtilizador' => $dadosTemp['nome']];
-                    
-                    // Limpar dados temporários da sessão
-                    unset($_SESSION['registo_temp'], $_SESSION['etapa_registo']);
+                if ($tempoDecorrido < 60) {
+                    $segundosFaltam = 60 - $tempoDecorrido;
+                    $erro = "Aguarde {$segundosFaltam} segundos antes de pedir um novo código.";
+                } else {
+                    $novoCodigo = random_int(100000, 999999);
+                    $_SESSION['registo_temp']['codigo'] = $novoCodigo;
+                    $_SESSION['registo_temp']['ultimo_envio'] = time();
 
-                    iniciarSessao($novo);
-                    criarTokenPersistente($pdo, $novo['codUtilizador']);
+                    $mensagemHtml = "<h1>Verificar Email!</h1><p>O seu novo código de verificação é: <strong>{$novoCodigo}</strong></p>";
+                    enviarEmail([$dadosTemp['email'], $dadosTemp['nome']], $dadosTemp['email'], 'Verificar e-mail', $mensagemHtml);
 
-                    header('Location: ' . URL_INICIO);
-                    exit;
-                } catch (PDOException $e) {
-                    error_log($e->getMessage());
-                    $erro = 'Ocorreu um erro ao criar a conta. Tente novamente mais tarde.';
+                    $sucesso = 'Um novo código foi enviado para o seu e-mail.';
+                }
+            } 
+            // AÇÃO: Submeter o código para verificar
+            else {
+                $codigoInserido = trim($_POST['codigo_verificacao'] ?? '');
+
+                if ((int)$codigoInserido !== (int)$dadosTemp['codigo']) {
+                    $erro = 'Código de verificação incorreto.';
+                } else {
+                    try {
+                        $stmt = $pdo->prepare(
+                            "INSERT INTO Utilizador (nomeUtilizador, emailUtilizador, palavraPasse, paisOrigem, dataCriacao)
+                             VALUES (:nome, :email, :pass, :nacionalidade, :dataHora)"
+                        );
+                        $stmt->execute([
+                            ':nome'          => $dadosTemp['nome'],
+                            ':email'         => $dadosTemp['email'],
+                            ':pass'          => $dadosTemp['pass'],
+                            ':nacionalidade' => $dadosTemp['nacionalidade'],
+                            ':dataHora'      => $dadosTemp['dataHora'],
+                        ]);
+
+                        $novo = ['codUtilizador' => (int)$pdo->lastInsertId(), 'nomeUtilizador' => $dadosTemp['nome']];
+                        
+                        unset($_SESSION['registo_temp'], $_SESSION['etapa_registo']);
+
+                        iniciarSessao($novo);
+                        criarTokenPersistente($pdo, $novo['codUtilizador']);
+
+                        header('Location: ' . URL_INICIO);
+                        exit;
+                    } catch (PDOException $e) {
+                        error_log($e->getMessage());
+                        $erro = 'Ocorreu um erro ao criar a conta. Tente novamente mais tarde.';
+                    }
                 }
             }
         }
+    }
+} else {
+    // Se estiver na etapa de formulário e existirem dados temporários (por ter voltado atrás), recuperá-los opcionalmente
+    if ($etapa === 'formulario' && isset($_SESSION['registo_temp'])) {
+        $nome  = $_SESSION['registo_temp']['nome'] ?? '';
+        $email = $_SESSION['registo_temp']['email'] ?? '';
+        $nacio = $_SESSION['registo_temp']['nacionalidade'] ?? '';
     }
 }
 ?>
@@ -220,6 +254,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <?php if ($erro): ?>
             <div class="alerta" role="alert"><?= htmlspecialchars($erro, ENT_QUOTES) ?></div>
+        <?php endif; ?>
+
+        <?php if ($sucesso): ?>
+            <div class="alerta sucesso" role="status" style="background-color: #d4edda; color: #155724; border-color: #c3e6cb;">
+                <?= htmlspecialchars($sucesso, ENT_QUOTES) ?>
+            </div>
         <?php endif; ?>
 
         <?php if ($etapa === 'formulario'): ?>
@@ -307,12 +347,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="text" name="codigo_verificacao" id="codigo_verificacao" maxlength="6" 
                            placeholder="Insira o código de 6 dígitos" required autofocus>
                     <div class="dica">
-                        <span class="dica-texto">Enviamos um código para o seu e-mail.</span>
+                        <span class="dica-texto">Enviamos um código para <strong><?= htmlspecialchars($_SESSION['registo_temp']['email'] ?? '', ENT_QUOTES) ?></strong>.</span>
                     </div>
                 </div>
 
-                <button type="submit" class="btn-auth">Verificar e Concluir</button>
+                <button type="submit" name="acao" value="verificar" class="btn-auth">Verificar e Concluir</button>
             </form>
+
+            <!-- FORMULÁRIOS SECUNDÁRIOS (Reenviar e Voltar) -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; font-size: 0.9rem;">
+                <form action="" method="post" style="margin: 0;">
+                    <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrfToken(), ENT_QUOTES) ?>">
+                    <button type="submit" name="acao" value="voltar" style="background: none; border: none; color: inherit; text-decoration: underline; cursor: pointer; padding: 0;">
+                        &larr; Voltar
+                    </button>
+                </form>
+
+                <form action="" method="post" style="margin: 0;">
+                    <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrfToken(), ENT_QUOTES) ?>">
+                    <button type="submit" name="acao" value="reenviar" style="background: none; border: none; color: inherit; text-decoration: underline; cursor: pointer; padding: 0;">
+                        Reenviar e-mail
+                    </button>
+                </form>
+            </div>
         <?php endif; ?>
     </main>
 

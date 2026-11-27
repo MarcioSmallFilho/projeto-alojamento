@@ -20,8 +20,6 @@ function notificacao($mensagem, $tipo = "erro") {
     $cor = $cores[$tipo] ?? $cores["erro"];
     $icone = $icones[$tipo] ?? $icones["erro"];
 
-    $mensagem = htmlspecialchars($mensagem, ENT_QUOTES, 'UTF-8');
-
     echo "
     <div class='notificacao' style='--cor: $cor'>
         <div class='icone'>$icone</div>

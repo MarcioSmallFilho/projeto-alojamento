@@ -64,6 +64,11 @@
       notificacao($_SESSION['erro'], "erro");
       unset($_SESSION['erro']);
     }
+    if(isset($_SESSION['aviso'])){
+      notificacao($_SESSION['aviso'], "aviso");
+      unset($_SESSION['aviso']);
+    }
+
       // Define uma secção padrão caso nenhuma seja escolhida
       $secao = '';
 
