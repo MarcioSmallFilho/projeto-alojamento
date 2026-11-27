@@ -123,7 +123,7 @@
                                 }elseif($checkin >= $checkout){
                                     $erro = "A data de check-in tem de ser anterior à data de check-out.";
                                 }elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {
-                                    $erro = 'Ocorreu um erro, tente novamente mais tarde.';
+                                    $erro = 'Verificação CAPTCHA falhada. Tente novamente.';
                                 }
                                 if(!empty($erro)){
                                     notificacao($erro);

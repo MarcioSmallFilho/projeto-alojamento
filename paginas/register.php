@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } elseif (!isset($nacionalidades[$nacio])) {
                 $erro = 'Selecione uma nacionalidade válida.';
             } elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {
-                $erro = 'Ocorreu um erro, tente novamente mais tarde.';
+                $erro = 'Verificação CAPTCHA falhada. Tente novamente.';
             } else {
                 $stmt = $pdo->prepare("SELECT 1 FROM Utilizador WHERE emailUtilizador = :email OR nomeUtilizador = :nome LIMIT 1");
                 $stmt->execute([':email' => $email, ':nome' => $nome]);

@@ -55,7 +55,8 @@ try {
 
             'allDay' => true,
 
-            'color' => '#ff4d4d',
+            'display' => 'background',
+            'color'   => '#9e9e9e',
 
 
         ];
