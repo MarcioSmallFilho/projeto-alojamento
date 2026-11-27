@@ -1,6 +1,9 @@
-
 let calendarPc = null;
 let calendarTll = null;
+
+document.getElementById('voltarReserva').addEventListener('click', function() {
+    document.getElementById('modalReserva').style.display = 'none';
+});
 
 document.addEventListener('DOMContentLoaded', function() {
 

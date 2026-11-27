@@ -4,6 +4,16 @@
     $semImagem     = '../imagens/imagens/sem-imagem.svg'; // usada quando falta a associação
     $pdo = ConnectDB();
     exigirLogin($pdo, 'calendario.php');
+
+    $valor = SELECT(
+    $pdo,
+    'SELECT precoNoite, limitePessoas
+     FROM Alojamento
+     WHERE codAlojamento = :cod',
+    [':cod' => $codAlojamento]
+);
+
+$valor = $valor[0];
 ?>
 <!DOCTYPE html>
 <html lang="pt-pt">
@@ -68,10 +78,11 @@
                         <div id="meu-calendario-tll"></div>
                     </section> 
 
-                    <form id="bookingForm" method="post">
+                   <form id="bookingForm" method="post" data-preco-noite="<?= htmlspecialchars((string)$valor['precoNoite'], ENT_QUOTES, 'UTF-8') ?>" data-admin="<?= is_admin($pdo) ? '1' : '0' ?>">
                         <h1>Reserva</h1>
                         <input type="date" name="checkin" style="display: none;">
                         <input type="date" name="checkout" style="display: none;">
+                        <input type="hidden" name="confirmarReserva" id="confirmarReserva" value="0">
                         <div>
                             <div>
                                 <h3>Adultos:</h3>
@@ -84,79 +95,152 @@
                                 <input type="number" name="numberOfInfants" value="0" min="0" required>
                             </div>
                         </div>
+                        <style>.modal-reserva{display: flex;}</style>
                         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
                         <div class="cf-turnstile" data-sitekey="<?php echo CAPTCHA_PUBLIC; ?>" data-appearance="interaction-only"></div>
                         <?php 
-
-                            $valor = SELECT($pdo, 'SELECT precoNoite, limitePessoas FROM Alojamento WHERE codAlojamento = :cod', [':cod' => $codAlojamento]);
-                            $valor = $valor[0];
-
-                            if(is_admin($pdo)){
-                                echo "<input type='submit' value='Bloquear Datas' class='block' style='margin-bottom: 10px; background-color: gray;' >";
-                            }else{ 
-                                echo '<input type="submit" class="btn-gradient" value="Fazer pedido de reserva">';
+                            if (is_admin($pdo)) {
+                                echo '<button type="submit" class="block" style="margin-bottom: 10px; background-color: gray;">
+                                        Bloquear Datas
+                                    </button>';
+                            } else {
+                                echo '<button type="submit" class="btn-gradient">
+                                        Fazer pedido de reserva
+                                    </button>';
                             }
 
-
-                            if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                mostrarResumo();
+                                $erro = '';
+                                $checkinStr = $_POST['checkin'] ?? '';
+                                $checkoutStr = $_POST['checkout'] ?? '';
+                                $adultos = filter_var(
+                                    $_POST['numberOfAdults'] ?? null,
+                                    FILTER_VALIDATE_INT
+                                );
+                                $criancas = filter_var(
+                                    $_POST['numberOfChildren'] ?? null,
+                                    FILTER_VALIDATE_INT
+                                );
+                                $bebes = filter_var(
+                                    $_POST['numberOfInfants'] ?? null,
+                                    FILTER_VALIDATE_INT
+                                );
+                                $admin = is_admin($pdo);
                                 
-                                $agora = new DateTime();
+                                // Validar campos
+                                if (empty($checkinStr) || empty($checkoutStr) || $adultos === false || $adultos === null || $criancas === false || $criancas === null || $bebes === false || $bebes === null) {
+                                    $erro = 'Preenche corretamente todos os dados da reserva.';
+                                } else {
+                                    // Validar datas
+                                    $checkin = DateTime::createFromFormat('!Y-m-d', $checkinStr);
+                                    $checkout = DateTime::createFromFormat('!Y-m-d', $checkoutStr);
 
-                                // Formata para o formato padrão do MySQL (Ano-Mês-Dia Horas:Minutos:Segundos)
-                                $dataHora = $agora->format('Y-m-d H:i:s');
-
-                                $checkinStr = $_POST['checkin'];
-                                $checkoutStr = $_POST['checkout'];
-
-                                // Cria objetos DateTime a partir das strings das datas
-                                $checkin = new DateTime($checkinStr);
-                                $checkout = new DateTime($checkoutStr);
-    
-                                if($_POST['checkin'] == '' or $_POST['checkout'] == ''){
-                                    $erro = 'Precisas de preencher uma data.';
-                                }elseif($_POST['numberOfAdults'] < 1){
-                                    $erro = 'Precisas de pelo menos um adulto.';
-                                }elseif($_POST['numberOfChildren'] < 0 or $_POST['numberOfInfants'] < 0){
-                                    $erro = 'não podem haver valores menores que 0.';
-                                }elseif($_POST['numberOfChildren'] + $_POST['numberOfInfants'] + $_POST['numberOfAdults'] > $valor['limitePessoas']){
-                                    $erro = "limite de pessoas ultrapassado. (".$valor['limitePessoas'].")";
-                                }elseif($checkin >= $checkout){
-                                    $erro = "A data de check-in tem de ser anterior à data de check-out.";
-                                }elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {
-                                    $erro = 'Ocorreu um erro, tente novamente mais tarde.';
+                                    if (!$checkin ||!$checkout || $checkin->format('Y-m-d') !== $checkinStr ||$checkout->format('Y-m-d') !== $checkoutStr
+                                    ) {
+                                        $erro = 'As datas introduzidas são inválidas.';
+                                    } elseif ($checkin >= $checkout) {
+                                        $erro = 'A data de check-in tem de ser anterior à data de check-out.';
+                                    } elseif ($adultos < 1 || $criancas < 0 || $bebes < 0) {
+                                        $erro = 'O número de hóspedes introduzido é inválido.';
+                                    } elseif (($adultos + $criancas + $bebes) > $valor['limitePessoas']) {
+                                        $erro = 'Limite de pessoas ultrapassado. (' .
+                                                $valor['limitePessoas'] . ')';
+                                    } elseif (!validarCaptcha($_POST['cf-turnstile-response'] ?? null)) {
+                                        $erro = 'Ocorreu um erro, tente novamente mais tarde.';
+                                    }
                                 }
-                                if(!empty($erro)){
+                                // Se existir algum erro
+                                if (!empty($erro)) {
                                     notificacao($erro);
+                                } else {
+                                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmarReserva'])) {
+                                        // Executar código após clicar em confirmar
 
-                                }else{
-                                    if(is_admin($pdo)){
-                                        $insert = INSERT($pdo, 'INSERT INTO reserva(checkIn, checkOut, codAlojamento, dataReserva, codUtilizador, estadoReserva) 
-                                        VALUES(:ckIn, :ckOut, :codAloj, :hoje, :codUtil, "Bloqueado")', 
-                                        [':ckIn' => $_POST['checkin'], 
-                                        ':ckOut' => $_POST['checkout'],
-                                        ':codAloj' => $codAlojamento,
-                                        ':hoje' => $dataHora,
-                                        ':codUtil' => $_SESSION['codUtilizador'],
-                                        ]
-                                        );
-                                    }else{
-                                        //Criar o Pedido de Reserva.
-                                        //-------------------------------------------                               
-
-                                        // Calcula a diferença entre as duas datas
-                                        $diferenca = $checkin->diff($checkout);
-                                        // Obtém o número de dias
-                                        $numeroDias = $diferenca->days;
-                                        $preco = $numeroDias *  $valor['precoNoite'];
-                                        $insert = INSERT($pdo, 'INSERT INTO reserva(checkIn, checkOut, codAlojamento, codUtilizador, dataReserva, numeroAdultos, numeroBebes, numeroCriancas, precoTotal) VALUES(:ckIn, :ckOut, :codAloj, :codUtil, :hoje, :nAdultos, :nBebes, :nCriancas, :preco)', [':ckIn' => $_POST['checkin'], ':ckOut' => $_POST['checkout'],':codAloj' => $codAlojamento, ':codUtil' => $_SESSION['codUtilizador'],':hoje' => $dataHora,':nAdultos' => $_POST['numberOfAdults'] ,':nBebes' => $_POST['numberOfInfants'],':nCriancas' => $_POST['numberOfChildren'], ':preco' => $preco]);
-                                        if($insert){
-                                            notificacao('Pedido enviado com sucesso.', "sucesso");
+                                        $agora = new DateTime();
+                                        $dataHora = $agora->format('Y-m-d H:i:s');
+                                        if ($admin) {
+                                            // Bloquear datas
+                                            $insert = INSERT(
+                                                $pdo,
+                                                'INSERT INTO reserva(
+                                                    checkIn,
+                                                    checkOut,
+                                                    codAlojamento,
+                                                    dataReserva,
+                                                    codUtilizador,
+                                                    estadoReserva
+                                                )
+                                                VALUES(
+                                                    :ckIn,
+                                                    :ckOut,
+                                                    :codAloj,
+                                                    :hoje,
+                                                    :codUtil,
+                                                    "Bloqueado"
+                                                )',
+                                                [
+                                                    ':ckIn' => $checkinStr,
+                                                    ':ckOut' => $checkoutStr,
+                                                    ':codAloj' => $codAlojamento,
+                                                    ':hoje' => $dataHora,
+                                                    ':codUtil' => $_SESSION['codUtilizador']
+                                                ]
+                                            );
+                                            if ($insert) {
+                                                notificacao('Datas bloqueadas com sucesso.','sucesso');
+                                            }
+                                        } else {
+                                            // Calcular preço no servidor
+                                            $numeroDias = $checkin->diff($checkout)->days;
+                                            $preco = $numeroDias * $valor['precoNoite'];
+                                            // Criar pedido de reserva
+                                            $insert = INSERT(
+                                                $pdo,
+                                                'INSERT INTO reserva(
+                                                    checkIn,
+                                                    checkOut,
+                                                    codAlojamento,
+                                                    codUtilizador,
+                                                    dataReserva,
+                                                    numeroAdultos,
+                                                    numeroBebes,
+                                                    numeroCriancas,
+                                                    precoTotal
+                                                )
+                                                VALUES(
+                                                    :ckIn,
+                                                    :ckOut,
+                                                    :codAloj,
+                                                    :codUtil,
+                                                    :hoje,
+                                                    :nAdultos,
+                                                    :nBebes,
+                                                    :nCriancas,
+                                                    :preco
+                                                )',
+                                                [
+                                                    ':ckIn' => $checkinStr,
+                                                    ':ckOut' => $checkoutStr,
+                                                    ':codAloj' => $codAlojamento,
+                                                    ':codUtil' => $_SESSION['codUtilizador'],
+                                                    ':hoje' => $dataHora,
+                                                    ':nAdultos' => $adultos,
+                                                    ':nBebes' => $bebes,
+                                                    ':nCriancas' => $criancas,
+                                                    ':preco' => $preco
+                                                ]
+                                            );
+                                            if ($insert) {
+                                                notificacao('Pedido enviado com sucesso.','sucesso'
+                                                );
+                                            }
                                         }
                                     }
                                 }
                             }
-                ?>       
-                    </form>
+                        ?>                  
+                </form>
                 </div>
             </div>
             

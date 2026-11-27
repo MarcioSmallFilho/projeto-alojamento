@@ -249,5 +249,60 @@ function verificarEmailExiste($email) {
 
     return false;
 }
+function mostrarResumo($checkin='-', $checkout='-', $nnoites='-', $adultos='-', $criancas='-', $bebes='-', $preconoite='-', $totalreserva='-'){
+    echo "<div id='modalReserva' class='modal-reserva'>
+                <div class='resumo-reserva'>
+                    <h2>Confirmar reserva</h2>
+                    <p class='subtitulo-reserva'>
+                        Confirma os dados da tua estadia antes de enviar o pedido'
+                    </p>
+                    <div class='resumo-dados'>
+                        <div class='resumo-item'>
+                            <span>Check-in</span>
+                            <strong id='resumoCheckin'>-</strong>
+                        </div>
+                        <div class='resumo-item'>
+                            <span>Check-out</span>
+                            <strong id='resumoCheckout'>-</strong>
+                        </div>
+                        <div class='resumo-item'>
+                            <span>Número de noites</span>
+                            <strong id='resumoNoites'>-</strong>
+                        </div>
+                        <div class='resumo-item'>
+                            <span>Adultos</span>
+                            <strong id='resumoAdultos'>-</strong>
+                        </div>
+                        <div class='resumo-item'>
+                            <span>Crianças</span>
+                            <strong id='resumoCriancas'>-</strong>
+                        </div>
+                        <div class='resumo-item'>
+                            <span>Bebés</span>
+                            <strong id='resumoBebes'>-</strong>
+                        </div>
+                    </div>
+                    <div class='resumo-preco'>
+                        <div>
+                            <span>Preço por noite</span>
+                            <strong id='resumoPrecoNoite'>-</strong>
+                        </div>
+                        <div class='total-reserva'>
+                            <span>Preço total</span>
+                            <strong id='resumoPrecoTotal'>-</strong>
+                        </div>
+                    </div>
+                    <div class='botoes-reserva'>
+                        <button type='button' id='voltarReserva' onclick='document.getElementById('modalReserva').style.display = 'none';'>
+                            Voltar e editar
+                        </button>
+                        <button type='submit' name='confirmarReserva' value='1'>
+                            Confirmar e enviar pedido
+                        </button>
+                    </div>
+                </div>
+            </div>";
+}
+
 
 iniciarSessaoSegura();
